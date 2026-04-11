@@ -32,7 +32,50 @@ export function CourseModules() {
           </div>
         </FadeIn>
 
-        <div className="space-y-2">
+        {/* Mobile: horizontal snap-scroll chapter card rail */}
+        <div className="lg:hidden -mx-6 pl-6 overflow-x-auto snap-x snap-mandatory flex gap-3.5 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {c.items.map((mod) => (
+            <div
+              key={mod.num}
+              className="snap-start flex-shrink-0 w-[272px] rounded-2xl overflow-hidden border border-neutral-700/60 flex flex-col"
+            >
+              {/* Chapter header — dark, large decorative number */}
+              <div className="relative bg-neutral-900 px-5 pt-5 pb-5 border-b border-neutral-700/50 overflow-hidden">
+                <div
+                  aria-hidden
+                  className="absolute right-2 bottom-0 font-display font-black text-[5rem] leading-none text-neutral-700/60 select-none pointer-events-none"
+                >
+                  {mod.num}
+                </div>
+                <span className="font-mono text-[10px] font-bold text-brand-400 mb-2.5 block relative z-10">
+                  {mod.num}
+                </span>
+                <h3 className="font-display font-bold text-[15px] text-white leading-snug relative z-10 pr-10">
+                  {mod.title}
+                </h3>
+              </div>
+              {/* Chapter body — description and lessons */}
+              <div className="bg-neutral-800/70 px-5 py-5 flex-1">
+                <p className="text-neutral-400 text-xs leading-relaxed mb-4">{mod.desc}</p>
+                <div className="flex flex-col gap-2">
+                  {mod.lessons.map((lesson) => (
+                    <span
+                      key={lesson}
+                      className="text-[11px] text-neutral-500 pl-2.5 border-l border-neutral-700 leading-snug"
+                    >
+                      {lesson}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* Trailing breathing room */}
+          <div className="flex-shrink-0 w-3" aria-hidden="true" />
+        </div>
+
+        {/* Desktop: accordion */}
+        <div className="hidden lg:block space-y-2">
           {c.items.map((mod, i) => {
             const isOpen = expanded === mod.num;
 
@@ -127,7 +170,7 @@ export function CourseModules() {
               </FadeIn>
             );
           })}
-        </div>
+        </div>{/* end desktop accordion */}
       </div>
     </section>
   );

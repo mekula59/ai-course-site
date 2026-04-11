@@ -24,7 +24,7 @@ export function WhoIsItFor() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {c.items.map((a, i) => (
             <FadeIn key={a.role} delay={i * 0.07}>
-              <div className="p-6 bg-white rounded-2xl border border-neutral-200 h-full hover:shadow-sm transition-shadow">
+              <div className="p-6 bg-white rounded-2xl border border-neutral-200 h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_6px_24px_rgba(28,25,23,0.10)]">
                 <div className="flex items-center gap-2 mb-3">
                   <CheckCircle2 size={18} className="text-brand-500 flex-shrink-0" />
                   <h3 className="font-semibold text-neutral-900 text-sm">{a.role}</h3>

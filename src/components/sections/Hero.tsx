@@ -33,7 +33,7 @@ export function Hero() {
   const colOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   return (
-    <section ref={ref} className="relative min-h-screen overflow-hidden bg-white">
+    <section ref={ref} className="relative min-h-screen overflow-hidden bg-ivory">
       {/* Warm top-right glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-100/60 via-brand-50/20 to-transparent pointer-events-none" />
       {/* Bottom dissolve */}
@@ -139,7 +139,7 @@ export function Hero() {
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="rounded-2xl border border-neutral-200 overflow-hidden shadow-md bg-white">
+              <div className="rounded-2xl border border-neutral-200 overflow-hidden shadow-[0_4px_24px_rgba(28,25,23,0.10)] bg-white">
 
                 {/* Card header — lesson reference + progress */}
                 <div className="px-6 py-4 border-b border-neutral-100 bg-neutral-50 flex items-center gap-3">

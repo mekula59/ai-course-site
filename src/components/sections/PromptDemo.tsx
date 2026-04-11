@@ -48,7 +48,7 @@ export function PromptDemo() {
   const afterLabel = lang === "en" ? "After one lesson" : "After one lesson";
 
   return (
-    <section className="py-24 px-5 bg-neutral-50 overflow-hidden">
+    <section className="py-16 sm:py-24 px-5 bg-ivory overflow-hidden">
       <div className="max-w-2xl mx-auto">
         <FadeIn>
           <div className="mb-12">
@@ -97,7 +97,7 @@ export function PromptDemo() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.28, ease: EASE }}
-              className="bg-white rounded-2xl border border-neutral-200 overflow-hidden shadow-sm"
+              className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-[0_2px_20px_rgba(28,25,23,0.08)]"
             >
               <div className="px-6 py-5 space-y-5">
                 {/* User message */}

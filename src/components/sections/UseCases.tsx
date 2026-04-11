@@ -16,7 +16,7 @@ export function UseCases() {
   const activeItem = c.items[active];
 
   return (
-    <section className="py-24 px-5 sm:px-6 bg-white overflow-hidden">
+    <section className="py-16 sm:py-24 px-5 sm:px-6 bg-ivory overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <div className="mb-14">
@@ -63,7 +63,7 @@ export function UseCases() {
                   className="h-full"
                 >
                   {/* Panel */}
-                  <div className="rounded-2xl border border-neutral-100 overflow-hidden h-full">
+                  <div className="rounded-2xl border border-neutral-200/70 overflow-hidden h-full shadow-[0_2px_20px_rgba(28,25,23,0.07)]">
                     {/* Context header */}
                     <div className="px-8 pt-8 pb-6 border-b border-neutral-100">
                       <span className="text-2xl mb-3 block" role="img" aria-hidden="true">

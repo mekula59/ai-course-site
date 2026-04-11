@@ -15,6 +15,9 @@
   --color-brand-800: #873518;
   --color-brand-900: #6e2d17;
 
+  /* Warm ivory — replaces flat white in light sections */
+  --color-ivory: #f7f4f0;
+
   --color-neutral-50: #fafaf9;
   --color-neutral-100: #f5f5f4;
   --color-neutral-200: #e7e5e4;
