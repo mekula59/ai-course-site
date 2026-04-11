@@ -25,23 +25,32 @@ export function UseCases() {
           </div>
         </FadeIn>
 
-        {/* Tab selector */}
+        {/* Tab selector — underline style, horizontally scrollable on mobile */}
         <FadeIn delay={0.1}>
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {c.items.map((uc, i) => (
-              <button
-                key={uc.context}
-                onClick={() => setActive(i)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all border ${
-                  active === i
-                    ? "bg-neutral-900 text-white border-neutral-900"
-                    : "bg-white text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-neutral-700"
-                }`}
-              >
-                <span>{uc.icon}</span>
-                <span>{uc.context}</span>
-              </button>
-            ))}
+          <div className="relative mb-10">
+            <div className="overflow-x-auto -mx-5 px-5 scrollbar-none">
+              <div className="flex gap-0 border-b border-neutral-100 min-w-max mx-auto w-fit">
+                {c.items.map((uc, i) => (
+                  <button
+                    key={uc.context}
+                    onClick={() => setActive(i)}
+                    className={`px-4 py-3 text-sm font-semibold transition-colors relative cursor-pointer whitespace-nowrap ${
+                      active === i
+                        ? "text-neutral-900"
+                        : "text-neutral-400 hover:text-neutral-600"
+                    }`}
+                  >
+                    {uc.context}
+                    {active === i && (
+                      <motion.span
+                        layoutId="tab-underline"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-500 rounded-full"
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </FadeIn>
 
@@ -50,57 +59,31 @@ export function UseCases() {
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.28, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="bg-neutral-50 rounded-2xl border border-neutral-200 overflow-hidden"
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="rounded-2xl border border-neutral-100 overflow-hidden"
             >
-              {/* Header */}
-              <div className="px-7 pt-7 pb-5 border-b border-neutral-200 flex items-center gap-3">
-                <span className="text-3xl">{activeItem.icon}</span>
-                <span className="font-display font-bold text-xl text-neutral-900">
-                  {activeItem.context}
-                </span>
-              </div>
-
-              {/* Before / After */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-neutral-200">
-                <div className="p-7">
-                  <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-3">
+              {/* Before / After — panel carries full weight */}
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                <div className="p-7 sm:p-9 bg-white sm:border-r border-b sm:border-b-0 border-neutral-100">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-5">
                     {c.beforeLabel}
                   </p>
-                  <p className="text-neutral-700 text-base leading-relaxed">{activeItem.before}</p>
+                  <p className="text-neutral-500 text-base leading-[1.7]">{activeItem.before}</p>
                 </div>
-                <div className="p-7 bg-brand-50">
-                  <p className="text-xs font-bold uppercase tracking-widest text-brand-500 mb-3">
+                <div className="p-7 sm:p-9 bg-brand-50">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-500 mb-5">
                     {c.afterLabel}
                   </p>
-                  <p className="text-neutral-800 text-base leading-relaxed font-medium">
+                  <p className="text-neutral-900 text-base leading-[1.7] font-semibold">
                     {activeItem.after}
                   </p>
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
-        </FadeIn>
-
-        {/* Navigation dots */}
-        <FadeIn delay={0.2}>
-          <div className="flex justify-center gap-2 mt-6">
-            {c.items.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={`rounded-full transition-all ${
-                  active === i
-                    ? "w-5 h-2 bg-neutral-900"
-                    : "w-2 h-2 bg-neutral-300 hover:bg-neutral-400"
-                }`}
-                aria-label={`View use case ${i + 1}`}
-              />
-            ))}
-          </div>
         </FadeIn>
       </div>
     </section>
