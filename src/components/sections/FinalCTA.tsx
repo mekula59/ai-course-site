@@ -22,16 +22,16 @@ export function FinalCTA() {
       <div className="relative z-10 max-w-2xl mx-auto text-center">
         <FadeIn>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
-            The best time to learn AI was last year.
-            <br />
-            The second best time is now.
+            The people using AI today are not smarter.
+            <br className="hidden sm:block" />
+            They just started earlier.
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.1}>
           <p className="text-brand-100 text-lg leading-relaxed mb-8 max-w-lg mx-auto">
-            Join the waitlist today. Be part of the first group to access the course
-            and start using AI before your competitors do.
+            Join the waitlist. Be part of the first group to access the course
+            and build real, practical AI skills from the ground up.
           </p>
         </FadeIn>
 

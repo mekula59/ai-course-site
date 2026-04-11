@@ -37,10 +37,11 @@ export function WhoIsItFor() {
           <div className="text-center mb-14">
             <SectionLabel className="mb-4">Who This Is For</SectionLabel>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mt-4 mb-4">
-              This course is for you if...
+              This course was built for you.
             </h2>
             <p className="text-neutral-500 text-lg max-w-xl mx-auto">
-              No tech background needed. No coding required. Just a desire to learn and get practical results.
+              No tech background. No coding. No prior experience with AI.
+              Just a real desire to learn something useful.
             </p>
           </div>
         </FadeIn>

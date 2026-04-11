@@ -36,7 +36,7 @@ const differences = [
 
 export function WhyDifferent() {
   return (
-    <section className="py-20 px-5 bg-neutral-900 overflow-hidden">
+    <section id="why" className="py-20 px-5 bg-neutral-900 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <div className="text-center mb-14">
@@ -44,11 +44,11 @@ export function WhyDifferent() {
               Why This Course
             </SectionLabel>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-4 mb-4">
-              What makes this course different.
+              Other AI courses were not built for you. This one was.
             </h2>
             <p className="text-neutral-400 text-lg max-w-xl mx-auto">
-              There are a lot of AI courses out there. Here is why this one was built from scratch
-              for you specifically.
+              Most AI education is made for a Western, tech-savvy audience.
+              This course starts from a different place entirely.
             </p>
           </div>
         </FadeIn>

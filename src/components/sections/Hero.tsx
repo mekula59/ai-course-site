@@ -22,24 +22,24 @@ export function Hero() {
 
         {/* Headline */}
         <motion.h1
-          className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 leading-tight tracking-tight mb-6"
+          className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-neutral-900 leading-[1.12] tracking-tight mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
-          Learn how to use AI{" "}
-          <span className="text-brand-500">for your real life.</span>
+          AI is changing everything.{" "}
+          <span className="text-brand-500">Start using it.</span>
         </motion.h1>
 
         {/* Sub-headline */}
         <motion.p
-          className="text-neutral-600 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto"
+          className="text-neutral-600 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
         >
-          A practical, beginner-friendly course that teaches you how to use AI tools for work,
-          business, school, and everyday life. In plain English. With Nigerian Pidgin support.
+          You already use Google, WhatsApp, and YouTube. Learning to use AI is no different.
+          This course shows you how, step by step, in plain English and Nigerian Pidgin.
         </motion.p>
 
         {/* CTA buttons */}
@@ -53,14 +53,14 @@ export function Hero() {
             size="lg"
             onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}
           >
-            Join the Waitlist
+            Get Early Access
           </Button>
           <Button
             variant="ghost"
             size="lg"
             onClick={() => document.getElementById("modules")?.scrollIntoView({ behavior: "smooth" })}
           >
-            See What You'll Learn
+            See the Course
           </Button>
         </motion.div>
 
@@ -71,7 +71,7 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          Be the first to know when we launch. Free to join the waitlist.
+          Free to join. No spam. Waitlist members get access first.
         </motion.p>
       </div>
 

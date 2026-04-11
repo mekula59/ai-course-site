@@ -12,7 +12,7 @@ export function Waitlist() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: { preventDefault(): void }) {
     e.preventDefault();
     if (!email || !name) {
       setError("Please fill in both fields.");
@@ -41,11 +41,11 @@ export function Waitlist() {
           <div className="text-center mb-10">
             <SectionLabel className="mb-4">Join the Waitlist</SectionLabel>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mt-4 mb-4">
-              Be first in line when we launch.
+              Get early access when we launch.
             </h2>
             <p className="text-neutral-500 text-base leading-relaxed max-w-sm mx-auto">
-              Leave your details below. We will notify you as soon as the course is ready
-              and give waitlist members early access.
+              Drop your details below. Waitlist members are the first to get in,
+              and will get a special early rate when we open.
             </p>
           </div>
         </FadeIn>
@@ -121,13 +121,17 @@ export function Waitlist() {
                     Joining...
                   </>
                 ) : (
-                  "Join the Waitlist"
+                  "Get Early Access"
                 )}
               </Button>
 
-              <p className="text-center text-xs text-neutral-400">
-                No spam. No selling your data. Just a heads up when we launch.
-              </p>
+              <div className="flex items-center justify-center gap-4 pt-1">
+                {["Free to join", "No spam", "Early rate for waitlist"].map((item) => (
+                  <span key={item} className="flex items-center gap-1 text-xs text-neutral-400">
+                    <span className="text-brand-400">✓</span> {item}
+                  </span>
+                ))}
+              </div>
             </form>
           )}
         </FadeIn>
