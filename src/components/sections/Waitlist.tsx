@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import { useLang } from "@/context/LanguageContext";
+import { content } from "@/lib/content";
 
 export function Waitlist() {
   const [email, setEmail] = useState("");
@@ -12,41 +14,39 @@ export function Waitlist() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const { lang } = useLang();
+  const c = content[lang].waitlist;
+
   async function handleSubmit(e: { preventDefault(): void }) {
     e.preventDefault();
     if (!email || !name) {
-      setError("Please fill in both fields.");
+      setError(c.errorBoth);
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Please enter a valid email address.");
+      setError(c.errorEmail);
       return;
     }
 
     setError("");
     setLoading(true);
-    // Simulate submit (replace with real endpoint later)
     await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
     setSubmitted(true);
   }
 
+  const successBody = c.successBody.replace("{email}", email);
+
   return (
-    <section
-      id="waitlist"
-      className="py-20 px-5 bg-white"
-    >
+    <section id="waitlist" className="py-20 px-5 bg-white">
       <div className="max-w-xl mx-auto">
         <FadeIn>
           <div className="text-center mb-10">
-            <SectionLabel className="mb-4">Join the Waitlist</SectionLabel>
+            <SectionLabel className="mb-4">{c.label}</SectionLabel>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mt-4 mb-4">
-              Get early access when we launch.
+              {c.heading}
             </h2>
-            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mx-auto">
-              Drop your details below. Waitlist members are the first to get in,
-              and will get a special early rate when we open.
-            </p>
+            <p className="text-neutral-500 text-base leading-relaxed max-w-sm mx-auto">{c.sub}</p>
           </div>
         </FadeIn>
 
@@ -59,11 +59,19 @@ export function Waitlist() {
             >
               <CheckCircle2 className="mx-auto text-green-500 mb-4" size={40} />
               <h3 className="font-display font-bold text-xl text-neutral-900 mb-2">
-                You are on the list!
+                {c.successHeading}
               </h3>
               <p className="text-neutral-500 text-sm">
-                We will send you a message at <strong>{email}</strong> as soon as the course
-                is ready. Watch your inbox.
+                {successBody.split(email).map((part, i, arr) =>
+                  i < arr.length - 1 ? (
+                    <span key={i}>
+                      {part}
+                      <strong>{email}</strong>
+                    </span>
+                  ) : (
+                    <span key={i}>{part}</span>
+                  )
+                )}
               </p>
             </motion.div>
           ) : (
@@ -77,14 +85,14 @@ export function Waitlist() {
                   htmlFor="wl-name"
                   className="block text-sm font-medium text-neutral-700 mb-1.5"
                 >
-                  Your name
+                  {c.nameLabel}
                 </label>
                 <input
                   id="wl-name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Ada Okonkwo"
+                  placeholder={c.namePlaceholder}
                   className="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition-all"
                 />
               </div>
@@ -93,21 +101,19 @@ export function Waitlist() {
                   htmlFor="wl-email"
                   className="block text-sm font-medium text-neutral-700 mb-1.5"
                 >
-                  Your email address
+                  {c.emailLabel}
                 </label>
                 <input
                   id="wl-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="ada@example.com"
+                  placeholder={c.emailPlaceholder}
                   className="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition-all"
                 />
               </div>
 
-              {error && (
-                <p className="text-red-600 text-xs">{error}</p>
-              )}
+              {error && <p className="text-red-600 text-xs">{error}</p>}
 
               <Button
                 type="submit"
@@ -118,15 +124,15 @@ export function Waitlist() {
                 {loading ? (
                   <>
                     <Loader2 size={16} className="animate-spin mr-2" />
-                    Joining...
+                    {c.submittingLabel}
                   </>
                 ) : (
-                  "Get Early Access"
+                  c.submitCta
                 )}
               </Button>
 
               <div className="flex items-center justify-center gap-4 pt-1">
-                {["Free to join", "No spam", "Early rate for waitlist"].map((item) => (
+                {c.trustItems.map((item) => (
                   <span key={item} className="flex items-center gap-1 text-xs text-neutral-400">
                     <span className="text-brand-400">✓</span> {item}
                   </span>

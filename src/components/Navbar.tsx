@@ -3,16 +3,63 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLang, type Lang } from "@/context/LanguageContext";
+import { content } from "@/lib/content";
 
-const navLinks = [
-  { label: "Modules", href: "#modules" },
-  { label: "Why This", href: "#why" },
-  { label: "FAQ", href: "#faq" },
-];
+function LangToggle({ scrolled }: { scrolled: boolean }) {
+  const { lang, setLang } = useLang();
+  const options: { value: Lang; label: string }[] = [
+    { value: "en", label: "EN" },
+    { value: "pidgin", label: "Pidgin" },
+  ];
+
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center rounded-full p-0.5 text-xs font-semibold transition-colors",
+        scrolled ? "bg-neutral-100" : "bg-neutral-900/10 backdrop-blur-sm"
+      )}
+    >
+      {options.map(({ value, label }) => (
+        <button
+          key={value}
+          onClick={() => setLang(value)}
+          className="relative px-3 py-1.5 rounded-full cursor-pointer transition-colors"
+          aria-pressed={lang === value}
+        >
+          {lang === value && (
+            <motion.div
+              layoutId="lang-pill"
+              className={cn(
+                "absolute inset-0 rounded-full",
+                scrolled ? "bg-white shadow-sm" : "bg-white/90"
+              )}
+              transition={{ type: "spring", stiffness: 500, damping: 38 }}
+            />
+          )}
+          <span
+            className={cn(
+              "relative z-10 transition-colors",
+              lang === value
+                ? "text-neutral-900"
+                : scrolled
+                ? "text-neutral-500 hover:text-neutral-700"
+                : "text-neutral-600 hover:text-neutral-800"
+            )}
+          >
+            {label}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { lang, setLang } = useLang();
+  const c = content[lang].nav;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -40,14 +87,18 @@ export function Navbar() {
         <a
           href="#"
           className="font-display font-bold text-neutral-900 text-lg tracking-tight"
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         >
-          AI for <span className="text-brand-500">Everyone</span>
+          {c.logo.split(" ").slice(0, -1).join(" ")}{" "}
+          <span className="text-brand-500">{c.logo.split(" ").slice(-1)}</span>
         </a>
 
         {/* Desktop nav */}
         <div className="hidden sm:flex items-center gap-1">
-          {navLinks.map((link) => (
+          {c.links.map((link) => (
             <button
               key={link.label}
               onClick={() => scrollTo(link.href)}
@@ -56,23 +107,25 @@ export function Navbar() {
               {link.label}
             </button>
           ))}
-          <Button
-            size="sm"
-            className="ml-2"
-            onClick={() => scrollTo("#waitlist")}
-          >
-            Join Waitlist
+          <div className="ml-2 mr-1">
+            <LangToggle scrolled={scrolled} />
+          </div>
+          <Button size="sm" onClick={() => scrollTo("#waitlist")}>
+            {c.cta}
           </Button>
         </div>
 
-        {/* Mobile menu button */}
-        <button
-          className="sm:hidden p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile: lang toggle + menu button */}
+        <div className="sm:hidden flex items-center gap-2">
+          <LangToggle scrolled={scrolled} />
+          <button
+            className="p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile nav */}
@@ -86,7 +139,7 @@ export function Navbar() {
             className="sm:hidden overflow-hidden bg-white border-b border-neutral-200"
           >
             <div className="px-5 pb-4 pt-2 flex flex-col gap-1">
-              {navLinks.map((link) => (
+              {c.links.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
@@ -95,12 +148,30 @@ export function Navbar() {
                   {link.label}
                 </button>
               ))}
+              <div className="flex gap-2 mt-2">
+                <Button
+                  variant={lang === "en" ? "primary" : "ghost"}
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => { setLang("en"); setMobileOpen(false); }}
+                >
+                  English
+                </Button>
+                <Button
+                  variant={lang === "pidgin" ? "primary" : "ghost"}
+                  size="sm"
+                  className="flex-1"
+                  onClick={() => { setLang("pidgin"); setMobileOpen(false); }}
+                >
+                  Pidgin
+                </Button>
+              </div>
               <Button
                 size="sm"
-                className="mt-2"
+                className="mt-1"
                 onClick={() => scrollTo("#waitlist")}
               >
-                Join Waitlist
+                {c.cta}
               </Button>
             </div>
           </motion.div>
