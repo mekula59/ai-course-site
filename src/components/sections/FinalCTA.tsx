@@ -1,10 +1,7 @@
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
-
-const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 export function FinalCTA() {
   const { lang } = useLang();
