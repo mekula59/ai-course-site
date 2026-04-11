@@ -5,6 +5,7 @@ import { Problem } from "@/components/sections/Problem";
 import { WhoIsItFor } from "@/components/sections/WhoIsItFor";
 import { WhatYouLearn } from "@/components/sections/WhatYouLearn";
 import { LanguageSupport } from "@/components/sections/LanguageSupport";
+import { PromptDemo } from "@/components/sections/PromptDemo";
 import { CourseModules } from "@/components/sections/CourseModules";
 import { UseCases } from "@/components/sections/UseCases";
 import { WhyDifferent } from "@/components/sections/WhyDifferent";
@@ -23,6 +24,7 @@ export default function App() {
         <WhoIsItFor />
         <WhatYouLearn />
         <LanguageSupport />
+        <PromptDemo />
         <CourseModules />
         <UseCases />
         <WhyDifferent />

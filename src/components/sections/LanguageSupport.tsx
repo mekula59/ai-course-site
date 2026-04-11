@@ -11,7 +11,9 @@ export function LanguageSupport() {
   const c = content[lang].languageSupport;
 
   return (
-    <section className="py-24 px-5 bg-neutral-900 overflow-hidden">
+    <section className="relative py-24 px-5 bg-neutral-900 overflow-hidden">
+      {/* Entry bridge — blends from the light section above into dark */}
+      <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
       <div className="max-w-4xl mx-auto">
         <FadeIn>
           <div className="text-center mb-12">
@@ -21,7 +23,7 @@ export function LanguageSupport() {
             <h2 className="font-display text-3xl sm:text-5xl font-bold text-white mt-4 mb-5 leading-[1.1] tracking-tight">
               {c.heading}
             </h2>
-            <p className="text-neutral-500 text-base max-w-md mx-auto leading-relaxed">{c.sub}</p>
+            <p className="text-neutral-400 text-base max-w-md mx-auto leading-relaxed">{c.sub}</p>
           </div>
         </FadeIn>
 
@@ -56,6 +58,8 @@ export function LanguageSupport() {
           <p className="text-center text-neutral-500 text-sm">{c.note}</p>
         </FadeIn>
       </div>
+      {/* Exit bridge — dissolves into the next section */}
+      <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-b from-transparent to-neutral-50/60 pointer-events-none" />
     </section>
   );
 }

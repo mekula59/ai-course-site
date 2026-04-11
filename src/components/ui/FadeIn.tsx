@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface FadeInProps {
@@ -8,7 +8,6 @@ interface FadeInProps {
   direction?: "up" | "down" | "left" | "right" | "none";
 }
 
-// Framer Motion requires cubic-bezier as a 4-tuple literal type
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 export function FadeIn({
@@ -17,19 +16,21 @@ export function FadeIn({
   className,
   direction = "up",
 }: FadeInProps) {
+  const reduced = useReducedMotion();
+
   const variants = {
     hidden: {
       opacity: 0,
-      y: direction === "up" ? 20 : direction === "down" ? -20 : 0,
-      x: direction === "left" ? 20 : direction === "right" ? -20 : 0,
+      y: reduced ? 0 : direction === "up" ? 18 : direction === "down" ? -18 : 0,
+      x: reduced ? 0 : direction === "left" ? 18 : direction === "right" ? -18 : 0,
     },
     visible: {
       opacity: 1,
       y: 0,
       x: 0,
       transition: {
-        duration: 0.5,
-        delay,
+        duration: reduced ? 0.01 : 0.5,
+        delay: reduced ? 0 : delay,
         ease: EASE,
       },
     },
@@ -39,7 +40,7 @@ export function FadeIn({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-40px" }}
       variants={variants}
       className={className}
     >
