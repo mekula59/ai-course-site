@@ -1,45 +1,26 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 
-// Restrained typewriter — characters appear one at a time, no blinking cursor.
-// A thin vertical mark fades gently when typing completes. Applied to the
-// section heading only. Triggers once when the element enters view.
-function TypewriterHeading({ text }: { text: string }) {
+const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
+
+function HeadingReveal({ text }: { text: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
-  const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    if (!inView) return;
-    let i = 0;
-    const id = setInterval(() => {
-      i++;
-      setDisplayed(text.slice(0, i));
-      if (i >= text.length) {
-        clearInterval(id);
-        setDone(true);
-      }
-    }, 48);
-    return () => clearInterval(id);
-  }, [inView, text]);
 
   return (
     <div ref={ref}>
-      <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 leading-tight">
-        {/* Non-breaking space preserves line height before first character */}
-        {displayed || "\u00A0"}
-        <motion.span
-          aria-hidden="true"
-          className="inline-block w-[2px] h-[0.82em] bg-neutral-300 ml-[2px] align-text-bottom rounded-sm"
-          animate={{ opacity: done ? 0 : 1 }}
-          transition={{ duration: 0.6 }}
-        />
-      </h2>
+      <motion.h2
+        className="font-display text-[2.2rem] sm:text-[2.8rem] font-bold text-neutral-900 leading-[1.08] tracking-tight"
+        initial={{ opacity: 0, y: 18 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+        transition={{ duration: 0.58, ease: EASE }}
+      >
+        {text}
+      </motion.h2>
     </div>
   );
 }
@@ -51,67 +32,81 @@ export function Instructor() {
   return (
     <section className="py-16 sm:py-24 px-5 bg-ivory">
       <div className="max-w-4xl mx-auto">
+        <div className="border-t border-neutral-200/80 pt-8 sm:pt-10">
+          <FadeIn>
+            <SectionLabel className="mb-7">{c.label}</SectionLabel>
+          </FadeIn>
 
-        {/* Section label */}
-        <FadeIn>
-          <SectionLabel className="mb-6">{c.label}</SectionLabel>
-        </FadeIn>
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-14 items-start">
+            <FadeIn delay={0.08}>
+              <aside className="lg:sticky lg:top-28">
+                <div className="rounded-[2rem] overflow-hidden border border-neutral-200/80 bg-surface shadow-[0_6px_24px_rgba(26,18,8,0.05)]">
+                  <div className="aspect-[4/5] bg-[linear-gradient(180deg,rgba(245,213,173,0.45)_0%,rgba(254,252,249,0.95)_46%,rgba(244,237,227,0.95)_100%)] p-5 flex flex-col justify-between">
+                    <div className="flex justify-end">
+                      <span className="text-[10px] font-medium tracking-[0.14em] uppercase text-neutral-500 rounded-full border border-neutral-200/80 bg-white/80 px-3 py-1.5">
+                        Final photo before launch
+                      </span>
+                    </div>
 
-        {/* Typed heading — the human hook. Appears on its own, no card. */}
-        <div className="mb-12 sm:mb-14">
-          <TypewriterHeading text={c.heading} />
-        </div>
+                    <div className="flex-1 flex items-center justify-center">
+                      <div className="w-full max-w-[210px] aspect-[4/5] rounded-[1.5rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.62)_0%,rgba(244,237,227,0.96)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] flex items-center justify-center">
+                        <div className="w-[62%] h-[62%] rounded-[999px] bg-brand-100/80 flex items-center justify-center">
+                          <div className="w-[72%] h-[72%] rounded-[999px] border border-brand-200/80" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-        {/* Bio — editorial layout, no card border */}
-        <FadeIn delay={0.35}>
-          <div className="grid grid-cols-1 sm:grid-cols-[88px_1fr] gap-7 sm:gap-10 items-start">
+                <div className="pb-6 pt-6 border-b border-neutral-200/80">
+                  <p className="font-display text-[1.7rem] sm:text-[1.9rem] font-bold text-neutral-900 leading-none">
+                    {c.title}
+                  </p>
+                  <p className="mt-2 text-sm text-brand-700 font-medium">
+                    {c.role}
+                  </p>
+                </div>
 
-            {/* Honest status marker — avoids fake placeholder identity */}
-            <div className="shrink-0">
-              <div className="w-[88px] h-[88px] rounded-2xl bg-brand-50 border border-brand-100 flex flex-col items-center justify-center text-center px-3">
-                <span className="font-mono text-[10px] font-bold tracking-[0.14em] uppercase text-brand-600">
-                  Honest
-                </span>
-                <span className="mt-1 text-[11px] leading-tight text-brand-800">
-                  Profile lands before launch
-                </span>
-              </div>
-            </div>
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {c.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] font-medium px-3 py-1.5 border border-neutral-200 rounded-full text-neutral-600 bg-surface/70"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </aside>
+            </FadeIn>
 
-            {/* Content */}
             <div>
-              {/* Role */}
-              <p className="text-brand-600 text-sm font-semibold tracking-wide mb-5">
-                {c.role}
-              </p>
+              <div className="mb-8 sm:mb-10">
+                <HeadingReveal text={c.heading} />
+              </div>
 
-              {/* First paragraph — the personal voice, slightly more prominent */}
-              <p className="text-neutral-700 text-[15px] leading-relaxed mb-4">
-                {c.bio[0]}
-              </p>
+              <div className="space-y-5">
+                <FadeIn delay={0.2}>
+                  <p className="text-neutral-800 text-[16px] sm:text-[17px] leading-[1.8] max-w-[58ch]">
+                    {c.bio[0]}
+                  </p>
+                </FadeIn>
 
-              {/* Remaining paragraphs — softer */}
-              {c.bio.slice(1).map((para, i) => (
-                <p key={i} className="text-neutral-500 text-sm leading-relaxed mb-3 last:mb-0">
-                  {para}
-                </p>
-              ))}
+                <FadeIn delay={0.3}>
+                  <p className="text-neutral-600 text-[15px] leading-[1.85] max-w-[58ch]">
+                    {c.bio[1]}
+                  </p>
+                </FadeIn>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-6">
-                {c.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs font-medium px-3 py-1.5 border border-neutral-200 rounded-full text-neutral-500"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                <FadeIn delay={0.4}>
+                  <p className="text-neutral-600 text-[15px] leading-[1.85] max-w-[58ch]">
+                    {c.bio[2]}
+                  </p>
+                </FadeIn>
               </div>
             </div>
           </div>
-        </FadeIn>
-
+        </div>
       </div>
     </section>
   );
