@@ -59,7 +59,7 @@ function LangToggle({ scrolled }: { scrolled: boolean }) {
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { lang, setLang } = useLang();
+  const { lang } = useLang();
   const c = content[lang].nav;
 
   useEffect(() => {
@@ -149,27 +149,9 @@ export function Navbar() {
                   {link.label}
                 </button>
               ))}
-              <div className="flex gap-2 mt-2">
-                <Button
-                  variant={lang === "en" ? "primary" : "ghost"}
-                  size="sm"
-                  className="flex-1"
-                  onClick={() => { setLang("en"); setMobileOpen(false); }}
-                >
-                  English
-                </Button>
-                <Button
-                  variant={lang === "pidgin" ? "primary" : "ghost"}
-                  size="sm"
-                  className="flex-1"
-                  onClick={() => { setLang("pidgin"); setMobileOpen(false); }}
-                >
-                  Pidgin
-                </Button>
-              </div>
               <Button
                 size="sm"
-                className="mt-1"
+                className="mt-2"
                 onClick={() => scrollTo("#waitlist")}
               >
                 {c.cta}

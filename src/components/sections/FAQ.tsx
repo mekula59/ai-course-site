@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -10,14 +10,18 @@ const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
+  const answerId = useId();
+  const questionId = `${answerId}-trigger`;
 
   return (
     <FadeIn delay={index * 0.05}>
       <div className="border-b border-neutral-200 last:border-0">
         <button
+          id={questionId}
           onClick={() => setOpen(!open)}
           className="w-full flex items-center justify-between gap-4 py-5 text-left group cursor-pointer"
           aria-expanded={open}
+          aria-controls={answerId}
         >
           <span className="font-medium text-neutral-900 text-sm sm:text-base leading-snug group-hover:text-brand-600 transition-colors">
             {q}
@@ -33,6 +37,9 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
         <AnimatePresence initial={false}>
           {open && (
             <motion.div
+              id={answerId}
+              role="region"
+              aria-labelledby={questionId}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}

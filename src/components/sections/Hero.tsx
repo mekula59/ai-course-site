@@ -91,9 +91,9 @@ const SPECIMENS: Record<Lang, Specimen[]> = {
 const AUTO_INTERVAL = 5000;
 
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir * 14, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (dir: number) => ({ x: dir * -14, opacity: 0 }),
+  enter: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
 };
 
 export function Hero() {
@@ -103,7 +103,6 @@ export function Hero() {
   const specimens = SPECIMENS[lang];
 
   const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
@@ -116,13 +115,11 @@ export function Hero() {
   const colOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
   const navigate = useCallback((dir: 1 | -1) => {
-    setDirection(dir);
     setIndex((i) => (i + dir + specimens.length) % specimens.length);
     setPaused(true);
   }, [specimens.length]);
 
-  const goTo = useCallback((i: number, current: number) => {
-    setDirection(i > current ? 1 : -1);
+  const goTo = useCallback((i: number) => {
     setIndex(i);
     setPaused(true);
   }, []);
@@ -130,7 +127,6 @@ export function Hero() {
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
-      setDirection(1);
       setIndex((i) => (i + 1) % specimens.length);
     }, AUTO_INTERVAL);
     return () => clearInterval(id);
@@ -246,6 +242,44 @@ export function Hero() {
               </div>
               <p className="text-sm text-neutral-400">{c.nudge}</p>
             </motion.div>
+
+            {/* Mobile course preview — insight from current specimen */}
+            <motion.div
+              className="lg:hidden mt-8"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.65, ease: EASE }}
+            >
+              <p className="font-mono text-[10px] font-bold tracking-wider text-brand-500 uppercase mb-3">
+                {specimen.module} · {specimen.lesson}
+              </p>
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.35 }}
+                  className="text-neutral-700 text-[15px] leading-relaxed italic"
+                >
+                  "{specimen.insight}"
+                </motion.p>
+              </AnimatePresence>
+              <div className="flex items-center gap-1.5 mt-5">
+                {specimens.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
+                    className={`rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                      i === index
+                        ? "w-5 h-1.5 bg-brand-500"
+                        : "w-1.5 h-1.5 bg-neutral-200 hover:bg-neutral-300"
+                    }`}
+                    aria-label={`Go to specimen ${i + 1}`}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Right: lesson specimen card — desktop only */}
@@ -256,42 +290,21 @@ export function Hero() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.85, delay: 0.2, ease: EASE }}
           >
-            <motion.div
-              whileHover={{ y: -3 }}
-              transition={{ type: "spring", stiffness: 300, damping: 28 }}
-            >
               <div
-                className="rounded-2xl border border-neutral-200/80 overflow-hidden
-                  shadow-[0_2px_12px_rgba(26,18,8,0.08),0_1px_3px_rgba(26,18,8,0.05)]
-                  hover:shadow-[0_8px_32px_rgba(26,18,8,0.12),0_2px_8px_rgba(26,18,8,0.07)]
-                  transition-shadow duration-500 bg-surface"
+                className="rounded-2xl border border-neutral-200/70 overflow-hidden bg-surface"
                 onMouseEnter={() => setPaused(true)}
                 onMouseLeave={() => setPaused(false)}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
               >
-                {/* Auto-advance progress bar */}
-                <div className="h-[2px] bg-neutral-100 w-full overflow-hidden">
-                  {!paused && (
-                    <motion.div
-                      key={index}
-                      className="h-full bg-brand-400/80"
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
-                    />
-                  )}
-                </div>
-
-                <AnimatePresence mode="wait" custom={direction}>
+                <AnimatePresence mode="wait">
                   <motion.div
                     key={index}
-                    custom={direction}
                     variants={slideVariants}
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.3, ease: EASE }}
+                    transition={{ duration: 0.38, ease: EASE }}
                   >
                     {/* Card header: module + lesson */}
                     <div className="px-6 py-4 border-b border-neutral-200/50 bg-ivory/80 flex items-center gap-2.5">
@@ -334,7 +347,7 @@ export function Hero() {
                     {specimens.map((_, i) => (
                       <button
                         key={i}
-                        onClick={() => goTo(i, index)}
+                        onClick={() => goTo(i)}
                         className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
                           i === index
                             ? "w-5 bg-brand-500"
@@ -362,7 +375,19 @@ export function Hero() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+
+              {/* Progress bar — below card, not inside it */}
+              <div className="mt-3 h-[1.5px] bg-neutral-200/50 rounded-full overflow-hidden">
+                {!paused && (
+                  <motion.div
+                    key={index}
+                    className="h-full bg-brand-400/60"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
+                  />
+                )}
+              </div>
           </motion.div>
 
         </div>

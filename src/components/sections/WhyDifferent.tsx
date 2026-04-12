@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -6,7 +6,6 @@ import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
-const AUTO_INTERVAL = 5500;
 
 // Soft cross-fade with gentle settle — premium testimonial-panel motion
 const featureVariants = {
@@ -21,40 +20,19 @@ export function WhyDifferent() {
 
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(false);
 
   const navigate = useCallback(
     (idx: number) => {
       setDirection(idx > active ? 1 : -1);
       setActive(idx);
-      setPaused(true);
     },
     [active]
   );
-
-  // Auto-advance
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => {
-      setDirection(1);
-      setActive((i) => (i + 1) % c.items.length);
-    }, AUTO_INTERVAL);
-    return () => clearInterval(id);
-  }, [paused, c.items.length]);
-
-  // Resume after 7s of manual interaction
-  useEffect(() => {
-    if (!paused) return;
-    const id = setTimeout(() => setPaused(false), 7000);
-    return () => clearTimeout(id);
-  }, [paused, active]);
 
   return (
     <section
       id="why"
       className="py-16 sm:py-24 px-5 bg-neutral-900 overflow-hidden"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
     >
       <div className="max-w-5xl mx-auto">
 
@@ -102,18 +80,6 @@ export function WhyDifferent() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Auto-advance progress bar */}
-              <div className="mt-10 h-[1.5px] bg-neutral-800 rounded-full overflow-hidden">
-                {!paused && (
-                  <motion.div
-                    key={`prog-${active}`}
-                    className="h-full bg-brand-500/70"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
-                  />
-                )}
-              </div>
             </div>
 
             {/* Navigation stack — all 6 reasons, compact */}
@@ -208,18 +174,6 @@ export function WhyDifferent() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Progress bar */}
-          <div className="mt-8 h-[1.5px] bg-neutral-800 rounded-full overflow-hidden">
-            {!paused && (
-              <motion.div
-                key={`mob-prog-${active}`}
-                className="h-full bg-brand-500/70"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
-              />
-            )}
-          </div>
 
         </FadeIn>
 

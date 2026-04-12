@@ -156,7 +156,7 @@ export function Waitlist() {
                 )}
               </Button>
 
-              <div className="flex items-center justify-center gap-4 pt-1">
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 pt-1">
                 {c.trustItems.map((item) => (
                   <span key={item} className="flex items-center gap-1 text-xs text-neutral-400">
                     <span className="text-brand-400">✓</span> {item}

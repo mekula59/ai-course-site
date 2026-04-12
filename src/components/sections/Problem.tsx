@@ -129,7 +129,7 @@ export function Problem() {
         <FadeIn delay={0.1}>
 
           {/* Mobile: horizontal number tabs */}
-          <div className="flex gap-2 mb-6 lg:hidden">
+          <div className="flex gap-2 mb-5 lg:hidden">
             {c.items.map((_, i) => (
               <button
                 key={i}
@@ -145,8 +145,21 @@ export function Problem() {
             ))}
           </div>
 
+          {/* Mobile progress bar — auto-advance indicator */}
+          <div className="lg:hidden h-px mb-7 bg-neutral-200/60 overflow-hidden rounded-full">
+            {!paused && (
+              <motion.div
+                key={`mob-prog-${active}`}
+                className="h-full bg-brand-400/60"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
+              />
+            )}
+          </div>
+
           {/* Main layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-6 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6 lg:gap-14 items-start">
 
             {/* Desktop selector — typographic index, not a card list */}
             <div className="hidden lg:block pt-1">
@@ -221,7 +234,7 @@ export function Problem() {
               ))}
             </div>
 
-            {/* Detail panel */}
+            {/* Detail area — editorial, no card */}
             <div ref={panelRef} className="lg:sticky lg:top-28">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
@@ -232,53 +245,17 @@ export function Problem() {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.26, ease: EASE }}
-                  className="bg-surface rounded-2xl border border-neutral-200/70 overflow-hidden
-                    shadow-[0_2px_14px_rgba(26,18,8,0.06),0_1px_3px_rgba(26,18,8,0.04)]"
                 >
-                  {/* Thin auto-advance progress bar at top — visible on mobile, hidden on desktop (selector handles it) */}
-                  <div className="lg:hidden h-[2px] bg-neutral-100 w-full overflow-hidden">
-                    {!paused && (
-                      <motion.div
-                        key={`mob-${active}`}
-                        className="h-full bg-brand-400/70"
-                        initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
-                        transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
-                      />
-                    )}
-                  </div>
-
-                  {/* Panel content — no admin header, straight into copy */}
-                  <div className="px-7 pt-7 pb-6 sm:pt-8 sm:pb-7">
-                    <h3 className="font-display font-bold text-2xl sm:text-[1.7rem] text-neutral-900 mb-4 leading-snug">
-                      {item.title}
-                    </h3>
-                    <p className="text-neutral-500 text-sm leading-relaxed mb-7">
-                      {item.body}
+                  <h3 className="font-display font-bold text-[1.9rem] sm:text-[2.1rem] text-neutral-900 mb-5 leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-neutral-500 text-base leading-relaxed max-w-[44ch]">
+                    {item.body}
+                  </p>
+                  <div className="mt-7 pt-6 border-t border-neutral-200/50">
+                    <p className="text-neutral-700 text-[15px] leading-relaxed">
+                      {ed.resonance}
                     </p>
-
-                    {/* Resonance as pull quote — the emotional anchor */}
-                    <div className="border-l-2 border-brand-300 pl-4 py-1">
-                      <p className="text-neutral-700 text-[15px] font-medium leading-relaxed">
-                        {ed.resonance}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Mobile footer: dot indicators */}
-                  <div className="lg:hidden px-7 pb-5 flex items-center gap-1.5">
-                    {c.items.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => navigate(i)}
-                        className={`rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
-                          i === active
-                            ? "w-5 h-1.5 bg-brand-500"
-                            : "w-1.5 h-1.5 bg-neutral-200 hover:bg-neutral-300"
-                        }`}
-                        aria-label={`Go to problem ${i + 1}`}
-                      />
-                    ))}
                   </div>
                 </motion.div>
               </AnimatePresence>

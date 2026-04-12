@@ -77,6 +77,8 @@ interface SiteContent {
     sub: string;
     englishCard: { title: string; body: string };
     pidginCard: { title: string; body: string };
+    englishDemo: string;
+    pidginDemo: string;
     note: string;
   };
   modules: {
@@ -113,12 +115,21 @@ interface SiteContent {
     sub: string;
     items: FAQItem[];
   };
+  promptDemo: {
+    label: string;
+    heading: string;
+    sub: string;
+    beforeLabel: string;
+    afterLabel: string;
+  };
   finalCta: {
+    eyebrow: string;
     heading: string;
     headingBreak: string;
     sub: string;
     primaryCta: string;
     secondaryCta: string;
+    trustItems: [string, string, string];
   };
   waitlist: {
     label: string;
@@ -248,6 +259,8 @@ const en: SiteContent = {
       title: "Nigerian Pidgin",
       body: "Some concepts land better in Pidgin. We know that. So the full course is available in natural, everyday Pidgin. No watered-down version.",
     },
+    englishDemo: "AI is like texting a very knowledgeable assistant. Ask it anything. It answers clearly, without judgement.",
+    pidginDemo: "AI na like say you dey chat with person wey sabi everything. You ask am anything. E go answer you clearly, no yab you.",
     note: "Switch between English and Pidgin freely. Learn in the language that makes things click.",
   },
   modules: {
@@ -426,12 +439,21 @@ const en: SiteContent = {
       },
     ],
   },
+  promptDemo: {
+    label: "The Difference",
+    heading: "This is what one lesson changes.",
+    sub: "AI gives you what you ask for. The problem is most people don't know how to ask. This course fixes that.",
+    beforeLabel: "Without the course",
+    afterLabel: "After one lesson",
+  },
   finalCta: {
+    eyebrow: "Ready when you are",
     heading: "The people using AI today are not smarter.",
     headingBreak: "They just started earlier.",
     sub: "Join the waitlist. Be part of the first group to access the course and build real, practical AI skills from the ground up.",
     primaryCta: "Join the Waitlist",
     secondaryCta: "See the Course",
+    trustItems: ["Free to join", "No credit card", "Built for Nigeria"],
   },
   waitlist: {
     label: "Join the Waitlist",
@@ -561,6 +583,8 @@ const pidgin: SiteContent = {
       title: "Nigerian Pidgin",
       body: "Some concepts land better for Pidgin. We sabi that. So the full course dey available for natural, everyday Pidgin. No watered-down version.",
     },
+    englishDemo: "AI is like texting a very knowledgeable assistant. Ask it anything. It answers clearly, without judgement.",
+    pidginDemo: "AI na like say you dey chat with person wey sabi everything. You ask am anything. E go answer you clearly, no yab you.",
     note: "Switch between English and Pidgin anytime. Learn for the language wey make things click for you.",
   },
   modules: {
@@ -739,12 +763,21 @@ const pidgin: SiteContent = {
       },
     ],
   },
+  promptDemo: {
+    label: "The Difference",
+    heading: "This na wetin one lesson go change.",
+    sub: "AI go give you wetin you ask for. The problem na say most people no sabi how to ask. This course go fix that.",
+    beforeLabel: "Without the course",
+    afterLabel: "After one lesson",
+  },
   finalCta: {
+    eyebrow: "You fit start now",
     heading: "The people wey dey use AI today no be smarter.",
     headingBreak: "Dem just start earlier.",
     sub: "Join the waitlist. Be part of the first group wey go access the course and build real, practical AI skills from the ground up.",
     primaryCta: "Join the Waitlist",
     secondaryCta: "See the Course",
+    trustItems: ["E free to join", "No card needed", "Built for Naija"],
   },
   waitlist: {
     label: "Join the Waitlist",

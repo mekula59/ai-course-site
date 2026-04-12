@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#1A1208"/>
+  <circle cx="932" cy="115" r="320" fill="#873518" fill-opacity="0.45"/>
+  <circle cx="1018" cy="566" r="290" fill="#DF7220" fill-opacity="0.28"/>
+  <circle cx="274" cy="520" r="240" fill="#F5D5AD" fill-opacity="0.12"/>
+  <rect x="78" y="72" width="272" height="36" rx="18" fill="#2B231A"/>
+  <text x="112" y="96" fill="#E69347" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3">AI FOR EVERYONE</text>
+  <text x="78" y="238" fill="#F8F4EE" font-family="Sora, Inter, Arial, sans-serif" font-size="78" font-weight="800">
+    <tspan x="78" dy="0">Learn AI the</tspan>
+    <tspan x="78" dy="92">practical way.</tspan>
+  </text>
+  <text x="78" y="420" fill="#D1CBC2" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="500">
+    <tspan x="78" dy="0">Plain English. Nigerian Pidgin.</tspan>
+    <tspan x="78" dy="52">Built for real work, business, school, and daily life.</tspan>
+  </text>
+  <rect x="78" y="500" width="404" height="64" rx="32" fill="#DF7220"/>
+  <text x="122" y="540" fill="#FFF9F2" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Join the waitlist before launch</text>

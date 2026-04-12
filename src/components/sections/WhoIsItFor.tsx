@@ -107,18 +107,17 @@ export function WhoIsItFor() {
         animate="center"
         exit="exit"
         transition={{ duration: 0.26, ease: EASE }}
-        className="bg-surface rounded-2xl border border-neutral-200/70 overflow-hidden
-          shadow-[0_2px_14px_rgba(26,18,8,0.06),0_1px_3px_rgba(26,18,8,0.04)]"
+        className="bg-neutral-900 rounded-2xl overflow-hidden"
       >
         <div className="px-6 py-6 sm:py-7">
-          <h3 className="font-display font-bold text-xl sm:text-2xl text-neutral-900 mb-3 leading-snug">
+          <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-3 leading-snug">
             {c.items[active].role}
           </h3>
-          <p className="text-neutral-500 text-sm leading-relaxed mb-5">
+          <p className="text-neutral-400 text-sm leading-relaxed mb-5">
             {c.items[active].desc}
           </p>
-          <div className="border-l-2 border-brand-200 pl-3.5 py-0.5">
-            <p className="text-neutral-600 text-[13px] font-medium leading-relaxed">
+          <div className="border-t border-neutral-800 pt-4">
+            <p className="text-brand-400 text-[13px] leading-relaxed">
               {meta[active].note}
             </p>
           </div>
@@ -215,8 +214,8 @@ export function WhoIsItFor() {
 
         {/* Bottom callout */}
         <FadeIn delay={0.3}>
-          <div className="mt-10 px-6 py-5 bg-brand-50/60 border border-brand-100 rounded-2xl text-center">
-            <p className="text-brand-800 font-medium text-sm sm:text-base">{c.callout}</p>
+          <div className="mt-10 pt-7 border-t border-neutral-200/60 text-center">
+            <p className="text-neutral-500 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">{c.callout}</p>
           </div>
         </FadeIn>
 
