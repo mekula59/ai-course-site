@@ -214,7 +214,7 @@ const en: SiteContent = {
         desc: "You feel like the world is changing fast and you want to keep up, stay relevant, and feel confident with new tools.",
       },
     ],
-    callout: "If you have ever used Google Search, you can learn this. AI tools are that accessible.",
+    callout: "You do not need a tech background. If you can search, message, and browse online, you are ready. This course is your clear place to start.",
   },
   whatYouLearn: {
     label: "What You Will Learn",
@@ -524,7 +524,7 @@ const pidgin: SiteContent = {
         desc: "You feel like the world dey change fast and you wan keep up, stay relevant, and feel confident with new tools.",
       },
     ],
-    callout: "If you don ever use Google Search before, you fit learn this one. AI tools na that easy to use.",
+    callout: "You no need tech background. If you fit search, message, and browse online, you don ready. This course na your clear place to start.",
   },
   whatYouLearn: {
     label: "Wetin You Go Learn",

@@ -8,8 +8,8 @@ import type { Lang } from "@/lib/content";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
-// Short node labels (for orbital nodes and mobile chips).
-// Editorial context note per audience — shown in the detail panel.
+// Short field labels (used in the scatter map — concise by design).
+// Editorial notes per audience shown in the detail panel.
 const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
   en: [
     {
@@ -29,7 +29,7 @@ const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
       note: "A CV that actually speaks to the role, not a generic template. Module 03 covers this directly.",
     },
     {
-      short: "Beginners",
+      short: "Curious beginners",
       note: "You are the reason this course exists. Module 01 starts exactly where you are. No assumed knowledge.",
     },
     {
@@ -55,7 +55,7 @@ const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
       note: "CV wey dey actually speak to the role, no be generic template. Module 03 dey cover this directly.",
     },
     {
-      short: "Beginners",
+      short: "Curious beginners",
       note: "You be the reason we build this course. Module 01 dey start exactly where you dey. No assumed knowledge.",
     },
     {
@@ -65,20 +65,17 @@ const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
   ],
 };
 
-// Orbital geometry — 6 nodes on a circle.
-// Container: 280×280px, center at (140,140), radius 100px.
-const ORBITAL_SIZE = 280;
-const ORBITAL_RADIUS = 100;
-const ORBITAL_CENTER = ORBITAL_SIZE / 2;
-
-const NODE_POSITIONS = Array.from({ length: 6 }, (_, i) => {
-  const angleDeg = i * 60 - 90; // start from top, go clockwise
-  const angleRad = angleDeg * (Math.PI / 180);
-  return {
-    x: ORBITAL_CENTER + ORBITAL_RADIUS * Math.cos(angleRad),
-    y: ORBITAL_CENTER + ORBITAL_RADIUS * Math.sin(angleRad),
-  };
-});
+// Scatter field positions — intentional organic asymmetry, not circular.
+// Each position is a percentage of the field container (360 × 210px on desktop).
+// Arranged in three loose rows with deliberate left/right offset per row.
+const FIELD_POSITIONS = [
+  { top: "6%",  left: "3%"  },   // 0 — top-left
+  { top: "6%",  left: "54%" },   // 1 — top-right
+  { top: "42%", left: "8%"  },   // 2 — mid-left
+  { top: "44%", left: "52%" },   // 3 — mid-right
+  { top: "76%", left: "16%" },   // 4 — bottom, slightly right of left
+  { top: "74%", left: "49%" },   // 5 — bottom-right
+];
 
 const panelVariants = {
   enter: (dir: number) => ({ opacity: 0, y: dir * 10 }),
@@ -99,7 +96,7 @@ export function WhoIsItFor() {
     setActive(idx);
   };
 
-  // Shared detail panel — used by both desktop orbital and mobile chip selector
+  // Detail panel — shared between desktop and mobile layouts
   const detailPanel = (
     <AnimatePresence mode="wait" custom={direction}>
       <motion.div
@@ -109,28 +106,19 @@ export function WhoIsItFor() {
         initial="enter"
         animate="center"
         exit="exit"
-        transition={{ duration: 0.28, ease: EASE }}
+        transition={{ duration: 0.26, ease: EASE }}
         className="bg-surface rounded-2xl border border-neutral-200/70 overflow-hidden
-          shadow-[0_2px_16px_rgba(26,18,8,0.07),0_1px_3px_rgba(26,18,8,0.04)]"
+          shadow-[0_2px_14px_rgba(26,18,8,0.06),0_1px_3px_rgba(26,18,8,0.04)]"
       >
-        {/* Panel header */}
-        <div className="px-6 py-3 border-b border-neutral-100 bg-ivory/50 flex items-center gap-2">
-          <span className="font-mono text-[10px] font-bold text-brand-600 bg-brand-50 border border-brand-100 px-2 py-0.5 rounded-md tracking-wider">
-            {String(active + 1).padStart(2, "0")}
-          </span>
-          <span className="text-xs text-neutral-400 font-medium">of {c.items.length}</span>
-        </div>
-
-        {/* Panel body */}
-        <div className="px-6 py-4">
-          <h3 className="font-display font-bold text-lg text-neutral-900 mb-3 leading-snug">
+        <div className="px-6 py-6 sm:py-7">
+          <h3 className="font-display font-bold text-xl sm:text-2xl text-neutral-900 mb-3 leading-snug">
             {c.items[active].role}
           </h3>
-          <p className="text-neutral-500 text-sm leading-relaxed mb-4">
+          <p className="text-neutral-500 text-sm leading-relaxed mb-5">
             {c.items[active].desc}
           </p>
-          <div className="border-l-2 border-brand-200 pl-3 py-0.5">
-            <p className="text-neutral-600 text-sm font-medium leading-relaxed">
+          <div className="border-l-2 border-brand-200 pl-3.5 py-0.5">
+            <p className="text-neutral-600 text-[13px] font-medium leading-relaxed">
               {meta[active].note}
             </p>
           </div>
@@ -154,83 +142,46 @@ export function WhoIsItFor() {
           </div>
         </FadeIn>
 
-        {/* Desktop: orbital hub + detail panel */}
+        {/* Desktop: scatter field + detail panel */}
         <FadeIn delay={0.1} className="hidden lg:block">
-          <div className="grid grid-cols-[300px_1fr] gap-10 items-center">
+          <div className="grid grid-cols-[360px_1fr] gap-10 items-center">
 
-            {/* Orbital hub */}
-            <div className="flex flex-col items-center">
-              <div
-                className="relative"
-                style={{ width: ORBITAL_SIZE, height: ORBITAL_SIZE }}
-              >
-                {/* SVG connection lines — behind everything */}
-                <svg
-                  width={ORBITAL_SIZE}
-                  height={ORBITAL_SIZE}
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ zIndex: 0 }}
-                >
-                  {NODE_POSITIONS.map((pos, i) => (
-                    <line
-                      key={i}
-                      x1={ORBITAL_CENTER}
-                      y1={ORBITAL_CENTER}
-                      x2={pos.x}
-                      y2={pos.y}
-                      stroke={active === i ? "#d1c0aa" : "#e5dfd8"}
-                      strokeWidth={active === i ? 1.5 : 1}
-                      strokeDasharray={active === i ? undefined : "3 4"}
-                      strokeLinecap="round"
-                    />
-                  ))}
-                </svg>
+            {/* Audience scatter field */}
+            <div>
+              {/* Field label */}
+              <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-neutral-400 mb-4 pl-1">
+                Select to explore
+              </p>
 
-                {/* Center circle */}
-                <div
-                  className="absolute flex items-center justify-center"
-                  style={{
-                    left: ORBITAL_CENTER,
-                    top: ORBITAL_CENTER,
-                    transform: "translate(-50%, -50%)",
-                    zIndex: 1,
-                    width: 60,
-                    height: 60,
-                  }}
-                >
-                  <div className="w-full h-full rounded-full bg-ivory border-2 border-neutral-200 flex items-center justify-center shadow-[0_1px_4px_rgba(26,18,8,0.08)]">
-                    <span className="font-display font-bold text-xs text-neutral-400 text-center leading-tight select-none">
-                      Is this<br />you?
-                    </span>
-                  </div>
-                </div>
-
-                {/* 6 orbital nodes */}
-                {NODE_POSITIONS.map((pos, i) => (
+              {/* Scatter container */}
+              <div className="relative h-[210px]">
+                {c.items.map((item, i) => (
                   <motion.button
                     key={i}
                     onClick={() => navigate(i)}
                     className="absolute focus:outline-none cursor-pointer"
-                    style={{
-                      left: pos.x,
-                      top: pos.y,
-                      transform: "translate(-50%, -50%)",
-                      zIndex: 2,
-                    }}
-                    animate={{
-                      scale: active === i ? 1.06 : 1,
-                    }}
-                    transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                    style={{ top: FIELD_POSITIONS[i].top, left: FIELD_POSITIONS[i].left }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    <span
-                      className={`inline-flex items-center justify-center px-3 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap transition-all duration-200 border ${
+                    <motion.span
+                      animate={
                         active === i
-                          ? "bg-neutral-900 text-white border-neutral-900 shadow-[0_2px_8px_rgba(26,18,8,0.18)]"
-                          : "bg-surface text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-neutral-700 shadow-[0_1px_3px_rgba(26,18,8,0.06)]"
-                      }`}
+                          ? {
+                              backgroundColor: "rgba(26,18,8,1)",
+                              color: "#fefcf9",
+                            }
+                          : {
+                              backgroundColor: "rgba(26,18,8,0)",
+                              color: "#7c756f",
+                            }
+                      }
+                      whileHover={active !== i ? { color: "#1a1208" } : {}}
+                      transition={{ duration: 0.18, ease: EASE }}
+                      className="inline-flex items-center px-3 py-1.5 rounded-full
+                        text-[13px] font-semibold whitespace-nowrap leading-none"
                     >
                       {meta[i].short}
-                    </span>
+                    </motion.span>
                   </motion.button>
                 ))}
               </div>
@@ -241,15 +192,15 @@ export function WhoIsItFor() {
           </div>
         </FadeIn>
 
-        {/* Mobile: chip selector + detail panel */}
+        {/* Mobile: 2-column grid selector + detail panel */}
         <FadeIn delay={0.1} className="lg:hidden">
-          {/* Chip grid */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {c.items.map((_, i) => (
+          <div className="grid grid-cols-2 gap-2 mb-5">
+            {c.items.map((item, i) => (
               <button
                 key={i}
                 onClick={() => navigate(i)}
-                className={`px-3.5 py-1.5 rounded-full text-sm font-semibold border transition-all duration-200 cursor-pointer ${
+                className={`px-3 py-3 rounded-xl text-[13px] font-semibold text-left
+                  border transition-all duration-200 cursor-pointer leading-snug ${
                   active === i
                     ? "bg-neutral-900 text-white border-neutral-900"
                     : "bg-transparent text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-neutral-700"
@@ -259,8 +210,6 @@ export function WhoIsItFor() {
               </button>
             ))}
           </div>
-
-          {/* Detail panel */}
           <div>{detailPanel}</div>
         </FadeIn>
 
