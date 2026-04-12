@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
+import type { Lang } from "@/lib/content";
 
 const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
@@ -13,76 +14,93 @@ const STATS = [
   { value: "0", label: "jargon" },
 ];
 
-interface LessonSlide {
-  num: string;
-  title: string;
-  en: string;
-  pidgin: string;
+// Lesson specimen: shows the course quality — a concept + the kind of prompt you'll write.
+// Deliberately different from the Problem section (which is a selector/detail pattern).
+// This artifact reads like a product preview, not a navigator.
+interface Specimen {
+  module: string;
+  lesson: string;
+  insight: string;
+  promptLabel: string;
+  prompt: string;
 }
 
-const SLIDES: LessonSlide[] = [
-  {
-    num: "01",
-    title: "What AI Actually Is",
-    en: "You don't need to understand how AI works any more than you need to understand electricity to turn on a light switch.",
-    pidgin: "You no need to understand how AI dey work, just like you no need to understand electricity before you on light. Just sabi how to use am.",
-  },
-  {
-    num: "02",
-    title: "How AI Tools Work",
-    en: "Think of AI like a very well-read assistant. It has processed enormous amounts of text and learned patterns to help you.",
-    pidgin: "Think of AI like person wey don read plenty things and learn patterns from all of dem. E dey use that knowledge to help you.",
-  },
-  {
-    num: "03",
-    title: "Your First Conversation",
-    en: "The secret to getting good answers from AI is being specific. Tell it your context, what you need, and in what format.",
-    pidgin: "The secret to get good answers from AI na to be specific. Tell am your context, wetin you need, and how you want am.",
-  },
-  {
-    num: "04",
-    title: "Writing Faster with AI",
-    en: "AI doesn't replace your voice. It handles the blank page. You start with a rough idea, and AI gives you something to react to.",
-    pidgin: "AI no go replace your voice. E just dey handle the blank page. You start with rough idea, and AI give you something to work with.",
-  },
-  {
-    num: "05",
-    title: "Asking Better Questions",
-    en: "Don't just ask AI for facts. Ask it to explain, compare, and simplify. That's where it truly saves you time.",
-    pidgin: "No just ask AI for facts. Ask am to explain, compare, and make am simple. That na where e go save you the most time.",
-  },
-  {
-    num: "06",
-    title: "AI at Work",
-    en: "The people saving the most time with AI are not using the fanciest tools. They have good habits and clear prompts.",
-    pidgin: "The people wey dey save the most time with AI no be the ones with the fanciest tools. Na the ones wey get good habits and clear prompts.",
-  },
-  {
-    num: "07",
-    title: "AI for Your Business",
-    en: "You don't need a big budget or a tech team. A phone, an internet connection, and the right knowledge are enough.",
-    pidgin: "You no need big budget or tech team. Phone, internet connection, and the right knowledge na enough to start.",
-  },
-  {
-    num: "08",
-    title: "When Not to Trust AI",
-    en: "AI can sound confident while being completely wrong. Always verify important facts. Treat it like a smart friend, not an authority.",
-    pidgin: "AI fit sound confident while e dey completely wrong. Always verify important facts. Treat am like smart friend, no be authority.",
-  },
-];
+const SPECIMENS: Record<Lang, Specimen[]> = {
+  en: [
+    {
+      module: "Module 01",
+      lesson: "Demystifying AI",
+      insight: "Once you stop being afraid of it, it becomes just another tool. No different from learning to use Google for the first time.",
+      promptLabel: "A question you will know to ask",
+      prompt: "What is ChatGPT and how is it different from Google? Explain it like I use WhatsApp but not Twitter.",
+    },
+    {
+      module: "Module 02",
+      lesson: "Your First Conversation",
+      insight: "The quality of what you get from AI almost always reflects the quality of what you asked.",
+      promptLabel: "A prompt you will write with confidence",
+      prompt: "I run a tailoring shop in Abuja. Write 3 Instagram captions for new Ankara arrivals. Casual tone. 2 sentences each.",
+    },
+    {
+      module: "Module 03",
+      lesson: "Writing with AI",
+      insight: "AI does not replace your voice. It handles the blank page. You keep the ideas and the final word.",
+      promptLabel: "A prompt you will write naturally",
+      prompt: "Write a professional but warm email from me to my supplier Tunde about a delayed delivery. Under 100 words.",
+    },
+    {
+      module: "Module 05",
+      lesson: "AI at Work",
+      insight: "The people saving the most time are not using the most advanced tools. They have clearer habits.",
+      promptLabel: "A workflow you will build",
+      prompt: "Summarise this meeting transcript in 5 bullet points, then list 3 follow-up actions with owners.",
+    },
+  ],
+  pidgin: [
+    {
+      module: "Module 01",
+      lesson: "Wetin AI Actually Be",
+      insight: "Once you stop fear am, e go just be another tool. No different from when you first learn how to use Google.",
+      promptLabel: "Question wey you go sabi to ask",
+      prompt: "Wetin be ChatGPT and how e different from Google? Explain am like I dey use WhatsApp but no dey use Twitter.",
+    },
+    {
+      module: "Module 02",
+      lesson: "Your First Conversation",
+      insight: "Wetin you get from AI almost always dey depend on how well you ask. Better question, better answer.",
+      promptLabel: "Prompt wey you go write with confidence",
+      prompt: "I dey run tailoring shop for Abuja. Write 3 Instagram captions for new Ankara arrivals. Casual tone. 2 sentences each.",
+    },
+    {
+      module: "Module 03",
+      lesson: "AI for Writing",
+      insight: "AI no go replace your voice. E just dey handle the blank page. You keep the ideas and the final word.",
+      promptLabel: "Prompt wey you go write naturally",
+      prompt: "Write professional but warm email from me to my supplier Tunde about delayed delivery. Under 100 words.",
+    },
+    {
+      module: "Module 05",
+      lesson: "AI for Work",
+      insight: "The people wey dey save most time no be the ones with most advanced tools. Dem just get clearer habits.",
+      promptLabel: "Workflow wey you go build",
+      prompt: "Summarise this meeting transcript in 5 bullet points, then list 3 follow-up actions with owners.",
+    },
+  ],
+};
 
-const AUTO_INTERVAL = 4500;
+const AUTO_INTERVAL = 5000;
 
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir * 20, opacity: 0 }),
+  enter: (dir: number) => ({ x: dir * 14, opacity: 0 }),
   center: { x: 0, opacity: 1 },
-  exit: (dir: number) => ({ x: dir * -20, opacity: 0 }),
+  exit: (dir: number) => ({ x: dir * -14, opacity: 0 }),
 };
 
 export function Hero() {
   const { lang } = useLang();
   const c = content[lang].hero;
   const ref = useRef<HTMLElement>(null);
+  const specimens = SPECIMENS[lang];
 
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -99,9 +117,9 @@ export function Hero() {
 
   const navigate = useCallback((dir: 1 | -1) => {
     setDirection(dir);
-    setIndex((i) => (i + dir + SLIDES.length) % SLIDES.length);
+    setIndex((i) => (i + dir + specimens.length) % specimens.length);
     setPaused(true);
-  }, []);
+  }, [specimens.length]);
 
   const goTo = useCallback((i: number, current: number) => {
     setDirection(i > current ? 1 : -1);
@@ -109,17 +127,15 @@ export function Hero() {
     setPaused(true);
   }, []);
 
-  // Auto-rotate
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
       setDirection(1);
-      setIndex((i) => (i + 1) % SLIDES.length);
+      setIndex((i) => (i + 1) % specimens.length);
     }, AUTO_INTERVAL);
     return () => clearInterval(id);
-  }, [paused]);
+  }, [paused, specimens.length]);
 
-  // Resume auto-rotate 6s after user interaction
   useEffect(() => {
     if (!paused) return;
     const id = setTimeout(() => setPaused(false), 6000);
@@ -137,19 +153,19 @@ export function Hero() {
     touchStartX.current = null;
   };
 
-  const slide = SLIDES[index];
+  const specimen = specimens[index];
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden bg-ivory">
       {/* Warm top-right glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-100/60 via-brand-50/20 to-transparent pointer-events-none" />
       {/* Bottom dissolve */}
-      <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-b from-transparent to-white pointer-events-none z-20" />
+      <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-b from-transparent to-ivory pointer-events-none z-20" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 min-h-screen flex items-center pt-24 pb-20">
         <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-12 lg:gap-16 items-center">
 
-          {/* Left: text content */}
+          {/* Left: text content — unchanged */}
           <motion.div style={{ y: colY, opacity: colOpacity }}>
             <motion.div
               className="mb-8"
@@ -208,7 +224,6 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            {/* Stats + nudge */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -233,7 +248,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right: bilingual course preview card — desktop only */}
+          {/* Right: lesson specimen card — desktop only */}
           <motion.div
             className="hidden lg:block"
             style={{ y: colY, opacity: colOpacity }}
@@ -241,19 +256,33 @@ export function Hero() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.85, delay: 0.2, ease: EASE }}
           >
-            {/* Slow float */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ y: -3 }}
+              transition={{ type: "spring", stiffness: 300, damping: 28 }}
             >
               <div
-                className="rounded-2xl border border-neutral-200 overflow-hidden shadow-[0_4px_24px_rgba(28,25,23,0.10)] bg-white"
+                className="rounded-2xl border border-neutral-200/80 overflow-hidden
+                  shadow-[0_2px_12px_rgba(26,18,8,0.08),0_1px_3px_rgba(26,18,8,0.05)]
+                  hover:shadow-[0_8px_32px_rgba(26,18,8,0.12),0_2px_8px_rgba(26,18,8,0.07)]
+                  transition-shadow duration-500 bg-surface"
                 onMouseEnter={() => setPaused(true)}
                 onMouseLeave={() => setPaused(false)}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
               >
-                {/* Animated content: header + panels */}
+                {/* Auto-advance progress bar */}
+                <div className="h-[2px] bg-neutral-100 w-full overflow-hidden">
+                  {!paused && (
+                    <motion.div
+                      key={index}
+                      className="h-full bg-brand-400/80"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
+                    />
+                  )}
+                </div>
+
                 <AnimatePresence mode="wait" custom={direction}>
                   <motion.div
                     key={index}
@@ -262,90 +291,78 @@ export function Hero() {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.32, ease: EASE }}
+                    transition={{ duration: 0.3, ease: EASE }}
                   >
-                    {/* Card header */}
-                    <div className="px-6 py-4 border-b border-neutral-100 bg-neutral-50 flex items-center gap-3">
-                      <span className="font-mono text-[11px] font-bold text-brand-500 bg-brand-50 border border-brand-200 px-2 py-0.5 rounded-md">
-                        {slide.num}
+                    {/* Card header: module + lesson */}
+                    <div className="px-6 py-4 border-b border-neutral-200/50 bg-ivory/80 flex items-center gap-2.5">
+                      <span className="font-mono text-[10px] font-bold text-brand-600 bg-surface border border-brand-100 px-2 py-0.5 rounded-md tracking-wider shrink-0">
+                        {specimen.module}
                       </span>
-                      <span className="text-sm font-semibold text-neutral-700 flex-1 truncate">
-                        {slide.title}
-                      </span>
-                      <span className="text-[10px] text-neutral-400 font-medium tabular-nums shrink-0">
-                        {index + 1} of {SLIDES.length}
+                      <span className="text-neutral-300 text-xs select-none">·</span>
+                      <span className="text-xs text-neutral-500 font-medium truncate">
+                        {specimen.lesson}
                       </span>
                     </div>
 
-                    {/* English panel */}
-                    <div className="px-6 py-6 border-b border-neutral-100">
+                    {/* Concept block */}
+                    <div className="px-6 pt-4 pb-4 border-b border-neutral-100/80">
                       <p className="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-3">
-                        Plain English
+                        The concept
                       </p>
-                      <p className="text-neutral-500 text-sm leading-relaxed">
-                        "{slide.en}"
+                      <p className="font-display font-semibold text-[15px] text-neutral-900 leading-snug">
+                        "{specimen.insight}"
                       </p>
                     </div>
 
-                    {/* Pidgin panel */}
-                    <div className="px-6 py-6 bg-brand-50 border-l-2 border-l-brand-300">
-                      <p className="text-[10px] font-bold tracking-widest uppercase text-brand-500 mb-3">
-                        🇳🇬 Nigerian Pidgin
+                    {/* Prompt specimen */}
+                    <div className="px-6 py-4">
+                      <p className="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-3">
+                        {specimen.promptLabel}
                       </p>
-                      <p className="text-neutral-800 text-sm leading-relaxed font-medium">
-                        "{slide.pidgin}"
-                      </p>
+                      <div className="bg-ivory border border-neutral-200/60 rounded-xl px-4 py-3.5">
+                        <p className="text-sm text-neutral-600 leading-relaxed">
+                          {specimen.prompt}
+                        </p>
+                      </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
 
                 {/* Card footer: dots + prev/next */}
-                <div className="px-6 py-4 border-t border-neutral-100 flex items-center justify-between">
-                  {/* Progress dots */}
+                <div className="px-6 py-3.5 border-t border-neutral-100 flex items-center justify-between bg-surface/50">
                   <div className="flex items-center gap-1.5">
-                    {SLIDES.map((_, i) => (
+                    {specimens.map((_, i) => (
                       <button
                         key={i}
                         onClick={() => goTo(i, index)}
-                        className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none ${
+                        className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
                           i === index
-                            ? "w-4 bg-brand-500"
+                            ? "w-5 bg-brand-500"
                             : "w-1.5 bg-neutral-200 hover:bg-neutral-300"
                         }`}
-                        aria-label={`Go to slide ${i + 1}`}
+                        aria-label={`Go to specimen ${i + 1}`}
                       />
                     ))}
                   </div>
-
-                  {/* Prev / next */}
                   <div className="flex items-center gap-1">
                     <button
                       onClick={() => navigate(-1)}
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors"
-                      aria-label="Previous slide"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-700 border border-transparent hover:border-neutral-200 hover:bg-neutral-50 transition-all duration-200 cursor-pointer"
+                      aria-label="Previous specimen"
                     >
-                      <ChevronLeft size={14} />
+                      <ChevronLeft size={13} />
                     </button>
                     <button
                       onClick={() => navigate(1)}
-                      className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors"
-                      aria-label="Next slide"
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-700 border border-transparent hover:border-neutral-200 hover:bg-neutral-50 transition-all duration-200 cursor-pointer"
+                      aria-label="Next specimen"
                     >
-                      <ChevronRight size={14} />
+                      <ChevronRight size={13} />
                     </button>
                   </div>
                 </div>
               </div>
             </motion.div>
-
-            {/* Below-card: language toggle indicator */}
-            <div className="mt-5 flex items-center gap-2 px-1">
-              <div className="flex gap-1.5">
-                <span className="text-xs font-semibold text-neutral-700 bg-neutral-100 px-2.5 py-1 rounded-full">EN</span>
-                <span className="text-xs font-semibold text-brand-600 bg-brand-50 border border-brand-200 px-2.5 py-1 rounded-full">PID</span>
-              </div>
-              <span className="text-xs text-neutral-400">Choose your language. Switch anytime.</span>
-            </div>
           </motion.div>
 
         </div>

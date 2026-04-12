@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
+import { cn } from "@/lib/utils";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
@@ -31,10 +32,38 @@ const DEMO = {
   },
 } as const;
 
+function ThinkingDots() {
+  return (
+    <div className="flex items-center gap-1 px-1 py-1">
+      {[0, 1, 2].map((i) => (
+        <motion.span
+          key={i}
+          className="w-1.5 h-1.5 rounded-full bg-neutral-300 block"
+          animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }}
+          transition={{ duration: 0.9, delay: i * 0.18, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export function PromptDemo() {
   const { lang } = useLang();
   const [state, setState] = useState<DemoState>("before");
+  const [isThinking, setIsThinking] = useState(false);
   const demo = DEMO[state];
+
+  const handleStateChange = (s: DemoState) => {
+    if (s === state) return;
+    setState(s);
+    if (s === "after") setIsThinking(true);
+  };
+
+  useEffect(() => {
+    if (!isThinking) return;
+    const t = setTimeout(() => setIsThinking(false), 850);
+    return () => clearTimeout(t);
+  }, [isThinking]);
 
   const heading =
     lang === "en"
@@ -62,29 +91,36 @@ export function PromptDemo() {
           </div>
         </FadeIn>
 
-        {/* Toggle — lesson stage navigator */}
+        {/* Segmented control — lesson stage navigator */}
         <FadeIn delay={0.1}>
-          <div className="flex gap-2 mb-8">
-            <button
-              onClick={() => setState("before")}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                state === "before"
-                  ? "bg-neutral-900 text-white"
-                  : "text-neutral-500 hover:text-neutral-700"
-              }`}
-            >
-              {beforeLabel}
-            </button>
-            <button
-              onClick={() => setState("after")}
-              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                state === "after"
-                  ? "bg-brand-500 text-white"
-                  : "text-neutral-500 hover:text-neutral-700"
-              }`}
-            >
-              {afterLabel}
-            </button>
+          <div className="inline-flex items-center bg-neutral-100/80 rounded-full p-1 mb-8">
+            {(["before", "after"] as const).map((s) => (
+              <button
+                key={s}
+                onClick={() => handleStateChange(s)}
+                className={cn(
+                  "relative px-5 py-2 rounded-full text-sm font-semibold cursor-pointer transition-colors duration-150 z-10",
+                  state === s
+                    ? s === "after" ? "text-brand-700" : "text-neutral-800"
+                    : "text-neutral-500 hover:text-neutral-700"
+                )}
+              >
+                {state === s && (
+                  <motion.div
+                    layoutId="demo-segment"
+                    className={cn(
+                      "absolute inset-0 rounded-full shadow-sm",
+                      s === "after"
+                        ? "bg-brand-50 border border-brand-200/80"
+                        : "bg-white border border-neutral-200/80"
+                    )}
+                    style={{ zIndex: -1 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 38 }}
+                  />
+                )}
+                {s === "before" ? beforeLabel : afterLabel}
+              </button>
+            ))}
           </div>
         </FadeIn>
 
@@ -97,7 +133,7 @@ export function PromptDemo() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.28, ease: EASE }}
-              className="bg-white rounded-2xl border border-neutral-200/80 overflow-hidden shadow-[0_2px_20px_rgba(28,25,23,0.08)]"
+              className="bg-surface rounded-2xl border border-neutral-200/70 overflow-hidden shadow-[0_2px_20px_rgba(26,18,8,0.08),0_1px_4px_rgba(26,18,8,0.05)]"
             >
               <div className="px-6 py-5 space-y-5">
                 {/* User message */}
@@ -111,7 +147,7 @@ export function PromptDemo() {
                     You · {demo.promptLabel}
                   </p>
                   <div
-                    className={`max-w-[85%] px-5 py-3.5 rounded-2xl rounded-tr-sm text-sm leading-relaxed ${
+                    className={`max-w-[85%] px-5 py-3.5 rounded-2xl rounded-tr-sm text-sm leading-relaxed shadow-sm ${
                       state === "after"
                         ? "bg-brand-500 text-white"
                         : "bg-neutral-900 text-neutral-100"
@@ -121,32 +157,56 @@ export function PromptDemo() {
                   </div>
                 </motion.div>
 
-                {/* AI response */}
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, ease: EASE, delay: 0.22 }}
-                  className="flex flex-col items-start gap-1.5"
-                >
+                {/* AI response — with thinking indicator */}
+                <div className="flex flex-col items-start gap-1.5">
                   <p className="text-[10px] font-semibold tracking-widest uppercase text-neutral-400">
                     AI
                   </p>
-                  <div className="max-w-[90%] bg-neutral-50 border border-neutral-200 px-5 py-3.5 rounded-2xl rounded-tl-sm text-sm text-neutral-700 leading-relaxed whitespace-pre-line">
-                    {demo.response}
-                  </div>
-                </motion.div>
+                  <AnimatePresence mode="wait">
+                    {isThinking ? (
+                      <motion.div
+                        key="thinking"
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.18 }}
+                        className="bg-neutral-100 border border-neutral-200/80 px-4 py-3 rounded-2xl rounded-tl-sm"
+                      >
+                        <ThinkingDots />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="response"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.28, ease: EASE }}
+                        className="max-w-[90%] bg-neutral-100/80 border border-neutral-200/60 px-5 py-3.5 rounded-2xl rounded-tl-sm text-sm text-neutral-700 leading-relaxed whitespace-pre-line"
+                      >
+                        {demo.response}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
 
               {/* Caption bar */}
-              <div
-                className={`px-6 py-4 border-t text-sm font-medium ${
-                  state === "after"
-                    ? "border-brand-100 bg-brand-50 text-brand-700"
-                    : "border-neutral-100 bg-neutral-50 text-neutral-500"
-                }`}
-              >
-                {demo.responseNote}
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={state}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className={`px-6 py-4 border-t text-sm ${
+                    state === "after"
+                      ? "border-brand-100/80 bg-brand-50/70"
+                      : "border-neutral-100 bg-neutral-50/60"
+                  }`}
+                >
+                  <p className={`font-medium ${state === "after" ? "text-brand-700" : "text-neutral-500"}`}>
+                    {demo.responseNote}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </motion.div>
           </AnimatePresence>
         </FadeIn>

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
@@ -25,11 +26,18 @@ export function WhyDifferent() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {c.items.map((d, i) => (
             <FadeIn key={d.title} delay={i * 0.07}>
-              <div className="p-6 bg-neutral-800 rounded-2xl border border-neutral-700/80 hover:border-neutral-600 transition-colors h-full">
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                className="p-6 bg-neutral-800/80 rounded-2xl border border-neutral-700/60 h-full group cursor-default
+                  hover:border-neutral-600/80 hover:bg-neutral-800
+                  hover:shadow-[0_0_0_1px_rgba(223,114,32,0.08),0_8px_28px_rgba(0,0,0,0.35)]
+                  transition-all duration-300"
+              >
                 <div className="text-3xl mb-4">{d.icon}</div>
                 <h3 className="font-semibold text-white text-base mb-2">{d.title}</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">{d.desc}</p>
-              </div>
+              </motion.div>
             </FadeIn>
           ))}
         </div>
