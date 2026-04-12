@@ -250,7 +250,7 @@ const en: SiteContent = {
   languageSupport: {
     label: "Language",
     heading: "Some things just make more sense in Pidgin.",
-    sub: "This is the only AI course that treats Nigerian Pidgin as a full learning language. Not a translation. Not a footnote. The real thing.",
+    sub: "This course treats Nigerian Pidgin as a real learning language. Not a translation. Not a footnote. Something learners can actually think in.",
     englishCard: {
       title: "Plain English",
       body: "No buzzwords. No assumptions. Everything explained the way a smart friend would explain it, not the way a textbook would.",
@@ -265,7 +265,7 @@ const en: SiteContent = {
   },
   modules: {
     label: "Course Modules",
-    heading: "Six focused modules. Zero fluff.",
+    heading: "Six focused modules. Clear, practical, and built for real use.",
     sub: "Each module is designed to be completed in under an hour, with practical exercises you can apply the same day.",
     items: [
       {
@@ -353,8 +353,8 @@ const en: SiteContent = {
   },
   whyDifferent: {
     label: "Why This Course",
-    heading: "Other AI courses were not built for you. This one was.",
-    sub: "Most AI education is made for a Western, tech-savvy audience. This course starts from a different place entirely.",
+    heading: "Why this course feels different",
+    sub: "A lot of AI education still feels too technical, too distant, or too generic. This course is built to feel clearer, more practical, and easier to apply in real life.",
     items: [
       {
         icon: "🎯",
@@ -574,7 +574,7 @@ const pidgin: SiteContent = {
   languageSupport: {
     label: "Language",
     heading: "Some things just make more sense for Pidgin.",
-    sub: "This na the only AI course wey treat Nigerian Pidgin as full learning language. No be translation. No be footnote. Na the real thing.",
+    sub: "This course treat Nigerian Pidgin as real learning language. No be translation. No be footnote. Something wey learners fit actually think inside.",
     englishCard: {
       title: "Plain English",
       body: "No buzzwords. No assumptions. Everything explained the way wey smart friend go explain am, no be textbook style.",
@@ -589,7 +589,7 @@ const pidgin: SiteContent = {
   },
   modules: {
     label: "Course Modules",
-    heading: "Six focused modules. No fluff.",
+    heading: "Six focused modules. Clear, practical, and built for real use.",
     sub: "We design each module so you fit finish am under one hour, with practical exercises wey you fit apply same day.",
     items: [
       {
@@ -677,8 +677,8 @@ const pidgin: SiteContent = {
   },
   whyDifferent: {
     label: "Why This Course",
-    heading: "Other AI courses no build for you. This one na for you.",
-    sub: "Most AI education na for Western, tech-savvy audience. This course start from different place entirely.",
+    heading: "Why this course feels different",
+    sub: "A lot of AI education still dey feel too technical, too far, or too generic. We build this course to feel clearer, more practical, and easier to apply for real life.",
     items: [
       {
         icon: "🎯",

@@ -8,8 +8,6 @@ import type { Lang } from "@/types/language";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
-// Short field labels (used in the scatter map — concise by design).
-// Editorial notes per audience shown in the detail panel.
 const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
   en: [
     {
@@ -65,56 +63,29 @@ const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
   ],
 };
 
-// Scatter field positions — intentional organic asymmetry, not circular.
-// Each position is a percentage of the field container (360 × 210px on desktop).
-// Arranged in three loose rows with deliberate left/right offset per row.
-const FIELD_POSITIONS = [
-  { top: "6%",  left: "3%"  },   // 0 — top-left
-  { top: "6%",  left: "54%" },   // 1 — top-right
-  { top: "42%", left: "8%"  },   // 2 — mid-left
-  { top: "44%", left: "52%" },   // 3 — mid-right
-  { top: "76%", left: "16%" },   // 4 — bottom, slightly right of left
-  { top: "74%", left: "49%" },   // 5 — bottom-right
-];
+interface DetailPanelProps {
+  active: number;
+  items: Array<{ role: string; desc: string }>;
+  meta: Array<{ short: string; note: string }>;
+}
 
-const panelVariants = {
-  enter: (dir: number) => ({ opacity: 0, y: dir * 10 }),
-  center: { opacity: 1, y: 0 },
-  exit: (dir: number) => ({ opacity: 0, y: dir * -8 }),
-};
-
-export function WhoIsItFor() {
-  const { lang } = useLang();
-  const c = content[lang].whoIsItFor;
-  const meta = AUDIENCE_META[lang];
-
-  const [active, setActive] = useState(0);
-  const [direction, setDirection] = useState(1);
-
-  const navigate = (idx: number) => {
-    setDirection(idx > active ? 1 : -1);
-    setActive(idx);
-  };
-
-  // Detail panel — shared between desktop and mobile layouts
-  const detailPanel = (
-    <AnimatePresence mode="wait" custom={direction}>
+function DetailPanel({ active, items, meta }: DetailPanelProps) {
+  return (
+    <AnimatePresence mode="wait">
       <motion.div
         key={active}
-        custom={direction}
-        variants={panelVariants}
-        initial="enter"
-        animate="center"
-        exit="exit"
-        transition={{ duration: 0.26, ease: EASE }}
-        className="bg-neutral-900 rounded-2xl overflow-hidden"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25, ease: EASE }}
+        className="bg-neutral-900 rounded-2xl"
       >
-        <div className="px-6 py-6 sm:py-7">
+        <div className="px-7 py-7 sm:py-8">
           <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-3 leading-snug">
-            {c.items[active].role}
+            {items[active].role}
           </h3>
-          <p className="text-neutral-400 text-sm leading-relaxed mb-5">
-            {c.items[active].desc}
+          <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mb-5">
+            {items[active].desc}
           </p>
           <div className="border-t border-neutral-800 pt-4">
             <p className="text-brand-400 text-[13px] leading-relaxed">
@@ -125,6 +96,13 @@ export function WhoIsItFor() {
       </motion.div>
     </AnimatePresence>
   );
+}
+
+export function WhoIsItFor() {
+  const { lang } = useLang();
+  const c = content[lang].whoIsItFor;
+  const meta = AUDIENCE_META[lang];
+  const [active, setActive] = useState(0);
 
   return (
     <section className="py-16 sm:py-24 px-5 bg-ivory">
@@ -137,85 +115,72 @@ export function WhoIsItFor() {
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mt-4 mb-4">
               {c.heading}
             </h2>
-            <p className="text-neutral-500 text-base max-w-xl mx-auto leading-relaxed">{c.sub}</p>
+            <p className="text-neutral-500 text-base max-w-xl mx-auto leading-relaxed">
+              {c.sub}
+            </p>
           </div>
         </FadeIn>
 
-        {/* Desktop: scatter field + detail panel */}
+        {/* Desktop: vertical pill selector + detail panel */}
         <FadeIn delay={0.1} className="hidden lg:block">
-          <div className="grid grid-cols-[360px_1fr] gap-10 items-center">
+          <div className="grid grid-cols-[220px_1fr] gap-12 items-start">
 
-            {/* Audience scatter field */}
-            <div>
-              {/* Field label */}
-              <p className="text-[10px] font-bold tracking-[0.14em] uppercase text-neutral-400 mb-4 pl-1">
-                Select to explore
-              </p>
-
-              {/* Scatter container */}
-              <div className="relative h-[210px]">
-                {c.items.map((_, i) => (
-                  <motion.button
-                    key={i}
-                    onClick={() => navigate(i)}
-                    className="absolute focus:outline-none cursor-pointer"
-                    style={{ top: FIELD_POSITIONS[i].top, left: FIELD_POSITIONS[i].left }}
-                    whileTap={{ scale: 0.95 }}
+            {/* Selector column */}
+            <nav className="flex flex-col gap-1" aria-label="Audience selector">
+              {c.items.map((_, i) => (
+                <motion.button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  whileTap={{ scale: 0.97 }}
+                  className="relative w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 rounded-xl cursor-pointer"
+                >
+                  <motion.span
+                    animate={
+                      active === i
+                        ? { backgroundColor: "rgba(26,18,8,0.95)", color: "#fefcf9" }
+                        : { backgroundColor: "rgba(26,18,8,0)", color: "#9d958f" }
+                    }
+                    whileHover={active !== i ? { color: "#1a1208" } : {}}
+                    transition={{ duration: 0.16, ease: EASE }}
+                    className="flex w-full items-center px-4 py-2.5 rounded-xl text-[14px] font-semibold leading-snug"
                   >
-                    <motion.span
-                      animate={
-                        active === i
-                          ? {
-                              backgroundColor: "rgba(26,18,8,1)",
-                              color: "#fefcf9",
-                            }
-                          : {
-                              backgroundColor: "rgba(26,18,8,0)",
-                              color: "#7c756f",
-                            }
-                      }
-                      whileHover={active !== i ? { color: "#1a1208" } : {}}
-                      transition={{ duration: 0.18, ease: EASE }}
-                      className="inline-flex items-center px-3 py-1.5 rounded-full
-                        text-[13px] font-semibold whitespace-nowrap leading-none"
-                    >
-                      {meta[i].short}
-                    </motion.span>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
+                    {meta[i].short}
+                  </motion.span>
+                </motion.button>
+              ))}
+            </nav>
 
             {/* Detail panel */}
-            <div>{detailPanel}</div>
+            <DetailPanel active={active} items={c.items} meta={meta} />
           </div>
         </FadeIn>
 
-        {/* Mobile: 2-column grid selector + detail panel */}
+        {/* Mobile: horizontal scroll chips + detail panel */}
         <FadeIn delay={0.1} className="lg:hidden">
-          <div className="grid grid-cols-2 gap-2 mb-5">
+          <div className="flex gap-2 mb-5 overflow-x-auto -mx-5 px-5 pb-1 scrollbar-none">
             {c.items.map((_, i) => (
               <button
                 key={i}
-                onClick={() => navigate(i)}
-                className={`px-3 py-3 rounded-xl text-[13px] font-semibold text-left
-                  border transition-all duration-200 cursor-pointer leading-snug ${
+                onClick={() => setActive(i)}
+                className={`flex-shrink-0 px-3.5 py-2.5 rounded-xl text-[12px] font-semibold transition-all duration-200 cursor-pointer border whitespace-nowrap ${
                   active === i
                     ? "bg-neutral-900 text-white border-neutral-900"
-                    : "bg-transparent text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-neutral-700"
+                    : "text-neutral-500 border-neutral-200 hover:border-neutral-400 hover:text-neutral-700"
                 }`}
               >
                 {meta[i].short}
               </button>
             ))}
           </div>
-          <div>{detailPanel}</div>
+          <DetailPanel active={active} items={c.items} meta={meta} />
         </FadeIn>
 
         {/* Bottom callout */}
         <FadeIn delay={0.3}>
           <div className="mt-10 pt-7 border-t border-neutral-200/60 text-center">
-            <p className="text-neutral-500 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">{c.callout}</p>
+            <p className="text-neutral-500 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+              {c.callout}
+            </p>
           </div>
         </FadeIn>
 

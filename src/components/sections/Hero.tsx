@@ -11,7 +11,7 @@ const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 const STATS = [
   { value: "50+", label: "lessons" },
   { value: "EN/PID", label: "bilingual" },
-  { value: "0", label: "jargon" },
+  { value: "100%", label: "practical" },
 ];
 
 // Lesson specimen: shows the course quality — a concept + the kind of prompt you'll write.
