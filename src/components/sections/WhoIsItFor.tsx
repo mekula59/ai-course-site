@@ -155,7 +155,7 @@ export function WhoIsItFor() {
 
               {/* Scatter container */}
               <div className="relative h-[210px]">
-                {c.items.map((item, i) => (
+                {c.items.map((_, i) => (
                   <motion.button
                     key={i}
                     onClick={() => navigate(i)}
@@ -195,7 +195,7 @@ export function WhoIsItFor() {
         {/* Mobile: 2-column grid selector + detail panel */}
         <FadeIn delay={0.1} className="lg:hidden">
           <div className="grid grid-cols-2 gap-2 mb-5">
-            {c.items.map((item, i) => (
+            {c.items.map((_, i) => (
               <button
                 key={i}
                 onClick={() => navigate(i)}
