@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
-import type { Lang } from "@/lib/content";
+import type { Lang } from "@/types/language";
 
 const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 

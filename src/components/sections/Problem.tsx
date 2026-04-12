@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
-import type { Lang } from "@/lib/content";
+import type { Lang } from "@/types/language";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 const AUTO_INTERVAL = 4800;

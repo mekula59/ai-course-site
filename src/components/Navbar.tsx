@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useLang, type Lang } from "@/context/LanguageContext";
+import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
+import type { Lang } from "@/types/language";
 
 function LangToggle({ scrolled }: { scrolled: boolean }) {
   const { lang, setLang } = useLang();

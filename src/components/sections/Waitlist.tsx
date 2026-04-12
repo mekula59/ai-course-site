@@ -7,6 +7,8 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 
+const WAITLIST_ENDPOINT = import.meta.env.VITE_WAITLIST_ENDPOINT;
+
 export function Waitlist() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -28,11 +30,32 @@ export function Waitlist() {
       return;
     }
 
+    if (!WAITLIST_ENDPOINT) {
+      setError(c.errorUnavailable);
+      return;
+    }
+
     setError("");
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const response = await fetch(WAITLIST_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      setSubmitted(true);
+    } catch {
+      setError(c.errorSubmit);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const successBody = c.successBody.replace("{email}", email);
@@ -113,7 +136,9 @@ export function Waitlist() {
                 />
               </div>
 
-              {error && <p className="text-red-600 text-xs">{error}</p>}
+              <div aria-live="polite" className="min-h-5">
+                {error && <p className="text-red-600 text-xs">{error}</p>}
+              </div>
 
               <Button
                 type="submit"
@@ -138,6 +163,15 @@ export function Waitlist() {
                   </span>
                 ))}
               </div>
+
+              <p className="text-center text-xs text-neutral-500">
+                <a
+                  href="mailto:hello@aiforeveryone.ng?subject=Waitlist%20Signup&body=Name:%20%0AEmail:%20"
+                  className="text-brand-600 underline underline-offset-2 hover:text-brand-700"
+                >
+                  {c.fallbackCta}
+                </a>
+              </p>
             </form>
           )}
         </FadeIn>

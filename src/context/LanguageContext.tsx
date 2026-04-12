@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-
-export type Lang = "en" | "pidgin";
+import type { Lang } from "@/types/language";
 
 interface LanguageContextType {
   lang: Lang;

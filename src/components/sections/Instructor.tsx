@@ -66,12 +66,15 @@ export function Instructor() {
         <FadeIn delay={0.35}>
           <div className="grid grid-cols-1 sm:grid-cols-[88px_1fr] gap-7 sm:gap-10 items-start">
 
-            {/* Abstract warm avatar — replaces emoji placeholder */}
+            {/* Honest status marker — avoids fake placeholder identity */}
             <div className="shrink-0">
-              <div className="w-[88px] h-[88px] rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center">
-                <div className="w-11 h-11 rounded-full bg-brand-100 flex items-center justify-center">
-                  <div className="w-5 h-5 rounded-full bg-brand-300/80" />
-                </div>
+              <div className="w-[88px] h-[88px] rounded-2xl bg-brand-50 border border-brand-100 flex flex-col items-center justify-center text-center px-3">
+                <span className="font-mono text-[10px] font-bold tracking-[0.14em] uppercase text-brand-600">
+                  Honest
+                </span>
+                <span className="mt-1 text-[11px] leading-tight text-brand-800">
+                  Profile lands before launch
+                </span>
               </div>
             </div>
 

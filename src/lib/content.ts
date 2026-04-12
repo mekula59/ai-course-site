@@ -1,4 +1,4 @@
-export type Lang = "en" | "pidgin";
+import type { Lang } from "@/types/language";
 
 interface AudienceItem {
   role: string;
@@ -135,6 +135,9 @@ interface SiteContent {
     successBody: string;
     errorBoth: string;
     errorEmail: string;
+    errorUnavailable: string;
+    errorSubmit: string;
+    fallbackCta: string;
   };
 }
 
@@ -373,16 +376,16 @@ const en: SiteContent = {
     ],
   },
   instructor: {
-    label: "Your Instructor",
-    heading: "Built by someone who has been where you are.",
-    title: "Your Instructor",
-    role: "AI Educator and Practitioner",
+    label: "Who Is Behind This",
+    heading: "Built with a clear teaching point of view, not a placeholder guru persona.",
+    title: "Course Builder",
+    role: "Full instructor profile publishes before launch",
     bio: [
-      "I am not a researcher. I am not an engineer at a big tech company. I am someone who figured out how to use AI tools practically, applied them to real work and projects, and then spent time teaching others how to do the same.",
-      "I got tired of seeing my friends, family, and colleagues feel left behind by technology that was supposed to be for everyone. So I built this course the way I wish someone had taught me.",
-      "This is not a course built in a studio for a global audience who all have the same background. This is built for people who look like us, work like us, and think like us.",
+      "This course is being built around one simple standard: if a complete beginner in Nigeria cannot use it the same day, it does not belong in the curriculum.",
+      "The full instructor profile, name, and photo will be published before launch. Until then, this section stays honest instead of pretending with placeholder credibility.",
+      "What is already real is the teaching approach: beginner-first, practical, bilingual, and grounded in the way people here actually work, learn, and run businesses.",
     ],
-    tags: ["Practical focus", "Nigerian context", "Beginner-first", "Always available"],
+    tags: ["Beginner-first", "Nigerian context", "Practical lessons", "English + Pidgin"],
   },
   faq: {
     label: "FAQ",
@@ -445,6 +448,9 @@ const en: SiteContent = {
     successBody: "We will send you a message at {email} as soon as the course is ready. Watch your inbox.",
     errorBoth: "Please fill in both fields.",
     errorEmail: "Please enter a valid email address.",
+    errorUnavailable: "Waitlist signup is not connected yet. Use the email link below for now.",
+    errorSubmit: "Something went wrong while submitting your details. Please try again or email us directly.",
+    fallbackCta: "Email us instead",
   },
 };
 
@@ -683,16 +689,16 @@ const pidgin: SiteContent = {
     ],
   },
   instructor: {
-    label: "Your Instructor",
-    heading: "Built by person wey don dey where you dey.",
-    title: "Your Instructor",
-    role: "AI Educator and Practitioner",
+    label: "Who Dey Behind This",
+    heading: "We build am with clear teaching purpose, no be placeholder expert packaging.",
+    title: "Course Builder",
+    role: "Full instructor profile go show before launch",
     bio: [
-      "I no be researcher. I no be engineer for big tech company. I be person wey figure out how to use AI tools practically, apply am to real work and projects, and then spend time to teach others how to do the same.",
-      "I tire to see my friends, family, and colleagues feel like dem dey behind technology wey suppose be for everybody. So I build this course the way wey I wish somebody had teach me.",
-      "This no be course wey dem build for global audience wey all get the same background. We build this for people wey look like us, work like us, and think like us.",
+      "We dey build this course around one simple standard: if complete beginner for Naija no fit use am that same day, e no belong inside the curriculum.",
+      "The full instructor profile, name, and photo go show before launch. Till then, this section go stay honest instead of pretending with placeholder credibility.",
+      "Wetin don already dey real na the teaching approach: beginner-first, practical, bilingual, and grounded for how people here dey work, learn, and run business.",
     ],
-    tags: ["Practical focus", "Nigerian context", "Beginner-first", "Always available"],
+    tags: ["Beginner-first", "Naija context", "Practical lessons", "English + Pidgin"],
   },
   faq: {
     label: "FAQ",
@@ -755,6 +761,9 @@ const pidgin: SiteContent = {
     successBody: "We go send you message at {email} as soon as the course ready. Watch your inbox.",
     errorBoth: "Please fill the two fields.",
     errorEmail: "Please enter valid email address.",
+    errorUnavailable: "Waitlist signup never connect yet. Use the email link below for now.",
+    errorSubmit: "Something go wrong as we try submit your details. Abeg try again or email us direct.",
+    fallbackCta: "Email us instead",
   },
 };
 
