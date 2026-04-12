@@ -8,7 +8,7 @@ export function Instructor() {
   const c = content[lang].instructor;
 
   return (
-    <section className="py-20 px-5 bg-white">
+    <section className="py-16 sm:py-24 px-5 bg-ivory">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
           <div className="text-center mb-14">
@@ -20,7 +20,7 @@ export function Instructor() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="flex flex-col sm:flex-row gap-8 items-start bg-neutral-50 rounded-2xl border border-neutral-200 p-8">
+          <div className="flex flex-col sm:flex-row gap-8 items-start bg-white rounded-2xl border border-neutral-200/70 shadow-[0_2px_16px_rgba(28,25,23,0.07)] p-8">
             <div className="flex-shrink-0">
               <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-brand-100 flex items-center justify-center text-4xl">
                 👤

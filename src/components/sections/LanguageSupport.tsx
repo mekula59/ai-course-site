@@ -11,13 +11,11 @@ export function LanguageSupport() {
   const c = content[lang].languageSupport;
 
   return (
-    <section className="relative py-24 px-5 bg-neutral-900 overflow-hidden">
-      {/* Entry bridge — blends from the light section above into dark */}
-      <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+    <section className="py-16 sm:py-24 px-5 bg-neutral-900 overflow-hidden">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
           <div className="text-center mb-12">
-            <SectionLabel className="mb-5 bg-neutral-800 border-neutral-700 text-brand-400">
+            <SectionLabel className="mb-5 text-brand-400">
               {c.label}
             </SectionLabel>
             <h2 className="font-display text-3xl sm:text-5xl font-bold text-white mt-4 mb-5 leading-[1.1] tracking-tight">
@@ -42,11 +40,11 @@ export function LanguageSupport() {
             </div>
 
             {/* Pidgin column — 3/5 width, warmer and more alive */}
-            <div className="p-7 sm:p-9 sm:col-span-3 bg-brand-900/30">
+            <div className="p-7 sm:p-9 sm:col-span-3 bg-brand-800/35">
               <p className="text-[10px] font-semibold tracking-widest uppercase text-brand-400 mb-5">
                 🇳🇬 {c.pidginCard.title}
               </p>
-              <blockquote className="text-brand-100 text-base sm:text-lg leading-relaxed font-light italic mb-5">
+              <blockquote className="text-brand-100 text-lg sm:text-xl leading-relaxed font-light italic mb-5">
                 "{DEMO_PIDGIN}"
               </blockquote>
               <p className="text-neutral-400 text-sm leading-relaxed">{c.pidginCard.body}</p>
@@ -58,8 +56,6 @@ export function LanguageSupport() {
           <p className="text-center text-neutral-500 text-sm">{c.note}</p>
         </FadeIn>
       </div>
-      {/* Exit bridge — dissolves into the next section */}
-      <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-b from-transparent to-neutral-50/60 pointer-events-none" />
     </section>
   );
 }

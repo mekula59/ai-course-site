@@ -38,7 +38,7 @@ export function Waitlist() {
   const successBody = c.successBody.replace("{email}", email);
 
   return (
-    <section id="waitlist" className="py-20 px-5 bg-white">
+    <section id="waitlist" className="py-16 sm:py-24 px-5 bg-ivory">
       <div className="max-w-xl mx-auto">
         <FadeIn>
           <div className="text-center mb-10">
@@ -77,7 +77,7 @@ export function Waitlist() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="bg-neutral-50 rounded-2xl border border-neutral-200 p-6 sm:p-8 space-y-4"
+              className="bg-white rounded-2xl border border-neutral-200/70 shadow-[0_2px_16px_rgba(28,25,23,0.07)] p-6 sm:p-8 space-y-4"
               noValidate
             >
               <div>

@@ -9,7 +9,7 @@ export function WhoIsItFor() {
   const c = content[lang].whoIsItFor;
 
   return (
-    <section className="py-20 px-5 bg-neutral-50">
+    <section className="py-16 sm:py-24 px-5 bg-ivory">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <div className="text-center mb-14">
@@ -17,7 +17,7 @@ export function WhoIsItFor() {
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mt-4 mb-4">
               {c.heading}
             </h2>
-            <p className="text-neutral-500 text-lg max-w-xl mx-auto">{c.sub}</p>
+            <p className="text-neutral-600 text-[17px] max-w-xl mx-auto leading-relaxed">{c.sub}</p>
           </div>
         </FadeIn>
 

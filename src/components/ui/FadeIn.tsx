@@ -21,15 +21,15 @@ export function FadeIn({
   const variants = {
     hidden: {
       opacity: 0,
-      y: reduced ? 0 : direction === "up" ? 18 : direction === "down" ? -18 : 0,
-      x: reduced ? 0 : direction === "left" ? 18 : direction === "right" ? -18 : 0,
+      y: reduced ? 0 : direction === "up" ? 10 : direction === "down" ? -10 : 0,
+      x: reduced ? 0 : direction === "left" ? 10 : direction === "right" ? -10 : 0,
     },
     visible: {
       opacity: 1,
       y: 0,
       x: 0,
       transition: {
-        duration: reduced ? 0.01 : 0.5,
+        duration: reduced ? 0.01 : 0.55,
         delay: reduced ? 0 : delay,
         ease: EASE,
       },
@@ -40,7 +40,7 @@ export function FadeIn({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, margin: "-20px" }}
       variants={variants}
       className={className}
     >

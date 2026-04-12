@@ -1,5 +1,6 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
@@ -12,25 +13,131 @@ const STATS = [
   { value: "0", label: "jargon" },
 ];
 
-// Lesson 1 insight — concrete analogy, not abstract philosophy
-const DEMO_EN =
-  "You don't need to understand how AI works any more than you need to understand electricity to turn on a light switch.";
-const DEMO_PIDGIN =
-  "You no need to understand how AI dey work, just like you no need to understand electricity before you on light. Just sabi how to use am.";
+interface LessonSlide {
+  num: string;
+  title: string;
+  en: string;
+  pidgin: string;
+}
+
+const SLIDES: LessonSlide[] = [
+  {
+    num: "01",
+    title: "What AI Actually Is",
+    en: "You don't need to understand how AI works any more than you need to understand electricity to turn on a light switch.",
+    pidgin: "You no need to understand how AI dey work, just like you no need to understand electricity before you on light. Just sabi how to use am.",
+  },
+  {
+    num: "02",
+    title: "How AI Tools Work",
+    en: "Think of AI like a very well-read assistant. It has processed enormous amounts of text and learned patterns to help you.",
+    pidgin: "Think of AI like person wey don read plenty things and learn patterns from all of dem. E dey use that knowledge to help you.",
+  },
+  {
+    num: "03",
+    title: "Your First Conversation",
+    en: "The secret to getting good answers from AI is being specific. Tell it your context, what you need, and in what format.",
+    pidgin: "The secret to get good answers from AI na to be specific. Tell am your context, wetin you need, and how you want am.",
+  },
+  {
+    num: "04",
+    title: "Writing Faster with AI",
+    en: "AI doesn't replace your voice. It handles the blank page. You start with a rough idea, and AI gives you something to react to.",
+    pidgin: "AI no go replace your voice. E just dey handle the blank page. You start with rough idea, and AI give you something to work with.",
+  },
+  {
+    num: "05",
+    title: "Asking Better Questions",
+    en: "Don't just ask AI for facts. Ask it to explain, compare, and simplify. That's where it truly saves you time.",
+    pidgin: "No just ask AI for facts. Ask am to explain, compare, and make am simple. That na where e go save you the most time.",
+  },
+  {
+    num: "06",
+    title: "AI at Work",
+    en: "The people saving the most time with AI are not using the fanciest tools. They have good habits and clear prompts.",
+    pidgin: "The people wey dey save the most time with AI no be the ones with the fanciest tools. Na the ones wey get good habits and clear prompts.",
+  },
+  {
+    num: "07",
+    title: "AI for Your Business",
+    en: "You don't need a big budget or a tech team. A phone, an internet connection, and the right knowledge are enough.",
+    pidgin: "You no need big budget or tech team. Phone, internet connection, and the right knowledge na enough to start.",
+  },
+  {
+    num: "08",
+    title: "When Not to Trust AI",
+    en: "AI can sound confident while being completely wrong. Always verify important facts. Treat it like a smart friend, not an authority.",
+    pidgin: "AI fit sound confident while e dey completely wrong. Always verify important facts. Treat am like smart friend, no be authority.",
+  },
+];
+
+const AUTO_INTERVAL = 4500;
+
+const slideVariants = {
+  enter: (dir: number) => ({ x: dir * 20, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (dir: number) => ({ x: dir * -20, opacity: 0 }),
+};
 
 export function Hero() {
   const { lang } = useLang();
   const c = content[lang].hero;
   const ref = useRef<HTMLElement>(null);
 
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  // Both columns fade and lift together as you scroll out
   const colY = useTransform(scrollYProgress, [0, 0.65], [0, -80]);
   const colOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+
+  const navigate = useCallback((dir: 1 | -1) => {
+    setDirection(dir);
+    setIndex((i) => (i + dir + SLIDES.length) % SLIDES.length);
+    setPaused(true);
+  }, []);
+
+  const goTo = useCallback((i: number, current: number) => {
+    setDirection(i > current ? 1 : -1);
+    setIndex(i);
+    setPaused(true);
+  }, []);
+
+  // Auto-rotate
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setDirection(1);
+      setIndex((i) => (i + 1) % SLIDES.length);
+    }, AUTO_INTERVAL);
+    return () => clearInterval(id);
+  }, [paused]);
+
+  // Resume auto-rotate 6s after user interaction
+  useEffect(() => {
+    if (!paused) return;
+    const id = setTimeout(() => setPaused(false), 6000);
+    return () => clearTimeout(id);
+  }, [paused, index]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) navigate(delta > 0 ? 1 : -1);
+    touchStartX.current = null;
+  };
+
+  const slide = SLIDES[index];
 
   return (
     <section ref={ref} className="relative min-h-screen overflow-hidden bg-ivory">
@@ -50,8 +157,8 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <span className="inline-flex items-center gap-3 text-[11px] font-semibold tracking-widest uppercase text-brand-600">
-                <span className="w-6 h-px bg-brand-400" />
+              <span className="inline-flex items-center gap-3 text-[11px] font-semibold tracking-[0.14em] uppercase text-neutral-500">
+                <span className="w-6 h-px bg-neutral-300" />
                 {c.eyebrow}
               </span>
             </motion.div>
@@ -134,48 +241,99 @@ export function Hero() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.85, delay: 0.2, ease: EASE }}
           >
-            {/* Slow float — makes the card feel alive */}
+            {/* Slow float */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="rounded-2xl border border-neutral-200 overflow-hidden shadow-[0_4px_24px_rgba(28,25,23,0.10)] bg-white">
+              <div
+                className="rounded-2xl border border-neutral-200 overflow-hidden shadow-[0_4px_24px_rgba(28,25,23,0.10)] bg-white"
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
+                {/* Animated content: header + panels */}
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={index}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.32, ease: EASE }}
+                  >
+                    {/* Card header */}
+                    <div className="px-6 py-4 border-b border-neutral-100 bg-neutral-50 flex items-center gap-3">
+                      <span className="font-mono text-[11px] font-bold text-brand-500 bg-brand-50 border border-brand-200 px-2 py-0.5 rounded-md">
+                        {slide.num}
+                      </span>
+                      <span className="text-sm font-semibold text-neutral-700 flex-1 truncate">
+                        {slide.title}
+                      </span>
+                      <span className="text-[10px] text-neutral-400 font-medium tabular-nums shrink-0">
+                        {index + 1} of {SLIDES.length}
+                      </span>
+                    </div>
 
-                {/* Card header — lesson reference + progress */}
-                <div className="px-6 py-4 border-b border-neutral-100 bg-neutral-50 flex items-center gap-3">
-                  <span className="font-mono text-[11px] font-bold text-brand-500 bg-brand-50 border border-brand-200 px-2 py-0.5 rounded-md">
-                    01
-                  </span>
-                  <span className="text-sm font-semibold text-neutral-700 flex-1">What AI Actually Is</span>
-                  <span className="text-[10px] text-neutral-400 font-medium tabular-nums">1 of 8</span>
-                </div>
+                    {/* English panel */}
+                    <div className="px-6 py-6 border-b border-neutral-100">
+                      <p className="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-3">
+                        Plain English
+                      </p>
+                      <p className="text-neutral-500 text-sm leading-relaxed">
+                        "{slide.en}"
+                      </p>
+                    </div>
 
-                {/* English panel — quieter, recedes */}
-                <div className="px-6 py-6 border-b border-neutral-100">
-                  <p className="text-[10px] font-bold tracking-widest uppercase text-neutral-400 mb-3">
-                    Plain English
-                  </p>
-                  <p className="text-neutral-500 text-sm leading-relaxed">
-                    "{DEMO_EN}"
-                  </p>
-                </div>
+                    {/* Pidgin panel */}
+                    <div className="px-6 py-6 bg-brand-50 border-l-2 border-l-brand-300">
+                      <p className="text-[10px] font-bold tracking-widest uppercase text-brand-500 mb-3">
+                        🇳🇬 Nigerian Pidgin
+                      </p>
+                      <p className="text-neutral-800 text-sm leading-relaxed font-medium">
+                        "{slide.pidgin}"
+                      </p>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
 
-                {/* Pidgin panel — warmer, leads */}
-                <div className="px-6 py-6 bg-brand-50 border-l-2 border-l-brand-300">
-                  <p className="text-[10px] font-bold tracking-widest uppercase text-brand-500 mb-3">
-                    🇳🇬 Nigerian Pidgin
-                  </p>
-                  <p className="text-neutral-800 text-sm leading-relaxed font-medium">
-                    "{DEMO_PIDGIN}"
-                  </p>
-                </div>
+                {/* Card footer: dots + prev/next */}
+                <div className="px-6 py-4 border-t border-neutral-100 flex items-center justify-between">
+                  {/* Progress dots */}
+                  <div className="flex items-center gap-1.5">
+                    {SLIDES.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => goTo(i, index)}
+                        className={`h-1.5 rounded-full transition-all duration-300 focus:outline-none ${
+                          i === index
+                            ? "w-4 bg-brand-500"
+                            : "w-1.5 bg-neutral-200 hover:bg-neutral-300"
+                        }`}
+                        aria-label={`Go to slide ${i + 1}`}
+                      />
+                    ))}
+                  </div>
 
-                {/* Card footer */}
-                <div className="px-6 py-4 border-t border-neutral-100 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-400 flex-shrink-0" />
-                  <span className="text-xs text-neutral-500">
-                    Every lesson works in both languages
-                  </span>
+                  {/* Prev / next */}
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => navigate(-1)}
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors"
+                      aria-label="Previous slide"
+                    >
+                      <ChevronLeft size={14} />
+                    </button>
+                    <button
+                      onClick={() => navigate(1)}
+                      className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors"
+                      aria-label="Next slide"
+                    >
+                      <ChevronRight size={14} />
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -189,6 +347,7 @@ export function Hero() {
               <span className="text-xs text-neutral-400">Choose your language. Switch anytime.</span>
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -24,7 +24,7 @@ export function UseCases() {
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mt-4 mb-4">
               {c.heading}
             </h2>
-            <p className="text-neutral-500 text-base leading-relaxed max-w-lg">{c.sub}</p>
+            <p className="text-neutral-600 text-[15px] leading-relaxed max-w-lg">{c.sub}</p>
           </div>
         </FadeIn>
 
