@@ -173,11 +173,6 @@ function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
           aria-live="polite"
         >
           <div className="px-6 pt-7 pb-7">
-            {/* Index */}
-            <p className="font-mono text-[10px] font-bold tracking-widest uppercase text-neutral-600 mb-6">
-              {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
-            </p>
-
             {/* Audience title */}
             <h3 className="font-display font-bold text-[1.75rem] text-white leading-[1.1] tracking-tight mb-4">
               {items[active].role}
