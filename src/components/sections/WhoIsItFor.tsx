@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import type { Dispatch, SetStateAction } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import type { PanInfo } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -8,124 +9,164 @@ import { content } from "@/lib/content";
 import type { Lang } from "@/types/language";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
-const AUTO_DELAY = 5200; // ms — slow, deliberate pacing
-const SWIPE_THRESHOLD = 45; // px
+const AUTO_DELAY = 5600;
+const SWIPE_THRESHOLD = 40;
 
 const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
   en: [
     {
       short: "Professionals",
-      note: "Modules 03 and 05 are built around your working week. Faster writing, better summaries, cleaner workflows.",
+      note: "Modules 03 and 05 are shaped around your working week. Faster writing, better summaries, cleaner workflows.",
     },
     {
       short: "Business owners",
-      note: "Content, customer replies, proposals — Modules 03 and 05 give you tools that work before you finish your tea.",
+      note: "Content, customer replies, proposals. Modules 03 and 05 focus on work you can apply immediately.",
     },
     {
       short: "Students",
-      note: "Better research and faster writing, without crossing any academic line. Module 04 is made for you.",
+      note: "Better research and stronger writing, without crossing any academic line. Module 04 is built for this.",
     },
     {
       short: "Job seekers",
-      note: "A CV that actually speaks to the role, not a generic template. Module 03 covers this directly.",
+      note: "A CV and cover letter that sound relevant to the role, not generic. Module 03 covers this directly.",
     },
     {
       short: "Curious beginners",
-      note: "You are the reason this course exists. Module 01 starts exactly where you are. No assumed knowledge.",
+      note: "Module 01 starts exactly where you are. No assumed knowledge, no technical barrier to entry.",
     },
     {
       short: "Feeling behind",
-      note: "The only way to stop falling behind is to start. Module 01 takes under 60 minutes and changes everything.",
+      note: "Module 01 takes under an hour and gives you a clear place to begin instead of more overwhelm.",
     },
   ],
   pidgin: [
     {
       short: "Professionals",
-      note: "Module 03 and 05 dey build around your own working week. Faster writing, better summaries, cleaner workflows.",
+      note: "Module 03 and 05 dey shaped around your working week. Faster writing, better summaries, cleaner workflows.",
     },
     {
       short: "Business owners",
-      note: "Content, customer replies, proposals — Module 03 and 05 give you tools wey go work before you finish your tea.",
+      note: "Content, customer replies, proposals. Module 03 and 05 focus on work wey you fit apply immediately.",
     },
     {
       short: "Students",
-      note: "Better research and faster writing, without crossing any academic line. Module 04 na for you.",
+      note: "Better research and stronger writing, without crossing any academic line. Module 04 na for this.",
     },
     {
       short: "Job seekers",
-      note: "CV wey dey actually speak to the role, no be generic template. Module 03 dey cover this directly.",
+      note: "CV and cover letter wey sound relevant to the role, no be generic. Module 03 dey cover this directly.",
     },
     {
       short: "Curious beginners",
-      note: "You be the reason we build this course. Module 01 dey start exactly where you dey. No assumed knowledge.",
+      note: "Module 01 dey start exactly where you dey. No assumed knowledge and no technical barrier.",
     },
     {
       short: "Feeling behind",
-      note: "The only way to stop falling behind na to start. Module 01 dey take under 60 minutes and e go change everything.",
+      note: "Module 01 no reach one hour and e give you clear place to begin instead of more overwhelm.",
     },
   ],
 };
 
-// ─── Desktop detail panel (unchanged) ────────────────────────────────────────
+interface AudienceItem {
+  role: string;
+  desc: string;
+}
 
 interface DetailPanelProps {
   active: number;
-  items: Array<{ role: string; desc: string }>;
+  items: AudienceItem[];
   meta: Array<{ short: string; note: string }>;
 }
 
 function DetailPanel({ active, items, meta }: DetailPanelProps) {
+  const reducedMotion = useReducedMotion();
+
   return (
-    <AnimatePresence mode="wait">
+    <div className="relative overflow-hidden rounded-[2rem] border border-neutral-900/10 bg-[#1b140d] p-6 text-white shadow-[0_28px_80px_rgba(64,33,10,0.18)] sm:p-8 lg:min-h-[28rem] lg:p-10">
       <motion.div
-        key={active}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.25, ease: EASE }}
-        className="bg-neutral-900 rounded-2xl"
-      >
-        <div className="px-7 py-7 sm:py-8">
-          <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-3 leading-snug">
-            {items[active].role}
-          </h3>
-          <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mb-5">
-            {items[active].desc}
-          </p>
-          <div className="border-t border-neutral-800 pt-4">
-            <p className="text-brand-400 text-[13px] leading-relaxed">
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        animate={
+          reducedMotion
+            ? undefined
+            : {
+                opacity: [0.7, 0.92, 0.7],
+              }
+        }
+        transition={{ duration: 14, ease: "easeInOut", repeat: Infinity }}
+      />
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }}
+          transition={{ duration: reducedMotion ? 0.01 : 0.42, ease: EASE }}
+          className="relative flex h-full flex-col justify-between"
+        >
+          <div>
+            <div className="mb-8 flex items-center justify-between gap-4">
+              <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-amber-200">
+                  {String(active + 1).padStart(2, "0")}
+                </span>
+                <span className="text-sm text-white/55">{meta[active].short}</span>
+              </div>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/28">
+                In view
+              </span>
+            </div>
+
+            <h3 className="mb-4 max-w-[14ch] font-display text-[2rem] leading-[1.03] font-bold tracking-[-0.03em] text-white sm:text-[2.35rem]">
+              {items[active].role}
+            </h3>
+            <p className="max-w-[42ch] text-[15px] leading-[1.8] text-white/74 sm:text-[16px]">
+              {items[active].desc}
+            </p>
+          </div>
+
+          <div className="mt-10 border-t border-white/10 pt-6">
+            <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/34">
+              Good place to begin
+            </p>
+            <p className="max-w-[42ch] text-sm leading-relaxed text-amber-100/80">
               {meta[active].note}
             </p>
           </div>
-        </div>
-      </motion.div>
-    </AnimatePresence>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }
 
-// ─── Mobile placard slider ────────────────────────────────────────────────────
-
 interface MobileSliderProps {
   active: number;
-  setActive: (i: number) => void;
-  items: Array<{ role: string; desc: string }>;
+  setActive: Dispatch<SetStateAction<number>>;
+  items: AudienceItem[];
   meta: Array<{ short: string; note: string }>;
 }
 
 function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
   const count = items.length;
+  const reducedMotion = useReducedMotion();
   const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
 
-  // Auto-advance — slow, deliberate
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(() => {
+    const id = window.setInterval(() => {
       setDirection(1);
-      setActive((active + 1) % count);
+      setActive((current) => (current + 1) % count);
     }, AUTO_DELAY);
-    return () => clearInterval(id);
-  }, [paused, active, count, setActive]);
+    return () => window.clearInterval(id);
+  }, [paused, count, setActive]);
+
+  useEffect(() => {
+    if (!paused) return;
+    const id = window.setTimeout(() => setPaused(false), 9000);
+    return () => window.clearTimeout(id);
+  }, [paused]);
 
   const goTo = useCallback(
     (idx: number, dir: 1 | -1) => {
@@ -137,7 +178,7 @@ function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
   );
 
   const handleDragEnd = useCallback(
-    (_e: unknown, info: PanInfo) => {
+    (_e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
       if (info.offset.x < -SWIPE_THRESHOLD) {
         goTo((active + 1) % count, 1);
       } else if (info.offset.x > SWIPE_THRESHOLD) {
@@ -148,57 +189,95 @@ function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
   );
 
   const cardVariants = {
-    enter: (dir: number) => ({ opacity: 0, x: dir * 20 }),
-    center: { opacity: 1, x: 0 },
-    exit: { opacity: 0 },
+    enter: (dir: number) => ({
+      opacity: 0,
+      x: reducedMotion ? 0 : dir * 28,
+      scale: reducedMotion ? 1 : 0.985,
+    }),
+    center: { opacity: 1, x: 0, scale: 1 },
+    exit: (dir: number) => ({
+      opacity: 0,
+      x: reducedMotion ? 0 : dir * -18,
+      scale: reducedMotion ? 1 : 0.99,
+    }),
   };
 
   return (
-    <div>
-      {/* Card — full width, draggable */}
-      <AnimatePresence mode="wait" custom={direction}>
+    <div className="lg:hidden">
+      <div className="relative overflow-hidden rounded-[2rem] border border-neutral-900/10 bg-[#1b140d] text-white shadow-[0_28px_80px_rgba(64,33,10,0.15)]">
         <motion.div
-          key={active}
-          custom={direction}
-          variants={cardVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.48, ease: EASE }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.07}
-          onDragEnd={handleDragEnd}
-          className="bg-neutral-900 rounded-2xl select-none touch-pan-y cursor-grab active:cursor-grabbing"
-          aria-live="polite"
-        >
-          <div className="px-6 pt-7 pb-7">
-            {/* Audience title */}
-            <h3 className="font-display font-bold text-[1.75rem] text-white leading-[1.1] tracking-tight mb-4">
-              {items[active].role}
-            </h3>
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          animate={
+            reducedMotion
+              ? undefined
+              : {
+                  opacity: [0.72, 0.9, 0.72],
+                }
+          }
+          transition={{ duration: 14, ease: "easeInOut", repeat: Infinity }}
+        />
 
-            {/* Description */}
-            <p className="text-neutral-400 text-[15px] leading-[1.75] mb-6">
-              {items[active].desc}
-            </p>
-
-            {/* Course note */}
-            <div className="border-t border-neutral-800 pt-4">
-              <p className="text-brand-400 text-[13px] leading-relaxed">
-                {meta[active].note}
-              </p>
-            </div>
+        <div className="relative px-5 pt-5">
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-amber-200/90">
+              Who this fits
+            </span>
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/36">
+              {String(active + 1).padStart(2, "0")} / {count}
+            </span>
           </div>
-        </motion.div>
-      </AnimatePresence>
+        </div>
 
-      {/* Auto-advance progress bar */}
-      <div className="mt-3 h-[1.5px] bg-neutral-200/40 rounded-full overflow-hidden">
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={active}
+            custom={direction}
+            variants={cardVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: reducedMotion ? 0.01 : 0.5, ease: EASE }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.08}
+            onDragStart={() => setPaused(true)}
+            onDragEnd={handleDragEnd}
+            className="relative px-5 pb-5 select-none touch-pan-y cursor-grab active:cursor-grabbing"
+            aria-live="polite"
+          >
+            <div className="rounded-[1.65rem] border border-white/10 bg-white/[0.05] p-6 backdrop-blur-sm">
+              <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-4 py-2">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/60">
+                  {meta[active].short}
+                </span>
+              </div>
+
+              <h3 className="mb-4 max-w-[12ch] font-display text-[2rem] leading-[1.03] font-bold tracking-[-0.03em] text-white">
+                {items[active].role}
+              </h3>
+              <p className="mb-7 text-[15px] leading-[1.8] text-white/76">
+                {items[active].desc}
+              </p>
+
+              <div className="border-t border-white/10 pt-5">
+                <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/34">
+                  Good place to begin
+                </p>
+                <p className="text-[13px] leading-relaxed text-amber-100/80">
+                  {meta[active].note}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="mt-4 h-[2px] overflow-hidden rounded-full bg-neutral-300/70">
         {!paused && (
           <motion.div
             key={`prog-${active}`}
-            className="h-full bg-brand-400/55"
+            className="h-full rounded-full bg-neutral-900/70"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: AUTO_DELAY / 1000, ease: "linear" }}
@@ -206,26 +285,42 @@ function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
         )}
       </div>
 
-      {/* Position dots */}
-      <div className="flex items-center justify-center gap-2 mt-4">
-        {items.map((_, i) => (
+      <div className="mt-4 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i, i > active ? 1 : -1)}
+              aria-label={`Card ${i + 1} of ${count}`}
+              className={`rounded-full transition-all duration-300 ${
+                i === active
+                  ? "h-1.5 w-7 bg-neutral-900"
+                  : "h-1.5 w-1.5 bg-neutral-400"
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="flex items-center gap-2">
           <button
-            key={i}
-            onClick={() => goTo(i, i > active ? 1 : -1)}
-            aria-label={`Card ${i + 1} of ${count}`}
-            className={`rounded-full transition-all duration-300 cursor-pointer ${
-              i === active
-                ? "w-5 h-1.5 bg-neutral-800"
-                : "w-1.5 h-1.5 bg-neutral-300 hover:bg-neutral-500"
-            }`}
-          />
-        ))}
+            onClick={() => goTo((active - 1 + count) % count, -1)}
+            aria-label="Previous audience"
+            className="rounded-full border border-neutral-300 bg-white px-3.5 py-2 text-sm text-neutral-700"
+          >
+            Prev
+          </button>
+          <button
+            onClick={() => goTo((active + 1) % count, 1)}
+            aria-label="Next audience"
+            className="rounded-full border border-neutral-900 bg-neutral-900 px-3.5 py-2 text-sm text-white"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-
-// ─── Section ──────────────────────────────────────────────────────────────────
 
 export function WhoIsItFor() {
   const { lang } = useLang();
@@ -234,56 +329,86 @@ export function WhoIsItFor() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="py-16 sm:py-24 px-5 bg-ivory">
-      <div className="max-w-5xl mx-auto">
-
-        {/* Section header */}
+    <section className="bg-ivory px-5 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <div className="text-center mb-12 sm:mb-16">
+          <div className="mb-12 max-w-2xl sm:mb-16">
             <SectionLabel className="mb-4">{c.label}</SectionLabel>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mt-4 mb-4">
+            <h2 className="mt-4 mb-4 font-display text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl">
               {c.heading}
             </h2>
-            <p className="text-neutral-500 text-base max-w-xl mx-auto leading-relaxed">
+            <p className="max-w-[46ch] text-base leading-relaxed text-neutral-500">
               {c.sub}
             </p>
           </div>
         </FadeIn>
 
-        {/* Desktop: vertical pill selector + detail panel */}
-        <FadeIn delay={0.1} className="hidden lg:block">
-          <div className="grid grid-cols-[220px_1fr] gap-12 items-start">
+        <FadeIn delay={0.08} className="hidden lg:block">
+          <div className="grid items-start gap-10 lg:grid-cols-[280px_minmax(0,1fr)] xl:gap-14">
+            <nav
+              aria-label="Audience selector"
+              className="rounded-[1.75rem] border border-neutral-900/8 bg-white/65 p-3 shadow-[0_18px_40px_rgba(24,15,8,0.06)] backdrop-blur-sm"
+            >
+              <div className="mb-4 px-3 pt-2">
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400">
+                  Choose the closest fit
+                </p>
+              </div>
 
-            <nav className="flex flex-col gap-1" aria-label="Audience selector">
-              {c.items.map((_, i) => (
-                <motion.button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  whileTap={{ scale: 0.97 }}
-                  className="relative w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 rounded-xl cursor-pointer"
-                >
-                  <motion.span
-                    animate={
-                      active === i
-                        ? { backgroundColor: "rgba(26,18,8,0.95)", color: "#fefcf9" }
-                        : { backgroundColor: "rgba(26,18,8,0)", color: "#9d958f" }
-                    }
-                    whileHover={active !== i ? { color: "#1a1208" } : {}}
-                    transition={{ duration: 0.16, ease: EASE }}
-                    className="flex w-full items-center px-4 py-2.5 rounded-xl text-[14px] font-semibold leading-snug"
+              <div className="space-y-1.5">
+                {c.items.map((_, i) => (
+                  <motion.button
+                    key={i}
+                    onClick={() => setActive(i)}
+                    layout
+                    className="relative w-full overflow-hidden rounded-[1.2rem] px-4 py-4 text-left focus:outline-none"
+                    transition={{ layout: { duration: 0.35, ease: EASE } }}
                   >
-                    {meta[i].short}
-                  </motion.span>
-                </motion.button>
-              ))}
+                    {active === i ? (
+                      <motion.span
+                        layoutId="who-active-tab"
+                        className="absolute inset-0 rounded-[1.2rem] border border-neutral-900/10 bg-neutral-900"
+                        transition={{ duration: 0.35, ease: EASE }}
+                      />
+                    ) : null}
+
+                    <span className="relative flex items-start gap-4">
+                      <span
+                        className={`mt-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] ${
+                          active === i ? "text-amber-200" : "text-neutral-400"
+                        }`}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span
+                          className={`block text-[15px] leading-snug ${
+                            active === i
+                              ? "font-semibold text-white"
+                              : "font-medium text-neutral-700"
+                          }`}
+                        >
+                          {meta[i].short}
+                        </span>
+                        <span
+                          className={`mt-1 block text-[13px] leading-relaxed ${
+                            active === i ? "text-white/60" : "text-neutral-400"
+                          }`}
+                        >
+                          {c.items[i].role}
+                        </span>
+                      </span>
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
             </nav>
 
             <DetailPanel active={active} items={c.items} meta={meta} />
           </div>
         </FadeIn>
 
-        {/* Mobile: premium placard slider */}
-        <FadeIn delay={0.1} className="lg:hidden">
+        <FadeIn delay={0.08} className="lg:hidden">
           <MobileSlider
             active={active}
             setActive={setActive}
@@ -292,15 +417,13 @@ export function WhoIsItFor() {
           />
         </FadeIn>
 
-        {/* Bottom callout */}
-        <FadeIn delay={0.3}>
-          <div className="mt-10 pt-7 border-t border-neutral-200/60 text-center">
-            <p className="text-neutral-500 text-sm sm:text-base leading-relaxed max-w-xl mx-auto">
+        <FadeIn delay={0.18}>
+          <div className="mt-10 border-t border-neutral-200/70 pt-7">
+            <p className="max-w-[48ch] text-sm leading-relaxed text-neutral-500 sm:text-base">
               {c.callout}
             </p>
           </div>
         </FadeIn>
-
       </div>
     </section>
   );

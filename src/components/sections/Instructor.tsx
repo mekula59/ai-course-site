@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
@@ -10,6 +10,27 @@ const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 function HeadingReveal({ text }: { text: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
+  const reducedMotion = useReducedMotion();
+  const [visibleText, setVisibleText] = useState(reducedMotion ? text : "");
+
+  useEffect(() => {
+    if (!inView) return;
+    if (reducedMotion) {
+      setVisibleText(text);
+      return;
+    }
+
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index += 1;
+      setVisibleText(text.slice(0, index));
+      if (index >= text.length) {
+        window.clearInterval(timer);
+      }
+    }, 28);
+
+    return () => window.clearInterval(timer);
+  }, [inView, reducedMotion, text]);
 
   return (
     <div ref={ref}>
@@ -19,7 +40,7 @@ function HeadingReveal({ text }: { text: string }) {
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
         transition={{ duration: 0.58, ease: EASE }}
       >
-        {text}
+        {visibleText}
       </motion.h2>
     </div>
   );

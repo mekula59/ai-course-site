@@ -8,9 +8,9 @@ import { content } from "@/lib/content";
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 const featureVariants = {
-  enter: { opacity: 0, y: 14 },
+  enter: { opacity: 0, y: 18 },
   center: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -10 },
+  exit: { opacity: 0, y: -12 },
 };
 
 export function WhyDifferent() {
@@ -20,6 +20,8 @@ export function WhyDifferent() {
   const [direction, setDirection] = useState(1);
   const reducedMotion = useReducedMotion();
   const activeItem = c.items[active];
+  const prevItem = c.items[(active - 1 + c.items.length) % c.items.length];
+  const nextItem = c.items[(active + 1) % c.items.length];
 
   const navigate = useCallback(
     (idx: number) => {
@@ -43,217 +45,248 @@ export function WhyDifferent() {
             ? undefined
             : {
                 background: [
-                  "radial-gradient(circle at 14% 22%, rgba(244, 114, 182, 0.17), transparent 34%), radial-gradient(circle at 86% 18%, rgba(251, 191, 36, 0.14), transparent 24%), linear-gradient(180deg, rgba(23, 23, 23, 0.96), rgba(10, 10, 10, 1))",
-                  "radial-gradient(circle at 22% 28%, rgba(244, 114, 182, 0.2), transparent 36%), radial-gradient(circle at 74% 20%, rgba(251, 191, 36, 0.16), transparent 25%), linear-gradient(180deg, rgba(23, 23, 23, 0.96), rgba(10, 10, 10, 1))",
-                  "radial-gradient(circle at 14% 22%, rgba(244, 114, 182, 0.17), transparent 34%), radial-gradient(circle at 86% 18%, rgba(251, 191, 36, 0.14), transparent 24%), linear-gradient(180deg, rgba(23, 23, 23, 0.96), rgba(10, 10, 10, 1))",
+                  "radial-gradient(circle at 12% 14%, rgba(244,114,182,0.16), transparent 32%), radial-gradient(circle at 84% 18%, rgba(251,191,36,0.12), transparent 22%), linear-gradient(180deg, rgba(24,24,27,0.96), rgba(10,10,10,1))",
+                  "radial-gradient(circle at 18% 22%, rgba(244,114,182,0.2), transparent 34%), radial-gradient(circle at 76% 22%, rgba(251,191,36,0.16), transparent 24%), linear-gradient(180deg, rgba(24,24,27,0.96), rgba(10,10,10,1))",
+                  "radial-gradient(circle at 12% 14%, rgba(244,114,182,0.16), transparent 32%), radial-gradient(circle at 84% 18%, rgba(251,191,36,0.12), transparent 22%), linear-gradient(180deg, rgba(24,24,27,0.96), rgba(10,10,10,1))",
                 ],
               }
         }
-        transition={{ duration: 16, ease: "easeInOut", repeat: Infinity }}
+        transition={{ duration: 18, ease: "easeInOut", repeat: Infinity }}
       />
-
       <motion.div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 top-24 h-72 w-72 rounded-full bg-brand-500/18 blur-3xl"
+        className="pointer-events-none absolute -left-16 top-24 h-64 w-64 rounded-full bg-brand-400/12 blur-3xl"
         animate={
           reducedMotion
             ? undefined
             : {
-                x: ["-2%", "7%", "-1%"],
-                y: ["0%", "8%", "-3%"],
-                scale: [1, 1.08, 1],
-              }
-        }
-        transition={{ duration: 12, ease: "easeInOut", repeat: Infinity }}
-      />
-
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-[-6rem] top-[26rem] h-64 w-64 rounded-full bg-amber-300/10 blur-3xl"
-        animate={
-          reducedMotion
-            ? undefined
-            : {
-                x: ["0%", "9%", "1%"],
-                y: ["0%", "-6%", "2%"],
-                scale: [1, 0.94, 1],
+                opacity: [0.6, 0.85, 0.6],
               }
         }
         transition={{ duration: 14, ease: "easeInOut", repeat: Infinity }}
       />
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-32 h-72 w-72 rounded-full bg-amber-300/10 blur-3xl"
+        animate={
+          reducedMotion
+            ? undefined
+            : {
+                opacity: [0.55, 0.75, 0.55],
+              }
+        }
+        transition={{ duration: 16, ease: "easeInOut", repeat: Infinity }}
+      />
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-300/40 to-transparent"
+        animate={{ opacity: active % 2 === 0 ? 0.45 : 0.8 }}
+        transition={{ duration: reducedMotion ? 0.01 : 0.7, ease: EASE }}
+      />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="relative mx-auto max-w-6xl">
         <FadeIn>
-          <div className="relative mb-12 sm:mb-14">
+          <div className="mb-10 max-w-2xl sm:mb-14">
             <SectionLabel className="mb-4 text-brand-400">{c.label}</SectionLabel>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-4 mb-4 max-w-2xl leading-tight">
+            <h2 className="mt-4 mb-4 max-w-xl font-display text-3xl leading-tight font-bold text-white sm:text-4xl">
               {c.heading}
             </h2>
-            <p className="text-neutral-400 text-base leading-relaxed max-w-[46ch]">{c.sub}</p>
+            <p className="max-w-[47ch] text-base leading-relaxed text-neutral-400">{c.sub}</p>
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.1} className="hidden lg:block">
-          <div className="relative grid grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] gap-8 xl:gap-12 items-start">
-            <div className="relative min-h-[31rem] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm xl:p-10">
+        <FadeIn delay={0.08}>
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(290px,0.9fr)] lg:gap-10 xl:gap-14">
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.32)] backdrop-blur-sm sm:p-8 lg:min-h-[31rem] lg:p-10">
               <motion.div
                 aria-hidden="true"
-                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                animate={{ opacity: active % 2 === 0 ? 0.5 : 0.9 }}
-                transition={{ duration: 0.8, ease: EASE }}
+                className="absolute inset-x-10 bottom-6 top-10 rounded-[1.8rem] border border-white/6 bg-white/[0.025]"
+                animate={{
+                  opacity: active === 0 ? 0.16 : 0.22,
+                }}
+                transition={{ duration: reducedMotion ? 0.01 : 0.45, ease: EASE }}
               />
               <motion.div
                 aria-hidden="true"
-                className="absolute inset-0"
-                animate={
-                  reducedMotion
-                    ? undefined
-                    : {
-                        background: [
-                          "radial-gradient(circle at 78% 18%, rgba(236, 72, 153, 0.18), transparent 24%), radial-gradient(circle at 18% 82%, rgba(251, 191, 36, 0.12), transparent 28%)",
-                          "radial-gradient(circle at 72% 24%, rgba(236, 72, 153, 0.22), transparent 26%), radial-gradient(circle at 24% 76%, rgba(251, 191, 36, 0.14), transparent 30%)",
-                          "radial-gradient(circle at 78% 18%, rgba(236, 72, 153, 0.18), transparent 24%), radial-gradient(circle at 18% 82%, rgba(251, 191, 36, 0.12), transparent 28%)",
-                        ],
-                      }
-                }
-                transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
+                className="absolute inset-x-8 bottom-4 top-8 rounded-[1.9rem] border border-white/8 bg-white/[0.03]"
+                animate={{
+                  opacity: active === 0 ? 0.24 : 0.32,
+                }}
+                transition={{ duration: reducedMotion ? 0.01 : 0.45, ease: EASE }}
+              />
+              <motion.div
+                aria-hidden="true"
+                className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-brand-300 via-brand-400 to-amber-300"
+                animate={{ opacity: active % 2 === 0 ? 0.8 : 1 }}
+                transition={{ duration: reducedMotion ? 0.01 : 0.5, ease: EASE }}
+              />
+              <motion.div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[radial-gradient(circle_at_80%_18%,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_18%_84%,rgba(251,191,36,0.08),transparent_26%)]"
+                animate={{ opacity: active % 2 === 0 ? 0.65 : 0.9 }}
+                transition={{ duration: reducedMotion ? 0.01 : 0.6, ease: EASE }}
               />
 
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={active}
-                  custom={direction}
-                  variants={featureVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: reducedMotion ? 0.01 : 0.55, ease: EASE }}
-                  className="relative z-10 flex min-h-[27rem] flex-col justify-between"
-                >
-                  <div>
-                    <div className="mb-12 flex items-center justify-between gap-4">
+              <div className="relative flex min-h-full flex-col justify-between gap-12">
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={active}
+                    custom={direction}
+                    variants={featureVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: reducedMotion ? 0.01 : 0.48, ease: EASE }}
+                    className="flex flex-1 flex-col"
+                  >
+                    <div className="mb-10 flex items-center justify-between gap-4">
                       <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2">
                         <span className="text-lg leading-none">{activeItem.icon}</span>
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-brand-300">
-                          In Focus
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-brand-200">
+                          {String(active + 1).padStart(2, "0")}
                         </span>
                       </div>
-                      <p className="font-mono text-[11px] font-bold tracking-[0.18em] uppercase text-brand-300/80">
-                        {String(active + 1).padStart(2, "0")} / {c.items.length}
-                      </p>
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/28">
+                        In view
+                      </span>
                     </div>
 
-                    <div className="max-w-[44rem]">
-                      <p className="mb-5 text-sm font-medium tracking-[0.08em] text-white/45">
-                        This course is intentionally shaped around trust, clarity, and immediate usefulness.
-                      </p>
-                      <h3 className="mb-6 font-display text-[2.35rem] font-bold leading-[1.02] tracking-[-0.03em] text-white xl:text-[3rem]">
-                        {activeItem.title}
-                      </h3>
-                      <p className="max-w-[48ch] text-[1.05rem] leading-relaxed text-neutral-300">
-                        {activeItem.desc}
-                      </p>
-                    </div>
-                  </div>
+                    <div className="flex flex-1 flex-col justify-between gap-10 xl:flex-row xl:gap-12">
+                      <div className="max-w-[46rem] flex-1">
+                        <h3 className="mb-6 max-w-[14ch] font-display text-[2.2rem] leading-[1.02] font-bold tracking-[-0.035em] text-white sm:text-[2.5rem] xl:text-[3rem]">
+                          {activeItem.title}
+                        </h3>
+                        <p className="max-w-[46ch] text-[1.02rem] leading-relaxed text-neutral-300 sm:text-[1.08rem]">
+                          {activeItem.desc}
+                        </p>
+                      </div>
 
-                  <div className="flex items-end justify-between gap-6 border-t border-white/10 pt-8">
-                    <div className="max-w-[34ch]">
-                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/35">
-                        Why It Lands
-                      </p>
-                      <p className="text-sm leading-relaxed text-neutral-400">
-                        Calm presentation, strong conviction, and one clear reason at a time make the section easier to trust and easier to remember.
-                      </p>
+                      <div className="hidden w-full max-w-[14rem] xl:block">
+                        <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/30">
+                          Also true
+                        </p>
+                        <div className="space-y-3">
+                          {[prevItem, nextItem].map((item, idx) => (
+                            <div
+                              key={`${item.title}-${idx}`}
+                              className="rounded-[1.2rem] border border-white/8 bg-white/[0.035] px-4 py-3 text-left"
+                            >
+                              <div className="mb-1 flex items-center justify-between gap-3">
+                                <span className="text-sm leading-none opacity-70">{item.icon}</span>
+                                {idx === 1 ? (
+                                  <span className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-white/22">
+                                    Next
+                                  </span>
+                                ) : null}
+                              </div>
+                              <p className="text-[13px] leading-snug text-neutral-400">{item.title}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      {c.items.map((_, index) => (
-                        <motion.span
-                          key={index}
-                          className="h-1.5 rounded-full bg-white/15"
-                          animate={{
-                            width: index === active ? 40 : 14,
-                            backgroundColor:
-                              index === active
-                                ? "rgba(248, 113, 113, 0.95)"
-                                : "rgba(255, 255, 255, 0.14)",
-                          }}
-                          transition={{ duration: reducedMotion ? 0.01 : 0.45, ease: EASE }}
-                        />
-                      ))}
-                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="flex items-end justify-between gap-6 border-t border-white/10 pt-6">
+                  <p className="max-w-[28ch] text-sm leading-relaxed text-neutral-500">
+                    Clear, practical, and close to real life.
+                  </p>
+                  <div className="flex gap-2">
+                    {c.items.map((_, index) => (
+                      <motion.span
+                        key={index}
+                        className="h-1.5 rounded-full bg-white/12"
+                        animate={{
+                          width: index === active ? 38 : 12,
+                          backgroundColor:
+                            index === active
+                              ? "rgba(251, 146, 60, 0.95)"
+                              : "rgba(255, 255, 255, 0.14)",
+                        }}
+                        transition={{ duration: reducedMotion ? 0.01 : 0.35, ease: EASE }}
+                      />
+                    ))}
                   </div>
-                </motion.div>
-              </AnimatePresence>
+                </div>
+              </div>
             </div>
 
-            <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-3 shadow-[0_24px_60px_rgba(0,0,0,0.24)] backdrop-blur-sm">
-              {c.items.map((item, i) => (
-                <motion.button
-                  key={i}
-                  onClick={() => navigate(i)}
-                  onMouseEnter={() => navigate(i)}
-                  layout
-                  className={`group relative mb-2 w-full overflow-hidden rounded-[1.25rem] border text-left last:mb-0 focus:outline-none ${
-                    active === i
-                      ? "border-white/12 bg-white/[0.07] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-                      : "border-transparent bg-transparent hover:border-white/8 hover:bg-white/[0.04]"
-                  }`}
-                  transition={{ layout: { duration: reducedMotion ? 0.01 : 0.45, ease: EASE } }}
-                >
-                  <motion.div
-                    className="absolute left-0 top-3 bottom-3 w-[2px] rounded-full bg-brand-400"
-                    initial={false}
-                    animate={{
-                      opacity: active === i ? 1 : 0,
-                      scaleY: active === i ? 1 : 0.24,
-                    }}
-                    transition={{ duration: reducedMotion ? 0.01 : 0.35, ease: EASE }}
-                    style={{ originY: "center" }}
-                  />
+            <div className="hidden rounded-[1.6rem] border border-white/10 bg-black/20 p-2.5 backdrop-blur-sm lg:block">
+              <div className="mb-3 flex items-center justify-between px-3 pt-2">
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/34">
+                  Select a reason
+                </p>
+              </div>
 
-                  <div className="relative px-5 py-4">
-                    <div className="flex items-start gap-4">
-                      <span
-                        className={`mt-0.5 text-lg leading-none transition-opacity duration-300 ${
-                          active === i ? "opacity-100" : "opacity-55"
-                        }`}
-                      >
-                        {item.icon}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <div className="mb-1 flex items-center justify-between gap-3">
-                          <span
-                            className={`font-mono text-[10px] font-bold uppercase tracking-[0.18em] ${
-                              active === i ? "text-brand-300" : "text-white/28"
-                            }`}
-                          >
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          {active === i ? (
-                            <span className="rounded-full border border-brand-400/25 bg-brand-500/10 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-brand-200">
-                              Active
-                            </span>
-                          ) : null}
-                        </div>
+              <div className="space-y-1.5">
+                {c.items.map((item, i) => (
+                  <motion.button
+                    key={i}
+                    onClick={() => navigate(i)}
+                    onMouseEnter={() => navigate(i)}
+                    layout
+                    className={`group relative w-full overflow-hidden rounded-[1.2rem] px-4 py-4 text-left transition-colors duration-300 focus:outline-none ${
+                      active === i ? "bg-white/[0.075]" : "hover:bg-white/[0.04]"
+                    }`}
+                    transition={{ layout: { duration: reducedMotion ? 0.01 : 0.42, ease: EASE } }}
+                  >
+                    {active === i ? (
+                      <motion.div
+                        layoutId="why-different-active"
+                        className="absolute inset-0 rounded-[1.2rem] border border-white/10 bg-white/[0.05]"
+                        transition={{ duration: reducedMotion ? 0.01 : 0.4, ease: EASE }}
+                      />
+                    ) : null}
 
-                        <p
-                          className={`text-[15px] leading-snug transition-colors duration-300 ${
-                            active === i
-                              ? "font-semibold text-white"
-                              : "font-medium text-neutral-500 group-hover:text-neutral-300"
+                    <div className="relative flex items-start gap-4">
+                      <div className="flex w-10 shrink-0 flex-col items-center pt-0.5">
+                        <span
+                          className={`font-mono text-[10px] font-bold uppercase tracking-[0.18em] ${
+                            active === i ? "text-brand-200" : "text-white/26"
                           }`}
                         >
-                          {item.title}
-                        </p>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <motion.span
+                          className="mt-2 h-8 w-px bg-white/10"
+                          animate={{
+                            opacity: i === c.items.length - 1 ? 0 : 1,
+                            backgroundColor:
+                              active === i ? "rgba(251, 146, 60, 0.5)" : "rgba(255,255,255,0.08)",
+                          }}
+                          transition={{ duration: reducedMotion ? 0.01 : 0.35, ease: EASE }}
+                        />
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-1 flex items-start justify-between gap-3">
+                          <p
+                            className={`max-w-[20ch] text-[15px] leading-snug ${
+                              active === i
+                                ? "font-semibold text-white"
+                                : "font-medium text-neutral-400 group-hover:text-neutral-200"
+                            }`}
+                          >
+                            {item.title}
+                          </p>
+                          <span
+                            className={`text-sm leading-none ${
+                              active === i ? "opacity-100" : "opacity-35 group-hover:opacity-70"
+                            }`}
+                          >
+                            {item.icon}
+                          </span>
+                        </div>
 
                         <AnimatePresence initial={false}>
                           {active === i ? (
                             <motion.p
                               initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                              animate={{ opacity: 1, height: "auto", marginTop: 12 }}
+                              animate={{ opacity: 1, height: "auto", marginTop: 10 }}
                               exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                              transition={{ duration: reducedMotion ? 0.01 : 0.32, ease: EASE }}
-                              className="overflow-hidden pr-3 text-[13px] leading-relaxed text-neutral-400"
+                              transition={{ duration: reducedMotion ? 0.01 : 0.28, ease: EASE }}
+                              className="max-w-[33ch] overflow-hidden text-[13px] leading-relaxed text-neutral-400"
                             >
                               {item.desc}
                             </motion.p>
@@ -261,120 +294,73 @@ export function WhyDifferent() {
                         </AnimatePresence>
                       </div>
                     </div>
-                  </div>
-                </motion.button>
-              ))}
+                  </motion.button>
+                ))}
+              </div>
             </div>
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.1} className="lg:hidden">
-          <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-5 shadow-[0_24px_60px_rgba(0,0,0,0.28)] backdrop-blur-sm">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={active}
-                custom={direction}
-                variants={featureVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: reducedMotion ? 0.01 : 0.45, ease: EASE }}
-              >
-                <div className="mb-5 flex items-center justify-between gap-3">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5">
-                    <span className="text-base leading-none">{activeItem.icon}</span>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-brand-300">
-                      In Focus
-                    </span>
-                  </div>
-                  <p className="font-mono text-[10px] font-bold tracking-[0.18em] uppercase text-brand-300/80">
-                    {String(active + 1).padStart(2, "0")} / {c.items.length}
-                  </p>
-                </div>
-
-                <h3 className="mb-4 font-display text-[2rem] font-bold leading-[1.04] tracking-[-0.03em] text-white">
-                  {activeItem.title}
-                </h3>
-                <p className="text-[15px] leading-relaxed text-neutral-300">{activeItem.desc}</p>
-              </motion.div>
-            </AnimatePresence>
-
-            <div className="mt-6 flex gap-2">
-              {c.items.map((_, index) => (
-                <motion.span
-                  key={index}
-                  className="h-1.5 rounded-full bg-white/15"
-                  animate={{
-                    width: index === active ? 34 : 12,
-                    backgroundColor:
-                      index === active
-                        ? "rgba(248, 113, 113, 0.95)"
-                        : "rgba(255, 255, 255, 0.14)",
-                  }}
-                  transition={{ duration: reducedMotion ? 0.01 : 0.35, ease: EASE }}
-                />
-              ))}
-            </div>
-
-            <div className="mt-6 space-y-2">
+        <FadeIn delay={0.1} className="mt-6 lg:hidden">
+          <div className="overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex min-w-max gap-2">
               {c.items.map((item, i) => (
-                <motion.button
+                <button
                   key={i}
                   onClick={() => navigate(i)}
-                  layout
-                  className={`w-full rounded-[1.15rem] border px-4 py-3 text-left focus:outline-none ${
+                  className={`relative rounded-full border px-4 py-2.5 text-left transition-colors duration-300 focus:outline-none ${
                     active === i
-                      ? "border-white/12 bg-white/[0.07]"
-                      : "border-transparent bg-transparent"
+                      ? "border-white/12 bg-white/[0.08] text-white"
+                      : "border-white/8 bg-white/[0.02] text-neutral-400"
                   }`}
-                  transition={{ layout: { duration: reducedMotion ? 0.01 : 0.35, ease: EASE } }}
                 >
-                  <div className="flex items-start gap-3">
-                    <span className={`mt-0.5 text-base leading-none ${active === i ? "opacity-100" : "opacity-55"}`}>
-                      {item.icon}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="mb-1 flex items-center justify-between gap-3">
-                        <span
-                          className={`font-mono text-[10px] font-bold uppercase tracking-[0.18em] ${
-                            active === i ? "text-brand-300" : "text-white/30"
-                          }`}
-                        >
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        {active === i ? (
-                          <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-brand-200">
-                            Active
-                          </span>
-                        ) : null}
-                      </div>
-
-                      <p
-                        className={`text-[14px] leading-snug ${
-                          active === i ? "font-semibold text-white" : "font-medium text-neutral-400"
-                        }`}
-                      >
-                        {item.title}
-                      </p>
-
-                      <AnimatePresence initial={false}>
-                        {active === i ? (
-                          <motion.p
-                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                            animate={{ opacity: 1, height: "auto", marginTop: 10 }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                            transition={{ duration: reducedMotion ? 0.01 : 0.28, ease: EASE }}
-                            className="overflow-hidden pr-2 text-[13px] leading-relaxed text-neutral-400"
-                          >
-                            {item.desc}
-                          </motion.p>
-                        ) : null}
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                </motion.button>
+                  {active === i ? (
+                    <motion.span
+                      layoutId="why-different-mobile-pill"
+                      className="absolute inset-0 rounded-full bg-white/[0.05]"
+                      transition={{ duration: reducedMotion ? 0.01 : 0.35, ease: EASE }}
+                    />
+                  ) : null}
+                  <span className="relative flex items-center gap-2">
+                    <span className="text-sm leading-none">{item.icon}</span>
+                    <span className="text-[13px] leading-none font-medium">{item.title}</span>
+                  </span>
+                </button>
               ))}
             </div>
+          </div>
+
+          <div className="mt-4 space-y-2">
+            {c.items.map((item, i) => (
+              <button
+                key={item.title}
+                onClick={() => navigate(i)}
+                className={`relative w-full overflow-hidden rounded-[1.1rem] border px-4 py-3 text-left transition-colors duration-300 focus:outline-none ${
+                  active === i
+                    ? "border-white/12 bg-white/[0.07]"
+                    : "border-white/8 bg-white/[0.025]"
+                }`}
+              >
+                {active === i ? (
+                  <motion.span
+                    layoutId="why-different-mobile-row"
+                    className="absolute inset-0 rounded-[1.1rem] bg-white/[0.04]"
+                    transition={{ duration: reducedMotion ? 0.01 : 0.35, ease: EASE }}
+                  />
+                ) : null}
+                <span className="relative flex items-center justify-between gap-3">
+                  <span className="flex items-center gap-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/32">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className={active === i ? "text-sm font-medium text-white" : "text-sm font-medium text-neutral-400"}>
+                      {item.title}
+                    </span>
+                  </span>
+                  <span className={active === i ? "opacity-100" : "opacity-40"}>{item.icon}</span>
+                </span>
+              </button>
+            ))}
           </div>
         </FadeIn>
       </div>

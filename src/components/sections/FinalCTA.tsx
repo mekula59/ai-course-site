@@ -8,12 +8,12 @@ export function FinalCTA() {
   const c = content[lang].finalCta;
 
   return (
-    <section className="py-28 px-5 bg-neutral-900 overflow-hidden relative">
+    <section className="py-24 sm:py-28 px-5 bg-neutral-900 overflow-hidden relative">
       {/* Warm glow — centered lower half */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_100%,_var(--tw-gradient-stops))] from-brand-900/70 via-transparent to-transparent pointer-events-none" />
 
       <div className="relative z-10 max-w-xl mx-auto text-center">
-        <FadeIn className="mb-10">
+        <FadeIn className="mb-8 sm:mb-10">
           <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-widest uppercase text-brand-500">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-brand-500" />
             {lang === "en" ? "Ready when you are" : "You fit start now"}
@@ -29,7 +29,7 @@ export function FinalCTA() {
         </FadeIn>
 
         <FadeIn delay={0.16}>
-          <p className="text-neutral-400 text-base sm:text-lg leading-relaxed mb-10 max-w-md mx-auto">
+          <p className="text-neutral-400 text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 max-w-md mx-auto">
             {c.sub}
           </p>
         </FadeIn>

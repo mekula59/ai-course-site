@@ -160,7 +160,7 @@ const en: SiteContent = {
       { label: "Why This", href: "#why" },
       { label: "FAQ", href: "#faq" },
     ],
-    cta: "Join Waitlist",
+    cta: "Join the Waitlist",
   },
   hero: {
     eyebrow: "BUILT FOR THIS SIDE OF THE WORLD",
@@ -169,7 +169,7 @@ const en: SiteContent = {
     sub: "You already use Google, WhatsApp, and YouTube. AI tools are no different. This course will show you how to use them for real work, business, and daily life, in plain English and Nigerian Pidgin.",
     primaryCta: "Get Early Access",
     secondaryCta: "See the Course",
-    nudge: "Free to join. No spam. Waitlist members get access first.",
+    nudge: "Free to join. No spam. You will hear first when it opens.",
   },
   problem: {
     label: "The Problem",
@@ -200,35 +200,35 @@ const en: SiteContent = {
   },
   whoIsItFor: {
     label: "Who This Is For",
-    heading: "This course was built for you.",
-    sub: "No tech background. No coding. No prior experience with AI. Just a real desire to learn something useful.",
+    heading: "Who this course is for",
+    sub: "No technical background. No coding. No prior experience with AI. Just a real interest in learning something useful.",
     items: [
       {
         role: "Working professionals",
-        desc: "You want to get more done at work, write faster, think clearer, and stop wasting time on repetitive tasks.",
+        desc: "You want to get more done at work, write faster, think more clearly, and spend less time on repetitive tasks.",
       },
       {
         role: "Business owners",
-        desc: "You want to use AI to grow your business, create content, answer customer questions, and do more with less.",
+        desc: "You want to use AI to support your business, create content more easily, respond to customers faster, and save time.",
       },
       {
         role: "Students",
-        desc: "You want to research better, write stronger essays, study smarter, and actually understand difficult topics.",
+        desc: "You want to research better, write stronger essays, study more effectively, and understand difficult topics with less frustration.",
       },
       {
         role: "Job seekers",
-        desc: "You want to write better CVs and cover letters, prepare for interviews, and stand out in a competitive market.",
+        desc: "You want to write stronger CVs and cover letters, prepare for interviews, and present yourself with more confidence.",
       },
       {
         role: "Curious beginners",
-        desc: "You have heard about AI and want to understand what it actually is and how to use it without feeling confused.",
+        desc: "You have been hearing about AI and want to understand what it is and how to use it without feeling lost.",
       },
       {
         role: "Anyone falling behind",
-        desc: "You feel like the world is changing fast and you want to keep up, stay relevant, and feel confident with new tools.",
+        desc: "Things are changing quickly, and you want a simple way to catch up and feel more confident with new tools.",
       },
     ],
-    callout: "You do not need a tech background. If you can search, message, and browse online, you are ready. This course is your clear place to start.",
+    callout: "You do not need a technical background. If you can search, message, and browse online, you can start here.",
   },
   whatYouLearn: {
     label: "What You Will Learn",
@@ -250,7 +250,7 @@ const en: SiteContent = {
   languageSupport: {
     label: "Language",
     heading: "Some things just make more sense in Pidgin.",
-    sub: "This course treats Nigerian Pidgin as a real learning language. Not a translation. Not a footnote. Something learners can actually think in.",
+    sub: "This course treats Nigerian Pidgin as a real learning language, not just a translation layer.",
     englishCard: {
       title: "Plain English",
       body: "No buzzwords. No assumptions. Everything explained the way a smart friend would explain it, not the way a textbook would.",
@@ -265,7 +265,7 @@ const en: SiteContent = {
   },
   modules: {
     label: "Course Modules",
-    heading: "Six focused modules. Clear, practical, and built for real use.",
+    heading: "Six focused modules. Built to help you understand and use AI in real life.",
     sub: "Each module is designed to be completed in under an hour, with practical exercises you can apply the same day.",
     items: [
       {
@@ -354,7 +354,7 @@ const en: SiteContent = {
   whyDifferent: {
     label: "Why This Course",
     heading: "Why this course feels different",
-    sub: "A lot of AI education still feels too technical, too distant, or too abstract. This course is built to feel clear, practical, and easy to use in real life.",
+    sub: "A lot of AI education still feels too technical, too distant, or too abstract. This course is built to feel clearer, more practical, and easier to use in real life.",
     items: [
       {
         icon: "🎯",
@@ -364,7 +364,7 @@ const en: SiteContent = {
       {
         icon: "🌍",
         title: "Grounded in real life here",
-        desc: "The examples, language, and use cases are closer to the way many of us actually live and work. Not distant theory. Not Silicon Valley assumptions.",
+        desc: "The examples, language, and use cases are closer to the way many of us actually live and work, not distant theory or Silicon Valley assumptions.",
       },
       {
         icon: "🗣️",
@@ -374,7 +374,7 @@ const en: SiteContent = {
       {
         icon: "⚡",
         title: "Useful from the beginning",
-        desc: "Each lesson is built to give you something you can try straight away, so you are not just watching. You are using it.",
+        desc: "Each lesson gives you something you can try straight away, so you are not just watching. You are using it.",
       },
       {
         icon: "🚫",
@@ -384,19 +384,19 @@ const en: SiteContent = {
       {
         icon: "🔄",
         title: "Kept current as tools change",
-        desc: "AI tools move quickly, and the course is designed to stay relevant as things change, so what you learn keeps making sense.",
+        desc: "AI tools move quickly, and the course is made to stay useful as things change, so what you learn still makes sense later.",
       },
     ],
   },
   instructor: {
     label: "Meet Your Instructor",
-    heading: "Mekula is building this course for the way real people learn.",
+    heading: "I am building a free AI course that feels clear, practical, and easy to start.",
     title: "Mekula",
     role: "Emeka Victor",
     bio: [
-      "I am Mekula, also known as Emeka Victor. My background is in digital work, online communities, and practical communication, so I naturally care about making useful things easier to understand.",
-      "I am building this course the same way I would teach a real person sitting next to me. Start with the real task, explain it clearly, keep it practical, and make it accessible for someone who is just getting started.",
-      "This is for people who want to use AI well in real life, not for tech insiders only. The course is beginner-first, bilingual, and shaped around the way people actually work and learn online.",
+      "I am Mekula, also known as Emeka Victor. My background is in digital work, online communities, and practical communication, so I care a lot about making useful things easier to understand.",
+      "The course is being built the same way I would explain it to someone sitting next to me. Start with the real task, explain it clearly, keep it practical, and make it easy to follow from the beginning.",
+      "It is free to start, beginner-friendly, and grounded in the way people actually live and work. Later on, there may be live sessions for people who want deeper support.",
     ],
     tags: ["Beginner-first", "Practical communication", "Digital work", "English + Pidgin"],
   },
@@ -435,7 +435,7 @@ const en: SiteContent = {
       },
       {
         q: "When does the course launch?",
-        a: "We are finalising the content now. Join the waitlist to be the first to know when it goes live, and to get early access pricing.",
+        a: "The course is being finished now. Join the waitlist and you will be among the first to hear when it goes live.",
       },
     ],
   },
@@ -447,27 +447,27 @@ const en: SiteContent = {
     afterLabel: "After one lesson",
   },
   finalCta: {
-    eyebrow: "Ready when you are",
-    heading: "The people using AI today are not smarter.",
-    headingBreak: "They just started earlier.",
-    sub: "Join the waitlist. Be part of the first group to access the course and build real, practical AI skills from the ground up.",
+    eyebrow: "Free course first. Live sessions later.",
+    heading: "Start free.",
+    headingBreak: "Learn clearly.",
+    sub: "Join the waitlist to get access when the free course opens. Later on, there may also be live sessions for people who want deeper support.",
     primaryCta: "Join the Waitlist",
     secondaryCta: "See the Course",
     trustItems: ["Free to join", "No credit card", "Built for Nigeria"],
   },
   waitlist: {
     label: "Join the Waitlist",
-    heading: "Get early access when we launch.",
-    sub: "Drop your details below. Waitlist members are the first to get in, and will get a special early rate when we open.",
+    heading: "Join the waitlist",
+    sub: "Leave your details below and you will hear first when the free course opens. No sign-in is needed yet.",
     nameLabel: "Your name",
     emailLabel: "Your email address",
     namePlaceholder: "Ada Okonkwo",
     emailPlaceholder: "ada@example.com",
-    submitCta: "Get Early Access",
+    submitCta: "Join the Waitlist",
     submittingLabel: "Joining...",
-    trustItems: ["Free to join", "No spam", "Early rate for waitlist"],
+    trustItems: ["Free to join", "No spam", "Be first to hear"],
     successHeading: "You are on the list!",
-    successBody: "We will send you a message at {email} as soon as the course is ready. Watch your inbox.",
+    successBody: "We will send you a message at {email} as soon as the free course is ready. Watch your inbox.",
     errorBoth: "Please fill in both fields.",
     errorEmail: "Please enter a valid email address.",
     errorUnavailable: "Waitlist signup is not connected yet. Use the email link below for now.",
@@ -484,7 +484,7 @@ const pidgin: SiteContent = {
       { label: "Why This", href: "#why" },
       { label: "FAQ", href: "#faq" },
     ],
-    cta: "Join Waitlist",
+    cta: "Join the Waitlist",
   },
   hero: {
     eyebrow: "BUILT FOR THIS SIDE OF THE WORLD",
@@ -493,7 +493,7 @@ const pidgin: SiteContent = {
     sub: "You dey already use Google, WhatsApp, and YouTube. AI tools na the same thing. This course go show you how to use dem for work, business, and daily life, for plain English and our Naija pidgin.",
     primaryCta: "Get Early Access",
     secondaryCta: "See the Course",
-    nudge: "E free to join. No spam. Those wey dey on the list go get access first.",
+    nudge: "E free to join. No spam. You go hear first when we open.",
   },
   problem: {
     label: "The Problem",
@@ -524,8 +524,8 @@ const pidgin: SiteContent = {
   },
   whoIsItFor: {
     label: "Who This One Na For",
-    heading: "We build this course for you.",
-    sub: "No need for tech background. No coding. No prior AI experience. Just real desire to learn something wey go help you.",
+    heading: "Who this course na for",
+    sub: "No need for technical background. No coding. No prior AI experience. Just real interest to learn something wey go help you.",
     items: [
       {
         role: "People Wey Dey Work",
@@ -533,26 +533,26 @@ const pidgin: SiteContent = {
       },
       {
         role: "Business Owners",
-        desc: "You wan use AI to grow your business, create content, answer customer questions, and do more with less.",
+        desc: "You wan use AI support your business, create content more easily, answer customers faster, and save time.",
       },
       {
         role: "Students",
-        desc: "You wan research better, write stronger essays, study smarter, and really understand difficult topics.",
+        desc: "You wan research better, write stronger essays, study better, and understand difficult topics without too much stress.",
       },
       {
         role: "Job Seekers",
-        desc: "You wan write better CV and cover letter, prepare for interview, and stand out for competitive market.",
+        desc: "You wan write stronger CV and cover letter, prepare for interview, and present yourself with more confidence.",
       },
       {
         role: "Curious Beginners",
-        desc: "You don hear about AI and you wan understand wetin e actually be and how to use am without feeling confused.",
+        desc: "You don dey hear about AI and you wan understand wetin e be and how to use am without feeling lost.",
       },
       {
         role: "Anyone Wey Feel Like Dem Dey Behind",
-        desc: "You feel like the world dey change fast and you wan keep up, stay relevant, and feel confident with new tools.",
+        desc: "Things dey change fast, and you wan simple way to catch up and feel more confident with new tools.",
       },
     ],
-    callout: "You no need tech background. If you fit search, message, and browse online, you don ready. This course na your clear place to start.",
+    callout: "You no need technical background. If you fit search, message, and browse online, you fit start here.",
   },
   whatYouLearn: {
     label: "Wetin You Go Learn",
@@ -574,7 +574,7 @@ const pidgin: SiteContent = {
   languageSupport: {
     label: "Language",
     heading: "Some things just make more sense for Pidgin.",
-    sub: "This course treat Nigerian Pidgin as real learning language. No be translation. No be footnote. Something wey learners fit actually think inside.",
+    sub: "This course treat Nigerian Pidgin as real learning language, no be just translation layer.",
     englishCard: {
       title: "Plain English",
       body: "No buzzwords. No assumptions. Everything explained the way wey smart friend go explain am, no be textbook style.",
@@ -589,7 +589,7 @@ const pidgin: SiteContent = {
   },
   modules: {
     label: "Course Modules",
-    heading: "Six focused modules. Clear, practical, and built for real use.",
+    heading: "Six focused modules. Built to help you understand and use AI for real life.",
     sub: "We design each module so you fit finish am under one hour, with practical exercises wey you fit apply same day.",
     items: [
       {
@@ -678,7 +678,7 @@ const pidgin: SiteContent = {
   whyDifferent: {
     label: "Why This Course",
     heading: "Why this course feels different",
-    sub: "Plenty AI education still dey feel too technical, too far, or too abstract. This course dey built to feel clear, practical, and easy to use for real life.",
+    sub: "Plenty AI education still dey feel too technical, too far, or too abstract. This course dey built to feel clearer, more practical, and easier to use for real life.",
     items: [
       {
         icon: "🎯",
@@ -688,7 +688,7 @@ const pidgin: SiteContent = {
       {
         icon: "🌍",
         title: "Grounded for real life here",
-        desc: "The examples, language, and use cases dey closer to how many of us actually dey live and work. No be distant theory. No be Silicon Valley assumptions.",
+        desc: "The examples, language, and use cases dey closer to how many of us actually dey live and work, no be distant theory or Silicon Valley assumptions.",
       },
       {
         icon: "🗣️",
@@ -698,7 +698,7 @@ const pidgin: SiteContent = {
       {
         icon: "⚡",
         title: "Useful from the beginning",
-        desc: "Each lesson dey built to give you something wey you fit try straight away, so you no go just dey watch. You go dey use am.",
+        desc: "Each lesson give you something wey you fit try straight away, so you no go just dey watch. You go dey use am.",
       },
       {
         icon: "🚫",
@@ -708,19 +708,19 @@ const pidgin: SiteContent = {
       {
         icon: "🔄",
         title: "Kept current as tools change",
-        desc: "AI tools dey move quickly, and the course dey designed to stay relevant as things change, so wetin you learn go still make sense.",
+        desc: "AI tools dey move quickly, and the course dey made to stay useful as things change, so wetin you learn go still make sense later.",
       },
     ],
   },
   instructor: {
     label: "Meet Your Instructor",
-    heading: "Mekula dey build this course for the way real people learn.",
+    heading: "I dey build free AI course wey feel clear, practical, and easy to start.",
     title: "Mekula",
     role: "Emeka Victor",
     bio: [
-      "Na me be Mekula, also known as Emeka Victor. My background dey for digital work, online communities, and practical communication, so I naturally care about making useful things easier to understand.",
-      "Na the same way I go teach person wey sit down next to me I dey use build this course. Start with the real task, explain am clearly, keep am practical, and make am accessible for person wey just dey start.",
-      "This one na for people wey want use AI well for real life, no be for tech insiders only. The course dey beginner-first, bilingual, and shaped around how people actually dey work and learn online.",
+      "Na me be Mekula, also known as Emeka Victor. My background dey for digital work, online communities, and practical communication, so I care well well about making useful things easier to understand.",
+      "Na the same way I go explain am to person wey sit down next to me I dey use build the course. Start with the real task, explain am clearly, keep am practical, and make am easy to follow from the beginning.",
+      "E free to start, beginner-friendly, and grounded for how people actually dey live and work. Later on, fit still get live sessions for people wey want deeper support.",
     ],
     tags: ["Beginner-first", "Practical communication", "Digital work", "English + Pidgin"],
   },
@@ -759,7 +759,7 @@ const pidgin: SiteContent = {
       },
       {
         q: "When the course go launch?",
-        a: "We dey finalise the content now. Join the waitlist to be the first to know when e go live, and to get early access pricing.",
+        a: "We dey finish the course now. Join the waitlist and you go among the first people wey go hear when e go live.",
       },
     ],
   },
@@ -771,27 +771,27 @@ const pidgin: SiteContent = {
     afterLabel: "After one lesson",
   },
   finalCta: {
-    eyebrow: "You fit start now",
-    heading: "The people wey dey use AI today no be smarter.",
-    headingBreak: "Dem just start earlier.",
-    sub: "Join the waitlist. Be part of the first group wey go access the course and build real, practical AI skills from the ground up.",
+    eyebrow: "Free course first. Live sessions later.",
+    heading: "Start free.",
+    headingBreak: "Learn clearly.",
+    sub: "Join the waitlist make you get access when the free course open. Later on, fit still get live sessions for people wey want deeper support.",
     primaryCta: "Join the Waitlist",
     secondaryCta: "See the Course",
     trustItems: ["E free to join", "No card needed", "Built for Naija"],
   },
   waitlist: {
     label: "Join the Waitlist",
-    heading: "Get early access when we launch.",
-    sub: "Drop your details below. Those wey dey on the waitlist go be the first to enter, and go get special early rate when we open.",
+    heading: "Join the waitlist",
+    sub: "Drop your details below and you go hear first when the free course open. No sign-in needed yet.",
     nameLabel: "Your name",
     emailLabel: "Your email address",
     namePlaceholder: "Ada Okonkwo",
     emailPlaceholder: "ada@example.com",
-    submitCta: "Get Early Access",
+    submitCta: "Join the Waitlist",
     submittingLabel: "Joining...",
-    trustItems: ["E free to join", "No spam", "Early rate for waitlist"],
+    trustItems: ["E free to join", "No spam", "You go hear first"],
     successHeading: "You don join the list!",
-    successBody: "We go send you message at {email} as soon as the course ready. Watch your inbox.",
+    successBody: "We go send you message at {email} as soon as the free course ready. Watch your inbox.",
     errorBoth: "Please fill the two fields.",
     errorEmail: "Please enter valid email address.",
     errorUnavailable: "Waitlist signup never connect yet. Use the email link below for now.",
