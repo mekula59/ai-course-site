@@ -1,7 +1,8 @@
 import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import { Button } from "@/components/ui/Button";
-import { getLessonPath, type CourseModule } from "@/lib/course";
+import { getLessonPath, getLocalizedLesson, type CourseModule } from "@/lib/course";
+import { useLang } from "@/context/LanguageContext";
 
 interface ModulePageProps {
   module: CourseModule;
@@ -9,6 +10,7 @@ interface ModulePageProps {
 }
 
 export function ModulePage({ module, navigate }: ModulePageProps) {
+  const { lang } = useLang();
   const firstLesson = module.lessons[0];
 
   return (
@@ -71,38 +73,44 @@ export function ModulePage({ module, navigate }: ModulePageProps) {
           <ol className="space-y-3">
             {module.lessons.map((lesson, index) => (
               <li key={lesson.slug}>
-                <CourseLink
-                  href={getLessonPath(module.slug, lesson.slug)}
-                  navigate={navigate}
-                  className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="flex flex-col items-center shrink-0">
-                      <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-display font-bold">
-                        {index + 1}
-                      </div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
-                            Lesson {index + 1} of {module.lessons.length}
-                          </p>
-                          <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
-                            {lesson.title}
-                          </h3>
+                {(() => {
+                  const localizedLesson = getLocalizedLesson(lesson, lang);
+
+                  return (
+                    <CourseLink
+                      href={getLessonPath(module.slug, lesson.slug)}
+                      navigate={navigate}
+                      className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex flex-col items-center shrink-0">
+                          <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-display font-bold">
+                            {index + 1}
+                          </div>
                         </div>
-                        <ArrowRight
-                          size={20}
-                          className="hidden sm:block text-neutral-400 group-hover:text-brand-500 transition-colors"
-                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
+                                Lesson {index + 1} of {module.lessons.length}
+                              </p>
+                              <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                                {localizedLesson.title}
+                              </h3>
+                            </div>
+                            <ArrowRight
+                              size={20}
+                              className="hidden sm:block text-neutral-400 group-hover:text-brand-500 transition-colors"
+                            />
+                          </div>
+                          <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[34ch] sm:max-w-none">
+                            {localizedLesson.intro}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[34ch] sm:max-w-none">
-                        {lesson.intro}
-                      </p>
-                    </div>
-                  </div>
-                </CourseLink>
+                    </CourseLink>
+                  );
+                })()}
               </li>
             ))}
           </ol>

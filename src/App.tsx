@@ -86,14 +86,20 @@ function CourseRoutes({
   navigate: (path: string) => void;
   pathname: string;
 }) {
-  const parts = pathname.split("/").filter(Boolean);
+  const [root, moduleSlug, lessonSlug, ...extraParts] = pathname
+    .split("/")
+    .filter(Boolean);
 
-  if (pathname === "/course") {
+  if (root !== "course" || extraParts.length > 0) {
+    return <CourseNotFound navigate={navigate} />;
+  }
+
+  if (!moduleSlug) {
     return <CourseHome navigate={navigate} />;
   }
 
-  if (parts.length === 2) {
-    const module = getCourseModule(parts[1]);
+  if (!lessonSlug) {
+    const module = getCourseModule(moduleSlug);
     return module ? (
       <ModulePage module={module} navigate={navigate} />
     ) : (
@@ -101,16 +107,12 @@ function CourseRoutes({
     );
   }
 
-  if (parts.length === 3) {
-    const reference = getLessonReference(parts[1], parts[2]);
-    return reference ? (
-      <LessonPage reference={reference} navigate={navigate} />
-    ) : (
-      <CourseNotFound navigate={navigate} />
-    );
-  }
-
-  return <CourseNotFound navigate={navigate} />;
+  const reference = getLessonReference(moduleSlug, lessonSlug);
+  return reference ? (
+    <LessonPage reference={reference} navigate={navigate} />
+  ) : (
+    <CourseNotFound navigate={navigate} />
+  );
 }
 
 export default function App() {
