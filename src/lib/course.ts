@@ -143,96 +143,111 @@ export const courseModules: CourseModule[] = [
   {
     slug: "module-2",
     number: "02",
-    title: "Write And Communicate Better",
+    title: "Talk To AI Clearly",
     description:
-      "Use AI to write clearer messages, summarise information, and shape rough ideas into usable drafts.",
+      "Learn how to ask better questions, avoid weak prompts, and improve the answers AI gives you.",
     lessons: [
       {
         slug: "lesson-1",
-        title: "Write Clearer Messages",
+        title: "What a Prompt Really Is",
         intro:
-          "AI can help you write messages that sound clear, respectful, and appropriate for the situation.",
+          "A prompt is simply the instruction you give AI. The clearer your instruction, the easier it is for AI to help you.",
         content: [
           {
-            heading: "Start with the situation",
+            heading: "A prompt is a request",
             body:
-              "Tell AI who you are writing to and why. A message to your manager, customer, classmate, or supplier should not sound the same.",
+              "When you type into AI, you are making a request. You might ask it to explain something, write a draft, plan your day, compare options, or make your rough idea clearer.",
           },
           {
-            heading: "Choose the tone",
+            heading: "Good prompts give direction",
             body:
-              "Ask for a tone that fits the moment. You can say polite, firm, warm, professional, apologetic, direct, or friendly.",
+              "AI works better when you tell it what you want, who the answer is for, and what style or format you prefer. You do not need fancy words. You just need useful details.",
           },
           {
-            heading: "Edit before sending",
+            heading: "You can talk normally",
             body:
-              "AI can sound too polished or too generic. Read the message out loud and change any line that does not sound like you.",
+              "You do not have to sound technical. Write the way you would explain the task to a helpful person sitting beside you. Simple language is enough.",
+          },
+          {
+            heading: "Real example",
+            body:
+              "Ngozi wants help writing a message to her landlord. Instead of typing, write a message, she says, write a polite message to my landlord asking for two extra days to pay rent. Keep it respectful and short. That extra detail makes the answer more useful.",
           },
         ],
         keyTakeaway:
-          "AI helps you draft faster, but your final message should still sound human and fit the relationship.",
+          "A prompt is not a secret formula. It is a clear request with enough detail to guide the answer.",
         examplePrompt:
-          "Rewrite this message so it sounds polite, clear, and professional. Keep my meaning the same: [paste your message].",
+          "Explain what a prompt is to me like I am a complete beginner. Use simple English and give me three examples I can try today.",
         practiceTask:
-          "Find one rough message in your notes or chat drafts. Ask AI to make it clearer, then edit the final version yourself.",
+          "Write one simple request you would normally ask a friend for help with. Turn it into a prompt by adding who it is for, what tone you want, and what format you need.",
       },
       {
         slug: "lesson-2",
-        title: "Summarise Long Information",
+        title: "Why Some Prompts Fail",
         intro:
-          "Long articles, meeting notes, PDFs, and voice-note transcripts can become easier to understand when AI summarises them well.",
+          "When AI gives a weak answer, the problem is often the prompt. A small change in your instruction can make the answer much better.",
         content: [
           {
-            heading: "Ask for the main points",
+            heading: "The prompt is too vague",
             body:
-              "A good summary should show what matters most. Ask AI to separate key points, decisions, action items, and unclear areas.",
+              "If you ask, help me with my business, AI has to guess what kind of help you need. It may give a broad answer that sounds fine but does not help you do anything specific.",
           },
           {
-            heading: "Keep the original nearby",
+            heading: "The prompt has no context",
             body:
-              "Summaries can miss details. Use them to understand faster, then return to the original when the topic is important.",
+              "AI needs the right background. Tell it what you are working on, who the answer is for, what has already happened, and what result you want.",
           },
           {
-            heading: "Choose your level",
+            heading: "The prompt asks for too much at once",
             body:
-              "You can ask for a one-paragraph summary, five bullet points, or a detailed study note. The right format depends on how you plan to use the information.",
+              "If your request is too big, the answer can become scattered. Break the work into smaller steps. Ask for ideas first, then a draft, then improvements.",
+          },
+          {
+            heading: "Real example",
+            body:
+              "Emeka types, create content for my brand, and gets a generic list. Then he rewrites it: I sell handmade leather sandals in Abuja. Give me five Instagram post ideas for customers who want durable sandals for work and church. The second prompt gives him ideas he can actually use.",
           },
         ],
         keyTakeaway:
-          "AI summaries save time when you ask for the right structure and still check important details.",
+          "A prompt usually fails when it is too vague, missing context, or trying to do too many things at once.",
         examplePrompt:
-          "Summarise this text for me. Give me the main idea, five key points, any action items, and three questions I should ask next: [paste text].",
+          "Look at this prompt and tell me why it may give a weak answer. Then rewrite it to be clearer and more useful: [paste your prompt].",
         practiceTask:
-          "Paste a long article or set of notes into AI and ask for a summary. Then ask it to turn the summary into a simple checklist.",
+          "Write one vague prompt, then rewrite it with more detail. Add the task, the context, the audience, and the format you want.",
       },
       {
         slug: "lesson-3",
-        title: "Turn Rough Ideas Into A First Draft",
+        title: "How to Improve an Answer",
         intro:
-          "When your idea is messy, AI can help you turn it into something structured enough to edit.",
+          "The first answer is not always the best answer. You can guide AI with follow-up instructions until the result becomes more useful.",
         content: [
           {
-            heading: "Do not wait for perfect thoughts",
+            heading: "Tell AI what to change",
             body:
-              "You can give AI rough notes, scattered bullet points, or a voice-note transcript. Ask it to organize the ideas before asking for a polished draft.",
+              "If the answer is too long, too formal, too vague, or not practical enough, say so. Ask AI to make a specific change instead of starting again from scratch.",
           },
           {
-            heading: "Pick a clear output",
+            heading: "Ask for another version",
             body:
-              "Tell AI whether you need a caption, proposal, email, lesson plan, speech, CV section, or social post. The output should match the job.",
+              "You can ask for a shorter version, a warmer version, a more direct version, or a version for WhatsApp, email, school, customers, or your manager.",
           },
           {
-            heading: "Use AI for structure",
+            heading: "Add what was missing",
             body:
-              "The most helpful first draft gives you a beginning, middle, and end. You can then add your real examples, voice, and judgement.",
+              "Sometimes the answer is weak because AI did not have enough information. Add the missing facts, examples, names, limits, or tone, then ask it to try again.",
+          },
+          {
+            heading: "Real example",
+            body:
+              "Aisha asks AI to write a job application email. The first answer sounds too stiff. She replies, make it warmer, shorter, and more confident, but do not exaggerate my experience. The second version sounds closer to what she needs.",
           },
         ],
         keyTakeaway:
-          "AI is strongest when it helps you move from messy notes to an editable draft.",
+          "You do not have to accept the first answer. Improve it by asking for specific changes.",
         examplePrompt:
-          "Turn these rough notes into a clear first draft for a short LinkedIn post. Keep it practical and not motivational: [paste notes].",
+          "Improve this answer. Make it clearer, shorter, and more practical. Keep the meaning the same and point out anything important that may be missing: [paste answer].",
         practiceTask:
-          "Write five rough bullet points about something you know well. Ask AI to turn them into a first draft, then improve the draft yourself.",
+          "Ask AI for help with a small task. Then send one follow-up instruction to improve the answer, such as make it shorter, add examples, make it warmer, or turn it into a checklist.",
       },
     ],
   },
