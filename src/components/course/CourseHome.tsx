@@ -59,7 +59,7 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           </div>
         </section>
 
-        <div className="flex flex-wrap gap-x-5 gap-y-2 border-y border-neutral-200/80 py-4 my-10 text-sm text-neutral-500">
+        <div className="flex flex-wrap gap-x-5 gap-y-2 border-y border-neutral-200/80 py-4 my-8 text-sm text-neutral-500">
           <span>{courseModules.length} modules</span>
           <span>{lessonReferences.length} lessons</span>
           <span>One prompt and one practice task per lesson</span>
@@ -69,18 +69,21 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           <div className="flex items-end justify-between gap-4 mb-6">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
-                Modules
+                Module overview
               </p>
               <h2
                 id="course-modules"
                 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900"
               >
-                Course outline
+                All modules
               </h2>
+              <p className="text-sm sm:text-base leading-7 text-neutral-600 mt-2 max-w-[36ch] sm:max-w-xl">
+                Start with Module 1, or open any module to see its lessons.
+              </p>
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {courseModules.map((module, moduleIndex) => (
               <CourseLink
                 key={module.slug}
@@ -88,43 +91,29 @@ export function CourseHome({ navigate }: CourseHomeProps) {
                 navigate={navigate}
                 className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start justify-between gap-4 mb-5">
                   <div className="w-11 h-11 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-display font-bold shrink-0">
                     {module.number}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
-                          Module {moduleIndex + 1} of {courseModules.length}
-                        </p>
-                        <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
-                          {module.title}
-                        </h3>
-                        <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[34ch] sm:max-w-none">
-                          {module.description}
-                        </p>
-                      </div>
-                      <ArrowRight
-                        size={20}
-                        className="hidden sm:block text-neutral-400 group-hover:text-brand-500 transition-colors"
-                      />
-                    </div>
-                    <ol className="mt-5 space-y-2">
-                      {module.lessons.map((lesson, lessonIndex) => (
-                        <li
-                          key={lesson.slug}
-                          className="flex items-start gap-3 text-sm leading-6 text-neutral-500"
-                        >
-                          <span className="mt-0.5 font-semibold text-brand-600">
-                            {lessonIndex + 1}
-                          </span>
-                          <span>{lesson.title}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
+                  <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-500">
+                    {module.lessons.length} lessons
+                  </span>
                 </div>
+
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
+                  Module {moduleIndex + 1} of {courseModules.length}
+                </p>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                  {module.title}
+                </h3>
+                <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[34ch] sm:max-w-none">
+                  {module.description}
+                </p>
+
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
+                  Open module
+                  <ArrowRight size={16} />
+                </span>
               </CourseLink>
             ))}
           </div>
