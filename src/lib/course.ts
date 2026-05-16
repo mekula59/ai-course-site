@@ -254,96 +254,111 @@ export const courseModules: CourseModule[] = [
   {
     slug: "module-3",
     number: "03",
-    title: "Use AI For Work And Business",
+    title: "Use AI For Real Tasks",
     description:
-      "Apply AI to planning, customer support, and simple business content without making things complicated.",
+      "Apply AI to writing, research, summaries, and everyday tasks in a simple, useful way.",
     lessons: [
       {
         slug: "lesson-1",
-        title: "Plan Your Week With AI",
+        title: "Using AI for Writing",
         intro:
-          "AI can help you sort tasks, reduce overwhelm, and turn a busy week into a practical plan.",
+          "AI can help you start writing when your mind feels blank. Use it for drafts, ideas, and clearer wording, then edit the final result yourself.",
         content: [
           {
-            heading: "List everything first",
+            heading: "Start with the writing goal",
             body:
-              "Start by dumping all your tasks into one place. Do not organize them yet. The first job is to get the mess out of your head.",
+              "Tell AI what you are trying to write. It may be an email, WhatsApp message, caption, CV summary, school paragraph, proposal, or report. The clearer the goal, the better the draft.",
           },
           {
-            heading: "Ask AI to group and prioritize",
+            heading: "Give your rough thoughts",
             body:
-              "AI can group tasks by project, urgency, effort, or deadline. It can also suggest what to do first and what to postpone.",
+              "You do not need perfect notes. You can paste rough bullet points, a messy paragraph, or a few ideas. Ask AI to organize them into a first draft you can improve.",
           },
           {
-            heading: "Make the plan realistic",
+            heading: "Edit it to sound like you",
             body:
-              "AI may overpack your day. Ask it to leave buffer time and to choose the most important tasks, not every possible task.",
+              "AI writing can sound too polished or too general. Read the draft, remove anything false, add your real details, and change any sentence that does not sound natural.",
+          },
+          {
+            heading: "Real example",
+            body:
+              "Chika needs to email her manager about a delayed task. She gives AI the situation, the reason for the delay, and the new date she can deliver. AI drafts the email, then Chika makes it shorter and adds her own tone before sending it.",
           },
         ],
         keyTakeaway:
-          "AI can organize your workload, but you should decide what is realistic for your time and energy.",
+          "AI can help you start and shape writing, but the final voice, details, and honesty should come from you.",
         examplePrompt:
-          "Here are my tasks for the week. Group them, pick the top priorities, and create a realistic Monday to Friday plan with buffer time: [paste tasks].",
+          "Turn these rough notes into a clear first draft. Keep it warm, simple, and natural. Do not add facts I did not give you: [paste notes].",
         practiceTask:
-          "Write down ten tasks you need to handle. Ask AI to group them and create a simple plan for the next three days.",
+          "Choose one message, email, caption, or paragraph you need to write. Give AI your rough notes, ask for a draft, then edit the draft so it sounds like you.",
       },
       {
         slug: "lesson-2",
-        title: "Support Customers Faster",
+        title: "Using AI for Research and Summaries",
         intro:
-          "For small businesses, AI can help draft helpful replies, FAQs, and follow-up messages without losing your human voice.",
+          "AI can help you understand information faster. Use it to explain, summarise, compare, and organize, but always check important facts.",
         content: [
           {
-            heading: "Create reusable answers",
+            heading: "Use AI to understand faster",
             body:
-              "If customers ask the same questions often, AI can help you create clear answers for pricing, delivery, refunds, booking, or product details.",
+              "When a topic feels confusing, ask AI to explain it in plain English. You can also ask for examples from work, school, business, or daily life.",
           },
           {
-            heading: "Keep the tone respectful",
+            heading: "Ask for a clear summary",
             body:
-              "Customer messages need care. Ask AI to sound calm, direct, and helpful. Avoid replies that feel cold or dismissive.",
+              "If you have a long article, note, transcript, or document, ask AI to pull out the main idea, key points, action items, and questions you should ask next.",
           },
           {
-            heading: "Check sensitive details",
+            heading: "Verify what matters",
             body:
-              "Before sending, confirm prices, dates, account numbers, policies, and promises. AI should not decide those for you.",
+              "AI can be wrong or outdated. Check names, dates, numbers, rules, prices, sources, and anything connected to school, money, health, law, or safety.",
+          },
+          {
+            heading: "Real example",
+            body:
+              "Yusuf has a long article about remote work. He asks AI for a five-point summary, then asks for the main lessons for a small Nigerian team. He uses the summary to understand the article faster, but checks the original before quoting anything.",
           },
         ],
         keyTakeaway:
-          "AI can speed up customer communication, but accurate details and care still come from you.",
+          "AI can make information easier to understand, but important facts still need your own checking.",
         examplePrompt:
-          "Create five polite customer replies for a small Nigerian business. Include one for price inquiry, one for delayed delivery, one for payment confirmation, one for out-of-stock items, and one for thank you after purchase.",
+          "Summarise this text for me. Give me the main idea, five key points, any action items, and three questions I should ask next: [paste text].",
         practiceTask:
-          "Pick three common customer questions in your business or workplace. Ask AI to draft replies, then edit them to match your real tone.",
+          "Paste a long article, note, or document into AI. Ask for a summary, then compare the summary with the original and mark anything you need to verify.",
       },
       {
         slug: "lesson-3",
-        title: "Create Simple Business Content",
+        title: "Using AI in Everyday Tasks",
         intro:
-          "AI can help you create useful content for your business without forcing you to become a full-time content creator.",
+          "AI is not only for work. It can help with small daily tasks, planning, learning, decisions, and simple organization.",
         content: [
           {
-            heading: "Start from customer questions",
+            heading: "Use it for small tasks",
             body:
-              "Good content often answers real questions. Think about what people ask before they buy, after they buy, or when they are confused.",
+              "You can ask AI to make a shopping list, plan errands, explain a bill, create a study plan, compare options, or turn a messy to-do list into steps.",
           },
           {
-            heading: "Ask for options",
+            heading: "Give your real limits",
             body:
-              "Instead of asking for one caption, ask for five angles. You can choose the most honest and useful one.",
+              "Tell AI your budget, time, location, deadline, energy level, and what you already have. Everyday help is better when the answer fits your real life.",
           },
           {
-            heading: "Make it specific",
+            heading: "Turn the answer into action",
             body:
-              "Generic content is easy to ignore. Add local details, product facts, customer situations, and your own point of view.",
+              "Ask for the answer in a format you can use immediately, like a checklist, schedule, short message, or step-by-step plan.",
+          },
+          {
+            heading: "Real example",
+            body:
+              "Bisi has a busy Saturday. She needs to buy food, visit her aunt, wash clothes, and prepare for Monday. She gives AI the tasks, her available time, and her location. AI helps her arrange the day in a realistic order.",
           },
         ],
         keyTakeaway:
-          "Useful business content starts with real customer questions, not random posting.",
+          "AI becomes useful in daily life when you give it your real situation and ask for a practical next step.",
         examplePrompt:
-          "I sell [product or service] to [type of customer]. Give me ten simple content ideas based on questions customers usually ask before buying.",
+          "Help me plan these everyday tasks. Arrange them in a realistic order, show what to do first, and turn the plan into a simple checklist: [paste tasks].",
         practiceTask:
-          "Ask AI for ten content ideas for your work or business. Choose one and ask it to turn the idea into a short post.",
+          "Write down five tasks you need to handle this week. Ask AI to turn them into a simple plan, then adjust the plan so it fits your real schedule.",
       },
     ],
   },
