@@ -31,41 +31,7 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           </p>
         </section>
 
-        <section className="mt-8 sm:mt-10 bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-7">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-neutral-400 mb-2">
-                Start here
-              </p>
-              <h2 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
-                Module 01, Lesson 1
-              </h2>
-              <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[32ch] sm:max-w-none">
-                Begin with the basics, then move through the lessons in order.
-              </p>
-            </div>
-
-            {firstLesson && (
-              <Button asChild size="md" className="w-full sm:w-auto">
-                <CourseLink
-                  href={getLessonPath(firstLesson.module.slug, firstLesson.lesson.slug)}
-                  navigate={navigate}
-                >
-                  Start Lesson 1
-                  <ArrowRight size={18} className="ml-2" />
-                </CourseLink>
-              </Button>
-            )}
-          </div>
-        </section>
-
-        <div className="flex flex-wrap gap-x-5 gap-y-2 border-y border-neutral-200/80 py-4 my-8 text-sm text-neutral-500">
-          <span>{courseModules.length} modules</span>
-          <span>{lessonReferences.length} lessons</span>
-          <span>One prompt and one practice task per lesson</span>
-        </div>
-
-        <section aria-labelledby="course-modules">
+        <section aria-labelledby="course-modules" className="mt-8 sm:mt-10">
           <div className="flex items-end justify-between gap-4 mb-6">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
@@ -116,6 +82,40 @@ export function CourseHome({ navigate }: CourseHomeProps) {
                 </span>
               </CourseLink>
             ))}
+          </div>
+        </section>
+
+        <div className="flex flex-wrap gap-x-5 gap-y-2 border-y border-neutral-200/80 py-4 my-8 text-sm text-neutral-500">
+          <span>{courseModules.length} modules</span>
+          <span>{lessonReferences.length} lessons</span>
+          <span>One prompt and one practice task per lesson</span>
+        </div>
+
+        <section className="bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-7">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-neutral-400 mb-2">
+                Start here
+              </p>
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                Module 01, Lesson 1
+              </h2>
+              <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[32ch] sm:max-w-none">
+                Begin with the basics, then move through the lessons in order.
+              </p>
+            </div>
+
+            {firstLesson && (
+              <Button asChild size="md" className="w-full sm:w-auto">
+                <CourseLink
+                  href={getLessonPath(firstLesson.module.slug, firstLesson.lesson.slug)}
+                  navigate={navigate}
+                >
+                  Start Lesson 1
+                  <ArrowRight size={18} className="ml-2" />
+                </CourseLink>
+              </Button>
+            )}
           </div>
         </section>
 
