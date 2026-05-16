@@ -7,18 +7,7 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 
-function getWaitlistEndpoint() {
-  const explicitEndpoint =
-    import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() ||
-    import.meta.env.VITE_WAITLIST_ENDPOINT?.trim();
-  const formId = import.meta.env.VITE_FORMSPREE_FORM_ID?.trim();
-
-  if (explicitEndpoint) return explicitEndpoint;
-  if (formId) return `https://formspree.io/f/${formId}`;
-  return "";
-}
-
-const WAITLIST_ENDPOINT = getWaitlistEndpoint();
+const WAITLIST_ENDPOINT = "https://formspree.io/f/mkoydqea";
 
 export function Waitlist() {
   const [email, setEmail] = useState("");
@@ -41,11 +30,6 @@ export function Waitlist() {
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       setError(c.errorEmail);
-      return;
-    }
-
-    if (!WAITLIST_ENDPOINT) {
-      setError(c.errorUnavailable);
       return;
     }
 
@@ -79,8 +63,6 @@ export function Waitlist() {
     }
   }
 
-  const successBody = c.successBody.replace("{email}", email);
-
   return (
     <section id="waitlist" className="py-16 sm:py-24 px-5 bg-ivory">
       <div className="max-w-xl mx-auto">
@@ -105,18 +87,7 @@ export function Waitlist() {
               <h3 className="font-display font-bold text-xl text-neutral-900 mb-2">
                 {c.successHeading}
               </h3>
-              <p className="text-neutral-500 text-sm">
-                {successBody.split(email).map((part, i, arr) =>
-                  i < arr.length - 1 ? (
-                    <span key={i}>
-                      {part}
-                      <strong>{email}</strong>
-                    </span>
-                  ) : (
-                    <span key={i}>{part}</span>
-                  )
-                )}
-              </p>
+              <p className="text-neutral-500 text-sm">{c.successBody}</p>
             </motion.div>
           ) : (
             <form

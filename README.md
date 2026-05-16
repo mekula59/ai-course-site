@@ -24,17 +24,9 @@ npm run lint
 npm run build
 ```
 
-## Environment variables
+## Waitlist
 
-Create a `.env.local` file when you want to connect the waitlist form:
-
-```bash
-VITE_FORMSPREE_FORM_ID=your_form_id
-```
-
-The form posts to `https://formspree.io/f/{form_id}` when `VITE_FORMSPREE_FORM_ID` is set. If you need to use a full endpoint instead, set `VITE_FORMSPREE_ENDPOINT`.
-
-`VITE_WAITLIST_ENDPOINT` is still supported as a legacy fallback.
+The waitlist form posts directly to Formspree from [Waitlist.tsx](/Users/mekula/ai-course-site/src/components/sections/Waitlist.tsx:10).
 
 ## Deploy notes
 
