@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -7,7 +7,18 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 
-const WAITLIST_ENDPOINT = import.meta.env.VITE_WAITLIST_ENDPOINT;
+function getWaitlistEndpoint() {
+  const explicitEndpoint =
+    import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() ||
+    import.meta.env.VITE_WAITLIST_ENDPOINT?.trim();
+  const formId = import.meta.env.VITE_FORMSPREE_FORM_ID?.trim();
+
+  if (explicitEndpoint) return explicitEndpoint;
+  if (formId) return `https://formspree.io/f/${formId}`;
+  return "";
+}
+
+const WAITLIST_ENDPOINT = getWaitlistEndpoint();
 
 export function Waitlist() {
   const [email, setEmail] = useState("");
@@ -19,13 +30,16 @@ export function Waitlist() {
   const { lang } = useLang();
   const c = content[lang].waitlist;
 
-  async function handleSubmit(e: { preventDefault(): void }) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!email || !name) {
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim().toLowerCase();
+
+    if (!trimmedEmail || !trimmedName) {
       setError(c.errorBoth);
       return;
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       setError(c.errorEmail);
       return;
     }
@@ -41,15 +55,22 @@ export function Waitlist() {
       const response = await fetch(WAITLIST_ENDPOINT, {
         method: "POST",
         headers: {
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email }),
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          _replyto: trimmedEmail,
+        }),
       });
 
       if (!response.ok) {
         throw new Error("Request failed");
       }
 
+      setName(trimmedName);
+      setEmail(trimmedEmail);
       setSubmitted(true);
     } catch {
       setError(c.errorSubmit);
@@ -112,10 +133,14 @@ export function Waitlist() {
                 </label>
                 <input
                   id="wl-name"
+                  name="name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder={c.namePlaceholder}
+                  autoComplete="name"
+                  required
+                  aria-describedby={error ? "waitlist-error" : undefined}
                   className="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition-all"
                 />
               </div>
@@ -128,16 +153,25 @@ export function Waitlist() {
                 </label>
                 <input
                   id="wl-email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={c.emailPlaceholder}
+                  autoComplete="email"
+                  inputMode="email"
+                  required
+                  aria-describedby={error ? "waitlist-error" : undefined}
                   className="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition-all"
                 />
               </div>
 
               <div aria-live="polite" className="min-h-5">
-                {error && <p className="text-red-600 text-xs">{error}</p>}
+                {error && (
+                  <p id="waitlist-error" className="text-red-600 text-xs">
+                    {error}
+                  </p>
+                )}
               </div>
 
               <Button

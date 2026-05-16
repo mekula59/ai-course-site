@@ -29,10 +29,12 @@ npm run build
 Create a `.env.local` file when you want to connect the waitlist form:
 
 ```bash
-VITE_WAITLIST_ENDPOINT=https://your-endpoint.example.com
+VITE_FORMSPREE_FORM_ID=your_form_id
 ```
 
-The waitlist form only shows a real success state when this endpoint is configured and returns a successful response.
+The form posts to `https://formspree.io/f/{form_id}` when `VITE_FORMSPREE_FORM_ID` is set. If you need to use a full endpoint instead, set `VITE_FORMSPREE_ENDPOINT`.
+
+`VITE_WAITLIST_ENDPOINT` is still supported as a legacy fallback.
 
 ## Deploy notes
 
