@@ -725,105 +725,667 @@ export const courseModules: CourseModule[] = [
     lessons: [
       {
         slug: "lesson-1",
-        title: "What a Prompt Really Is",
-        intro:
-          "A prompt is simply the instruction you give AI. The clearer your instruction, the easier it is for AI to help you.",
+        title: {
+          en: "What a Prompt Really Is",
+          pidgin: "Wetin Prompt Really Be",
+        },
+        intro: {
+          en: "A prompt is what you type or say to AI. It can be simple. What matters is that AI understands the job you want it to do.",
+          pidgin:
+            "Prompt na wetin you type or talk give AI. E fit be simple. The main thing be say AI understand the work wey you want make e do.",
+        },
         content: [
           {
-            heading: "A prompt is a request",
-            body:
-              "When you type into AI, you are making a request. You might ask it to explain something, write a draft, plan your day, compare options, or make your rough idea clearer.",
+            heading: {
+              en: "What a prompt is",
+              pidgin: "Wetin prompt be",
+            },
+            body: {
+              en: "A prompt is the message you give AI before it answers you. It can be a question, a task, an instruction, or a request.\n\nYou might ask AI to explain something, write a message, rewrite a rough note, plan your day, compare two options, or turn scattered thoughts into something clearer.\n\nYou do not need special language. You do not need to sound technical. A good prompt is usually just a clear request with enough detail for AI to stop guessing.",
+              pidgin:
+                "Prompt na the message wey you give AI before e answer you. E fit be question, task, instruction, or request.\n\nYou fit ask AI make e explain something, write message, rewrite rough note, plan your day, compare two options, or turn scattered thoughts into something clearer.\n\nYou no need special language. You no need sound technical. Good prompt na clear request wey get enough detail make AI no dey guess too much.",
+            },
           },
           {
-            heading: "Good prompts give direction",
-            body:
-              "AI works better when you tell it what you want, who the answer is for, and what style or format you prefer. You do not need fancy words. You just need useful details.",
+            heading: {
+              en: "Prompt = Task + Context + Output",
+              pidgin: "Prompt = Task + Context + Output",
+            },
+            body: {
+              en: "This is a simple way to remember it. You tell AI the task, the context, and the output you want back.\n\nYou will not use this perfectly every time. That is fine. But when your prompt has these three parts, the answer usually becomes easier to use.",
+              pidgin:
+                "Na simple way to remember am be this. Tell AI the task, the context, and the output wey you want make e give you back.\n\nYou no go use am perfectly every time. That one okay. But when your prompt get these three parts, the answer usually dey easier to use.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Task",
+                  pidgin: "Task",
+                },
+                content: {
+                  en: "What do you want AI to do? Write, explain, rewrite, plan, summarise, compare, or list?",
+                  pidgin:
+                    "Wetin you want make AI do? Write, explain, rewrite, plan, summarise, compare, or list?",
+                },
+              },
+              {
+                label: {
+                  en: "Context",
+                  pidgin: "Context",
+                },
+                content: {
+                  en: "What should AI know about your situation, audience, deadline, location, or important details?",
+                  pidgin:
+                    "Wetin AI suppose know about your situation, who go read am, deadline, location, or important details?",
+                },
+              },
+              {
+                label: {
+                  en: "Output",
+                  pidgin: "Output",
+                },
+                content: {
+                  en: "How should the answer come back? A WhatsApp message, list, table, short explanation, plan, or three options?",
+                  pidgin:
+                    "How you want make the answer come back? WhatsApp message, list, table, short explanation, plan, or three options?",
+                },
+              },
+            ],
           },
           {
-            heading: "You can talk normally",
-            body:
-              "You do not have to sound technical. Write the way you would explain the task to a helpful person sitting beside you. Simple language is enough.",
+            heading: {
+              en: "You can talk normally",
+              pidgin: "You fit talk normal",
+            },
+            body: {
+              en: "Some people freeze because they think prompting is a technical skill with secret words. It is not like that.\n\nWrite the way you would explain the task to a helpful person sitting beside you. If your thoughts are rough, type them rough. If you only know half of what you want, say that too.\n\nAI can help you shape the request, but it needs something real to start with.",
+              pidgin:
+                "Some people dey freeze because dem think say prompting na technical skill wey get secret words. No be like that.\n\nWrite am the way you go explain the work to helpful person wey sit down beside you. If your thoughts rough, type am rough. If you only sabi half of wetin you want, talk am too.\n\nAI fit help you shape the request, but e need something real to start with.",
+            },
           },
           {
-            heading: "Real example",
-            body:
-              "Ngozi wants help writing a message to her landlord. Instead of typing, write a message, she says, write a polite message to my landlord asking for two extra days to pay rent. Keep it respectful and short. That extra detail makes the answer more useful.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Ngozi needs to send a WhatsApp message to her landlord. Rent is due today, but her salary has not entered yet. She wants to ask for two extra days without sounding careless.",
+              pidgin:
+                "Ngozi need send WhatsApp message give her landlord. Rent due today, but her salary never enter. She want ask for two extra days without sounding careless.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "What she typed first",
+                  pidgin: "Wetin she type first",
+                },
+                content: {
+                  en: "Write a message to my landlord.",
+                  pidgin: "Write message give my landlord.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Dear landlord, I hope you are well. I am writing to inform you that I will not be able to make payment at this time. I kindly request your patience and understanding.",
+                  pidgin:
+                    "Dear landlord, I hope you are well. I am writing to inform you that I will not be able to make payment at this time. I kindly request your patience and understanding.",
+                },
+              },
+              {
+                label: {
+                  en: "What was missing",
+                  pidgin: "Wetin miss",
+                },
+                content: {
+                  en: "The answer was polite, but it was too formal and too vague. It did not mention rent, two extra days, WhatsApp, or the exact tone Ngozi needed.",
+                  pidgin:
+                    "The answer polite, but e too formal and too vague. E no mention rent, two extra days, WhatsApp, or the exact tone wey Ngozi need.",
+                },
+              },
+              {
+                label: {
+                  en: "The clearer prompt",
+                  pidgin: "The clearer prompt",
+                },
+                content: {
+                  en: "Write a short WhatsApp message to my landlord.\n\nSituation: My rent is due today, but my salary has not entered yet.\nRequest: Ask for two extra days to pay.\nTone: respectful, honest, not too dramatic.\nOutput: Keep it under 70 words.",
+                  pidgin:
+                    "Write short WhatsApp message give my landlord.\n\nSituation: My rent due today, but my salary never enter.\nRequest: Ask for two extra days to pay.\nTone: respectful, honest, no too dramatic.\nOutput: Make e no pass 70 words.",
+                },
+              },
+              {
+                label: {
+                  en: "The better result",
+                  pidgin: "The better result",
+                },
+                content: {
+                  en: "Good evening sir. Please, I wanted to let you know that my salary has not entered yet. I will need two extra days to complete the rent payment. I am sorry for the delay, and I will update you once payment is made.",
+                  pidgin:
+                    "Good evening sir. Abeg, I wan let you know say my salary never enter yet. I go need two extra days to complete the rent payment. Sorry for the delay, I go update you once I pay.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the better prompt worked",
+              pidgin: "Why the better prompt work",
+            },
+            body: {
+              en: "The second prompt gave AI the job, the situation, the request, the tone, and the format. That is why the answer sounded closer to what Ngozi could actually send.\n\nThe prompt was not fancy. It was just specific. That is the habit you are building.",
+              pidgin:
+                "The second prompt give AI the work, the situation, the request, the tone, and the format. Na why the answer sound closer to wetin Ngozi fit actually send.\n\nThe prompt no fancy. E just specific. Na that habit you dey build.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not worry about writing the perfect prompt before you start. That pressure makes people stop before they even try.\n\nStart with the normal words you have. Then add task, context, and output. If the answer is still weak, you can improve it in the next message.",
+              pidgin:
+                "No worry about writing perfect prompt before you start. That pressure dey make people stop before dem even try.\n\nStart with the normal words wey you get. Then add task, context, and output. If the answer still weak, you fit improve am for the next message.",
+            },
           },
         ],
-        keyTakeaway:
-          "A prompt is not a secret formula. It is a clear request with enough detail to guide the answer.",
-        examplePrompt:
-          "Explain what a prompt is to me like I am a complete beginner. Use simple English and give me three examples I can try today.",
-        practiceTask:
-          "Write one simple request you would normally ask a friend for help with. Turn it into a prompt by adding who it is for, what tone you want, and what format you need.",
+        keyTakeaway: {
+          en: "A prompt is not a secret formula. It is what you type or say to AI. A clearer prompt usually gives AI the task, the context, and the output you want back.",
+          pidgin:
+            "Prompt no be secret formula. Na wetin you type or talk give AI. Clearer prompt usually dey give AI the task, the context, and the output wey you want back.",
+        },
+        examplePrompt: {
+          en: "I want to ask AI for help, but my request is still rough.\n\nRough request:\n[write the simple thing you want]\n\nMy situation:\n[add what is happening, who it is for, and any important detail]\n\nOutput I want:\n[a WhatsApp message, list, plan, explanation, table, or 3 options]\n\nTurn this into a clear prompt using Task + Context + Output.\nAfter that, explain why the new prompt is clearer.",
+          pidgin:
+            "I want ask AI for help, but my request still rough.\n\nRough request:\n[write the simple thing wey you want]\n\nMy situation:\n[add wetin dey happen, who e dey for, and any important detail]\n\nOutput I want:\n[WhatsApp message, list, plan, explanation, table, or 3 options]\n\nTurn this one into clear prompt using Task + Context + Output.\nAfter that, explain why the new prompt clearer.",
+        },
+        practiceTask: {
+          en: "Pick one thing you want AI to help you with this week. Write it first as a rough request.\n\nThen rewrite it using Task + Context + Output. Paste both into AI and compare the answers. Notice what changed when your prompt became clearer.",
+          pidgin:
+            "Pick one thing wey you want make AI help you with this week. Write am first as rough request.\n\nThen rewrite am using Task + Context + Output. Paste the two inside AI and compare the answers. Notice wetin change when your prompt clear pass.",
+        },
+        quickCheck: [
+          {
+            en: "What task did you ask AI to do?",
+            pidgin: "Which task you ask AI make e do?",
+          },
+          {
+            en: "What context did you give it?",
+            pidgin: "Which context you give am?",
+          },
+          {
+            en: "What output did you ask for?",
+            pidgin: "Which output you ask for?",
+          },
+          {
+            en: "What would you add if the first answer was too general?",
+            pidgin: "Wetin you go add if the first answer too general?",
+          },
+        ],
       },
       {
         slug: "lesson-2",
-        title: "Why Some Prompts Fail",
-        intro:
-          "When AI gives a weak answer, the problem is often the prompt. A small change in your instruction can make the answer much better.",
+        title: {
+          en: "Why Some Prompts Fail",
+          pidgin: "Why Some Prompts Dey Fail",
+        },
+        intro: {
+          en: "When AI gives a weak answer, it does not always mean the tool is bad. Sometimes the prompt did not give enough direction.",
+          pidgin:
+            "When AI give weak answer, e no always mean say the tool bad. Sometimes the prompt no give enough direction.",
+        },
         content: [
           {
-            heading: "The prompt is too vague",
-            body:
-              "If you ask, help me with my business, AI has to guess what kind of help you need. It may give a broad answer that sounds fine but does not help you do anything specific.",
+            heading: {
+              en: "A weak prompt makes AI guess",
+              pidgin: "Weak prompt dey make AI guess",
+            },
+            body: {
+              en: "AI tries to answer the request you give it. If the request is vague, AI fills the empty spaces by guessing.\n\nThat is how you get answers that sound fine but do not really help. The answer may be too broad, too formal, too long, too generic, or just not connected to your real situation.\n\nThis is why a bad answer does not always mean bad AI. First, check whether the prompt gave AI enough to work with.",
+              pidgin:
+                "AI dey try answer the request wey you give am. If the request vague, AI go fill the empty spaces by guessing.\n\nNa so you dey get answers wey sound okay but no really help. The answer fit too broad, too formal, too long, too generic, or e no connect to your real situation.\n\nNa why bad answer no always mean bad AI. First, check whether the prompt give AI enough thing to work with.",
+            },
           },
           {
-            heading: "The prompt has no context",
-            body:
-              "AI needs the right background. Tell it what you are working on, who the answer is for, what has already happened, and what result you want.",
+            heading: {
+              en: "Common missing pieces",
+              pidgin: "Common things wey dey miss",
+            },
+            body: {
+              en: "Most weak prompts are missing one of these pieces. You do not need all of them every time, but they are good to check before you blame the answer.",
+              pidgin:
+                "Most weak prompts dey miss one of these pieces. You no need all of them every time, but dem good to check before you blame the answer.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Task",
+                  pidgin: "Task",
+                },
+                content: {
+                  en: "What exactly should AI do?",
+                  pidgin: "Wetin exactly AI suppose do?",
+                },
+              },
+              {
+                label: {
+                  en: "Audience",
+                  pidgin: "Audience",
+                },
+                content: {
+                  en: "Who is the answer for?",
+                  pidgin: "Who the answer dey for?",
+                },
+              },
+              {
+                label: {
+                  en: "Details",
+                  pidgin: "Details",
+                },
+                content: {
+                  en: "What facts, examples, limits, prices, dates, or background must be included?",
+                  pidgin:
+                    "Which facts, examples, limits, prices, dates, or background must dey inside?",
+                },
+              },
+              {
+                label: {
+                  en: "Tone and format",
+                  pidgin: "Tone and format",
+                },
+                content: {
+                  en: "Should it sound warm, direct, simple, firm, or professional? Should the answer be a list, message, table, or short plan?",
+                  pidgin:
+                    "E suppose sound warm, direct, simple, firm, or professional? The answer suppose be list, message, table, or short plan?",
+                },
+              },
+            ],
           },
           {
-            heading: "The prompt asks for too much at once",
-            body:
-              "If your request is too big, the answer can become scattered. Break the work into smaller steps. Ask for ideas first, then a draft, then improvements.",
+            heading: {
+              en: "Do not ask for everything at once",
+              pidgin: "No ask for everything one time",
+            },
+            body: {
+              en: "Some prompts fail because the request is too big. If you ask AI to create a full business plan, write captions, design an offer, plan your launch, and fix your pricing in one message, the answer may become scattered.\n\nBreak the work into smaller steps. Ask for ideas first. Then ask for the best three. Then ask for a draft. Then ask for improvements. Smaller prompts often give stronger answers.",
+              pidgin:
+                "Some prompts dey fail because the request too big. If you ask AI make e create full business plan, write captions, design offer, plan launch, and fix pricing inside one message, the answer fit scatter.\n\nBreak the work into smaller steps. Ask for ideas first. Then ask for the best three. Then ask for draft. Then ask for improvements. Smaller prompts dey often give stronger answers.",
+            },
           },
           {
-            heading: "Real example",
-            body:
-              "Emeka types, create content for my brand, and gets a generic list. Then he rewrites it: I sell handmade leather sandals in Abuja. Give me five Instagram post ideas for customers who want durable sandals for work and church. The second prompt gives him ideas he can actually use.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Emeka sells handmade leather sandals in Abuja. He wants Instagram ideas, but his first prompt is too broad, so the answer feels like something any business could use.",
+              pidgin:
+                "Emeka dey sell handmade leather sandals for Abuja. He want Instagram ideas, but him first prompt too broad, so the answer feel like something wey any business fit use.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "The weak prompt",
+                  pidgin: "The weak prompt",
+                },
+                content: {
+                  en: "Create content for my brand.",
+                  pidgin: "Create content for my brand.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Here are some content ideas: behind the scenes, customer testimonials, product features, brand story, promotional offers, and educational posts.",
+                  pidgin:
+                    "Here are some content ideas: behind the scenes, customer testimonials, product features, brand story, promotional offers, and educational posts.",
+                },
+              },
+              {
+                label: {
+                  en: "What was missing",
+                  pidgin: "Wetin miss",
+                },
+                content: {
+                  en: "AI did not know the product, city, customer, price level, platform, or what kind of content Emeka wanted. So it gave safe, general ideas.",
+                  pidgin:
+                    "AI no know the product, city, customer, price level, platform, or the kind content wey Emeka want. So e give safe, general ideas.",
+                },
+              },
+              {
+                label: {
+                  en: "The better prompt",
+                  pidgin: "The better prompt",
+                },
+                content: {
+                  en: "I sell handmade leather sandals in Abuja.\n\nAudience: Men and women who want durable sandals for work, church, casual outings, and travel.\nPlatform: Instagram.\nTask: Give me 5 post ideas for this week.\nTone: practical and warm, not luxury-brand language.\nFormat: For each idea, give me a caption angle and what photo or video to post.",
+                  pidgin:
+                    "I dey sell handmade leather sandals for Abuja.\n\nAudience: Men and women wey want durable sandals for work, church, casual outings, and travel.\nPlatform: Instagram.\nTask: Give me 5 post ideas for this week.\nTone: practical and warm, no use luxury-brand language.\nFormat: For each idea, give me caption angle and wetin I fit post as photo or video.",
+                },
+              },
+              {
+                label: {
+                  en: "The better result",
+                  pidgin: "The better result",
+                },
+                content: {
+                  en: "1. Workday sandal check: show one pair beside office clothes. Caption angle: Comfortable enough for the office, strong enough for Abuja movement.\n\n2. Church Sunday fit: short video of a simple Sunday outfit with the sandals. Caption angle: Clean, easy, and ready for Sunday.\n\n3. Travel pair: photo of sandals beside a small travel bag. Caption angle: One pair you can carry for a weekend trip.",
+                  pidgin:
+                    "1. Workday sandal check: show one pair beside office clothes. Caption angle: Comfortable enough for office, strong enough for Abuja movement.\n\n2. Church Sunday fit: short video of simple Sunday outfit with the sandals. Caption angle: Clean, easy, and ready for Sunday.\n\n3. Travel pair: photo of sandals beside small travel bag. Caption angle: One pair wey you fit carry for weekend trip.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the better prompt worked",
+              pidgin: "Why the better prompt work",
+            },
+            body: {
+              en: "The second prompt did not just say content. It named the product, the city, the customer, the platform, the tone, and the format.\n\nAI no longer had to guess the whole business. It could now answer inside Emeka's real situation.",
+              pidgin:
+                "The second prompt no just talk content. E mention the product, the city, the customer, the platform, the tone, and the format.\n\nAI no need guess the whole business again. E fit now answer inside Emeka real situation.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not keep repeating the same vague prompt and hoping the next answer will be better. If the first answer is weak, look for what was missing.\n\nAdd the missing piece and ask again. That is usually faster than blaming the tool or opening a fresh chat.",
+              pidgin:
+                "No dey repeat the same vague prompt dey hope say the next answer go better. If the first answer weak, look for wetin miss.\n\nAdd the missing piece and ask again. That one usually faster pass blaming the tool or opening fresh chat.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "The prompt below helps you inspect a weak prompt before you use it. You can use it on your own prompt or on a prompt AI gives you.",
+              pidgin:
+                "The prompt below go help you inspect weak prompt before you use am. You fit use am for your own prompt or prompt wey AI give you.",
+            },
           },
         ],
-        keyTakeaway:
-          "A prompt usually fails when it is too vague, missing context, or trying to do too many things at once.",
-        examplePrompt:
-          "Look at this prompt and tell me why it may give a weak answer. Then rewrite it to be clearer and more useful: [paste your prompt].",
-        practiceTask:
-          "Write one vague prompt, then rewrite it with more detail. Add the task, the context, the audience, and the format you want.",
+        keyTakeaway: {
+          en: "A prompt often fails because AI is missing the task, audience, details, tone, or format. Before you give up on the answer, improve the prompt.",
+          pidgin:
+            "Prompt dey often fail because task, audience, details, tone, or format dey miss. Before you give up on the answer, improve the prompt.",
+        },
+        examplePrompt: {
+          en: "Review this weak prompt before I use it.\n\nWeak prompt:\n[paste your prompt]\n\nTell me:\n1. What is vague?\n2. What details are missing?\n3. What questions should I answer before asking AI?\n4. Rewrite it into a stronger prompt.\n\nUse this structure: task, audience, details, tone, and format.",
+          pidgin:
+            "Review this weak prompt before I use am.\n\nWeak prompt:\n[paste your prompt]\n\nTell me:\n1. Wetin vague?\n2. Which details dey miss?\n3. Which questions I suppose answer before I ask AI?\n4. Rewrite am into stronger prompt.\n\nUse this structure: task, audience, details, tone, and format.",
+        },
+        practiceTask: {
+          en: "Write one weak prompt on purpose. Keep it short and vague, like help me with my business or write a caption.\n\nThen use the prompt above to review it. Add the missing pieces and test the improved version. Compare both answers and write down what changed.",
+          pidgin:
+            "Write one weak prompt on purpose. Make e short and vague, like help me with my business or write caption.\n\nThen use the prompt above to review am. Add the missing pieces and test the improved version. Compare the two answers and write down wetin change.",
+        },
+        quickCheck: [
+          {
+            en: "What was vague in your first prompt?",
+            pidgin: "Wetin vague inside your first prompt?",
+          },
+          {
+            en: "Which missing detail made the improved prompt stronger?",
+            pidgin: "Which missing detail make the improved prompt stronger?",
+          },
+          {
+            en: "Did the better answer become more specific or just longer?",
+            pidgin: "The better answer specific pass, or e just long pass?",
+          },
+          {
+            en: "What would you add if the answer still felt generic?",
+            pidgin: "Wetin you go add if the answer still feel generic?",
+          },
+        ],
       },
       {
         slug: "lesson-3",
-        title: "How to Improve an Answer",
-        intro:
-          "The first answer is not always the best answer. You can guide AI with follow-up instructions until the result becomes more useful.",
+        title: {
+          en: "How to Improve an Answer",
+          pidgin: "How to Improve AI Answer",
+        },
+        intro: {
+          en: "You do not have to accept the first answer. Most of the time, the better answer comes after one or two clear follow-ups.",
+          pidgin:
+            "You no need accept the first answer. Most times, better answer dey come after one or two clear follow-ups.",
+        },
         content: [
           {
-            heading: "Tell AI what to change",
-            body:
-              "If the answer is too long, too formal, too vague, or not practical enough, say so. Ask AI to make a specific change instead of starting again from scratch.",
+            heading: {
+              en: "The first answer is a draft",
+              pidgin: "The first answer na draft",
+            },
+            body: {
+              en: "When AI gives you an answer, think of it as a first draft. It may be useful, but it may not fit yet.\n\nMaybe it is too long. Maybe it sounds too formal. Maybe it uses big grammar. Maybe it is not Nigerian enough for your audience. Maybe it missed the one detail that matters.\n\nYou do not always need to start again. Tell AI what to change.",
+              pidgin:
+                "When AI give you answer, see am like first draft. E fit useful, but e fit never fit well.\n\nMaybe e too long. Maybe e sound too formal. Maybe e use big grammar. Maybe e no Nigerian enough for your audience. Maybe e miss the one detail wey matter.\n\nYou no always need start again. Tell AI wetin make e change.",
+            },
           },
           {
-            heading: "Ask for another version",
-            body:
-              "You can ask for a shorter version, a warmer version, a more direct version, or a version for WhatsApp, email, school, customers, or your manager.",
+            heading: {
+              en: "Give one clear follow-up",
+              pidgin: "Give one clear follow-up",
+            },
+            body: {
+              en: "A follow-up is the next instruction you send after the first answer. Keep it specific.\n\nYou can ask AI to make the answer shorter, warmer, clearer, simpler, more Nigerian, more direct, more specific, or easier to send on WhatsApp. You can also ask it to give you options, remove exaggeration, add examples, or turn the answer into steps.",
+              pidgin:
+                "Follow-up na the next instruction wey you send after the first answer. Make am specific.\n\nYou fit ask AI make the answer shorter, warmer, clearer, simpler, more Nigerian, more direct, more specific, or easier to send for WhatsApp. You fit also ask am make e give you options, remove exaggeration, add examples, or turn the answer into steps.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Shorter",
+                  pidgin: "Shorter",
+                },
+                content: {
+                  en: "Make this half the length and keep only the important parts.",
+                  pidgin: "Make this one half the length and keep only important parts.",
+                },
+              },
+              {
+                label: {
+                  en: "Warmer",
+                  pidgin: "Warmer",
+                },
+                content: {
+                  en: "Make it sound warmer and more human, but not too emotional.",
+                  pidgin:
+                    "Make am sound warmer and more human, but no make am too emotional.",
+                },
+              },
+              {
+                label: {
+                  en: "More specific",
+                  pidgin: "More specific",
+                },
+                content: {
+                  en: "Add details from my situation and remove anything generic.",
+                  pidgin:
+                    "Add details from my situation and remove anything generic.",
+                },
+              },
+              {
+                label: {
+                  en: "Ask what is missing",
+                  pidgin: "Ask wetin miss",
+                },
+                content: {
+                  en: "Before rewriting, ask me what information you need from me.",
+                  pidgin:
+                    "Before you rewrite am, ask me wetin you need from me.",
+                },
+              },
+            ],
           },
           {
-            heading: "Add what was missing",
-            body:
-              "Sometimes the answer is weak because AI did not have enough information. Add the missing facts, examples, names, limits, or tone, then ask it to try again.",
+            heading: {
+              en: "Ask AI what it needs from you",
+              pidgin: "Ask AI wetin e need from you",
+            },
+            body: {
+              en: "Sometimes you do not know why the answer feels weak. In that case, ask AI to help you find the missing piece.\n\nYou can say: before you improve this, ask me three questions that would help you make it more useful. That simple move turns AI from a guessing tool into something closer to a thinking partner.",
+              pidgin:
+                "Sometimes you no go know why the answer feel weak. For that kind case, ask AI make e help you find the missing piece.\n\nYou fit say: before you improve this, ask me three questions wey go help you make am more useful. That simple move go turn AI from guessing tool to something closer to thinking partner.",
+            },
           },
           {
-            heading: "Real example",
-            body:
-              "Aisha asks AI to write a job application email. The first answer sounds too stiff. She replies, make it warmer, shorter, and more confident, but do not exaggerate my experience. The second version sounds closer to what she needs.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Aisha wants to apply for an admin assistant role at a logistics company in Lagos. She asks AI to write an email, but the first version sounds stiff and says too much.",
+              pidgin:
+                "Aisha want apply for admin assistant role for logistics company for Lagos. She ask AI make e write email, but the first version sound stiff and talk too much.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Aisha's first prompt",
+                  pidgin: "Aisha first prompt",
+                },
+                content: {
+                  en: "Write a job application email for an admin assistant role.",
+                  pidgin: "Write job application email for admin assistant role.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Dear Hiring Manager, I am writing to express my profound interest in the administrative assistant position at your reputable organization. I possess exceptional organizational, communication, and administrative skills that make me the ideal candidate for this role.",
+                  pidgin:
+                    "Dear Hiring Manager, I am writing to express my profound interest in the administrative assistant position at your reputable organization. I possess exceptional organizational, communication, and administrative skills that make me the ideal candidate for this role.",
+                },
+              },
+              {
+                label: {
+                  en: "What was weak",
+                  pidgin: "Wetin weak",
+                },
+                content: {
+                  en: "It sounded too polished and too sure. It also invented strong claims about her skills. Aisha has experience helping at her uncle's shop, but she does not want to exaggerate.",
+                  pidgin:
+                    "E sound too polished and too sure. E still invent strong claims about her skills. Aisha get experience helping for her uncle shop, but she no want exaggerate.",
+                },
+              },
+              {
+                label: {
+                  en: "Aisha's follow-up",
+                  pidgin: "Aisha follow-up",
+                },
+                content: {
+                  en: "Make it shorter and more natural.\n\nUse my real experience: I helped manage customer records and daily sales notes at my uncle's shop for 8 months.\nDo not exaggerate.\nTone: polite, confident, simple.\nAsk me if any detail is missing before you add it.",
+                  pidgin:
+                    "Make am shorter and more natural.\n\nUse my real experience: I help manage customer records and daily sales notes for my uncle shop for 8 months.\nNo exaggerate.\nTone: polite, confident, simple.\nAsk me if any detail dey miss before you add am.",
+                },
+              },
+              {
+                label: {
+                  en: "Improved output",
+                  pidgin: "Improved output",
+                },
+                content: {
+                  en: "Dear Hiring Manager, I would like to apply for the Admin Assistant role. I have 8 months of experience helping with customer records and daily sales notes at my uncle's shop. I am organised, willing to learn, and comfortable handling simple records. I would be glad to be considered for the role.",
+                  pidgin:
+                    "Dear Hiring Manager, I would like to apply for the Admin Assistant role. I have 8 months of experience helping with customer records and daily sales notes at my uncle shop. I am organised, willing to learn, and comfortable handling simple records. I would be glad to be considered for the role.",
+                },
+              },
+              {
+                label: {
+                  en: "Aisha's final edit",
+                  pidgin: "Aisha final edit",
+                },
+                content: {
+                  en: "Dear Hiring Manager, I would like to apply for the Admin Assistant role. I have 8 months of experience helping with customer records and daily sales notes at my uncle's shop. I am organised, willing to learn, and careful with details. I have attached my CV for your review. Thank you.",
+                  pidgin:
+                    "Dear Hiring Manager, I would like to apply for the Admin Assistant role. I have 8 months of experience helping with customer records and daily sales notes at my uncle shop. I am organised, willing to learn, and careful with details. I have attached my CV for your review. Thank you.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the final version worked",
+              pidgin: "Why the final version work",
+            },
+            body: {
+              en: "Aisha did not start over. She used the first answer as a draft, then gave AI the missing context and tone. After that, she still made a human edit.\n\nThat is the rhythm: ask, read, follow up, edit. The goal is not to make AI sound impressive. The goal is to get an answer that fits your real situation.",
+              pidgin:
+                "Aisha no start again. She use the first answer as draft, then give AI the missing context and tone. After that, she still do human edit.\n\nNa the rhythm be this: ask, read, follow up, edit. The goal no be to make AI sound impressive. The goal na to get answer wey fit your real situation.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not send follow-ups like make it better. Better how? Shorter? Clearer? Warmer? More direct? More Nigerian? More specific?\n\nName the change you want. The clearer your follow-up, the easier it is for AI to improve the answer.",
+              pidgin:
+                "No send follow-up like make it better. Better how? Shorter? Clearer? Warmer? More direct? More Nigerian? More specific?\n\nName the change wey you want. The clearer your follow-up, the easier AI fit improve the answer.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "Use the prompt below when an AI answer is close, but not yet right. It helps you improve the answer without throwing everything away.",
+              pidgin:
+                "Use the prompt below when AI answer close, but e never correct. E go help you improve the answer without throwing everything away.",
+            },
           },
         ],
-        keyTakeaway:
-          "You do not have to accept the first answer. Improve it by asking for specific changes.",
-        examplePrompt:
-          "Improve this answer. Make it clearer, shorter, and more practical. Keep the meaning the same and point out anything important that may be missing: [paste answer].",
-        practiceTask:
-          "Ask AI for help with a small task. Then send one follow-up instruction to improve the answer, such as make it shorter, add examples, make it warmer, or turn it into a checklist.",
+        keyTakeaway: {
+          en: "Do not treat the first answer as final. Use follow-ups to make it shorter, clearer, warmer, more specific, or better suited to your real situation, then edit it yourself.",
+          pidgin:
+            "No treat the first answer like final. Use follow-ups make e shorter, clearer, warmer, more specific, or make e fit your real situation, then edit am by yourself.",
+        },
+        examplePrompt: {
+          en: "Improve this answer instead of starting over.\n\nHere is the answer:\n[paste the AI answer]\n\nWhat I need it for:\n[explain the real situation]\n\nPlease revise it so it is:\n- shorter\n- clearer\n- more natural\n- [add the tone you want]\n\nAlso tell me what information is missing from me.\nDo not add facts I did not provide.",
+          pidgin:
+            "Improve this answer instead of starting over.\n\nHere is the answer:\n[paste the AI answer]\n\nWetin I need am for:\n[explain the real situation]\n\nPlease revise am make e:\n- shorter\n- clearer\n- more natural\n- [add the tone wey you want]\n\nAlso tell me wetin information dey miss from me.\nNo add facts wey I no provide.",
+        },
+        practiceTask: {
+          en: "Ask AI to help with one small task. Let it give you the first answer.\n\nDo not start over. Send one follow-up that names the exact change you want. For example: make it more direct, make it sound like WhatsApp, remove exaggeration, add two examples, or ask me what information is missing.\n\nThen make one final human edit before you use it.",
+          pidgin:
+            "Ask AI make e help you with one small task. Make e give you the first answer.\n\nNo start again. Send one follow-up wey name the exact change wey you want. For example: make am more direct, make e sound like WhatsApp, remove exaggeration, add two examples, or ask me wetin information dey miss.\n\nThen do one final human edit before you use am.",
+        },
+        quickCheck: [
+          {
+            en: "What was wrong with the first answer?",
+            pidgin: "Wetin wrong with the first answer?",
+          },
+          {
+            en: "What exact follow-up did you send?",
+            pidgin: "Which exact follow-up you send?",
+          },
+          {
+            en: "Did the second answer fit your situation better?",
+            pidgin: "The second answer fit your situation better?",
+          },
+          {
+            en: "What final edit did you make yourself?",
+            pidgin: "Which final edit you do by yourself?",
+          },
+        ],
       },
     ],
   },
