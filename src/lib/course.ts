@@ -258,46 +258,88 @@ export const courseModules: CourseModule[] = [
       {
         slug: "lesson-2",
         title: {
-          en: "How To Ask AI",
-          pidgin: "How To Ask AI",
+          en: "How to Ask AI for Help",
+          pidgin: "How to Ask AI Make E Help You",
         },
         intro: {
-          en: "A prompt is just the message you send to AI. The clearer the message, the less guessing AI has to do.",
+          en: "AI answers better when it understands the job. You do not need special words. You just need to explain the situation clearly enough.",
           pidgin:
-            "Prompt na just the message wey you send give AI. The clearer the message, the less AI go need guess.",
+            "AI dey answer better when e understand the work. You no need special grammar. You just need explain the situation well enough.",
         },
         content: [
           {
             heading: {
-              en: "What this means",
-              pidgin: "Wetin this one mean",
+              en: "What asking really means",
+              pidgin: "Wetin asking really mean",
             },
             body: {
-              en: "Good prompting is not about sounding clever. It is about giving enough direction so the answer has somewhere to land.",
+              en: "A prompt is the message you type into AI. It can be one sentence, a few bullets, or a full explanation. The point is not to sound smart. The point is to help AI understand what you want it to do.\n\nWhen your request is too vague, AI has to guess. It will guess the audience, the tone, the details, and even the kind of answer you want. That is why a prompt like write a message often gives you something plain and stiff.\n\nA better prompt gives AI a small brief. It tells the tool the task, the situation, the person receiving the answer, and the kind of response you want back.",
               pidgin:
-                "Better prompting no be to sound clever. Na to give enough direction make the answer know where e suppose land.",
+                "Prompt na the message wey you type give AI. E fit be one sentence, few bullet points, or full explanation. The matter no be to sound smart. Na to help AI understand wetin you want make e do.\n\nWhen your request too vague, AI go start to guess. E go guess who go read am, the tone, the details, and even the kind answer wey you want. Na why prompt like write a message fit give you something plain and stiff.\n\nBetter prompt dey give AI small brief. E tell the tool the task, the situation, the person wey go receive the answer, and the kind response you want back.",
             },
           },
           {
             heading: {
-              en: "Say the real thing",
-              pidgin: "Talk the real thing",
+              en: "Four things to tell AI",
+              pidgin: "Four things wey you go tell AI",
             },
             body: {
-              en: "Write the task the way you would explain it to a helpful person. Mention who it is for, what happened, and how you want it to sound.",
+              en: "Before you type, slow down for a moment. You do not need a perfect prompt. You just need to give AI the main things a helpful person would ask you before doing the work.\n\nUse this small checklist before you send your prompt. Even if you only answer two or three of them, the reply will usually get better.",
               pidgin:
-                "Explain the work like say na helpful person you dey talk to. Mention who go receive am, wetin happen, and how you want make e sound.",
+                "Before you type, calm down small. You no need perfect prompt. You just need give AI the main things wey helpful person go ask you before e do the work.\n\nUse this small checklist before you send your prompt. Even if you answer only two or three, the reply go usually better.",
             },
+            examples: [
+              {
+                label: {
+                  en: "1. Task",
+                  pidgin: "1. Task",
+                },
+                content: {
+                  en: "What do I want AI to make, explain, rewrite, plan, or summarise?",
+                  pidgin: "Wetin you want make AI do?",
+                },
+              },
+              {
+                label: {
+                  en: "2. Audience",
+                  pidgin: "2. Who e dey for",
+                },
+                content: {
+                  en: "Who is this for?",
+                  pidgin: "Na who go read am or use am?",
+                },
+              },
+              {
+                label: {
+                  en: "3. Details",
+                  pidgin: "3. Details",
+                },
+                content: {
+                  en: "What facts, names, dates, prices, location, or context must be correct?",
+                  pidgin: "Which details must correct?",
+                },
+              },
+              {
+                label: {
+                  en: "4. Tone",
+                  pidgin: "4. Tone",
+                },
+                content: {
+                  en: "How should it sound?",
+                  pidgin: "How e suppose sound?",
+                },
+              },
+            ],
           },
           {
             heading: {
-              en: "A simple way to ask",
-              pidgin: "Simple way to ask",
+              en: "Use follow-up questions",
+              pidgin: "Use follow-up questions",
             },
             body: {
-              en: "Use this order: task, context, tone, format. It does not need to be long. Even two extra sentences can turn a weak answer into something useful.",
+              en: "The first answer does not need to be the final answer. This is one of the biggest things beginners miss. If the reply is close but not right, do not throw it away immediately.\n\nAsk a follow-up. You can say make it shorter, make it warmer, remove the big grammar, add the price, make it sound like WhatsApp, give me three options, or explain it like I am new to this.\n\nThat is how you shape the answer. You are not starting over each time. You are using the first response as a rough draft, then guiding it toward what you actually need.",
               pidgin:
-                "Use this order: task, context, tone, format. E no need long. Even two extra sentences fit turn weak answer to something useful.",
+                "The first answer no need be the final answer. Na one big thing wey beginners dey miss. If the reply close but e no correct, no rush throw am away.\n\nAsk follow-up. You fit say make am shorter, make am warmer, remove big grammar, add the price, make e sound like WhatsApp, give me three options, or explain am like say I dey new to this thing.\n\nNa so you dey shape the answer. You no dey start afresh every time. You dey use the first response as rough draft, then guide am reach wetin you actually need.",
             },
           },
           {
@@ -306,115 +348,223 @@ export const courseModules: CourseModule[] = [
               pidgin: "Real example",
             },
             body: {
-              en: "Tunde needs to remind a customer about an unpaid balance. If he types, write a payment reminder, the answer may sound stiff. If he says it is for WhatsApp, the customer knows him, and the tone should be polite but firm, the reply gets much better.",
+              en: "Tunde repairs phones in Surulere. A customer collected a repaired phone yesterday and promised to send the remaining balance by evening. The money has not come in. Tunde wants to remind him without sounding rude.",
               pidgin:
-                "Tunde need remind customer about balance wey never complete. If e type, write payment reminder, the answer fit sound stiff. If e talk say na WhatsApp message, the customer sabi am, and the tone suppose polite but firm, the reply go better.",
+                "Tunde dey repair phones for Surulere. One customer collect repaired phone yesterday and promise say e go send remaining balance by evening. The money never enter. Tunde want remind am without sounding rude.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "The first thing Tunde typed",
+                  pidgin: "The first thing wey Tunde type",
+                },
+                content: {
+                  en: "Write a payment reminder.",
+                  pidgin: "Write payment reminder.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Dear customer, this is a reminder that your payment is still pending. Kindly make the payment at your earliest convenience. Thank you.",
+                  pidgin:
+                    "Dear customer, this is a reminder that your payment is still pending. Kindly make the payment at your earliest convenience. Thank you.",
+                },
+              },
+              {
+                label: {
+                  en: "What was missing",
+                  pidgin: "Wetin miss",
+                },
+                content: {
+                  en: "The answer was not wrong, but it was too general. It did not mention WhatsApp, the customer's name, the balance, the phone repair, or the tone Tunde wanted. It also sounded like a company email, not a message to someone who already knows him.",
+                  pidgin:
+                    "The answer no wrong, but e too general. E no mention WhatsApp, customer name, the balance, phone repair, or the tone wey Tunde want. E still sound like company email, no be message to person wey already sabi am.",
+                },
+              },
+              {
+                label: {
+                  en: "Tunde asked a follow-up",
+                  pidgin: "Tunde ask follow-up",
+                },
+                content: {
+                  en: "Make it a WhatsApp message.\n\nCustomer name: Mr. Bello\nBalance: N12,000\nContext: He collected his repaired phone yesterday and said he would send the balance by evening.\nTone: polite but clear. Not angry. Not too formal.\nEnd by asking if he can send it before 2pm today.",
+                  pidgin:
+                    "Make am WhatsApp message.\n\nCustomer name: Mr. Bello\nBalance: N12,000\nContext: E collect him repaired phone yesterday and talk say e go send balance by evening.\nTone: polite but clear. No vex. No too formal.\nEnd am by asking if e fit send am before 2pm today.",
+                },
+              },
+              {
+                label: {
+                  en: "The better result",
+                  pidgin: "The better result",
+                },
+                content: {
+                  en: "Good morning Mr. Bello. Just a quick reminder about the N12,000 balance for the phone repair from yesterday. Please, can you send it before 2pm today? Thank you.",
+                  pidgin:
+                    "Good morning Mr. Bello. Just quick reminder about the N12,000 balance for the phone repair from yesterday. Abeg, you fit send am before 2pm today? Thank you.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the second answer worked better",
+              pidgin: "Why the second answer better",
+            },
+            body: {
+              en: "The second prompt gave AI the missing picture. It named the channel, the person, the amount, the reason for the money, the deadline, and the tone.\n\nThat is why the answer became more useful. Tunde still needs to read it before sending. He might remove thank you if it feels too soft, or add his account details if that is what he wants next. But now he has a real draft, not a blank message pretending to be finished.",
+              pidgin:
+                "The second prompt give AI the missing picture. E mention the channel, the person, the amount, why the money dey, the deadline, and the tone.\n\nNa why the answer come useful pass. Tunde still need read am before e send. E fit remove thank you if e feel too soft, or add account details if na that one e want next. But now e get real draft, no be empty message wey dey pretend say e finish.",
             },
           },
           {
             heading: {
-              en: "Why this works better",
-              pidgin: "Why this one better",
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
             },
             body: {
-              en: "The second version gives AI the missing pieces. It knows where the message will go, who will read it, and the kind of tone Tunde wants.",
+              en: "Do not judge AI only from your first weak prompt. If you type caption, message, email, or explain this, the tool has almost nothing to work with. It may still give you an answer, but that answer will probably be average.\n\nAlso, do not keep opening a fresh chat every time the answer is not perfect. Stay with the same answer for one or two follow-ups. Ask it to adjust the part that is wrong. That habit will save you time.",
               pidgin:
-                "The second version give AI the missing pieces. E know where the message go, who go read am, and the kind tone wey Tunde want.",
+                "No judge AI only from your first weak prompt. If you type caption, message, email, or explain this, the tool no get enough thing to work with. E fit still answer you, but the answer fit just be average.\n\nAlso, no dey open fresh chat every time the answer no perfect. Stay with the same answer for one or two follow-ups. Ask am make e adjust the part wey no correct. That habit go save you time.",
             },
           },
           {
             heading: {
-              en: "How to use the prompt",
-              pidgin: "How to use this prompt",
+              en: "Before you try it",
+              pidgin: "Before you try am",
             },
             body: {
-              en: "The prompt below is not fancy. It simply gives AI the job, the channel, the audience, the tone, and the length.",
+              en: "Use the prompt below with a real task, but keep private information out. You can change the words inside the brackets. The important part is the pattern: task, context, tone, format, then one follow-up question.",
               pidgin:
-                "The prompt below no fancy. E just give AI the work, where the message go, who go receive am, the tone, and the length.",
-            },
-          },
-          {
-            heading: {
-              en: "One mistake to avoid",
-              pidgin: "One mistake to avoid",
-            },
-            body: {
-              en: "Do not ask with one lonely word, like caption or email, then expect a strong answer. Add the situation, even if it is just two or three extra sentences.",
-              pidgin:
-                "No ask with only one word, like caption or email, then expect strong answer. Add the situation, even if na just two or three extra sentences.",
-            },
-          },
-          {
-            heading: {
-              en: "Before you move on",
-              pidgin: "Before you move",
-            },
-            body: {
-              en: "Take one prompt you have used before and add more context. You will feel the difference quickly.",
-              pidgin:
-                "Take one prompt wey you don use before and add more context. You go feel the difference quick quick.",
+                "Use the prompt below with real task, but no put private information inside. You fit change the words inside the brackets. The important thing na the pattern: task, context, tone, format, then one follow-up question.",
             },
           },
         ],
         keyTakeaway: {
-          en: "A strong prompt usually has four parts: the task, the context, the tone, and the format.",
+          en: "Ask AI like you are briefing a helpful person. Give it the task, the context, the tone, and the format. If the first answer is close but not right, ask a follow-up instead of starting over.",
           pidgin:
-            "Strong prompt usually get four parts: the task, the context, the tone, and the format.",
+            "Ask AI like say you dey brief person wey wan help you. Give am the task, the context, the tone, and the format. If the first answer close but e no correct, ask follow-up instead of starting again.",
         },
         examplePrompt: {
-          en: "Write a polite WhatsApp message to a customer who has not paid their balance. Keep it firm but respectful. Use simple English and keep it under 80 words.",
+          en: "I need help with a real message.\n\nTask: Write a [WhatsApp message/email/caption] about [what happened].\nContext: [who the message is for, what they already know, and any important details].\nTone: [friendly, firm, respectful, simple, warm, or direct].\nFormat: Keep it under [number] words and give me 2 options.\n\nAfter writing it, tell me one thing I should check before I send it.",
           pidgin:
-            "Write polite WhatsApp message give customer wey never pay balance. Make e firm but respectful. Use simple English and make e no pass 80 words.",
+            "I need help with real message.\n\nTask: Write [WhatsApp message/email/caption] about [wetin happen].\nContext: [who the message dey for, wetin the person already sabi, and any important detail].\nTone: [friendly, firm, respectful, simple, warm, or direct].\nFormat: Make e no pass [number] words and give me 2 options.\n\nAfter you write am, tell me one thing wey I suppose check before I send am.",
         },
         practiceTask: {
-          en: "Pick one message you need to send this week. Write a basic prompt first, then improve it by adding the task, context, tone, and format. Compare the two answers and notice which one is more useful.",
+          en: "Pick one real message you need to write this week. It can be for a customer, classmate, colleague, church group, family member, or friend.\n\nFirst, ask AI in a weak way on purpose, like write a reminder message or help me write a caption. Read what it gives you.\n\nThen use the prompt above and fill in the brackets with your real details. Compare both answers. After that, ask one follow-up, such as make it shorter, make it sound more like WhatsApp, or make it warmer but still clear.",
           pidgin:
-            "Pick one message wey you need send this week. Write basic prompt first, then improve am by adding task, context, tone, and format. Compare the two answers and notice which one useful pass.",
+            "Pick one real message wey you need write this week. E fit be for customer, classmate, colleague, church group, family member, or friend.\n\nFirst, ask AI with weak style on purpose, like write reminder message or help me write caption. Read wetin e give you.\n\nThen use the prompt above and fill the brackets with your real details. Compare the two answers. After that, ask one follow-up, like make am shorter, make e sound more like WhatsApp, or make am warmer but still clear.",
         },
+        quickCheck: [
+          {
+            en: "What did your first prompt leave out?",
+            pidgin: "Wetin your first prompt leave out?",
+          },
+          {
+            en: "Which detail made the second answer more useful?",
+            pidgin: "Which detail make the second answer useful pass?",
+          },
+          {
+            en: "What follow-up did you ask instead of starting again?",
+            pidgin: "Which follow-up you ask instead of starting again?",
+          },
+          {
+            en: "Which sentence did you change so the final answer sounded more like you?",
+            pidgin:
+              "Which sentence you change so the final answer go sound more like you?",
+          },
+        ],
       },
       {
         slug: "lesson-3",
         title: {
-          en: "When To Trust AI",
+          en: "When to Trust AI",
           pidgin: "When You Fit Trust AI",
         },
         intro: {
-          en: "AI can be useful and still be wrong. The point is not to fear it. The point is to know what to check.",
+          en: "AI can help you move faster, but it can also sound sure when it is wrong. This lesson is about using the help without switching off your own judgement.",
           pidgin:
-            "AI fit help you and still wrong sometimes. No be to fear am. The main thing na to know wetin you suppose check.",
+            "AI fit help you move faster, but e fit still sound sure when e wrong. This lesson na about how to use the help without switching off your own sense.",
         },
         content: [
           {
             heading: {
-              en: "What this means",
-              pidgin: "Wetin this one mean",
+              en: "What trust means here",
+              pidgin: "Wetin trust mean here",
             },
             body: {
-              en: "Use AI for a first pass, not as the final authority. Some answers are good enough to edit. Some need checking. Some should not be used.",
+              en: "AI is useful for rough work. It can help with first drafts, ideas, summaries, explanations, outlines, and simple plans. That is real help, especially when you are stuck or tired.\n\nBut a useful answer is not always a correct answer. AI may invent a detail, use old information, misunderstand your situation, or write something that sounds better than it actually is.\n\nSo do not treat AI like the final authority. Treat it like a fast assistant. Let it help you start, then check the answer before you depend on it.",
               pidgin:
-                "Use AI for first pass, no treat am like final authority. Some answers good enough make you edit. Some need checking. Some no suppose be used.",
+                "AI dey useful for rough work. E fit help with first draft, ideas, summary, explanation, outline, and simple plan. That one na real help, especially when you stuck or you tire.\n\nBut useful answer no always mean correct answer. AI fit invent detail, use old information, misunderstand your situation, or write something wey sound better than wetin e really be.\n\nSo no treat AI like final authority. Treat am like fast assistant. Make e help you start, then check the answer before you depend on am.",
             },
           },
           {
             heading: {
-              en: "Where AI is useful",
-              pidgin: "Where AI dey useful",
+              en: "Before you trust the answer",
+              pidgin: "Before you trust the answer",
             },
             body: {
-              en: "AI is strongest when you need rough work: first drafts, ideas, summaries, simple explanations, and planning. Be more careful when the answer involves exact facts, private details, recent events, money, health, law, or rules you must follow.",
+              en: "Use this small check before you copy, send, post, submit, or act on an AI answer. The more serious the situation is, the more carefully you should check.\n\nIf the answer touches money, health, legal issues, private information, school work, workplace decisions, government rules, or anything that could affect another person, slow down. AI can still help, but it should not be the only thing you rely on.",
               pidgin:
-                "AI strong pass for rough work: first draft, ideas, summary, simple explanation, and planning. But take am easy when the answer get exact facts, private details, recent gist, money, health, law, or rules wey you must follow.",
+                "Use this small check before you copy, send, post, submit, or act on AI answer. The more serious the matter be, the more you suppose check am well.\n\nIf the answer touch money, health, legal matter, private information, school work, work decision, government rule, or anything wey fit affect another person, slow down. AI fit still help, but no make am the only thing wey you depend on.",
             },
+            examples: [
+              {
+                label: {
+                  en: "1. Facts",
+                  pidgin: "1. Facts",
+                },
+                content: {
+                  en: "Are the names, dates, prices, places, links, or claims correct?",
+                  pidgin:
+                    "The names, dates, prices, places, links, or claims correct?",
+                },
+              },
+              {
+                label: {
+                  en: "2. Fit",
+                  pidgin: "2. Fit",
+                },
+                content: {
+                  en: "Does this match your real situation?",
+                  pidgin: "E match your real situation?",
+                },
+              },
+              {
+                label: {
+                  en: "3. Tone",
+                  pidgin: "3. Tone",
+                },
+                content: {
+                  en: "Does it sound like you or the person/business you are writing for?",
+                  pidgin:
+                    "E sound like you or the person/business wey you dey write for?",
+                },
+              },
+              {
+                label: {
+                  en: "4. Risk",
+                  pidgin: "4. Risk",
+                },
+                content: {
+                  en: "Could this cause a problem if it is wrong?",
+                  pidgin: "If e wrong, e fit cause problem?",
+                },
+              },
+            ],
           },
           {
             heading: {
-              en: "A simple checking habit",
-              pidgin: "Simple way to check am",
+              en: "Ask AI to show uncertainty",
+              pidgin: "Ask AI make e show where e no sure",
             },
             body: {
-              en: "Read once for the main idea. Read again for details. Mark anything that sounds too neat, too confident, or too vague. Check important facts before you use the answer.",
+              en: "You can ask AI to be more careful. This helps because AI often writes in a confident voice, even when it is guessing.\n\nTry adding lines like: if you are not sure, say so. Tell me what needs checking. Separate facts from suggestions. Ask me follow-up questions if you need more information.\n\nThat does not make the answer perfect. You still need to check important things yourself. But it can make the weak spots easier to see.",
               pidgin:
-                "Read once to understand the main idea. Read again for details. Mark anything wey sound too neat, too confident, or too vague. Check important facts before you use the answer.",
+                "You fit ask AI make e careful pass. This one dey help because AI dey often write with confident voice, even when e dey guess.\n\nTry add lines like: if you no sure, talk say you no sure. Tell me wetin need checking. Separate facts from suggestions. Ask me follow-up questions if you need more information.\n\nThat one no mean say the answer go perfect. You still need check important things by yourself. But e fit make the weak spots easy to see.",
             },
           },
           {
@@ -423,71 +573,146 @@ export const courseModules: CourseModule[] = [
               pidgin: "Real example",
             },
             body: {
-              en: "Mariam asks AI to write a CV summary. The draft sounds good, but it adds skills she does not have. Mariam removes those lines, adds her real experience, and only keeps what is true.",
+              en: "Zainab helps her auntie post weekend food tray updates on WhatsApp. Her auntie sells jollof rice, fried rice, and chicken packs in Abuja. Zainab wants the message to sound clear, so she asks AI for help.",
               pidgin:
-                "Mariam ask AI make e write CV summary. The draft sound nice, but e add skills wey she no get. Mariam remove those lines, add her real experience, and keep only wetin true.",
+                "Zainab dey help her auntie post weekend food tray update for WhatsApp. Her auntie dey sell jollof rice, fried rice, and chicken packs for Abuja. Zainab want make the message clear, so she ask AI for help.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "What Zainab asked AI",
+                  pidgin: "Wetin Zainab ask AI",
+                },
+                content: {
+                  en: "Write a WhatsApp broadcast for my auntie's weekend food trays. Mention jollof rice, fried rice, chicken, delivery in Abuja, and make it sound friendly.",
+                  pidgin:
+                    "Write WhatsApp broadcast for my auntie weekend food trays. Mention jollof rice, fried rice, chicken, delivery for Abuja, and make e sound friendly.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Weekend food trays are ready. Get jollof rice, fried rice, and chicken packs for only N3,500. We deliver anywhere in Abuja within 30 minutes. Free delivery for orders above N10,000. Send a message now to place your order.",
+                  pidgin:
+                    "Weekend food trays don ready. Get jollof rice, fried rice, and chicken packs for only N3,500. We dey deliver anywhere for Abuja within 30 minutes. Free delivery for orders above N10,000. Send message now to place your order.",
+                },
+              },
+              {
+                label: {
+                  en: "What looked okay at first",
+                  pidgin: "Wetin look okay at first",
+                },
+                content: {
+                  en: "The message was short. It mentioned the food and sounded friendly. If Zainab was rushing, she might have copied it straight away.",
+                  pidgin:
+                    "The message short. E mention the food and e sound friendly. If Zainab dey rush, she fit copy am straight.",
+                },
+              },
+              {
+                label: {
+                  en: "What was wrong or risky",
+                  pidgin: "Wetin wrong or risky",
+                },
+                content: {
+                  en: "AI invented the price, the 30-minute delivery promise, and free delivery. Her auntie's real price was N4,500. Delivery depended on location. If Zainab posted the AI version, customers could complain or expect a promise the business could not keep.",
+                  pidgin:
+                    "AI invent the price, the 30-minute delivery promise, and free delivery. Her auntie real price na N4,500. Delivery depend on location. If Zainab post the AI version, customers fit complain or expect promise wey the business no fit keep.",
+                },
+              },
+              {
+                label: {
+                  en: "How she checked it",
+                  pidgin: "How she check am",
+                },
+                content: {
+                  en: "Zainab checked the price list, confirmed delivery with her auntie, and asked AI to rewrite the message using only the real details.",
+                  pidgin:
+                    "Zainab check the price list, confirm delivery with her auntie, and ask AI make e rewrite the message with only the real details.",
+                },
+              },
+              {
+                label: {
+                  en: "The safer final version",
+                  pidgin: "The safer final version",
+                },
+                content: {
+                  en: "Weekend trays are available this Saturday. Each pack comes with jollof rice, fried rice, and chicken for N4,500. Delivery is available in Abuja, and the delivery fee depends on your location. Send a message to order or ask for delivery price.",
+                  pidgin:
+                    "Weekend trays dey available this Saturday. Each pack come with jollof rice, fried rice, and chicken for N4,500. Delivery dey available for Abuja, and delivery fee depend on your location. Send message to order or ask for delivery price.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why this check matters",
+              pidgin: "Why this check matter",
+            },
+            body: {
+              en: "The first answer was not useless. It gave Zainab a structure and a friendly starting point. The problem was that AI filled empty spaces with guesses.\n\nThat is why checking matters. Keep what helps. Remove what AI invented. Add the real details. The safer version still sounds clear, but now it will not mislead customers.",
+              pidgin:
+                "The first answer no useless. E give Zainab structure and friendly starting point. The problem be say AI fill empty spaces with guesses.\n\nNa why checking matter. Keep wetin help. Remove wetin AI invent. Add the real details. The safer version still clear, but now e no go mislead customers.",
             },
           },
           {
             heading: {
-              en: "Why this works better",
-              pidgin: "Why this one better",
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
             },
             body: {
-              en: "She keeps the structure and removes the invention. That is the move. Use the help, but do not let AI invent your life for you.",
+              en: "Do not let a smooth answer rush you. Smooth is not the same as true.\n\nIf an AI answer gives a fact, price, rule, deadline, medical advice, legal advice, or anything about someone's private information, check it outside AI before you use it. Ask the person involved. Check the original source. Look at your own records. Use AI to help you think, not to replace checking.",
               pidgin:
-                "She keep the structure and remove the invention. Na the move be that. Use the help, but no let AI invent your life for you.",
+                "No let smooth answer rush you. Smooth no mean say e true.\n\nIf AI answer give fact, price, rule, deadline, medical advice, legal advice, or anything about person private information, check am outside AI before you use am. Ask the person involved. Check the original source. Look your own records. Use AI make e help you think, no use am replace checking.",
             },
           },
           {
             heading: {
-              en: "How to use the prompt",
-              pidgin: "How to use this prompt",
+              en: "Before you try it",
+              pidgin: "Before you try am",
             },
             body: {
-              en: "The prompt below asks AI to slow down and review its own answer. It helps you spot what is useful, what may be wrong, and what still needs checking.",
+              en: "The prompt below is for checking an answer you already have. You can use it after AI writes a message, summary, explanation, CV line, caption, or plan.\n\nPaste the answer in, add your real situation, and ask AI to point out what may be wrong. Then do your own check before using the final version.",
               pidgin:
-                "The prompt below ask AI make e slow down and review the answer. E help you spot wetin useful, wetin fit wrong, and wetin still need checking.",
-            },
-          },
-          {
-            heading: {
-              en: "One mistake to avoid",
-              pidgin: "One mistake to avoid",
-            },
-            body: {
-              en: "Do not let a smooth answer rush you. Smooth is not the same as true. If the answer affects money, health, school, work, safety, or another person, slow down.",
-              pidgin:
-                "No let smooth answer rush you. Smooth no mean say e true. If the answer fit affect money, health, school, work, safety, or another person, slow down.",
-            },
-          },
-          {
-            heading: {
-              en: "Before you move on",
-              pidgin: "Before you move",
-            },
-            body: {
-              en: "The useful skill is not just asking. It is reviewing the answer after it arrives.",
-              pidgin:
-                "The useful skill no be only to ask. Na to review the answer after e show.",
+                "The prompt below na for checking answer wey you already get. You fit use am after AI write message, summary, explanation, CV line, caption, or plan.\n\nPaste the answer inside, add your real situation, and ask AI make e point out wetin fit wrong. Then do your own check before you use the final version.",
             },
           },
         ],
         keyTakeaway: {
-          en: "Trust AI for help getting started, but check important details before you depend on the answer.",
+          en: "Use AI for drafts, ideas, summaries, and explanations, but slow down before you rely on it. Check facts, fit, tone, and risk, especially when money, health, law, private information, school, or work is involved.",
           pidgin:
-            "Trust AI make e help you start, but check important details before you depend on the answer.",
+            "Use AI for draft, ideas, summary, and explanation, but slow down before you depend on am. Check facts, fit, tone, and risk, especially when money, health, law, private information, school, or work dey involved.",
         },
         examplePrompt: {
-          en: "Review this AI answer before I use it. Tell me what sounds useful, what may be wrong or unclear, what facts I should verify, and how I can make it more honest and practical: [paste answer].",
+          en: "Review this AI answer before I use it.\n\nHere is the answer:\n[paste the AI answer]\n\nMy real situation:\n[explain what this is for and any important details]\n\nPlease check:\n1. What might be wrong, invented, or too confident?\n2. What facts should I verify myself?\n3. What does not fit my situation?\n4. What should I rewrite before using it?\n\nIf you are unsure about anything, say so. Ask me follow-up questions if you need more information.",
           pidgin:
-            "Check this AI answer before I use am. Tell me wetin useful, wetin fit wrong or unclear, wetin I need verify, and how I fit make am more honest and practical: [paste answer].",
+            "Review this AI answer before I use am.\n\nHere is the answer:\n[paste the AI answer]\n\nMy real situation:\n[explain wetin this thing dey for and any important details]\n\nPlease check:\n1. Wetin fit wrong, invented, or too confident?\n2. Which facts I suppose verify by myself?\n3. Wetin no match my situation?\n4. Wetin I suppose rewrite before I use am?\n\nIf you no sure about anything, talk am. Ask me follow-up questions if you need more information.",
         },
         practiceTask: {
-          en: "Ask AI to help with a simple task, then review the answer before using it. Write down three things: what is useful, what feels unclear, and what you need to check yourself.",
+          en: "Take one AI answer from this course or from a real task you tried recently. It can be a message, caption, summary, plan, or explanation.\n\nPaste it into the prompt above. When AI reviews it, mark three things: one line you can keep, one line you should change, and one fact you must check outside AI.\n\nThen rewrite the final version yourself. Even if the edit is small, make sure the final answer is true, fits your situation, and sounds like something you can stand behind.",
           pidgin:
-            "Ask AI make e help you with simple task, then review the answer before you use am. Write down three things: wetin useful, wetin no clear, and wetin you need check by yourself.",
+            "Take one AI answer from this course or from real task wey you try recently. E fit be message, caption, summary, plan, or explanation.\n\nPaste am inside the prompt above. When AI review am, mark three things: one line wey you fit keep, one line wey you suppose change, and one fact wey you must check outside AI.\n\nThen rewrite the final version by yourself. Even if the edit small, make sure the final answer true, e fit your situation, and e sound like something wey you fit stand behind.",
         },
+        quickCheck: [
+          {
+            en: "Which fact in the answer could cause trouble if it is wrong?",
+            pidgin: "Which fact inside the answer fit cause wahala if e wrong?",
+          },
+          {
+            en: "Which line sounds too confident or too perfect?",
+            pidgin: "Which line sound too confident or too perfect?",
+          },
+          {
+            en: "What do you need to check outside AI?",
+            pidgin: "Wetin you need check outside AI?",
+          },
+          {
+            en: "What follow-up question would make the answer safer?",
+            pidgin: "Which follow-up question go make the answer safer?",
+          },
+        ],
       },
     ],
   },
