@@ -1398,105 +1398,688 @@ export const courseModules: CourseModule[] = [
     lessons: [
       {
         slug: "lesson-1",
-        title: "Using AI for Writing",
-        intro:
-          "AI can help you start writing when your mind feels blank. Use it for drafts, ideas, and clearer wording, then edit the final result yourself.",
+        title: {
+          en: "Using AI for Writing",
+          pidgin: "How to Use AI for Writing",
+        },
+        intro: {
+          en: "AI can help you start writing when your mind is blank. The trick is to use it for drafts and direction, then make the final words sound like you.",
+          pidgin:
+            "AI fit help you start writing when your mind blank. The trick na to use am for draft and direction, then make the final words sound like you.",
+        },
         content: [
           {
-            heading: "Start with the writing goal",
-            body:
-              "Tell AI what you are trying to write. It may be an email, WhatsApp message, caption, CV summary, school paragraph, proposal, or report. The clearer the goal, the better the draft.",
+            heading: {
+              en: "What AI can help you write",
+              pidgin: "Wetin AI fit help you write",
+            },
+            body: {
+              en: "AI is useful when you need a first draft, a rewrite, a caption, an email, an announcement, a WhatsApp message, a CV line, or a cleaner version of rough notes.\n\nIt helps most when you already know the real situation but you are struggling to find the words. You bring the facts. AI helps arrange them.\n\nThe important thing is this: the first answer is a draft. Do not copy it just because it looks neat. Read it, remove what is not true, add your real details, and change any line that does not sound like you.",
+              pidgin:
+                "AI dey useful when you need first draft, rewrite, caption, email, announcement, WhatsApp message, CV line, or cleaner version of rough notes.\n\nE dey help pass when you already sabi the real situation but words no dey come. You bring the facts. AI go help arrange am.\n\nThe important thing na this: the first answer na draft. No copy am just because e look neat. Read am, remove wetin no true, add your real details, and change any line wey no sound like you.",
+            },
           },
           {
-            heading: "Give your rough thoughts",
-            body:
-              "You do not need perfect notes. You can paste rough bullet points, a messy paragraph, or a few ideas. Ask AI to organize them into a first draft you can improve.",
+            heading: {
+              en: "Give the writing some direction",
+              pidgin: "Give the writing direction",
+            },
+            body: {
+              en: "For writing, a strong prompt usually needs four things: the goal, the audience, the tone, and the key details.\n\nYou do not need to write a long brief. A few rough bullets can be enough. But AI needs to know what you are writing, who will read it, how it should sound, and which facts must be included.",
+              pidgin:
+                "For writing, strong prompt usually need four things: the goal, the audience, the tone, and the key details.\n\nYou no need write long brief. Few rough bullet points fit enough. But AI need know wetin you dey write, who go read am, how e suppose sound, and which facts must dey inside.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Goal",
+                  pidgin: "Goal",
+                },
+                content: {
+                  en: "What are you trying to write? A WhatsApp message, email, caption, notice, proposal, or apology?",
+                  pidgin:
+                    "Wetin you dey try write? WhatsApp message, email, caption, notice, proposal, or apology?",
+                },
+              },
+              {
+                label: {
+                  en: "Audience",
+                  pidgin: "Audience",
+                },
+                content: {
+                  en: "Who will read it? A customer, manager, parent, classmate, landlord, or group chat?",
+                  pidgin:
+                    "Who go read am? Customer, manager, parent, classmate, landlord, or group chat?",
+                },
+              },
+              {
+                label: {
+                  en: "Tone",
+                  pidgin: "Tone",
+                },
+                content: {
+                  en: "Should it sound friendly, firm, respectful, simple, warm, direct, or apologetic?",
+                  pidgin:
+                    "E suppose sound friendly, firm, respectful, simple, warm, direct, or apologetic?",
+                },
+              },
+              {
+                label: {
+                  en: "Key details",
+                  pidgin: "Key details",
+                },
+                content: {
+                  en: "What facts, names, prices, dates, locations, or limits must be correct?",
+                  pidgin:
+                    "Which facts, names, prices, dates, locations, or limits must correct?",
+                },
+              },
+            ],
           },
           {
-            heading: "Edit it to sound like you",
-            body:
-              "AI writing can sound too polished or too general. Read the draft, remove anything false, add your real details, and change any sentence that does not sound natural.",
+            heading: {
+              en: "Keep your own voice",
+              pidgin: "Keep your own voice",
+            },
+            body: {
+              en: "AI writing can sound too smooth. That is not always a good thing. A message can be clean and still feel like it came from a stranger.\n\nBefore you use AI writing, ask yourself: would I say this? Is this true? Is the tone right for the person reading it? Is anything important missing?\n\nYour job is not to make AI write perfectly. Your job is to shape the draft until it fits the real person, real place, and real situation.",
+              pidgin:
+                "AI writing fit sound too smooth. That one no always good. Message fit clean and still feel like say na stranger write am.\n\nBefore you use AI writing, ask yourself: I fit talk like this? This thing true? The tone correct for the person wey go read am? Anything important dey miss?\n\nYour work no be to make AI write perfectly. Your work na to shape the draft until e fit the real person, real place, and real situation.",
+            },
           },
           {
-            heading: "Real example",
-            body:
-              "Chika needs to email her manager about a delayed task. She gives AI the situation, the reason for the delay, and the new date she can deliver. AI drafts the email, then Chika makes it shorter and adds her own tone before sending it.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Kemi sells thrift bags on Instagram in Ibadan. A customer asks if a black tote bag is still available. Kemi wants to reply quickly, mention the price, and encourage the customer to pay before someone else picks it.",
+              pidgin:
+                "Kemi dey sell thrift bags for Instagram for Ibadan. Customer ask whether black tote bag still dey available. Kemi want reply quick, mention the price, and encourage the customer make she pay before another person pick am.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Kemi's rough request",
+                  pidgin: "Kemi rough request",
+                },
+                content: {
+                  en: "Write a reply to a customer asking about a bag.",
+                  pidgin: "Write reply give customer wey ask about bag.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Hello, thank you for your interest in the bag. It is still available. Please let me know if you would like to purchase it.",
+                  pidgin:
+                    "Hello, thank you for your interest in the bag. It is still available. Please let me know if you would like to purchase it.",
+                },
+              },
+              {
+                label: {
+                  en: "What felt off",
+                  pidgin: "Wetin no balance",
+                },
+                content: {
+                  en: "The reply was correct, but too plain. It did not mention the price, payment, delivery, or the fact that thrift items can sell fast. It also sounded a bit too formal for Instagram DM.",
+                  pidgin:
+                    "The reply correct, but e too plain. E no mention price, payment, delivery, or say thrift items fit sell fast. E still sound too formal for Instagram DM.",
+                },
+              },
+              {
+                label: {
+                  en: "The improved prompt",
+                  pidgin: "The improved prompt",
+                },
+                content: {
+                  en: "Write a short Instagram DM reply to a customer asking if a black thrift tote bag is still available.\n\nDetails:\nPrice: N12,000\nLocation: Ibadan\nDelivery: available, fee depends on area\nTone: friendly, natural, not too formal\nMention that payment confirms the order because it is a thrift item.",
+                  pidgin:
+                    "Write short Instagram DM reply give customer wey ask if black thrift tote bag still dey available.\n\nDetails:\nPrice: N12,000\nLocation: Ibadan\nDelivery: dey available, fee depend on area\nTone: friendly, natural, no too formal\nMention say payment dey confirm order because na thrift item.",
+                },
+              },
+              {
+                label: {
+                  en: "Better final version",
+                  pidgin: "Better final version",
+                },
+                content: {
+                  en: "Yes, it is still available. The black tote is N12,000. Delivery is available in Ibadan, and the fee depends on your area. Since it is thrift, payment confirms the order. I can send payment details if you want to take it.",
+                  pidgin:
+                    "Yes, e still dey available. The black tote na N12,000. Delivery dey available for Ibadan, and fee depend on your area. Since na thrift, payment dey confirm order. I fit send payment details if you want take am.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the improved version worked",
+              pidgin: "Why the improved version work",
+            },
+            body: {
+              en: "The second prompt gave AI the real job. It named the channel, the customer, the product, the price, the delivery detail, and the tone.\n\nKemi still needs to read the answer before sending it. She might add the customer's name or make the last line shorter. But the draft is now useful because it is built from her real details.",
+              pidgin:
+                "The second prompt give AI the real work. E mention the channel, the customer, the product, the price, delivery detail, and the tone.\n\nKemi still need read the answer before she send am. She fit add customer name or make the last line shorter. But the draft useful now because e come from her real details.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not let AI erase your voice. If you normally write simply, keep it simple. If your customer already knows you, do not send a message that sounds like a bank email.\n\nUse AI to get unstuck, not to sound like someone else.",
+              pidgin:
+                "No let AI erase your voice. If you normally write simple, keep am simple. If your customer already sabi you, no send message wey sound like bank email.\n\nUse AI make you no stuck, no use am sound like another person.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "The prompt below helps you turn rough writing notes into a first draft. Use it for a message, email, caption, announcement, or short update.",
+              pidgin:
+                "The prompt below go help you turn rough writing notes into first draft. Use am for message, email, caption, announcement, or short update.",
+            },
           },
         ],
-        keyTakeaway:
-          "AI can help you start and shape writing, but the final voice, details, and honesty should come from you.",
-        examplePrompt:
-          "Turn these rough notes into a clear first draft. Keep it warm, simple, and natural. Do not add facts I did not give you: [paste notes].",
-        practiceTask:
-          "Choose one message, email, caption, or paragraph you need to write. Give AI your rough notes, ask for a draft, then edit the draft so it sounds like you.",
+        keyTakeaway: {
+          en: "AI can help you start writing, but the final voice should still be yours. Give it the goal, audience, tone, and key details, then edit the draft before using it.",
+          pidgin:
+            "AI fit help you start writing, but the final voice suppose still be your own. Give am the goal, audience, tone, and key details, then edit the draft before you use am.",
+        },
+        examplePrompt: {
+          en: "Turn these rough notes into a clear first draft.\n\nWhat I am writing:\n[WhatsApp message, email, caption, announcement, or other]\n\nAudience:\n[who will read it]\n\nTone:\n[friendly, firm, respectful, warm, direct, or simple]\n\nKey details:\n[paste your rough notes, prices, dates, names, or facts]\n\nRules:\n- Do not add facts I did not give you\n- Keep it natural\n- Give me 2 options\n- After the draft, tell me what I should check before sending",
+          pidgin:
+            "Turn these rough notes into clear first draft.\n\nWetin I dey write:\n[WhatsApp message, email, caption, announcement, or other]\n\nAudience:\n[who go read am]\n\nTone:\n[friendly, firm, respectful, warm, direct, or simple]\n\nKey details:\n[paste your rough notes, prices, dates, names, or facts]\n\nRules:\n- No add facts wey I no give you\n- Make e natural\n- Give me 2 options\n- After the draft, tell me wetin I suppose check before I send am",
+        },
+        practiceTask: {
+          en: "Choose one real thing you need to write this week. It can be a WhatsApp reply, email, caption, notice, or short update.\n\nWrite your rough notes first. Then paste them into the prompt above. When AI gives you the draft, change at least two lines yourself before you use it.",
+          pidgin:
+            "Choose one real thing wey you need write this week. E fit be WhatsApp reply, email, caption, notice, or short update.\n\nWrite your rough notes first. Then paste am inside the prompt above. When AI give you the draft, change at least two lines by yourself before you use am.",
+        },
+        quickCheck: [
+          {
+            en: "What is the goal of the message?",
+            pidgin: "Wetin be the goal of the message?",
+          },
+          {
+            en: "Who is going to read it?",
+            pidgin: "Who go read am?",
+          },
+          {
+            en: "Which line sounds least like you?",
+            pidgin: "Which line no sound like you?",
+          },
+          {
+            en: "What detail must be checked before sending?",
+            pidgin: "Which detail you must check before you send am?",
+          },
+        ],
       },
       {
         slug: "lesson-2",
-        title: "Using AI for Research and Summaries",
-        intro:
-          "AI can help you understand information faster. Use it to explain, summarise, compare, and organize, but always check important facts.",
+        title: {
+          en: "Using AI for Research and Summaries",
+          pidgin: "How to Use AI for Research and Summary",
+        },
+        intro: {
+          en: "AI can help you understand long or confusing information faster. But it should help you think and check, not replace the source of truth.",
+          pidgin:
+            "AI fit help you understand long or confusing information faster. But e suppose help you think and check, no replace the source of truth.",
+        },
         content: [
           {
-            heading: "Use AI to understand faster",
-            body:
-              "When a topic feels confusing, ask AI to explain it in plain English. You can also ask for examples from work, school, business, or daily life.",
+            heading: {
+              en: "What AI is good for here",
+              pidgin: "Wetin AI good for here",
+            },
+            body: {
+              en: "AI is useful when you need to understand information quickly. You can paste a long note, article, message, meeting transcript, school material, or policy, then ask AI to explain it in simpler words.\n\nIt can pull out the main idea, key points, action items, confusing parts, and questions you should ask next.\n\nBut AI can also miss details or explain something wrongly. For important information, especially anything about money, health, law, school, work rules, or deadlines, check from the original source or someone responsible.",
+              pidgin:
+                "AI dey useful when you need understand information quick. You fit paste long note, article, message, meeting transcript, school material, or policy, then ask AI make e explain am with simpler words.\n\nE fit bring out the main idea, key points, action items, confusing parts, and questions wey you suppose ask next.\n\nBut AI fit still miss details or explain something wrongly. For important information, especially anything about money, health, law, school, work rules, or deadlines, check from the original source or person wey responsible.",
+            },
           },
           {
-            heading: "Ask for a clear summary",
-            body:
-              "If you have a long article, note, transcript, or document, ask AI to pull out the main idea, key points, action items, and questions you should ask next.",
+            heading: {
+              en: "A simple summary framework",
+              pidgin: "Simple summary framework",
+            },
+            body: {
+              en: "Do not only ask, summarise this. That can give you a neat paragraph that still hides what you need.\n\nAsk AI to separate the answer into parts. This makes the summary easier to check and easier to use.",
+              pidgin:
+                "No just ask, summarise this. That one fit give you neat paragraph wey still hide wetin you need.\n\nAsk AI make e separate the answer into parts. This one dey make the summary easier to check and easier to use.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Main idea",
+                  pidgin: "Main idea",
+                },
+                content: {
+                  en: "What is this text mostly about?",
+                  pidgin: "This text mostly dey about wetin?",
+                },
+              },
+              {
+                label: {
+                  en: "Key points",
+                  pidgin: "Key points",
+                },
+                content: {
+                  en: "What are the most important things to remember?",
+                  pidgin: "Which things important pass make person remember?",
+                },
+              },
+              {
+                label: {
+                  en: "Questions",
+                  pidgin: "Questions",
+                },
+                content: {
+                  en: "What should I ask or clarify before acting on this?",
+                  pidgin: "Wetin I suppose ask or clarify before I act on this?",
+                },
+              },
+              {
+                label: {
+                  en: "Needs checking",
+                  pidgin: "Need checking",
+                },
+                content: {
+                  en: "What facts, dates, prices, rules, or claims should I verify?",
+                  pidgin:
+                    "Which facts, dates, prices, rules, or claims I suppose verify?",
+                },
+              },
+            ],
           },
           {
-            heading: "Verify what matters",
-            body:
-              "AI can be wrong or outdated. Check names, dates, numbers, rules, prices, sources, and anything connected to school, money, health, law, or safety.",
+            heading: {
+              en: "Research is not the same as truth",
+              pidgin: "Research no be the same as truth",
+            },
+            body: {
+              en: "AI can make information easier to understand, but do not treat its answer as final truth. It can mix things up. It can sound confident about something that needs checking.\n\nIf you are using the answer for an assignment, business decision, work report, legal issue, medical issue, money decision, or public post, verify the important parts. Check the original document, official website, teacher, manager, expert, or trusted source.",
+              pidgin:
+                "AI fit make information easier to understand, but no treat the answer like final truth. E fit mix things up. E fit sound confident about something wey need checking.\n\nIf you dey use the answer for assignment, business decision, work report, legal matter, medical matter, money decision, or public post, verify the important parts. Check the original document, official website, teacher, manager, expert, or trusted source.",
+            },
           },
           {
-            heading: "Real example",
-            body:
-              "Yusuf has a long article about remote work. He asks AI for a five-point summary, then asks for the main lessons for a small Nigerian team. He uses the summary to understand the article faster, but checks the original before quoting anything.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Damilola is a student in Abeokuta. Her class rep sends a long WhatsApp message about a group assignment. The message has deadlines, group rules, and what each person should submit. Damilola wants a clear summary before she replies.",
+              pidgin:
+                "Damilola na student for Abeokuta. Her class rep send long WhatsApp message about group assignment. The message get deadlines, group rules, and wetin each person suppose submit. Damilola want clear summary before she reply.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "What she pasted",
+                  pidgin: "Wetin she paste",
+                },
+                content: {
+                  en: "Group 4, please note that our sociology assignment is due next Friday by 6pm. Everyone must submit their section to me by Wednesday night so we can edit on Thursday. Tobi and Rukayat should handle introduction. Damilola and Peace should handle causes and effects. Ahmed should handle recommendations. Please include at least two sources each. We also need one person to prepare slides before Friday morning.",
+                  pidgin:
+                    "Group 4, please note that our sociology assignment is due next Friday by 6pm. Everybody must submit their section to me by Wednesday night so we can edit on Thursday. Tobi and Rukayat go handle introduction. Damilola and Peace go handle causes and effects. Ahmed go handle recommendations. Please include at least two sources each. We also need one person to prepare slides before Friday morning.",
+                },
+              },
+              {
+                label: {
+                  en: "What she asked AI",
+                  pidgin: "Wetin she ask AI",
+                },
+                content: {
+                  en: "Summarise this class group message for me.\n\nSeparate it into:\n1. Main idea\n2. My own task\n3. Deadlines\n4. Questions I should ask\n5. Anything I need to verify before I start",
+                  pidgin:
+                    "Summarise this class group message for me.\n\nSeparate am into:\n1. Main idea\n2. My own task\n3. Deadlines\n4. Questions I suppose ask\n5. Anything I need verify before I start",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Main idea: Group 4 needs to submit the sociology assignment by next Friday at 6pm.\n\nYour task: You and Peace should handle causes and effects, with at least two sources each.\n\nDeadlines: Send your section by Wednesday night. Editing happens Thursday. Slides should be ready before Friday morning.\n\nQuestions to ask: Who is preparing the slides? How long should each section be? What citation style should you use?\n\nNeeds checking: Confirm the exact topic and whether the final submission is online or printed.",
+                  pidgin:
+                    "Main idea: Group 4 need submit sociology assignment by next Friday 6pm.\n\nYour task: You and Peace suppose handle causes and effects, with at least two sources each.\n\nDeadlines: Send your section by Wednesday night. Editing na Thursday. Slides suppose ready before Friday morning.\n\nQuestions to ask: Who go prepare the slides? How long each section suppose be? Which citation style una go use?\n\nNeeds checking: Confirm the exact topic and whether final submission na online or printed.",
+                },
+              },
+              {
+                label: {
+                  en: "What was useful",
+                  pidgin: "Wetin useful",
+                },
+                content: {
+                  en: "Damilola could quickly see her own task, the deadlines, and the questions to ask. She did not need to reread the long message five times.",
+                  pidgin:
+                    "Damilola fit quick see her own task, the deadlines, and the questions to ask. She no need read the long message five times.",
+                },
+              },
+              {
+                label: {
+                  en: "What she still checked",
+                  pidgin: "Wetin she still check",
+                },
+                content: {
+                  en: "She checked the original message again for the deadline and asked the class rep for the exact assignment topic. She did not depend only on AI for those details.",
+                  pidgin:
+                    "She check the original message again for the deadline and ask class rep for the exact assignment topic. She no depend only on AI for those details.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why this worked",
+              pidgin: "Why this one work",
+            },
+            body: {
+              en: "Damilola did not ask for a vague summary. She asked AI to separate the answer into useful parts. That made it easier to act on the information and easier to see what still needed checking.\n\nThis is the habit: use AI to make information clearer, then verify what matters.",
+              pidgin:
+                "Damilola no ask for vague summary. She ask AI make e separate the answer into useful parts. That make am easier to act on the information and easier to see wetin still need checking.\n\nNa the habit be this: use AI make information clearer, then verify wetin matter.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not quote AI as your source. If you need to cite, report, submit, or make a serious decision, go back to the original material or a trusted source.\n\nAI can help you understand the road. It should not be the only map.",
+              pidgin:
+                "No quote AI as your source. If you need cite, report, submit, or make serious decision, go back to the original material or trusted source.\n\nAI fit help you understand the road. E no suppose be the only map.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "Use the prompt below when you have a long text, notes, class message, article, meeting update, or document you need to understand quickly.",
+              pidgin:
+                "Use the prompt below when you get long text, notes, class message, article, meeting update, or document wey you need understand quick.",
+            },
           },
         ],
-        keyTakeaway:
-          "AI can make information easier to understand, but important facts still need your own checking.",
-        examplePrompt:
-          "Summarise this text for me. Give me the main idea, five key points, any action items, and three questions I should ask next: [paste text].",
-        practiceTask:
-          "Paste a long article, note, or document into AI. Ask for a summary, then compare the summary with the original and mark anything you need to verify.",
+        keyTakeaway: {
+          en: "AI can help you understand information faster, but it is not the final source of truth. Ask for main idea, key points, questions, and what needs checking.",
+          pidgin:
+            "AI fit help you understand information faster, but e no be final source of truth. Ask for main idea, key points, questions, and wetin need checking.",
+        },
+        examplePrompt: {
+          en: "Summarise this text for me in a way I can actually use.\n\nText:\n[paste the text]\n\nPlease separate the answer into:\n1. Main idea\n2. Key points\n3. Action items\n4. Questions I should ask next\n5. Facts, dates, numbers, rules, or claims I should verify\n\nUse simple language. If anything is unclear, say so.",
+          pidgin:
+            "Summarise this text for me in a way wey I fit actually use.\n\nText:\n[paste the text]\n\nPlease separate the answer into:\n1. Main idea\n2. Key points\n3. Action items\n4. Questions I suppose ask next\n5. Facts, dates, numbers, rules, or claims wey I suppose verify\n\nUse simple language. If anything no clear, talk am.",
+        },
+        practiceTask: {
+          en: "Find one long message, note, article, or document you need to understand. Paste it into the prompt above.\n\nRead the summary, then compare it with the original. Mark one useful point, one question you need to ask, and one fact you should verify outside AI.",
+          pidgin:
+            "Find one long message, note, article, or document wey you need understand. Paste am inside the prompt above.\n\nRead the summary, then compare am with the original. Mark one useful point, one question wey you need ask, and one fact wey you suppose verify outside AI.",
+        },
+        quickCheck: [
+          {
+            en: "What is the main idea of the text?",
+            pidgin: "Wetin be the main idea of the text?",
+          },
+          {
+            en: "What action do you need to take?",
+            pidgin: "Which action you need take?",
+          },
+          {
+            en: "What question should you ask before acting?",
+            pidgin: "Which question you suppose ask before you act?",
+          },
+          {
+            en: "Which fact should you verify from the original source?",
+            pidgin: "Which fact you suppose verify from the original source?",
+          },
+        ],
       },
       {
         slug: "lesson-3",
-        title: "Using AI in Everyday Tasks",
-        intro:
-          "AI is not only for work. It can help with small daily tasks, planning, learning, decisions, and simple organization.",
+        title: {
+          en: "Using AI in Everyday Tasks",
+          pidgin: "How to Use AI for Everyday Tasks",
+        },
+        intro: {
+          en: "AI is not only for big work. It can help you plan, organise, make checklists, think through options, and handle small tasks with less stress.",
+          pidgin:
+            "AI no be only for big work. E fit help you plan, organise, make checklist, think through options, and handle small tasks with less stress.",
+        },
         content: [
           {
-            heading: "Use it for small tasks",
-            body:
-              "You can ask AI to make a shopping list, plan errands, explain a bill, create a study plan, compare options, or turn a messy to-do list into steps.",
+            heading: {
+              en: "Start with small real tasks",
+              pidgin: "Start with small real tasks",
+            },
+            body: {
+              en: "Everyday AI use does not need to be dramatic. You can use it to plan a busy week, organise errands, make a shopping list, create a study routine, compare options, turn messy notes into steps, or think through a small budget.\n\nThe best place to start is with something you already need to do. Not a pretend task. A real task from your week.\n\nAI is helpful here because it can arrange your thoughts. But you still decide what fits your time, money, energy, and real life.",
+              pidgin:
+                "Everyday AI use no need dramatic. You fit use am plan busy week, organise errands, make shopping list, create study routine, compare options, turn messy notes into steps, or think through small budget.\n\nThe best place to start na something wey you already need do. No be pretend task. Real task from your week.\n\nAI dey helpful here because e fit arrange your thoughts. But na you still decide wetin fit your time, money, energy, and real life.",
+            },
           },
           {
-            heading: "Give your real limits",
-            body:
-              "Tell AI your budget, time, location, deadline, energy level, and what you already have. Everyday help is better when the answer fits your real life.",
+            heading: {
+              en: "Give AI your real limits",
+              pidgin: "Give AI your real limits",
+            },
+            body: {
+              en: "For everyday tasks, AI works better when you explain the real situation. Tell it your time, budget, location, deadline, energy level, what you already have, and what cannot change.\n\nIf you hide the limits, AI may give you a plan that looks nice but cannot work. A realistic plan is better than a perfect-looking plan.",
+              pidgin:
+                "For everyday tasks, AI dey work better when you explain the real situation. Tell am your time, budget, location, deadline, energy level, wetin you already get, and wetin no fit change.\n\nIf you hide the limits, AI fit give you plan wey look nice but no fit work. Realistic plan better pass plan wey only look perfect.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Time",
+                  pidgin: "Time",
+                },
+                content: {
+                  en: "How much time do you actually have?",
+                  pidgin: "How much time you actually get?",
+                },
+              },
+              {
+                label: {
+                  en: "Money",
+                  pidgin: "Money",
+                },
+                content: {
+                  en: "What is your budget or spending limit?",
+                  pidgin: "Wetin be your budget or spending limit?",
+                },
+              },
+              {
+                label: {
+                  en: "Place",
+                  pidgin: "Place",
+                },
+                content: {
+                  en: "Where are you starting from, and where do you need to go?",
+                  pidgin:
+                    "Where you dey start from, and where you need go?",
+                },
+              },
+              {
+                label: {
+                  en: "Energy",
+                  pidgin: "Energy",
+                },
+                content: {
+                  en: "Do you need a light plan or can you handle a packed day?",
+                  pidgin:
+                    "You need light plan or you fit handle packed day?",
+                },
+              },
+            ],
           },
           {
-            heading: "Turn the answer into action",
-            body:
-              "Ask for the answer in a format you can use immediately, like a checklist, schedule, short message, or step-by-step plan.",
+            heading: {
+              en: "Ask for something you can use",
+              pidgin: "Ask for something wey you fit use",
+            },
+            body: {
+              en: "Do not stop at advice. Ask AI to turn the answer into a checklist, simple schedule, shopping list, step-by-step plan, message, or table.\n\nThe output should help you move. If the answer is too broad, ask for the first three steps. If it is too much, ask AI to make it lighter. If it ignores your budget or time, tell it to adjust.",
+              pidgin:
+                "No stop for advice. Ask AI make e turn the answer into checklist, simple schedule, shopping list, step-by-step plan, message, or table.\n\nThe output suppose help you move. If the answer too broad, ask for the first three steps. If e too much, ask AI make e lighter. If e ignore your budget or time, tell am make e adjust.",
+            },
           },
           {
-            heading: "Real example",
-            body:
-              "Bisi has a busy Saturday. She needs to buy food, visit her aunt, wash clothes, and prepare for Monday. She gives AI the tasks, her available time, and her location. AI helps her arrange the day in a realistic order.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Bisi works during the week and has a packed Saturday in Lagos. She needs to go to the market, cook soup, wash clothes, visit her auntie, and prepare for Monday. She only has from 8am to 6pm and does not want to exhaust herself.",
+              pidgin:
+                "Bisi dey work during the week and her Saturday packed for Lagos. She need go market, cook soup, wash clothes, visit her auntie, and prepare for Monday. She only get 8am to 6pm and she no want tire finish.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "What Bisi asked first",
+                  pidgin: "Wetin Bisi ask first",
+                },
+                content: {
+                  en: "Help me plan my Saturday.",
+                  pidgin: "Help me plan my Saturday.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Start with exercise, then make breakfast, clean the house, do laundry, go shopping, visit family, prepare meals, and relax in the evening.",
+                  pidgin:
+                    "Start with exercise, then make breakfast, clean the house, do laundry, go shopping, visit family, prepare meals, and relax in the evening.",
+                },
+              },
+              {
+                label: {
+                  en: "What was weak",
+                  pidgin: "Wetin weak",
+                },
+                content: {
+                  en: "The answer was too general. It added exercise and cleaning even though Bisi did not ask for them. It did not consider Lagos movement, market time, cooking time, or her energy.",
+                  pidgin:
+                    "The answer too general. E add exercise and cleaning even though Bisi no ask for them. E no consider Lagos movement, market time, cooking time, or her energy.",
+                },
+              },
+              {
+                label: {
+                  en: "The improved prompt",
+                  pidgin: "The improved prompt",
+                },
+                content: {
+                  en: "Help me plan my Saturday realistically.\n\nLocation: Lagos\nAvailable time: 8am to 6pm\nTasks: go to market, cook soup, wash clothes, visit my auntie for 1 hour, prepare clothes and bag for Monday\nEnergy: I do not want a packed plan\nOutput: give me a simple schedule and a checklist\nNote: include buffer time for traffic and rest",
+                  pidgin:
+                    "Help me plan my Saturday realistically.\n\nLocation: Lagos\nAvailable time: 8am to 6pm\nTasks: go market, cook soup, wash clothes, visit my auntie for 1 hour, prepare clothes and bag for Monday\nEnergy: I no want packed plan\nOutput: give me simple schedule and checklist\nNote: include buffer time for traffic and rest",
+                },
+              },
+              {
+                label: {
+                  en: "Better plan",
+                  pidgin: "Better plan",
+                },
+                content: {
+                  en: "8:00 to 9:30, market run.\n9:30 to 10:00, rest and sort food items.\n10:00 to 12:30, cook soup.\n12:30 to 1:15, eat and rest.\n1:15 to 2:30, wash clothes.\n2:30 to 4:30, visit auntie, including movement time.\n4:30 to 5:30, prepare clothes and bag for Monday.\n5:30 to 6:00, check what is left and stop.",
+                  pidgin:
+                    "8:00 to 9:30, market run.\n9:30 to 10:00, rest and sort food items.\n10:00 to 12:30, cook soup.\n12:30 to 1:15, eat and rest.\n1:15 to 2:30, wash clothes.\n2:30 to 4:30, visit auntie, including movement time.\n4:30 to 5:30, prepare clothes and bag for Monday.\n5:30 to 6:00, check wetin remain and stop.",
+                },
+              },
+              {
+                label: {
+                  en: "What Bisi adjusted",
+                  pidgin: "Wetin Bisi adjust",
+                },
+                content: {
+                  en: "Bisi moved the auntie visit to Sunday because traffic might waste time. She kept the market, cooking, laundry, and Monday prep. The final plan was lighter and easier to follow.",
+                  pidgin:
+                    "Bisi move the auntie visit go Sunday because traffic fit waste time. She keep market, cooking, laundry, and Monday prep. The final plan come lighter and easier to follow.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the final plan helped",
+              pidgin: "Why the final plan help",
+            },
+            body: {
+              en: "The improved prompt gave AI real limits. It included time, place, tasks, energy level, and the kind of output Bisi wanted.\n\nBut Bisi still made the final decision. That is how everyday AI should work. Let it organise the options, then choose what fits your life.",
+              pidgin:
+                "The improved prompt give AI real limits. E include time, place, tasks, energy level, and the kind output wey Bisi want.\n\nBut Bisi still make the final decision. Na how everyday AI suppose work. Make e organise the options, then choose wetin fit your life.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not follow an AI plan blindly. AI does not feel your tiredness, know your exact transport situation, or understand every family expectation.\n\nUse the plan as a starting point. Adjust it like a real person living your real life.",
+              pidgin:
+                "No follow AI plan blindly. AI no dey feel your tiredness, e no know your exact transport situation, and e no understand every family expectation.\n\nUse the plan as starting point. Adjust am like real person wey dey live your real life.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "Use the prompt below for any small everyday task that needs planning. Start with something real and simple.",
+              pidgin:
+                "Use the prompt below for any small everyday task wey need planning. Start with something real and simple.",
+            },
           },
         ],
-        keyTakeaway:
-          "AI becomes useful in daily life when you give it your real situation and ask for a practical next step.",
-        examplePrompt:
-          "Help me plan these everyday tasks. Arrange them in a realistic order, show what to do first, and turn the plan into a simple checklist: [paste tasks].",
-        practiceTask:
-          "Write down five tasks you need to handle this week. Ask AI to turn them into a simple plan, then adjust the plan so it fits your real schedule.",
+        keyTakeaway: {
+          en: "AI can help with everyday planning, but the best answers come from your real situation. Give it your time, budget, place, limits, and task list, then adjust the plan yourself.",
+          pidgin:
+            "AI fit help with everyday planning, but the best answers dey come from your real situation. Give am your time, budget, place, limits, and task list, then adjust the plan by yourself.",
+        },
+        examplePrompt: {
+          en: "Help me plan this everyday task realistically.\n\nWhat I need to do:\n[paste your tasks]\n\nMy real situation:\nTime available: [add time]\nLocation: [add location]\nBudget or limit: [add budget or limit]\nEnergy level: [light, normal, or tired]\nWhat cannot change: [add anything fixed]\n\nPlease give me:\n1. A realistic order\n2. A simple schedule or checklist\n3. What to do first\n4. What I should remove or move if the plan is too much",
+          pidgin:
+            "Help me plan this everyday task realistically.\n\nWetin I need do:\n[paste your tasks]\n\nMy real situation:\nTime available: [add time]\nLocation: [add location]\nBudget or limit: [add budget or limit]\nEnergy level: [light, normal, or tired]\nWetin no fit change: [add anything fixed]\n\nPlease give me:\n1. Realistic order\n2. Simple schedule or checklist\n3. Wetin I suppose do first\n4. Wetin I suppose remove or move if the plan too much",
+        },
+        practiceTask: {
+          en: "Write down five tasks you need to handle this week. Choose one day and add your real limits: time, location, budget, and energy level.\n\nPaste everything into the prompt above. When AI gives you a plan, remove one thing that feels unrealistic and adjust one time block yourself.",
+          pidgin:
+            "Write down five tasks wey you need handle this week. Choose one day and add your real limits: time, location, budget, and energy level.\n\nPaste everything inside the prompt above. When AI give you plan, remove one thing wey no realistic and adjust one time block by yourself.",
+        },
+        quickCheck: [
+          {
+            en: "What real task did you ask AI to help with?",
+            pidgin: "Which real task you ask AI make e help with?",
+          },
+          {
+            en: "What limits did you give it?",
+            pidgin: "Which limits you give am?",
+          },
+          {
+            en: "Which part of the plan felt unrealistic?",
+            pidgin: "Which part of the plan no feel realistic?",
+          },
+          {
+            en: "What did you change so the plan fits your life?",
+            pidgin: "Wetin you change so the plan go fit your life?",
+          },
+        ],
       },
     ],
   },
