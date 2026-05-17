@@ -17,11 +17,13 @@ import { Waitlist } from "@/components/sections/Waitlist";
 import { CourseHome } from "@/components/course/CourseHome";
 import { CourseLayout } from "@/components/course/CourseLayout";
 import { CourseNotFound } from "@/components/course/CourseNotFound";
+import { FinalWrapUpPage } from "@/components/course/FinalWrapUpPage";
 import { LessonPage } from "@/components/course/LessonPage";
 import { ModulePage } from "@/components/course/ModulePage";
 import { StartHerePage } from "@/components/course/StartHerePage";
 import { StandaloneLessonPage } from "@/components/course/StandaloneLessonPage";
 import {
+  courseFinalWrapUp,
   courseStartHere,
   getCourseModule,
   getLessonReference,
@@ -111,6 +113,10 @@ function CourseRoutes({
     if (standalonePage) {
       if (standalonePage.slug === courseStartHere.slug) {
         return <StartHerePage navigate={navigate} />;
+      }
+
+      if (standalonePage.slug === courseFinalWrapUp.slug) {
+        return <FinalWrapUpPage navigate={navigate} />;
       }
 
       return <StandaloneLessonPage page={standalonePage} navigate={navigate} />;

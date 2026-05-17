@@ -3008,13 +3008,13 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
   lesson: {
     slug: "final-wrap-up",
     title: {
-      en: "Keep Using AI With Sense",
-      pidgin: "Continue to Use AI With Sense",
+      en: "You Made It To The End",
+      pidgin: "You Don Reach The End",
     },
     intro: {
-      en: "You have finished the core lessons. The next step is not to know everything. It is to build a simple habit you can keep using.",
+      en: "You have finished the beginner course. That matters. Now the point is to keep using AI for small real tasks, with your judgement still in the work.",
       pidgin:
-        "You don finish the core lessons. The next step no be to sabi everything. Na to build simple habit wey you fit continue to use.",
+        "You don finish the beginner course. That one matter. Now the main thing na to keep using AI for small real tasks, while your own judgement still dey inside the work.",
     },
     content: [
       {
@@ -3023,31 +3023,88 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
           pidgin: "Wetin you fit do now",
         },
         body: {
-          en: "You can ask AI clearer questions. You can give it context. You can improve the first answer instead of accepting it blindly. You can use it for writing, research, summaries, planning, and everyday tasks.\n\nYou also know where to be careful. AI can sound confident and still be wrong. It can be too generic. It can repeat private details if you paste them. It can help you think, but it should not make every decision for you.\n\nThat is a strong beginner foundation.",
+          en: "You do not need to remember every line of the course. Keep the main skills.\n\nYou now have a beginner foundation for using AI with more care. You can start with a task, explain what you need, improve the answer, and decide what is worth using.",
           pidgin:
-            "You fit ask AI clearer questions. You fit give am context. You fit improve the first answer instead of accepting am blindly. You fit use am for writing, research, summaries, planning, and everyday tasks.\n\nYou still sabi where you suppose careful. AI fit sound confident and still wrong. E fit too general. E fit repeat private details if you paste dem. E fit help you think, but e no suppose make every decision for you.\n\nThat one na strong beginner foundation.",
+            "You no need remember every line for the course. Keep the main skills.\n\nYou now get beginner foundation to use AI with better sense. You fit start with task, explain wetin you need, improve the answer, and decide wetin worth using.",
         },
+        examples: [
+          {
+            label: {
+              en: "Understand AI",
+              pidgin: "Understand AI",
+            },
+            content: {
+              en: "You know AI is a tool that responds to what you give it, not a person that already knows your full situation.",
+              pidgin:
+                "You sabi say AI na tool wey dey respond to wetin you give am, no be person wey already sabi your full matter.",
+            },
+          },
+          {
+            label: {
+              en: "Ask better questions",
+              pidgin: "Ask better questions",
+            },
+            content: {
+              en: "You can give the task, context, audience, details, tone, and format.",
+              pidgin:
+                "You fit give the task, context, audience, details, tone, and format.",
+            },
+          },
+          {
+            label: {
+              en: "Use AI for real tasks",
+              pidgin: "Use AI for real tasks",
+            },
+            content: {
+              en: "You can use AI for writing, summaries, research support, planning, and everyday work.",
+              pidgin:
+                "You fit use AI for writing, summaries, research support, planning, and everyday work.",
+            },
+          },
+          {
+            label: {
+              en: "Check before trusting",
+              pidgin: "Check before you trust",
+            },
+            content: {
+              en: "You know how to check facts, fit, tone, and risk before using an answer.",
+              pidgin:
+                "You sabi how to check facts, fit, tone, and risk before you use answer.",
+            },
+          },
+          {
+            label: {
+              en: "Protect private details",
+              pidgin: "Protect private details",
+            },
+            content: {
+              en: "You know not to paste passwords, OTPs, bank details, private chats, or sensitive information carelessly.",
+              pidgin:
+                "You sabi say make you no paste passwords, OTP, bank details, private chats, or sensitive information anyhow.",
+            },
+          },
+          {
+            label: {
+              en: "Stay in charge",
+              pidgin: "Stay in charge",
+            },
+            content: {
+              en: "You can use AI to help you think without letting it make every decision for you.",
+              pidgin:
+                "You fit use AI make e help you think without letting am make every decision for you.",
+            },
+          },
+        ],
       },
       {
         heading: {
-          en: "Build one simple routine",
-          pidgin: "Build one simple routine",
+          en: "The simple AI routine",
+          pidgin: "The simple AI routine",
         },
         body: {
-          en: "Do not try to use AI for everything at once. Choose one small routine first.\n\nMaybe every Monday you use AI to plan your week. Maybe twice a week you use it to improve one message before sending. Maybe after class or work, you use it to summarise notes and ask you questions.\n\nThe habit matters more than the tool. A simple routine will teach you faster than random use once in a while.",
+          en: "Use this routine when you are not sure what to do next: ask, check, edit, use.\n\nIt is simple, but it protects you from the two common mistakes: typing something too vague, then copying the answer too quickly.",
           pidgin:
-            "No try use AI for everything at once. Choose one small routine first.\n\nMaybe every Monday you use AI plan your week. Maybe twice a week you use am improve one message before you send. Maybe after class or work, you use am summarise notes and ask you questions.\n\nThe habit matter pass the tool. Simple routine go teach you faster than random use once in a while.",
-        },
-      },
-      {
-        heading: {
-          en: "Ask, check, edit, apply",
-          pidgin: "Ask, check, edit, apply",
-        },
-        body: {
-          en: "This is the main habit to keep after the course. Ask AI for help. Check the answer. Edit it so it fits your real situation. Then apply only what makes sense.\n\nIf you remember nothing else, remember this flow. It keeps you active. It keeps your voice in the work. It helps you avoid copying mistakes.",
-          pidgin:
-            "Na this main habit you suppose keep after the course. Ask AI for help. Check the answer. Edit am make e fit your real situation. Then apply only wetin make sense.\n\nIf you no remember anything else, remember this flow. E go keep you active. E go keep your voice inside the work. E go help you avoid copying mistakes.",
+            "Use this routine when you no sure wetin to do next: ask, check, edit, use.\n\nE simple, but e go protect you from two common mistakes: typing something wey too vague, then copying the answer too fast.",
         },
         examples: [
           {
@@ -3056,9 +3113,9 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
               pidgin: "Ask",
             },
             content: {
-              en: "Give AI the task, context, audience, details, and tone.",
+              en: "Tell AI the task, audience, details, tone, and format you want.",
               pidgin:
-                "Give AI the task, context, audience, details, and tone.",
+                "Tell AI the task, audience, details, tone, and format wey you want.",
             },
           },
           {
@@ -3067,9 +3124,9 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
               pidgin: "Check",
             },
             content: {
-              en: "Look for wrong facts, missing details, weak tone, private information, or advice that needs care.",
+              en: "Look for wrong facts, missing context, weak advice, private details, or anything too confident.",
               pidgin:
-                "Look for wrong facts, missing details, weak tone, private information, or advice wey need care.",
+                "Look for wrong facts, missing context, weak advice, private details, or anything wey too confident.",
             },
           },
           {
@@ -3078,135 +3135,203 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
               pidgin: "Edit",
             },
             content: {
-              en: "Change the answer until it sounds true, useful, and natural for you.",
+              en: "Change the answer so it sounds true, useful, and natural for the situation.",
               pidgin:
-                "Change the answer until e sound true, useful, and natural for you.",
+                "Change the answer make e sound true, useful, and natural for the situation.",
             },
           },
           {
             label: {
-              en: "Apply",
-              pidgin: "Apply",
+              en: "Use",
+              pidgin: "Use",
             },
             content: {
-              en: "Use the answer in the real world only after you have made the final judgement.",
+              en: "Use only the part that makes sense after you have checked it.",
               pidgin:
-                "Use the answer for real world only after you don make the final judgement.",
+                "Use only the part wey make sense after you don check am.",
             },
           },
         ],
       },
       {
         heading: {
-          en: "A small weekly plan",
-          pidgin: "Small weekly plan",
+          en: "A five-day practice plan",
+          pidgin: "Five-day practice plan",
         },
         body: {
-          en: "Try a small weekly plan for the next four weeks. Keep it light enough that you can actually do it.\n\nChoose one writing task, one learning task, and one everyday task each week. That might be a WhatsApp reply, a summary of notes, and a plan for market day. Or an email, a study topic, and a simple budget.\n\nAfter each task, write one sentence: what did AI help with, and what did I still decide myself?",
+          en: "For the next week, keep practice small. You are not trying to become an expert in five days. You are building a habit you can repeat.",
           pidgin:
-            "Try small weekly plan for the next four weeks. Make e light enough so you fit actually do am.\n\nChoose one writing task, one learning task, and one everyday task every week. E fit be WhatsApp reply, summary of notes, and plan for market day. Or email, study topic, and simple budget.\n\nAfter each task, write one sentence: wetin AI help with, and wetin I still decide by myself?",
-        },
-      },
-      {
-        heading: {
-          en: "Real example",
-          pidgin: "Real example",
-        },
-        body: {
-          en: "Bisi sells food bowls and also takes evening classes. She does not want AI to become another thing on her long list. So she keeps the routine small.",
-          pidgin:
-            "Bisi dey sell food bowls and she still dey take evening classes. She no want make AI become another stress for her list. So she keep the routine small.",
+            "For next week, keep the practice small. You no dey try become expert in five days. You dey build habit wey you fit repeat.",
         },
         examples: [
           {
             label: {
-              en: "Her routine",
-              pidgin: "Her routine",
+              en: "Day 1",
+              pidgin: "Day 1",
             },
             content: {
-              en: "Monday: ask AI to plan three posts for the week.\nWednesday: paste class notes and ask for a simple summary.\nFriday: ask AI to review one customer message before sending.",
+              en: "Use AI to improve one real message before you send it.",
               pidgin:
-                "Monday: ask AI make e plan three posts for the week.\nWednesday: paste class notes and ask for simple summary.\nFriday: ask AI make e review one customer message before she send.",
+                "Use AI improve one real message before you send am.",
             },
           },
           {
             label: {
-              en: "What AI gave back",
-              pidgin: "Wetin AI give back",
+              en: "Day 2",
+              pidgin: "Day 2",
             },
             content: {
-              en: "AI gave Bisi caption ideas, a short class summary, and a cleaner customer reply. Some lines sounded too formal, so she changed them before using them.",
+              en: "Ask AI to explain one topic you need to understand.",
               pidgin:
-                "AI give Bisi caption ideas, short class summary, and cleaner customer reply. Some lines too formal, so she change dem before she use dem.",
+                "Ask AI make e explain one topic wey you need understand.",
             },
           },
           {
             label: {
-              en: "What Bisi decided herself",
-              pidgin: "Wetin Bisi decide by herself",
+              en: "Day 3",
+              pidgin: "Day 3",
             },
             content: {
-              en: "She chose the post that matched her real menu, removed a claim she could not prove, and rewrote the customer reply in her normal voice.",
+              en: "Use AI to summarise one note, article, message, or document.",
               pidgin:
-                "She choose the post wey match her real menu, remove one claim wey she no fit prove, and rewrite the customer reply with her normal voice.",
+                "Use AI summarise one note, article, message, or document.",
             },
           },
           {
             label: {
-              en: "Why it helped",
-              pidgin: "Why e help",
+              en: "Day 4",
+              pidgin: "Day 4",
             },
             content: {
-              en: "The routine saved time, but Bisi still stayed in charge. AI helped her start and improve. She checked, edited, and made the final call.",
+              en: "Use AI to plan one task, then remove anything unrealistic.",
               pidgin:
-                "The routine save time, but Bisi still stay in charge. AI help her start and improve. She check, edit, and make the final decision.",
+                "Use AI plan one task, then remove anything wey no realistic.",
+            },
+          },
+          {
+            label: {
+              en: "Day 5",
+              pidgin: "Day 5",
+            },
+            content: {
+              en: "Review what worked and save one prompt you want to reuse.",
+              pidgin:
+                "Review wetin work and save one prompt wey you wan reuse.",
             },
           },
         ],
       },
       {
         heading: {
-          en: "Keep learning slowly",
-          pidgin: "Continue to learn slowly",
+          en: "Prompts worth keeping",
+          pidgin: "Prompts wey worth saving",
         },
         body: {
-          en: "You do not need to master every AI tool this week. Keep one small practice habit. Notice where AI helps. Notice where it fails. Keep your judgement awake.\n\nConfidence comes from repeated use, not from reading one perfect explanation.",
+          en: "You do not need a huge prompt library. Save a few prompts that help you do real work.\n\nStart with prompts that help you draft, check, simplify, and plan. Then edit them as you learn what works for you.",
           pidgin:
-            "You no need master every AI tool this week. Keep one small practice habit. Notice where AI help. Notice where e fail. Keep your judgement awake.\n\nConfidence dey come from repeated use, no be from reading one perfect explanation.",
+            "You no need big prompt library. Save few prompts wey dey help you do real work.\n\nStart with prompts wey help you draft, check, simplify, and plan. Then edit dem as you dey learn wetin work for you.",
+        },
+        examples: [
+          {
+            label: {
+              en: "Draft",
+              pidgin: "Draft",
+            },
+            content: {
+              en: "Write a first draft for [task]. Audience: [who]. Tone: [tone]. Details to include: [details].",
+              pidgin:
+                "Write first draft for [task]. Audience: [who]. Tone: [tone]. Details to include: [details].",
+            },
+          },
+          {
+            label: {
+              en: "Check",
+              pidgin: "Check",
+            },
+            content: {
+              en: "Review this answer before I use it. Tell me what may be wrong, missing, too private, or too confident.",
+              pidgin:
+                "Review this answer before I use am. Tell me wetin fit wrong, missing, too private, or too confident.",
+            },
+          },
+          {
+            label: {
+              en: "Simplify",
+              pidgin: "Simplify",
+            },
+            content: {
+              en: "Explain this in simpler words with one Nigerian example.",
+              pidgin:
+                "Explain this with simpler words and one Nigerian example.",
+            },
+          },
+          {
+            label: {
+              en: "Plan",
+              pidgin: "Plan",
+            },
+            content: {
+              en: "Help me plan this task. Ask me what you need to know before giving the plan.",
+              pidgin:
+                "Help me plan this task. Ask me wetin you need know before you give me the plan.",
+            },
+          },
+        ],
+      },
+      {
+        heading: {
+          en: "Keep improving your prompts",
+          pidgin: "Keep improving your prompts",
+        },
+        body: {
+          en: "A better prompt is usually a clearer version of your first thought. You do not need fancy words.\n\nWhen an answer is weak, do not always start again. Tell AI what to change. Say what is missing. Give one more detail. Ask it to explain its assumptions. Ask it to make the answer more specific to your situation.",
+          pidgin:
+            "Better prompt na usually clearer version of your first thought. You no need fancy words.\n\nWhen answer weak, no always start again. Tell AI wetin to change. Talk wetin miss. Give one more detail. Ask am make e explain the assumptions. Ask am make the answer more specific to your situation.",
+        },
+      },
+      {
+        heading: {
+          en: "Your next step",
+          pidgin: "Your next step",
+        },
+        body: {
+          en: "Pick one real task for this week. Not a perfect task. Not a huge task. One message, one topic, one summary, one plan, or one decision you need to think through.\n\nUse the final prompt below. Save one prompt that works. That is enough for the next step.",
+          pidgin:
+            "Pick one real task for this week. No be perfect task. No be big task. One message, one topic, one summary, one plan, or one decision wey you need think through.\n\nUse the final prompt below. Save one prompt wey work. That one don enough for next step.",
         },
       },
     ],
     keyTakeaway: {
-      en: "AI becomes useful when it becomes a small, steady habit. Ask, check, edit, apply, and keep your judgement in the work.",
+      en: "AI is not the skill. The skill is knowing what to ask, what to check, and what to change before using the answer.",
       pidgin:
-        "AI dey useful when e become small, steady habit. Ask, check, edit, apply, and keep your judgement inside the work.",
+        "AI no be the skill. The skill na to sabi wetin to ask, wetin to check, and wetin to change before you use the answer.",
     },
     examplePrompt: {
-      en: "Help me build a simple weekly AI practice routine.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings I want help with:\n[list 3 areas, like writing, study, planning, summaries, customer messages, job search]\n\nMy time limit:\n[how many minutes I can practise each week]\n\nPlease create:\n1. One writing practice task\n2. One learning or summary task\n3. One everyday planning task\n4. A short checklist for what I should check before using AI's answer\n5. One question I should answer after each practice",
+      en: "Help me keep using AI after this beginner course.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThis week, I want help with:\n[one real task]\n\nTime I have:\n[how much time]\n\nPlease help me:\n1. Turn this into a clear AI task\n2. Write a good prompt I can use\n3. Tell me what details I should add\n4. Tell me what I should check before using the answer\n5. Suggest one small way to improve the prompt after the first answer\n6. Give me one version of the prompt worth saving",
       pidgin:
-        "Help me build simple weekly AI practice routine.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings wey I want help with:\n[list 3 areas, like writing, study, planning, summaries, customer messages, job search]\n\nMy time limit:\n[how many minutes I fit practise each week]\n\nPlease create:\n1. One writing practice task\n2. One learning or summary task\n3. One everyday planning task\n4. Short checklist for wetin I suppose check before I use AI answer\n5. One question I suppose answer after each practice",
+        "Help me keep using AI after this beginner course.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThis week, I want help with:\n[one real task]\n\nTime wey I get:\n[how much time]\n\nPlease help me:\n1. Turn this into clear AI task\n2. Write good prompt wey I fit use\n3. Tell me which details I suppose add\n4. Tell me wetin I suppose check before I use the answer\n5. Suggest one small way to improve the prompt after the first answer\n6. Give me one version of the prompt wey worth saving",
     },
     practiceTask: {
-      en: "Use the prompt above and build your first weekly AI routine.\n\nChoose only two or three practice moments for the week. Add them to your calendar or notes. After each one, write what AI helped with and what you changed yourself.",
+      en: "Choose one task for this week and use the prompt above.\n\nAfter AI replies, save one prompt you would actually reuse. Then write one sentence about what you checked or changed before using the answer.",
       pidgin:
-        "Use the prompt above and build your first weekly AI routine.\n\nChoose only two or three practice moments for the week. Add dem to your calendar or notes. After each one, write wetin AI help with and wetin you change by yourself.",
+        "Choose one task for this week and use the prompt above.\n\nAfter AI reply, save one prompt wey you fit actually reuse. Then write one sentence about wetin you check or change before you use the answer.",
     },
     quickCheck: [
       {
-        en: "What is one AI habit you can repeat every week?",
-        pidgin: "Which one AI habit you fit repeat every week?",
+        en: "What task will I use AI for this week?",
+        pidgin: "Which task I go use AI for this week?",
       },
       {
-        en: "What kind of answers do you need to check carefully?",
-        pidgin: "Which kind answers you need check well?",
+        en: "What kind of answer do I need?",
+        pidgin: "Which kind answer I need?",
       },
       {
-        en: "Where do you still need to use your own judgement?",
-        pidgin: "Where you still need use your own judgement?",
+        en: "What will I check before using it?",
+        pidgin: "Wetin I go check before I use am?",
       },
       {
-        en: "What is your next small practice task?",
-        pidgin: "Wetin be your next small practice task?",
+        en: "What prompt is worth saving?",
+        pidgin: "Which prompt worth saving?",
       },
     ],
   },
