@@ -112,9 +112,9 @@ export const courseStartHere: CourseStandaloneLesson = {
       pidgin: "Start From Here",
     },
     intro: {
-      en: "This free beginner course is for people who want to use AI for real work, school, business, and everyday tasks without needing a tech background.",
+      en: "This free beginner course starts with everyday AI use: writing, planning, summarising, asking better questions, and checking answers before you use them.",
       pidgin:
-        "This free beginner course na for person wey wan sabi how to use AI for real work, business, school, or everyday matter. You no need coding. You no need big grammar.",
+        "This free beginner course go start with everyday AI use first: writing message, planning, summarising, asking better questions, and checking answer before you use am.",
     },
     content: [
       {
@@ -123,9 +123,9 @@ export const courseStartHere: CourseStandaloneLesson = {
           pidgin: "Wetin this course be",
         },
         body: {
-          en: "AI for Everyone is a practical course for complete beginners. It is not about coding, building apps, or sounding like a tech person.\n\nIt is about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: writing a message, understanding a topic, planning your week, summarising notes, improving a draft, or thinking through an idea.\n\nYou will learn how to ask clearly, work with the answer, check what matters, and decide what to use.",
+          en: "AI for Everyone is a practical course for complete beginners. This first course starts with everyday use first, not technical jargon or trying to sound like a tech person.\n\nIt is about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: writing a message, understanding a topic, planning your week, summarising notes, improving a draft, or thinking through an idea.\n\nYou will learn how to ask clearly, work with the answer, check what matters, and decide what to use.",
           pidgin:
-            "AI for Everyone na practical course for complete beginners. No be about coding, building apps, or sounding like tech person.\n\nNa about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: write message, understand topic, plan your week, summarise notes, improve draft, or think through idea.\n\nYou go learn how to ask clearly, work with the answer, check wetin matter, and decide wetin you go use.",
+            "AI for Everyone na practical course for complete beginners. This first course go start with everyday use first, no be technical jargon or trying to sound like tech person.\n\nNa about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: write message, understand topic, plan your week, summarise notes, improve draft, or think through idea.\n\nYou go learn how to ask clearly, work with the answer, check wetin matter, and decide wetin you go use.",
         },
       },
       {

@@ -44,8 +44,11 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           openModule: "Open module",
           modules: "modules",
           coreLessons: "core lessons",
-          startAndWrap: "Start Here + final wrap-up",
+          startAndWrap: "Start From Here + final wrap-up",
           promptPractice: "One prompt and one practice task for every lesson",
+          journey: "Course journey",
+          journeyPath:
+            "Start From Here -> Module 1 -> Module 2 -> Module 3 -> Module 4 -> Final Wrap-up",
           firstCoreLesson: "First core lesson",
           moduleLessonOne: "Module 01, Lesson 1",
           firstCoreDescription:
@@ -53,7 +56,8 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           openLessonOne: "Open Lesson 1",
           finalWrapUp: "Final wrap-up",
           finalWrapUpDescription:
-            "Close the course with simple weekly AI routine wey you fit keep.",
+            "Use this after Module 4 to build simple weekly AI routine wey you fit keep.",
+          finalWrapUpNote: "Use am after you finish the 4 modules.",
           openWrapUp: "Open wrap-up",
           howToUse: "How to use this course",
           howToUseDescription:
@@ -80,6 +84,9 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           coreLessons: "core lessons",
           startAndWrap: "Start Here + final wrap-up",
           promptPractice: "One prompt and one practice task per lesson",
+          journey: "Course journey",
+          journeyPath:
+            "Start Here -> Module 1 -> Module 2 -> Module 3 -> Module 4 -> Final Wrap-up",
           firstCoreLesson: "First core lesson",
           moduleLessonOne: "Module 01, Lesson 1",
           firstCoreDescription:
@@ -87,7 +94,8 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           openLessonOne: "Open Lesson 1",
           finalWrapUp: "Final wrap-up",
           finalWrapUpDescription:
-            "Close the course with a simple weekly AI routine you can keep.",
+            "Use this after Module 4 to build your simple weekly AI routine.",
+          finalWrapUpNote: "Best after you complete the 4 modules.",
           openWrapUp: "Open wrap-up",
           howToUse: "How to use this course",
           howToUseDescription:
@@ -203,7 +211,16 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           <span>{labels.promptPractice}</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <section className="mb-8 bg-neutral-50 border border-neutral-200 rounded-2xl p-5 sm:p-6">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
+            {labels.journey}
+          </p>
+          <p className="text-sm sm:text-base leading-7 text-neutral-600">
+            {labels.journeyPath}
+          </p>
+        </section>
+
+        <div className="grid grid-cols-1 gap-3">
           {firstLesson && (
             <CourseLink
               href={getLessonPath(firstLesson.module.slug, firstLesson.lesson.slug)}
@@ -225,26 +242,6 @@ export function CourseHome({ navigate }: CourseHomeProps) {
               </span>
             </CourseLink>
           )}
-
-          <CourseLink
-            href={getCourseFinalWrapUpPath()}
-            navigate={navigate}
-            className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-neutral-400 mb-2">
-              {labels.finalWrapUp}
-            </p>
-            <h2 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
-              {finalWrapUpTitle}
-            </h2>
-            <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[32ch] sm:max-w-none">
-              {labels.finalWrapUpDescription}
-            </p>
-            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
-              {labels.openWrapUp}
-              <ArrowRight size={16} />
-            </span>
-          </CourseLink>
         </div>
 
         <section className="mt-10 bg-neutral-900 text-white rounded-2xl p-5 sm:p-7">
@@ -258,6 +255,34 @@ export function CourseHome({ navigate }: CourseHomeProps) {
                 {labels.howToUseDescription}
               </p>
             </div>
+          </div>
+        </section>
+
+        <section className="mt-4 border border-neutral-200 rounded-2xl p-5 sm:p-6 bg-surface">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-neutral-400 mb-2">
+                {labels.finalWrapUp}
+              </p>
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                {finalWrapUpTitle}
+              </h2>
+              <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-[34ch] sm:max-w-xl">
+                {labels.finalWrapUpDescription}
+              </p>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-brand-700">
+                {labels.finalWrapUpNote}
+              </p>
+            </div>
+
+            <CourseLink
+              href={getCourseFinalWrapUpPath()}
+              navigate={navigate}
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 hover:border-brand-300 hover:text-brand-700 transition-colors"
+            >
+              {labels.openWrapUp}
+              <ArrowRight size={16} />
+            </CourseLink>
           </div>
         </section>
       </div>
