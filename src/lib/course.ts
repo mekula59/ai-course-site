@@ -136,9 +136,9 @@ export const courseStartHere: CourseStandaloneLesson = {
           pidgin: "Wetin this course be",
         },
         body: {
-          en: "AI for Everyone is a practical course for complete beginners. This first course starts with everyday use first, not technical jargon or trying to sound like a tech person.\n\nIt is about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: writing a message, understanding a topic, planning your week, summarising notes, improving a draft, or thinking through an idea.\n\nYou will learn how to ask clearly, work with the answer, check what matters, and decide what to use.",
+          en: "AI for Everyone is a practical course for complete beginners. This first course starts with everyday use first, not technical jargon or trying to sound like a tech person.\n\nIn this course, when I say AI, I mostly mean tools like ChatGPT, Claude, and Gemini. You type something in, and they give you a response back. Some people call these LLMs, but you do not need that term to start.\n\nThese tools can help with real things: writing a message, understanding a topic, planning your week, summarising notes, improving a draft, or thinking through an idea.\n\nYou will learn how to ask clearly, work with the answer, check what matters, and decide what to use.",
           pidgin:
-            "AI for Everyone na practical course for complete beginners. This first course go start with everyday use first, no be technical jargon or trying to sound like tech person.\n\nNa about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: write message, understand topic, plan your week, summarise notes, improve draft, or think through idea.\n\nYou go learn how to ask clearly, work with the answer, check wetin matter, and decide wetin you go use.",
+            "AI for Everyone na practical course for person wey dey start from scratch. This first course go start with everyday AI use first, no be plenty tech grammar or trying to sound like tech person.\n\nFor this course, when I talk AI, I mostly mean tools like ChatGPT, Claude, and Gemini. You type wetin you want, e go give you answer back. Some people dey call am LLM, but you no need that grammar to start.\n\nThese tools fit help with real things: write message, understand topic, plan your week, summarise notes, improve draft, or think through idea.\n\nYou go learn how to ask clearly, work with the answer, check wetin matter, and decide wetin you go use.",
         },
       },
       {
@@ -215,9 +215,9 @@ export const courseStartHere: CourseStandaloneLesson = {
               pidgin: "Try",
             },
             content: {
-              en: "Copy the prompt, replace the bracketed parts with your own details, and run it in your AI tool.",
+              en: "Copy the prompt, replace the bracketed parts with your own details, and run it in ChatGPT, Claude, Gemini, or any AI chat tool you use.",
               pidgin:
-                "Copy the prompt, replace the bracket parts with your own details, and run am for your AI tool.",
+                "Copy the prompt, replace the bracket parts with your own details, and run am for ChatGPT, Claude, Gemini, or any AI chat tool wey you dey use.",
             },
           },
           {
@@ -261,9 +261,9 @@ export const courseStartHere: CourseStandaloneLesson = {
           pidgin: "How to use the prompts",
         },
         body: {
-          en: "Each lesson includes a copyable prompt. Copy it, paste it into your AI tool, and replace the bracketed parts with your own details.\n\nThe prompt is only a starting point. If the first answer is close but not right, ask AI to adjust it. You can say make it shorter, make it warmer, use simpler words, ask me questions first, or remove anything that sounds too formal.\n\nDo not paste private details unless they are truly needed. Use placeholders like [customer], [amount], or [location].",
+          en: "Each lesson includes a copyable prompt. Copy it, paste it into ChatGPT, Claude, Gemini, or any AI chat tool you use, and replace the bracketed parts with your own details.\n\nThe prompt is only a starting point. If the first answer is close but not right, ask AI to adjust it. You can say make it shorter, make it warmer, use simpler words, ask me questions first, or remove anything that sounds too formal.\n\nDo not paste private details unless they are truly needed. Use placeholders like [customer], [amount], or [location].",
           pidgin:
-            "Each lesson get prompt wey you fit copy. Copy am, paste am inside your AI tool, and replace the bracket parts with your own details.\n\nThe prompt na only starting point. If the first answer close but e no correct, ask AI make e adjust am. You fit say make am shorter, make am warmer, use simpler words, ask me questions first, or remove anything wey sound too formal.\n\nNo paste private details unless dem really need am. Use placeholders like [customer], [amount], or [location].",
+            "Each lesson get prompt wey you fit copy. Copy am, paste am inside ChatGPT, Claude, Gemini, or any AI chat tool wey you dey use, and replace the bracket parts with your own details.\n\nThe prompt na only starting point. If the first answer close but e no correct, ask AI make e adjust am. You fit say make am shorter, make am warmer, use simpler words, ask me questions first, or remove anything wey sound too formal.\n\nNo paste private details unless dem really need am. Use placeholders like [customer], [amount], or [location].",
         },
       },
       {
@@ -357,9 +357,9 @@ export const courseModules: CourseModule[] = [
               pidgin: "Wetin AI mean here",
             },
             body: {
-              en: "In this course, when I say AI, I mostly mean tools like ChatGPT, Gemini, Claude, or Copilot. You type something in. The tool replies with something back.\n\nThat reply might be a draft, an explanation, a list, a summary, a plan, or an idea. You can ask it to write a message, explain a topic, compare options, turn rough notes into cleaner words, or help you start when your mind is blank.\n\nA simple way to think about it: AI is software that can respond to your words in a useful way. It is not a person sitting inside the app. It does not know your life by default. It only works with what you give it.",
+              en: "In this course, when I say AI, I mostly mean tools like ChatGPT, Claude, Gemini, or Copilot. These are AI chat tools. You give them a request, question, or task, and they respond with text you can read, edit, check, or use.\n\nThat response might be a draft, an explanation, a list, a summary, a plan, or an idea. You can ask it to write a message, explain a topic, compare options, turn rough notes into cleaner words, or help you start when your mind is blank.\n\nA simple way to think about it: AI is software that can respond to your words in a useful way. It is not a person sitting inside the app. It does not know your life by default. It only works with what you give it.",
               pidgin:
-                "For this course, when I talk AI, I mostly mean tools like ChatGPT, Gemini, Claude, or Copilot. You type something inside. The tool go reply you back.\n\nThat reply fit be draft, explanation, list, summary, plan, or idea. You fit ask am make e write message, explain topic, compare options, arrange rough notes, or help you start when your mind blank.\n\nSimple way to see am: AI na software wey fit respond to your words in useful way. No be person wey sit down inside the app. E no sabi your life by default. E dey work with wetin you give am.",
+                "For this course, when I talk AI, I mostly mean tools like ChatGPT, Claude, Gemini, or Copilot. These ones na AI chat tools. You give dem request, question, or task, dem go reply with text wey you fit read, edit, check, or use.\n\nThat reply fit be draft, explanation, list, summary, plan, or idea. You fit ask am make e write message, explain topic, compare options, arrange rough notes, or help you start when your mind blank.\n\nSimple way to see am: AI na software wey fit respond to your words in useful way. No be person wey sit down inside the app. E no sabi your life by default. E dey work with wetin you give am.",
             },
           },
           {
@@ -470,14 +470,14 @@ export const courseModules: CourseModule[] = [
             "No carry vague word go meet AI. Carry real situation. Make e give you first draft, then check the facts, add wetin only you sabi, and make the final answer sound like you.",
         },
         examplePrompt: {
-          en: "I am new to AI.\nExplain AI to me in simple words.\n\nUse examples from everyday life in Nigeria, like WhatsApp messages, school work, small business, or office tasks.\n\nAfter the explanation, give me:\n1. Three simple ways I can use AI this week\n2. One small task I should try now\n3. One mistake I should avoid",
+          en: "I am new to AI chat tools like ChatGPT, Claude, and Gemini.\nExplain them to me in simple words.\n\nUse examples from everyday life in Nigeria, like WhatsApp messages, school work, small business, or office tasks.\n\nAfter the explanation, give me:\n1. Three simple ways I can use AI this week\n2. One small task I should try now\n3. One mistake I should avoid",
           pidgin:
-            "I dey new to AI.\nExplain AI give me with simple words.\n\nUse examples from everyday life for Nigeria, like WhatsApp messages, school work, small business, or office tasks.\n\nAfter the explanation, give me:\n1. Three simple ways wey I fit use AI this week\n2. One small task wey I fit try now\n3. One mistake wey I suppose avoid",
+            "I dey new to AI chat tools like ChatGPT, Claude, and Gemini.\nExplain dem give me with simple words.\n\nUse examples from everyday life for Nigeria, like WhatsApp messages, school work, small business, or office tasks.\n\nAfter the explanation, give me:\n1. Three simple ways wey I fit use AI this week\n2. One small task wey I fit try now\n3. One mistake wey I suppose avoid",
         },
         practiceTask: {
-          en: "Open any AI tool and paste the prompt above. Read the answer once. Do not worry yet about whether it is perfect.\n\nPick one example it gives you, then ask this follow-up:\n\nMake this fit my own situation. I am [write who you are or what you do], and I want to use AI for [write one real task].\n\nAfter it replies, change at least one line yourself. This part is important. You are learning how to shape the answer, not just collect it.",
+          en: "Open ChatGPT, Claude, Gemini, or any AI chat tool you use, and paste the prompt above. Read the answer once. Do not worry yet about whether it is perfect.\n\nPick one example it gives you, then ask this follow-up:\n\nMake this fit my own situation. I am [write who you are or what you do], and I want to use AI for [write one real task].\n\nAfter it replies, change at least one line yourself. This part is important. You are learning how to shape the answer, not just collect it.",
           pidgin:
-            "Open any AI tool and paste the prompt above. Read the answer once. No worry first whether e perfect.\n\nPick one example wey e give you, then ask this follow-up:\n\nMake this one fit my own situation. I be [write who you be or wetin you dey do], and I want use AI for [write one real task].\n\nAfter e reply, change at least one line by yourself. This part important. You dey learn how to shape the answer, no be only to collect am.",
+            "Open ChatGPT, Claude, Gemini, or any AI chat tool wey you dey use, and paste the prompt above. Read the answer once. No worry first whether e perfect.\n\nPick one example wey e give you, then ask this follow-up:\n\nMake this one fit my own situation. I be [write who you be or wetin you dey do], and I want use AI for [write one real task].\n\nAfter e reply, change at least one line by yourself. This part important. You dey learn how to shape the answer, no be only to collect am.",
         },
         quickCheck: [
           {
@@ -3025,9 +3025,9 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
       pidgin: "You Don Reach The End",
     },
     intro: {
-      en: "You have finished the beginner course. That matters. Now the point is to keep using AI for small real tasks, with your judgement still in the work.",
+      en: "You have finished the beginner course. That matters. Now the point is to keep using AI chat tools like ChatGPT, Claude, and Gemini for small real tasks, with your judgement still in the work.",
       pidgin:
-        "You don finish the beginner course. That one matter. Now the main thing na to keep using AI for small real tasks, while your own judgement still dey inside the work.",
+        "You don finish the beginner course. That one matter. Now the main thing na to keep using AI chat tools like ChatGPT, Claude, and Gemini for small real tasks, while your own judgement still dey inside the work.",
     },
     content: [
       {
@@ -3036,9 +3036,9 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
           pidgin: "Wetin you fit do now",
         },
         body: {
-          en: "You do not need to remember every line of the course. Keep the main skills.\n\nYou now have a beginner foundation for using AI with more care. You can start with a task, explain what you need, improve the answer, and decide what is worth using.",
+          en: "You do not need to remember every line of the course. Keep the main skills.\n\nYou now have a beginner foundation for using practical AI chat tools with more care. You can start with a task, explain what you need, improve the answer, and decide what is worth using.",
           pidgin:
-            "You no need remember every line for the course. Keep the main skills.\n\nYou now get beginner foundation to use AI with better sense. You fit start with task, explain wetin you need, improve the answer, and decide wetin worth using.",
+            "You no need remember every line for the course. Keep the main skills.\n\nYou now get beginner foundation to use practical AI chat tools with better sense. You fit start with task, explain wetin you need, improve the answer, and decide wetin worth using.",
         },
         examples: [
           {
@@ -3047,9 +3047,9 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
               pidgin: "Understand AI",
             },
             content: {
-              en: "You know AI is a tool that responds to what you give it, not a person that already knows your full situation.",
+              en: "You know AI here mostly means chat tools that respond to what you give them, not a person that already knows your full situation.",
               pidgin:
-                "You sabi say AI na tool wey dey respond to wetin you give am, no be person wey already sabi your full matter.",
+                "You sabi say AI here mostly mean chat tools wey dey respond to wetin you give dem, no be person wey already sabi your full matter.",
             },
           },
           {
@@ -3354,9 +3354,9 @@ export const beginnerCourse: Course = {
   slug: "beginner-ai",
   title: "AI for Everyone: Beginner AI Course",
   description: {
-    en: "Learn how to use AI for real work, business, school, and everyday tasks in English and Nigerian Pidgin.",
+    en: "Learn how to use AI chat tools like ChatGPT, Claude, and Gemini for real work, business, school, and everyday tasks in English and Nigerian Pidgin.",
     pidgin:
-      "Learn how to use AI for real work, business, school, and everyday tasks with English and Nigerian Pidgin.",
+      "Learn how to use AI chat tools like ChatGPT, Claude, and Gemini for real work, business, school, and everyday matter, with English and Nigerian Pidgin.",
   },
   level: {
     en: "Beginner",
