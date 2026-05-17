@@ -9,7 +9,7 @@ import type { Lang } from "@/types/language";
 const EASE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 
 const STATS = [
-  { value: "50+", label: "lessons" },
+  { value: "12", label: "core lessons" },
   { value: "EN/PID", label: "bilingual" },
   { value: "100%", label: "practical" },
 ];
@@ -49,11 +49,11 @@ const SPECIMENS: Record<Lang, Specimen[]> = {
       prompt: "Write a professional but warm email from me to my supplier Tunde about a delayed delivery. Under 100 words.",
     },
     {
-      module: "Module 05",
-      lesson: "AI at Work",
-      insight: "The people saving the most time are not using the most advanced tools. They have clearer habits.",
-      promptLabel: "A workflow you will build",
-      prompt: "Summarise this meeting transcript in 5 bullet points, then list 3 follow-up actions with owners.",
+      module: "Module 04",
+      lesson: "When AI Gets Things Wrong",
+      insight: "AI can sound confident and still miss important details. You will learn how to check before you use the answer.",
+      promptLabel: "A checking prompt you will use",
+      prompt: "Review this answer before I use it. Tell me what might be wrong, what needs checking, and what sounds too confident.",
     },
   ],
   pidgin: [
@@ -79,11 +79,11 @@ const SPECIMENS: Record<Lang, Specimen[]> = {
       prompt: "Write professional but warm email from me to my supplier Tunde about delayed delivery. Under 100 words.",
     },
     {
-      module: "Module 05",
-      lesson: "AI for Work",
-      insight: "The people wey dey save most time no be the ones with most advanced tools. Dem just get clearer habits.",
-      promptLabel: "Workflow wey you go build",
-      prompt: "Summarise this meeting transcript in 5 bullet points, then list 3 follow-up actions with owners.",
+      module: "Module 04",
+      lesson: "When AI Answer Wrong",
+      insight: "AI fit sound confident and still miss important details. You go learn how to check before you use the answer.",
+      promptLabel: "Checking prompt wey you go use",
+      prompt: "Review this answer before I use it. Tell me what might be wrong, what needs checking, and what sounds too confident.",
     },
   ],
 };

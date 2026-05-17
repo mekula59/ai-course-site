@@ -32,27 +32,27 @@ export function CourseHome({ course = beginnerCourse, navigate }: CourseHomeProp
   const labels =
     lang === "pidgin"
       ? {
-          freeCourse: "Free Course",
+          freeCourse: "Free course",
           startHere: "Start from here",
           startHereDescription:
-            "Begin with short guide to the course, the language switch, copyable prompts, and practice tasks.",
+            "Start with small guide to the course, language switch, copyable prompts, and practice tasks.",
           startHereButton: "Start From Here",
-          moduleOverview: "Module overview",
+          moduleOverview: "Course map",
           allModules: "All modules",
           moduleOverviewDescription:
-            "Start with Module 1, or open any module make you see the lessons.",
+            "Start with Module 1, or open any module make you see wetin dey inside.",
           module: "Module",
           of: "of",
           lessons: "lessons",
           openModule: "Open module",
           modules: "modules",
-          coreLessons: "core lessons",
+          coreLessons: "main lessons",
           startAndWrap: "Start From Here + final wrap-up",
           promptPractice: "One prompt and one practice task for every lesson",
           journey: "Course journey",
           journeyPath:
             "Start From Here -> Module 1 -> Module 2 -> Module 3 -> Module 4 -> Final Wrap-up",
-          firstCoreLesson: "First core lesson",
+          firstCoreLesson: "First main lesson",
           moduleLessonOne: "Module 01, Lesson 1",
           firstCoreDescription:
             "Begin the first module after you finish Start Here.",

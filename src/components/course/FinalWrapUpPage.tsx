@@ -68,20 +68,20 @@ export function FinalWrapUpPage({
   const labels =
     lang === "pidgin"
       ? {
-          backToCourse: "Back to course",
+          backToCourse: "Go back to course",
           stepLabel: `Step ${currentStepNumber} of ${totalCourseSteps}`,
-          complete: "Course complete",
-          summary: "What changed",
+          complete: "Course done",
+          summary: "Wetin don change",
           routine: "Simple routine",
-          weeklyPlan: "Weekly practice plan",
+          weeklyPlan: "Practice plan for the week",
           prompts: "Prompts to keep",
           finalPrompt: "Final prompt",
           copyPrompt: "Copy prompt",
           copied: "Copied",
-          nextStep: "Next step",
+          nextStep: "Next thing to do",
           quickCheck: "Final quick check",
           remember: "Wetin to remember",
-          previous: "Previous",
+          previous: "Lesson before this",
           finish: "Finish",
           backHome: "Back to course home",
         }

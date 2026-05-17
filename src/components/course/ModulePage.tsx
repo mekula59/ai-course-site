@@ -30,10 +30,10 @@ export function ModulePage({
   const labels =
     lang === "pidgin"
       ? {
-          backToCourse: "Back to course",
+          backToCourse: "Go back to course",
           module: "Module",
           lessons: "lessons",
-          moduleIntro: "Work through these lessons in order for the smoothest path.",
+          moduleIntro: "Follow these lessons one by one. E go make the module easier.",
           startModule: "Start this module",
           lessonsHeading: "Lessons",
           lessonCount: "Lesson",

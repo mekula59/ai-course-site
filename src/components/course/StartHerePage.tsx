@@ -67,14 +67,14 @@ export function StartHerePage({
   const labels =
     lang === "pidgin"
       ? {
-          backToCourse: "Back to course",
+          backToCourse: "Go back to course",
           stepLabel: `Step ${currentStepNumber} of ${totalCourseSteps}`,
-          promise: "Course promise",
-          howItWorks: "How this course works",
+          promise: "Wetin course go help you do",
+          howItWorks: "How this course dey work",
           promptToTry: "Prompt to try",
           copyPrompt: "Copy prompt",
           copied: "Copied",
-          firstAction: "First action",
+          firstAction: "First thing to do",
           quickCheck: "Quick check",
           remember: "Wetin to remember",
           next: "Next",

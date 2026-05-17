@@ -61,8 +61,8 @@ export function LessonArticle({
           quickCheck: "Quick check",
           copyPrompt: "Copy prompt",
           copied: "Copied",
-          previous: "Previous",
-          next: "Next",
+          previous: "Lesson before this",
+          next: "Next lesson",
           finish: "Finish",
           backToCourse: "Back to course home",
         }

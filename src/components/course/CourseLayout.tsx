@@ -46,6 +46,9 @@ export function CourseLayout({ children, navigate }: CourseLayoutProps) {
     lang === "pidgin"
       ? "Read slowly, practise as you go, and keep wetin work for you."
       : "Read slowly, practise as you go, and keep what works.";
+  const courseListLabel = lang === "pidgin" ? "Course list" : "Courses";
+  const footerTitle =
+    lang === "pidgin" ? "AI for Everyone course" : "AI for Everyone Course";
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-ivory text-neutral-900 flex flex-col">
@@ -68,7 +71,7 @@ export function CourseLayout({ children, navigate }: CourseLayoutProps) {
               className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
             >
               <BookOpen size={16} />
-              Courses
+              {courseListLabel}
             </CourseLink>
           </div>
         </nav>
@@ -78,7 +81,7 @@ export function CourseLayout({ children, navigate }: CourseLayoutProps) {
 
       <footer className="border-t border-neutral-200/80 bg-surface px-5 py-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-neutral-500">
-          <p className="font-medium text-neutral-700">AI for Everyone Course</p>
+          <p className="font-medium text-neutral-700">{footerTitle}</p>
           <p>{footerCopy}</p>
         </div>
       </footer>

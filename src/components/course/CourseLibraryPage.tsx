@@ -17,14 +17,14 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
   const labels =
     lang === "pidgin"
       ? {
-          eyebrow: "Course library",
-          title: "Choose your course",
+          eyebrow: "Course list",
+          title: "Choose course wey you wan start",
           intro:
             "Start with the beginner AI course. More courses go come later.",
           modules: "modules",
-          lessons: "core lessons",
+          lessons: "main lessons",
           start: "Start course",
-          coming: "More courses coming later.",
+          coming: "More courses go come later.",
         }
       : {
           eyebrow: "Course library",
