@@ -112,21 +112,67 @@ export const courseStartHere: CourseStandaloneLesson = {
       pidgin: "Start From Here",
     },
     intro: {
-      en: "Welcome. This course is for complete beginners who want to use AI in normal life, not people trying to sound technical.",
+      en: "This free beginner course is for people who want to use AI for real work, school, business, and everyday tasks without needing a tech background.",
       pidgin:
-        "Welcome. This course na for complete beginners wey wan use AI for normal life, no be for people wey wan sound technical.",
+        "This free beginner course na for person wey wan sabi how to use AI for real work, business, school, or everyday matter. You no need coding. You no need big grammar.",
     },
     content: [
       {
         heading: {
-          en: "Who this course is for",
-          pidgin: "Who this course dey for",
+          en: "What this course is",
+          pidgin: "Wetin this course be",
         },
         body: {
-          en: "This free course is for you if you have heard people talk about AI, but you are still not sure how to use it well.\n\nYou may be a student, worker, business owner, creator, parent, job seeker, or just someone trying to keep up. You do not need a tech background. You do not need to know coding. You do not need to use big words.\n\nThe goal is simple: learn how to ask better questions, use the answers carefully, and apply AI to real work without losing your own judgement.",
+          en: "AI for Everyone is a practical course for complete beginners. It is not about coding, building apps, or sounding like a tech person.\n\nIt is about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: writing a message, understanding a topic, planning your week, summarising notes, improving a draft, or thinking through an idea.\n\nYou will learn how to ask clearly, work with the answer, check what matters, and decide what to use.",
           pidgin:
-            "This free course dey for you if you don hear people talk about AI, but you still no sure how to use am well.\n\nYou fit be student, worker, business owner, creator, parent, job seeker, or just person wey dey try catch up. You no need tech background. You no need sabi coding. You no need use big grammar.\n\nThe goal simple: learn how to ask better questions, use the answers with sense, and apply AI to real work without losing your own judgement.",
+            "AI for Everyone na practical course for complete beginners. No be about coding, building apps, or sounding like tech person.\n\nNa about using AI tools like ChatGPT, Gemini, Claude, or Copilot to help with real things: write message, understand topic, plan your week, summarise notes, improve draft, or think through idea.\n\nYou go learn how to ask clearly, work with the answer, check wetin matter, and decide wetin you go use.",
         },
+      },
+      {
+        heading: {
+          en: "What you will be able to do",
+          pidgin: "Wetin you go fit do",
+        },
+        body: {
+          en: "After the course, you should feel more comfortable using AI without feeling lost or dependent on it.\n\nYou will not know everything, and you do not need to. You should be able to start with a real task, give AI useful details, improve the answer, and know when to slow down and check.",
+          pidgin:
+            "After the course, you suppose feel more comfortable to use AI without feeling lost or depending on am too much.\n\nYou no go sabi everything, and you no need sabi everything. You suppose fit start with real task, give AI useful details, improve the answer, and know when you suppose slow down and check.",
+        },
+        examples: [
+          {
+            label: {
+              en: "Ask better",
+              pidgin: "Ask better",
+            },
+            content: {
+              en: "Give AI the task, audience, details, and tone instead of typing one vague sentence.",
+              pidgin:
+                "Give AI the task, audience, details, and tone instead of typing one vague sentence.",
+            },
+          },
+          {
+            label: {
+              en: "Improve answers",
+              pidgin: "Improve answers",
+            },
+            content: {
+              en: "Tell AI what to make clearer, shorter, warmer, more direct, or more specific.",
+              pidgin:
+                "Tell AI wetin e suppose make clearer, shorter, warmer, more direct, or more specific.",
+            },
+          },
+          {
+            label: {
+              en: "Stay careful",
+              pidgin: "Stay careful",
+            },
+            content: {
+              en: "Check important facts, remove private details, and make the final decision yourself.",
+              pidgin:
+                "Check important facts, remove private details, and make the final decision by yourself.",
+            },
+          },
+        ],
       },
       {
         heading: {
@@ -134,9 +180,9 @@ export const courseStartHere: CourseStandaloneLesson = {
           pidgin: "How to use the course",
         },
         body: {
-          en: "Move through it like a workbook. Read one lesson, try the prompt, do the small practice task, then answer the quick check before moving on.\n\nYou can finish a lesson in one sitting, but do not rush the practice. The practice is where the learning starts to enter your hands.\n\nThe course has this Start Here page, four core modules with twelve lessons, and a final wrap-up at the end. If you are new, start here and follow the order the first time.",
+          en: "Use this course like a workbook. Read one lesson, try the prompt, do the small practice task, then answer the quick check before you move on.\n\nThe course has this Start Here page, four core modules with twelve lessons, and a final wrap-up. If you are new, follow the order the first time.",
           pidgin:
-            "Use am like workbook. Read one lesson, try the prompt, do the small practice task, then answer the quick check before you move.\n\nYou fit finish one lesson for one sitting, but no rush the practice. Na for the practice the learning go start to enter your hand.\n\nThe course get this Start Here page, four core modules with twelve lessons, and final wrap-up for the end. If you dey new, start here and follow the order the first time.",
+            "Use this course like workbook. Read one lesson, try the prompt, do the small practice task, then answer the quick check before you move.\n\nThe course get this Start Here page, four core modules with twelve lessons, and final wrap-up. If you dey new, follow the order the first time.",
         },
         examples: [
           {
@@ -187,13 +233,13 @@ export const courseStartHere: CourseStandaloneLesson = {
       },
       {
         heading: {
-          en: "English and Pidgin",
-          pidgin: "English and Pidgin",
+          en: "Choose English or Pidgin",
+          pidgin: "Choose English or Pidgin",
         },
         body: {
-          en: "You can use the EN and Pidgin switch at the top of the course. Choose the language that helps the lesson land better.\n\nPidgin is not a side note here. It is another full way to learn the same lesson. You can read in English, switch to Pidgin for clarity, then switch back if you want.\n\nUse whichever version makes the idea easier to carry into your real life.",
+          en: "Use the EN and Pidgin switch at the top of the course. English and Pidgin are two full ways to learn here. Pidgin is not a small support note.\n\nYou can read in English, switch to Pidgin when you want a more familiar explanation, or stay in Pidgin from start to finish.",
           pidgin:
-            "You fit use the EN and Pidgin switch for the top of the course. Choose the language wey make the lesson enter better.\n\nPidgin no be side note here. Na another full way to learn the same lesson. You fit read for English, switch to Pidgin make e clear, then switch back if you want.\n\nUse the version wey make the idea easy to carry enter your real life.",
+            "Use the EN and Pidgin switch for the top of the course. English and Pidgin na two full ways to learn here. Pidgin no be small support note.\n\nYou fit read for English, switch to Pidgin when you want explanation wey familiar pass, or stay for Pidgin from start to finish.",
         },
       },
       {
@@ -202,54 +248,65 @@ export const courseStartHere: CourseStandaloneLesson = {
           pidgin: "How to use the prompts",
         },
         body: {
-          en: "Each lesson includes a copyable prompt. The prompt is not magic. It is just a clear starting point.\n\nWhen you see bracketed text like [describe your task], replace it with your own real details. If the prompt asks for a tone, choose a tone that fits your situation. If the answer is close but not right, ask AI to adjust it instead of starting over.\n\nDo not paste private details unless they are truly needed. You can use placeholders like [customer], [amount], or [location].",
+          en: "Each lesson includes a copyable prompt. Copy it, paste it into your AI tool, and replace the bracketed parts with your own details.\n\nThe prompt is only a starting point. If the first answer is close but not right, ask AI to adjust it. You can say make it shorter, make it warmer, use simpler words, ask me questions first, or remove anything that sounds too formal.\n\nDo not paste private details unless they are truly needed. Use placeholders like [customer], [amount], or [location].",
           pidgin:
-            "Each lesson get prompt wey you fit copy. The prompt no be magic. Na clear starting point.\n\nWhen you see bracket text like [describe your task], replace am with your own real details. If the prompt ask for tone, choose tone wey fit your situation. If the answer close but e no correct, ask AI make e adjust am instead of starting again.\n\nNo paste private details unless dem really need am. You fit use placeholders like [customer], [amount], or [location].",
+            "Each lesson get prompt wey you fit copy. Copy am, paste am inside your AI tool, and replace the bracket parts with your own details.\n\nThe prompt na only starting point. If the first answer close but e no correct, ask AI make e adjust am. You fit say make am shorter, make am warmer, use simpler words, ask me questions first, or remove anything wey sound too formal.\n\nNo paste private details unless dem really need am. Use placeholders like [customer], [amount], or [location].",
         },
       },
       {
         heading: {
-          en: "How to practise",
-          pidgin: "How to practise",
+          en: "Practise with real small tasks",
+          pidgin: "Practise with real small tasks",
         },
         body: {
-          en: "Use real small tasks. A WhatsApp reply. A school explanation. A customer message. A summary of something you need to understand. A plan for your week.\n\nDo not wait for a perfect big project. AI becomes useful when you practise with ordinary tasks and learn how to improve the first answer.",
+          en: "Do not practise with fake examples if you have real tasks waiting. Use something small from your day.\n\nA WhatsApp reply. A school explanation. A customer message. A summary of notes. A plan for your week. A simple caption for your business.\n\nSmall tasks are better at the beginning because you can see quickly what AI helped with and what you still needed to change.",
           pidgin:
-            "Use real small tasks. WhatsApp reply. School explanation. Customer message. Summary of something wey you need understand. Plan for your week.\n\nNo wait for perfect big project. AI dey become useful when you practise with normal tasks and learn how to improve the first answer.",
+            "No practise with fake examples if real tasks dey wait for you. Use small thing from your day.\n\nWhatsApp reply. School explanation. Customer message. Summary of notes. Plan for your week. Simple caption for your business.\n\nSmall tasks better for beginning because you go see quickly wetin AI help with and wetin you still need change.",
+        },
+      },
+      {
+        heading: {
+          en: "Before Module 1",
+          pidgin: "Before Module 1",
+        },
+        body: {
+          en: "Choose one small task you want AI to help with today. Do not choose the biggest problem in your life. Choose something simple enough to try in ten minutes.\n\nWrite it down before you start Module 1. You will use that task as your first practice example.",
+          pidgin:
+            "Choose one small task wey you want make AI help with today. No choose the biggest problem for your life. Choose something simple wey you fit try in ten minutes.\n\nWrite am down before you start Module 1. You go use that task as your first practice example.",
         },
       },
     ],
     keyTakeaway: {
-      en: "You do not need to be technical to use AI well. Read, try, check, edit, and keep practising with real tasks.",
+      en: "Start small. Choose one real task, give AI clear details, check the answer, and edit it before you use it.",
       pidgin:
-        "You no need be tech person to use AI well. Read, try, check, edit, and continue to practise with real tasks.",
+        "Start small. Choose one real task, give AI clear details, check the answer, and edit am before you use am.",
     },
     examplePrompt: {
-      en: "I am starting a beginner AI course.\n\nHelp me choose one small real task I can practise with today.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings I do often:\n[list 3 normal tasks]\n\nPlease suggest:\n1. One easy task to practise with\n2. What I should ask AI to do\n3. What details I should give AI\n4. What I should check before using the answer",
+      en: "I am starting a beginner AI course.\n\nHelp me choose one small real task I can practise with today.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings I do often:\n[list 3 normal tasks]\n\nPlease suggest:\n1. One easy task to practise with today\n2. What I should ask AI to help me do\n3. What details I should give AI\n4. What I should check before using the answer",
       pidgin:
-        "I dey start beginner AI course.\n\nHelp me choose one small real task wey I fit practise with today.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings wey I dey do often:\n[list 3 normal tasks]\n\nPlease suggest:\n1. One easy task to practise with\n2. Wetin I suppose ask AI make e do\n3. Which details I suppose give AI\n4. Wetin I suppose check before I use the answer",
+        "I dey start beginner AI course.\n\nHelp me choose one small real task wey I fit practise with today.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings wey I dey do often:\n[list 3 normal tasks]\n\nPlease suggest:\n1. One easy task wey I fit practise with today\n2. Wetin I suppose ask AI make e help me do\n3. Which details I suppose give AI\n4. Wetin I suppose check before I use the answer",
     },
     practiceTask: {
-      en: "Pick one small task from your real life. It should be something you can finish today, not something huge.\n\nUse the prompt above. When AI suggests a task, write down why you chose it and what you will check before using the answer.",
+      en: "Before Module 1, choose one small task you want AI to help with today. It should be something you can try in ten minutes.\n\nUse the prompt above if you are not sure what to pick. Write down the task, the details AI will need, and one thing you will check before using the answer.",
       pidgin:
-        "Pick one small task from your real life. Make e be something wey you fit finish today, no be big thing.\n\nUse the prompt above. When AI suggest task, write down why you choose am and wetin you go check before you use the answer.",
+        "Before Module 1, choose one small task wey you want make AI help with today. Make e be something wey you fit try in ten minutes.\n\nUse the prompt above if you no sure wetin to pick. Write down the task, the details AI go need, and one thing wey you go check before you use the answer.",
     },
     quickCheck: [
       {
-        en: "What small task will you practise with first?",
-        pidgin: "Which small task you go practise with first?",
+        en: "What small task will I use AI for first?",
+        pidgin: "Which small task I go use AI for first?",
       },
       {
-        en: "Which language helps you understand better right now?",
-        pidgin: "Which language dey help you understand better now?",
+        en: "Which language helps me understand better right now?",
+        pidgin: "Which language go help me understand better now?",
       },
       {
-        en: "What detail will you add so AI does not have to guess?",
-        pidgin: "Which detail you go add make AI no need guess?",
+        en: "What detail will I give AI so it does not guess?",
+        pidgin: "Which detail I go give AI make e no guess?",
       },
       {
-        en: "What will you check before you use the answer?",
-        pidgin: "Wetin you go check before you use the answer?",
+        en: "What will I check before using the answer?",
+        pidgin: "Wetin I go check before I use the answer?",
       },
     ],
   },

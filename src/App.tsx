@@ -19,8 +19,10 @@ import { CourseLayout } from "@/components/course/CourseLayout";
 import { CourseNotFound } from "@/components/course/CourseNotFound";
 import { LessonPage } from "@/components/course/LessonPage";
 import { ModulePage } from "@/components/course/ModulePage";
+import { StartHerePage } from "@/components/course/StartHerePage";
 import { StandaloneLessonPage } from "@/components/course/StandaloneLessonPage";
 import {
+  courseStartHere,
   getCourseModule,
   getLessonReference,
   getStandaloneCourseLesson,
@@ -107,6 +109,10 @@ function CourseRoutes({
     const standalonePage = getStandaloneCourseLesson(moduleSlug);
 
     if (standalonePage) {
+      if (standalonePage.slug === courseStartHere.slug) {
+        return <StartHerePage navigate={navigate} />;
+      }
+
       return <StandaloneLessonPage page={standalonePage} navigate={navigate} />;
     }
   }
