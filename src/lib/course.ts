@@ -2092,90 +2092,660 @@ export const courseModules: CourseModule[] = [
     lessons: [
       {
         slug: "lesson-1",
-        title: "Study Difficult Topics",
-        intro:
-          "AI can act like a patient tutor. You can ask it to explain, test you, and give examples until the topic becomes clearer.",
+        title: {
+          en: "When AI Gets Things Wrong",
+          pidgin: "When AI Answer Wrong",
+        },
+        intro: {
+          en: "AI can sound confident and still be wrong. The point is not to fear it. The point is to know when to slow down and check.",
+          pidgin:
+            "AI fit sound confident and still wrong. No be to fear am. The point na to know when you suppose slow down and check.",
+        },
         content: [
           {
-            heading: "Ask for simple explanations",
-            body:
-              "Begin with plain English. If the answer is still confusing, ask for examples from school, business, family life, or Nigeria.",
+            heading: {
+              en: "Why wrong answers happen",
+              pidgin: "Why wrong answers dey happen",
+            },
+            body: {
+              en: "AI does not know everything. Sometimes it guesses. Sometimes your prompt is too vague. Sometimes the topic is sensitive. Sometimes the facts are current, and the tool may not have the latest information.\n\nThe confusing part is that AI can write the wrong answer in a very clean voice. It may give you names, dates, prices, rules, or links that look real. That is why you should not judge an answer only by how polished it sounds.\n\nUse AI for help, but pause before you post, apply, buy, advise someone, or make a serious decision from its answer.",
+              pidgin:
+                "AI no sabi everything. Sometimes e dey guess. Sometimes your prompt too vague. Sometimes the topic sensitive. Sometimes the facts dey current, and the tool fit no get latest information.\n\nThe confusing part be say AI fit write wrong answer with very clean voice. E fit give you names, dates, prices, rules, or links wey look real. Na why you no suppose judge answer only by how polished e sound.\n\nUse AI for help, but pause before you post, apply, buy, advise person, or make serious decision from the answer.",
+            },
           },
           {
-            heading: "Use active recall",
-            body:
-              "Do not only read the answer. Ask AI to quiz you, check your answer, and explain what you missed.",
+            heading: {
+              en: "Check four things",
+              pidgin: "Check four things",
+            },
+            body: {
+              en: "Before you trust an AI answer, check these four things. You will not need the same level of checking for every small task, but this habit matters when the answer could affect money, work, school, health, law, safety, or another person.",
+              pidgin:
+                "Before you trust AI answer, check these four things. You no need the same level of checking for every small task, but this habit matter when the answer fit affect money, work, school, health, law, safety, or another person.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Facts",
+                  pidgin: "Facts",
+                },
+                content: {
+                  en: "Are the names, dates, prices, places, links, rules, or claims correct?",
+                  pidgin:
+                    "The names, dates, prices, places, links, rules, or claims correct?",
+                },
+              },
+              {
+                label: {
+                  en: "Fit",
+                  pidgin: "Fit",
+                },
+                content: {
+                  en: "Does this answer match your real situation, location, audience, and limits?",
+                  pidgin:
+                    "The answer match your real situation, location, audience, and limits?",
+                },
+              },
+              {
+                label: {
+                  en: "Tone",
+                  pidgin: "Tone",
+                },
+                content: {
+                  en: "Does it sound right for the person reading it?",
+                  pidgin: "E sound right for the person wey go read am?",
+                },
+              },
+              {
+                label: {
+                  en: "Risk",
+                  pidgin: "Risk",
+                },
+                content: {
+                  en: "What problem could happen if this answer is wrong?",
+                  pidgin: "Wetin fit happen if this answer wrong?",
+                },
+              },
+            ],
           },
           {
-            heading: "Build a study note",
-            body:
-              "After learning, ask AI to create a short note with definitions, examples, common mistakes, and practice questions.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Chinedu runs a small printing shop in Enugu. He sees a forwarded WhatsApp message about a business support programme and wants to post it in a group for other small business owners. Before posting, he asks AI to make the message clearer.",
+              pidgin:
+                "Chinedu get small printing shop for Enugu. He see forwarded WhatsApp message about business support programme and wan post am for group wey small business owners dey. Before e post, e ask AI make e make the message clearer.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "What Chinedu typed",
+                  pidgin: "Wetin Chinedu type",
+                },
+                content: {
+                  en: "Rewrite this business grant message so it sounds clear and helpful for small business owners in Nigeria. Mention the deadline and how to apply.",
+                  pidgin:
+                    "Rewrite this business grant message make e clear and helpful for small business owners for Nigeria. Mention the deadline and how to apply.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "Small business owners can apply for the 2026 SME Support Grant before May 30. Visit the official portal, fill the form, upload your CAC certificate, and wait for confirmation. Do not miss this opportunity.",
+                  pidgin:
+                    "Small business owners fit apply for the 2026 SME Support Grant before May 30. Visit the official portal, fill the form, upload your CAC certificate, and wait for confirmation. No miss this opportunity.",
+                },
+              },
+              {
+                label: {
+                  en: "What looked okay",
+                  pidgin: "Wetin look okay",
+                },
+                content: {
+                  en: "The message sounded clear. It had a deadline, a process, and a confident tone. It looked ready to post.",
+                  pidgin:
+                    "The message clear. E get deadline, process, and confident tone. E look ready to post.",
+                },
+              },
+              {
+                label: {
+                  en: "What was risky",
+                  pidgin: "Wetin risky",
+                },
+                content: {
+                  en: "AI invented details. Chinedu had not provided the official programme name, deadline, portal, or CAC rule. If he posted it, people could trust wrong information or click a fake link later.",
+                  pidgin:
+                    "AI invent details. Chinedu no give official programme name, deadline, portal, or CAC rule. If e post am, people fit trust wrong information or click fake link later.",
+                },
+              },
+              {
+                label: {
+                  en: "How he checked it",
+                  pidgin: "How e check am",
+                },
+                content: {
+                  en: "He searched for the programme on the official organisation page, checked the original WhatsApp message again, and asked the sender where the information came from. He could not confirm the deadline, so he removed it.",
+                  pidgin:
+                    "E search for the programme for official organisation page, check the original WhatsApp message again, and ask the sender where the information come from. E no fit confirm the deadline, so e remove am.",
+                },
+              },
+              {
+                label: {
+                  en: "Safer final version",
+                  pidgin: "Safer final version",
+                },
+                content: {
+                  en: "I saw this business support message being shared. Please check the official source before applying or sending any documents. I have not confirmed the deadline or portal yet. If anyone has the official link, please share it here.",
+                  pidgin:
+                    "I see this business support message wey people dey share. Abeg check official source before you apply or send any document. I never confirm the deadline or portal yet. If anybody get official link, make una share am here.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the safer version worked",
+              pidgin: "Why the safer version work",
+            },
+            body: {
+              en: "Chinedu did not pretend to know what he had not confirmed. He still shared useful information, but he removed the invented details and told people to check the source.\n\nThat is responsible AI use. You can use the draft, but you must not let AI turn guesses into facts.",
+              pidgin:
+                "Chinedu no pretend say e sabi wetin e never confirm. E still share useful information, but e remove the invented details and tell people make dem check the source.\n\nNa responsible AI use be that. You fit use the draft, but no let AI turn guesses into facts.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not post, forward, submit, or advise someone with an AI answer you have not checked, especially when the answer includes dates, money, links, rules, medical advice, legal advice, or application steps.\n\nA confident answer still needs checking.",
+              pidgin:
+                "No post, forward, submit, or advise person with AI answer wey you never check, especially when the answer get dates, money, links, rules, medical advice, legal advice, or application steps.\n\nConfident answer still need checking.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "Use the prompt below when AI gives you an answer you may post, submit, send, or act on. It helps you slow down before using the answer.",
+              pidgin:
+                "Use the prompt below when AI give you answer wey you fit post, submit, send, or act on. E go help you slow down before you use the answer.",
+            },
           },
         ],
-        keyTakeaway:
-          "AI can help you study better when you ask questions, test yourself, and build notes in your own words.",
-        examplePrompt:
-          "Teach me [topic] like a patient tutor. Start simple, give Nigerian examples, then ask me five questions to check if I understand.",
-        practiceTask:
-          "Choose one topic from school, work, or personal learning. Ask AI to teach it, then answer the quiz questions it gives you.",
+        keyTakeaway: {
+          en: "AI can sound sure and still be wrong. Before you depend on an answer, check the facts, fit, tone, and risk.",
+          pidgin:
+            "AI fit sound sure and still wrong. Before you depend on answer, check the facts, fit, tone, and risk.",
+        },
+        examplePrompt: {
+          en: "Review this AI answer before I use it.\n\nAnswer:\n[paste the answer]\n\nMy situation:\n[explain what I want to use it for]\n\nPlease check:\n1. What facts might be wrong or invented?\n2. What needs to be verified from a trusted source?\n3. Does the answer fit my real situation?\n4. Is the tone right for the audience?\n5. What could go wrong if I use this without checking?\n\nGive me a safer version I can use after I verify the important details.",
+          pidgin:
+            "Review this AI answer before I use am.\n\nAnswer:\n[paste the answer]\n\nMy situation:\n[explain wetin I wan use am for]\n\nPlease check:\n1. Which facts fit wrong or invented?\n2. Wetin need verification from trusted source?\n3. The answer fit my real situation?\n4. The tone correct for the audience?\n5. Wetin fit go wrong if I use am without checking?\n\nGive me safer version wey I fit use after I verify the important details.",
+        },
+        practiceTask: {
+          en: "Take one AI answer you might use for a real task. It can be a message, caption, application note, study answer, or advice.\n\nPaste it into the prompt above. Mark one fact to check, one line to rewrite, and one risk to think about before using it.",
+          pidgin:
+            "Take one AI answer wey you fit use for real task. E fit be message, caption, application note, study answer, or advice.\n\nPaste am inside the prompt above. Mark one fact to check, one line to rewrite, and one risk to think about before you use am.",
+        },
+        quickCheck: [
+          {
+            en: "Which fact in the answer needs checking?",
+            pidgin: "Which fact inside the answer need checking?",
+          },
+          {
+            en: "Does the answer fit your real situation?",
+            pidgin: "The answer fit your real situation?",
+          },
+          {
+            en: "What could go wrong if the answer is false?",
+            pidgin: "Wetin fit go wrong if the answer false?",
+          },
+          {
+            en: "What safer version would you use?",
+            pidgin: "Which safer version you go use?",
+          },
+        ],
       },
       {
         slug: "lesson-2",
-        title: "Make Better Decisions",
-        intro:
-          "AI can help you compare options, notice tradeoffs, and prepare questions before making a decision.",
+        title: {
+          en: "What Not to Share with AI",
+          pidgin: "Wetin You No Suppose Share with AI",
+        },
+        intro: {
+          en: "AI can help with sensitive situations, but you do not need to paste every private detail. You can get help while protecting yourself and other people.",
+          pidgin:
+            "AI fit help with sensitive situations, but you no need paste every private detail. You fit get help while you protect yourself and other people.",
+        },
         content: [
           {
-            heading: "Use AI to think, not to decide for you",
-            body:
-              "AI can list pros and cons, risks, costs, and questions. You still make the final choice because you understand your life and constraints better than the tool.",
+            heading: {
+              en: "Private details need care",
+              pidgin: "Private details need care",
+            },
+            body: {
+              en: "Do not paste private information into AI carelessly. Avoid passwords, OTPs, bank details, card details, full home addresses, private customer data, secret business information, full private chats, medical details, legal details, and anything that could harm someone if exposed.\n\nThis does not mean AI cannot help. It means you should remove or replace sensitive details before asking.\n\nYou can say customer instead of the person's real name. You can say my bank instead of naming the account. You can describe the issue without pasting the full private chat.",
+              pidgin:
+                "No paste private information inside AI anyhow. Avoid passwords, OTP, bank details, card details, full house address, private customer data, secret business information, full private chats, medical details, legal details, and anything wey fit harm person if e expose.\n\nThis one no mean say AI no fit help. E mean say you suppose remove or replace sensitive details before you ask.\n\nYou fit say customer instead of the person real name. You fit say my bank instead of naming the account. You fit explain the issue without pasting the full private chat.",
+            },
           },
           {
-            heading: "Give the real constraints",
-            body:
-              "Better advice comes from better context. Mention budget, deadline, location, people affected, and what matters most to you.",
+            heading: {
+              en: "Use remove, replace, reduce",
+              pidgin: "Use remove, replace, reduce",
+            },
+            body: {
+              en: "Before you paste anything, clean it up. This simple habit lets you get useful help without exposing too much.",
+              pidgin:
+                "Before you paste anything, clean am first. This simple habit go let you get useful help without exposing too much.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Remove",
+                  pidgin: "Remove",
+                },
+                content: {
+                  en: "Take out passwords, OTPs, account numbers, addresses, private names, and screenshots with sensitive details.",
+                  pidgin:
+                    "Comot passwords, OTPs, account numbers, addresses, private names, and screenshots wey get sensitive details.",
+                },
+              },
+              {
+                label: {
+                  en: "Replace",
+                  pidgin: "Replace",
+                },
+                content: {
+                  en: "Use placeholders like [customer], [company], [amount], [date], or [location].",
+                  pidgin:
+                    "Use placeholders like [customer], [company], [amount], [date], or [location].",
+                },
+              },
+              {
+                label: {
+                  en: "Reduce",
+                  pidgin: "Reduce",
+                },
+                content: {
+                  en: "Share only the detail AI needs to help. Do not paste the whole private story if a short summary is enough.",
+                  pidgin:
+                    "Share only the detail wey AI need to help. No paste the whole private story if short summary don enough.",
+                },
+              },
+            ],
           },
           {
-            heading: "Ask what you may be missing",
-            body:
-              "A useful prompt is to ask AI what assumptions you are making and what questions you should ask before deciding.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Tara ordered clothes from an online vendor. The delivery came late and one item was missing. She wants AI to help write a refund message, but her first version includes too much private information.",
+              pidgin:
+                "Tara order clothes from online vendor. Delivery late and one item no dey inside. She want make AI help write refund message, but her first version include too much private information.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Unsafe version she almost pasted",
+                  pidgin: "Unsafe version wey she almost paste",
+                },
+                content: {
+                  en: "Write a complaint message. My name is Tara Okafor, my phone number is 08000000000, my address is 22 Example Street, Lekki, and I paid from account 1234567890. The vendor, Ada Styles, sent my order late and the blue dress was missing. Here is our full chat: [full private chat].",
+                  pidgin:
+                    "Write complaint message. My name na Tara Okafor, my phone number na 08000000000, my address na 22 Example Street, Lekki, and I paid from account 1234567890. The vendor, Ada Styles, send my order late and the blue dress no dey. Here is our full chat: [full private chat].",
+                },
+              },
+              {
+                label: {
+                  en: "AI could still answer",
+                  pidgin: "AI fit still answer",
+                },
+                content: {
+                  en: "Dear Ada Styles, my name is Tara Okafor. I ordered clothes to 22 Example Street, Lekki, and the blue dress was missing. Please refund me to account 1234567890.",
+                  pidgin:
+                    "Dear Ada Styles, my name is Tara Okafor. I ordered clothes to 22 Example Street, Lekki, and the blue dress was missing. Please refund me to account 1234567890.",
+                },
+              },
+              {
+                label: {
+                  en: "What was risky",
+                  pidgin: "Wetin risky",
+                },
+                content: {
+                  en: "The answer repeated private details that did not need to be there: full name, phone number, address, account number, vendor name, and private chat content.",
+                  pidgin:
+                    "The answer repeat private details wey no need dey there: full name, phone number, address, account number, vendor name, and private chat content.",
+                },
+              },
+              {
+                label: {
+                  en: "Safer anonymized prompt",
+                  pidgin: "Safer anonymized prompt",
+                },
+                content: {
+                  en: "Help me write a polite but firm refund message to an online vendor.\n\nSituation: My order came late and one item was missing.\nAmount to mention: [amount]\nTone: calm, clear, not insulting\nDo not include my address, phone number, bank details, or full private chat.\nAsk for either delivery of the missing item or a refund.",
+                  pidgin:
+                    "Help me write polite but firm refund message give online vendor.\n\nSituation: My order come late and one item no dey inside.\nAmount to mention: [amount]\nTone: calm, clear, no insult\nNo include my address, phone number, bank details, or full private chat.\nAsk for either delivery of the missing item or refund.",
+                },
+              },
+              {
+                label: {
+                  en: "Safer output",
+                  pidgin: "Safer output",
+                },
+                content: {
+                  en: "Hi, I received my order, but one item was missing and the delivery came later than agreed. Please confirm whether the missing item can be sent today. If not, I would like a refund for that item. Thank you.",
+                  pidgin:
+                    "Hi, I received my order, but one item no dey inside and the delivery come later than agreed. Abeg confirm whether una fit send the missing item today. If not, I go like refund for that item. Thank you.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why the safer version worked",
+              pidgin: "Why the safer version work",
+            },
+            body: {
+              en: "Tara still gave AI enough context to write a useful message. She removed details that were not needed for the task.\n\nThat is the balance. Do not hide the situation so much that AI cannot help. But do not paste private information just because it is available.",
+              pidgin:
+                "Tara still give AI enough context make e write useful message. She remove details wey no need for the task.\n\nNa the balance be that. No hide the situation reach where AI no fit help. But no paste private information just because e dey available.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not paste full private chats into AI when a short summary will do. A private chat may include another person's phone number, address, emotions, business details, or personal problem.\n\nSummarise the situation. Replace names. Remove what the tool does not need.",
+              pidgin:
+                "No paste full private chats inside AI when short summary fit do the work. Private chat fit get another person phone number, address, emotions, business details, or personal problem.\n\nSummarise the situation. Replace names. Remove wetin the tool no need.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "The prompt below helps you ask for help while keeping private details out. Use it before writing complaints, HR messages, refund notes, customer replies, or personal messages.",
+              pidgin:
+                "The prompt below go help you ask for help while private details no enter. Use am before writing complaints, HR messages, refund notes, customer replies, or personal messages.",
+            },
           },
         ],
-        keyTakeaway:
-          "AI can improve your thinking by showing options and tradeoffs, but it should not replace your judgement.",
-        examplePrompt:
-          "Help me think through this decision: [describe decision]. List my options, pros and cons, risks, hidden assumptions, and questions I should answer before choosing.",
-        practiceTask:
-          "Pick a small decision you need to make this week. Ask AI to compare your options, then write down your own final choice and why.",
+        keyTakeaway: {
+          en: "AI can help with sensitive situations, but remove private details first. Share the situation, not secrets.",
+          pidgin:
+            "AI fit help with sensitive situations, but remove private details first. Share the situation, no share secrets.",
+        },
+        examplePrompt: {
+          en: "Help me write this message without exposing private information.\n\nSituation:\n[explain the issue with names, addresses, account numbers, phone numbers, and private chats removed]\n\nWhat I want:\n[complaint, refund request, HR message, customer reply, apology, or other]\n\nTone:\n[calm, firm, respectful, simple, or direct]\n\nBefore writing, tell me:\n1. What private details I should remove\n2. What can be replaced with placeholders\n3. What details are safe to keep\n\nThen write the message.",
+          pidgin:
+            "Help me write this message without exposing private information.\n\nSituation:\n[explain the issue with names, addresses, account numbers, phone numbers, and private chats removed]\n\nWetin I want:\n[complaint, refund request, HR message, customer reply, apology, or other]\n\nTone:\n[calm, firm, respectful, simple, or direct]\n\nBefore you write, tell me:\n1. Which private details I suppose remove\n2. Wetin I fit replace with placeholders\n3. Which details safe to keep\n\nThen write the message.",
+        },
+        practiceTask: {
+          en: "Take one message you might ask AI to help with. Before pasting it, rewrite the situation in a safer way.\n\nRemove names, phone numbers, account details, addresses, and full private chats. Use placeholders where needed. Then use the prompt above.",
+          pidgin:
+            "Take one message wey you fit ask AI make e help with. Before you paste am, rewrite the situation in safer way.\n\nRemove names, phone numbers, account details, addresses, and full private chats. Use placeholders where you need. Then use the prompt above.",
+        },
+        quickCheck: [
+          {
+            en: "What private detail did you remove?",
+            pidgin: "Which private detail you remove?",
+          },
+          {
+            en: "What did you replace with a placeholder?",
+            pidgin: "Wetin you replace with placeholder?",
+          },
+          {
+            en: "Does AI still have enough context to help?",
+            pidgin: "AI still get enough context to help?",
+          },
+          {
+            en: "Could this harm anyone if it was exposed?",
+            pidgin: "This thing fit harm anybody if e expose?",
+          },
+        ],
       },
       {
         slug: "lesson-3",
-        title: "Use AI Safely",
-        intro:
-          "Using AI safely means protecting private information, checking important claims, and knowing when to ask a person.",
+        title: {
+          en: "Using AI Without Becoming Too Dependent",
+          pidgin: "How to Use AI Without Depending Too Much",
+        },
+        intro: {
+          en: "AI should support your thinking, not replace it. The goal is to become more capable, not to hand over every decision.",
+          pidgin:
+            "AI suppose support your thinking, no be to replace am. The goal na to make you more capable, no be to hand over every decision.",
+        },
         content: [
           {
-            heading: "Protect private details",
-            body:
-              "Do not paste passwords, bank details, private customer data, confidential work documents, or sensitive personal information into AI tools.",
+            heading: {
+              en: "Use AI as support",
+              pidgin: "Use AI as support",
+            },
+            body: {
+              en: "AI is good for getting started, comparing options, practising, improving drafts, and seeing what you may have missed.\n\nBut if you let it do all the thinking, you can become passive. You may stop noticing mistakes. You may accept answers that do not fit your life. You may lose confidence in your own judgement.\n\nA healthier way is to use AI like a thinking assistant. It can help you see options, but you still review, edit, and decide.",
+              pidgin:
+                "AI good for helping you start, compare options, practise, improve drafts, and see wetin you fit miss.\n\nBut if you let am do all the thinking, you fit become passive. You fit stop noticing mistakes. You fit accept answers wey no fit your life. You fit lose confidence for your own judgement.\n\nBetter way na to use AI like thinking assistant. E fit help you see options, but na you go still review, edit, and decide.",
+            },
           },
           {
-            heading: "Verify important claims",
-            body:
-              "For legal, medical, financial, school, or business decisions, check AI answers with trusted sources or a qualified person.",
+            heading: {
+              en: "Ask, review, edit, decide",
+              pidgin: "Ask, review, edit, decide",
+            },
+            body: {
+              en: "This simple habit keeps you involved in the work. Do not skip the middle steps.",
+              pidgin:
+                "This simple habit go keep you involved for the work. No skip the middle steps.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Ask",
+                  pidgin: "Ask",
+                },
+                content: {
+                  en: "Use AI to start, explain, draft, compare, or suggest options.",
+                  pidgin:
+                    "Use AI make e start, explain, draft, compare, or suggest options.",
+                },
+              },
+              {
+                label: {
+                  en: "Review",
+                  pidgin: "Review",
+                },
+                content: {
+                  en: "Read the answer and check what is true, useful, missing, or wrong.",
+                  pidgin:
+                    "Read the answer and check wetin true, useful, missing, or wrong.",
+                },
+              },
+              {
+                label: {
+                  en: "Edit",
+                  pidgin: "Edit",
+                },
+                content: {
+                  en: "Change the answer so it fits your voice, facts, and situation.",
+                  pidgin:
+                    "Change the answer make e fit your voice, facts, and situation.",
+                },
+              },
+              {
+                label: {
+                  en: "Decide",
+                  pidgin: "Decide",
+                },
+                content: {
+                  en: "Make the final choice yourself. You live with the result, not the tool.",
+                  pidgin:
+                    "Make the final choice by yourself. Na you go live with the result, no be the tool.",
+                },
+              },
+            ],
           },
           {
-            heading: "Keep your voice",
-            body:
-              "AI can help you write and think, but do not let it remove your personality, values, or responsibility from the final result.",
+            heading: {
+              en: "Real example",
+              pidgin: "Real example",
+            },
+            body: {
+              en: "Musa has a civic education assignment. He is tired and wants to finish quickly, so he first uses AI in a lazy way. The answer looks complete, but it does not help him understand the topic.",
+              pidgin:
+                "Musa get civic education assignment. E tire and wan finish quick, so e first use AI for lazy way. The answer look complete, but e no help am understand the topic.",
+            },
+            examples: [
+              {
+                label: {
+                  en: "Lazy version",
+                  pidgin: "Lazy version",
+                },
+                content: {
+                  en: "Answer this assignment for me: Explain three duties of a citizen.",
+                  pidgin:
+                    "Answer this assignment for me: Explain three duties of a citizen.",
+                },
+              },
+              {
+                label: {
+                  en: "AI gave back",
+                  pidgin: "AI give back",
+                },
+                content: {
+                  en: "The duties of a citizen include obeying the law, paying taxes, and voting during elections. Citizens should also respect national symbols and contribute to national development.",
+                  pidgin:
+                    "The duties of a citizen include obeying the law, paying taxes, and voting during elections. Citizens should also respect national symbols and contribute to national development.",
+                },
+              },
+              {
+                label: {
+                  en: "What was weak",
+                  pidgin: "Wetin weak",
+                },
+                content: {
+                  en: "The answer was not useless, but Musa could copy it without learning anything. It was also too general and had no example from his own understanding.",
+                  pidgin:
+                    "The answer no useless, but Musa fit copy am without learning anything. E still too general and no get example from him own understanding.",
+                },
+              },
+              {
+                label: {
+                  en: "Better guided version",
+                  pidgin: "Better guided version",
+                },
+                content: {
+                  en: "Explain three duties of a citizen in simple words. Give one Nigerian example for each. Then ask me three questions to check if I understand. Do not write the final assignment for me yet.",
+                  pidgin:
+                    "Explain three duties of a citizen with simple words. Give one Nigerian example for each. Then ask me three questions to check if I understand. No write the final assignment for me yet.",
+                },
+              },
+              {
+                label: {
+                  en: "AI helped him practise",
+                  pidgin: "AI help am practise",
+                },
+                content: {
+                  en: "AI explained obeying laws, paying taxes, and voting, then asked Musa to write one example for each. Musa answered in his own words and asked AI to check if his examples made sense.",
+                  pidgin:
+                    "AI explain obeying laws, paying taxes, and voting, then ask Musa make e write one example for each. Musa answer with him own words and ask AI make e check if him examples make sense.",
+                },
+              },
+              {
+                label: {
+                  en: "Final human edit",
+                  pidgin: "Final human edit",
+                },
+                content: {
+                  en: "Musa wrote the final answer himself using his own examples: obeying traffic rules, paying small business taxes when required, and voting for leaders. AI helped him learn, but Musa made the final answer.",
+                  pidgin:
+                    "Musa write the final answer by himself with him own examples: obeying traffic rules, paying small business taxes when required, and voting for leaders. AI help am learn, but Musa make the final answer.",
+                },
+              },
+            ],
+          },
+          {
+            heading: {
+              en: "Why this worked better",
+              pidgin: "Why this one work better",
+            },
+            body: {
+              en: "Musa used AI to practise instead of using it to escape the work. He asked for explanation, examples, and questions. Then he wrote the final answer himself.\n\nThat is how AI can build your skill instead of weakening it.",
+              pidgin:
+                "Musa use AI practise instead of using am run away from the work. E ask for explanation, examples, and questions. Then e write the final answer by himself.\n\nNa how AI fit build your skill instead of weakening am.",
+            },
+          },
+          {
+            heading: {
+              en: "One thing to avoid",
+              pidgin: "One thing to avoid",
+            },
+            body: {
+              en: "Do not ask AI to make every final choice for you. If you always ask, what should I do, and copy the answer, you stop practising your own judgement.\n\nA better question is: help me think through this, show me options, and tell me what I should consider before I decide.",
+              pidgin:
+                "No ask AI make e make every final choice for you. If you always ask, wetin I suppose do, and you copy the answer, you go stop practising your own judgement.\n\nBetter question na: help me think through this, show me options, and tell me wetin I suppose consider before I decide.",
+            },
+          },
+          {
+            heading: {
+              en: "Before you try it",
+              pidgin: "Before you try am",
+            },
+            body: {
+              en: "The prompt below helps you use AI without giving away the whole task. It keeps you involved in the thinking.",
+              pidgin:
+                "The prompt below go help you use AI without giving away the whole task. E go keep you involved for the thinking.",
+            },
           },
         ],
-        keyTakeaway:
-          "Use AI like a helpful assistant, not a place to put secrets or a final authority on serious matters.",
-        examplePrompt:
-          "Review this AI-generated answer for safety. Tell me what facts I should verify, what private information I should remove, and what advice may need an expert.",
-        practiceTask:
-          "Look at one AI answer you received. Check whether it includes facts, advice, or private details that need extra care before you use it.",
+        keyTakeaway: {
+          en: "Use AI to start, practise, compare, and improve, but stay involved. Ask, review, edit, and decide for yourself.",
+          pidgin:
+            "Use AI make you start, practise, compare, and improve, but stay involved. Ask, review, edit, and decide by yourself.",
+        },
+        examplePrompt: {
+          en: "Help me think through this without doing all the thinking for me.\n\nTask or decision:\n[describe it]\n\nPlease help me by:\n1. Explaining the issue simply\n2. Showing me 2 or 3 options\n3. Asking me questions I should answer\n4. Pointing out what I should check\n5. Giving me a rough draft or plan I can edit\n\nDo not make the final decision for me. Help me decide for myself.",
+          pidgin:
+            "Help me think through this without doing all the thinking for me.\n\nTask or decision:\n[describe am]\n\nPlease help me by:\n1. Explaining the issue simply\n2. Showing me 2 or 3 options\n3. Asking me questions wey I suppose answer\n4. Pointing out wetin I suppose check\n5. Giving me rough draft or plan wey I fit edit\n\nNo make the final decision for me. Help me decide by myself.",
+        },
+        practiceTask: {
+          en: "Pick one task you normally ask AI to finish for you. This time, use the prompt above.\n\nLet AI help you think, then write your own final version. At the end, name one thing AI helped with and one decision you made yourself.",
+          pidgin:
+            "Pick one task wey you normally ask AI make e finish for you. This time, use the prompt above.\n\nMake AI help you think, then write your own final version. For the end, name one thing wey AI help with and one decision wey you make by yourself.",
+        },
+        quickCheck: [
+          {
+            en: "Did AI help you think or replace your thinking?",
+            pidgin: "AI help you think or e replace your thinking?",
+          },
+          {
+            en: "What did you review before using the answer?",
+            pidgin: "Wetin you review before you use the answer?",
+          },
+          {
+            en: "What did you edit in your own words?",
+            pidgin: "Wetin you edit with your own words?",
+          },
+          {
+            en: "What final decision did you make yourself?",
+            pidgin: "Which final decision you make by yourself?",
+          },
+        ],
       },
     ],
   },
