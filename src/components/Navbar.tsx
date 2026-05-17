@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import type { Lang } from "@/types/language";
 
 function LangToggle({ scrolled }: { scrolled: boolean }) {
@@ -68,8 +69,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function scrollTo(href: string) {
+  function handleNavClick(
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) {
     setMobileOpen(false);
+    if (!href.startsWith("#")) return;
+
+    event.preventDefault();
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   }
@@ -100,25 +107,28 @@ export function Navbar() {
         {/* Desktop nav */}
         <div className="hidden sm:flex items-center gap-1">
           {c.links.map((link) => (
-            <button
+            <a
               key={link.label}
-              onClick={() => scrollTo(link.href)}
+              href={link.href}
+              onClick={(event) => handleNavClick(event, link.href)}
               className="px-3 py-1.5 text-sm text-neutral-600 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition-colors cursor-pointer"
             >
               {link.label}
-            </button>
+            </a>
           ))}
           <div className="ml-2 mr-1">
             <LangToggle scrolled={scrolled} />
           </div>
-          <Button size="sm" onClick={() => scrollTo("#waitlist")}>
-            {c.cta}
+          <ThemeToggle className="mr-1" />
+          <Button size="sm" asChild>
+            <a href="/courses/beginner-ai">{c.cta}</a>
           </Button>
         </div>
 
         {/* Mobile: lang toggle + menu button */}
         <div className="sm:hidden flex items-center gap-2">
           <LangToggle scrolled={scrolled} />
+          <ThemeToggle />
           <button
             className="p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -141,20 +151,17 @@ export function Navbar() {
           >
             <div className="px-5 pb-4 pt-2 flex flex-col gap-1">
               {c.links.map((link) => (
-                <button
+                <a
                   key={link.label}
-                  onClick={() => scrollTo(link.href)}
+                  href={link.href}
+                  onClick={(event) => handleNavClick(event, link.href)}
                   className="px-3 py-3 text-sm text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 rounded-xl text-left transition-colors cursor-pointer"
                 >
                   {link.label}
-                </button>
+                </a>
               ))}
-              <Button
-                size="sm"
-                className="mt-2"
-                onClick={() => scrollTo("#waitlist")}
-              >
-                {c.cta}
+              <Button size="sm" className="mt-2" asChild>
+                <a href="/courses/beginner-ai">{c.cta}</a>
               </Button>
             </div>
           </motion.div>

@@ -12,16 +12,19 @@ import {
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import {
-  courseStartHere,
+  beginnerCourse,
   getAdjacentStandaloneCourseSteps,
+  getCoursePath,
   getCourseStepCount,
   getLocalizedLesson,
   getLocalizedText,
   getStandaloneCourseStepNumber,
+  type Course,
 } from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
 
 interface StartHerePageProps {
+  course?: Course;
   navigate: CourseNavigate;
 }
 
@@ -35,14 +38,23 @@ function Paragraphs({ copy, className }: { copy: string; className: string }) {
   );
 }
 
-export function StartHerePage({ navigate }: StartHerePageProps) {
+export function StartHerePage({
+  course = beginnerCourse,
+  navigate,
+}: StartHerePageProps) {
   const [promptCopied, setPromptCopied] = useState(false);
   const { lang } = useLang();
-  const lesson = getLocalizedLesson(courseStartHere.lesson, lang);
-  const currentStepNumber = getStandaloneCourseStepNumber(courseStartHere.slug);
-  const totalCourseSteps = getCourseStepCount();
+  const lesson = getLocalizedLesson(course.startHere.lesson, lang);
+  const currentStepNumber = getStandaloneCourseStepNumber(
+    course.startHere.slug,
+    course
+  );
+  const totalCourseSteps = getCourseStepCount(course);
   const progressPercent = (currentStepNumber / totalCourseSteps) * 100;
-  const { next } = getAdjacentStandaloneCourseSteps(courseStartHere.slug);
+  const { next } = getAdjacentStandaloneCourseSteps(
+    course.startHere.slug,
+    course
+  );
   const sections = lesson.content;
   const courseIntro = sections[0];
   const coursePromise = sections[1];
@@ -97,7 +109,7 @@ export function StartHerePage({ navigate }: StartHerePageProps) {
     <div className="px-5 py-8 sm:py-14">
       <article className="w-full max-w-5xl mx-auto">
         <CourseLink
-          href="/course"
+          href={getCoursePath(course.slug)}
           navigate={navigate}
           className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-500 hover:text-neutral-900 transition-colors mb-7"
         >
@@ -109,7 +121,7 @@ export function StartHerePage({ navigate }: StartHerePageProps) {
           <div className="mb-6 max-w-2xl">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
-                {getLocalizedText(courseStartHere.eyebrow, lang)}
+                {getLocalizedText(course.startHere.eyebrow, lang)}
               </p>
               <p className="text-xs font-medium text-neutral-500">
                 {labels.stepLabel}

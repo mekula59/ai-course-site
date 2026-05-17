@@ -14,16 +14,19 @@ import {
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import {
-  courseFinalWrapUp,
+  beginnerCourse,
   getAdjacentStandaloneCourseSteps,
+  getCoursePath,
   getCourseStepCount,
   getLocalizedLesson,
   getLocalizedText,
   getStandaloneCourseStepNumber,
+  type Course,
 } from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
 
 interface FinalWrapUpPageProps {
+  course?: Course;
   navigate: CourseNavigate;
 }
 
@@ -37,14 +40,23 @@ function Paragraphs({ copy, className }: { copy: string; className: string }) {
   );
 }
 
-export function FinalWrapUpPage({ navigate }: FinalWrapUpPageProps) {
+export function FinalWrapUpPage({
+  course = beginnerCourse,
+  navigate,
+}: FinalWrapUpPageProps) {
   const [promptCopied, setPromptCopied] = useState(false);
   const { lang } = useLang();
-  const lesson = getLocalizedLesson(courseFinalWrapUp.lesson, lang);
-  const currentStepNumber = getStandaloneCourseStepNumber(courseFinalWrapUp.slug);
-  const totalCourseSteps = getCourseStepCount();
+  const lesson = getLocalizedLesson(course.finalWrapUp.lesson, lang);
+  const currentStepNumber = getStandaloneCourseStepNumber(
+    course.finalWrapUp.slug,
+    course
+  );
+  const totalCourseSteps = getCourseStepCount(course);
   const progressPercent = (currentStepNumber / totalCourseSteps) * 100;
-  const { previous } = getAdjacentStandaloneCourseSteps(courseFinalWrapUp.slug);
+  const { previous } = getAdjacentStandaloneCourseSteps(
+    course.finalWrapUp.slug,
+    course
+  );
   const sections = lesson.content;
   const canDoNow = sections[0];
   const routine = sections[1];
@@ -108,7 +120,7 @@ export function FinalWrapUpPage({ navigate }: FinalWrapUpPageProps) {
     <div className="px-5 py-8 sm:py-14">
       <article className="w-full max-w-5xl mx-auto">
         <CourseLink
-          href="/course"
+          href={getCoursePath(course.slug)}
           navigate={navigate}
           className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-500 hover:text-neutral-900 transition-colors mb-7"
         >
@@ -120,7 +132,7 @@ export function FinalWrapUpPage({ navigate }: FinalWrapUpPageProps) {
           <div className="mb-6 max-w-2xl">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
-                {getLocalizedText(courseFinalWrapUp.eyebrow, lang)}
+                {getLocalizedText(course.finalWrapUp.eyebrow, lang)}
               </p>
               <p className="text-xs font-medium text-neutral-500">
                 {labels.stepLabel}
@@ -415,7 +427,7 @@ export function FinalWrapUpPage({ navigate }: FinalWrapUpPageProps) {
           )}
 
           <CourseLink
-            href="/course"
+            href={getCoursePath(course.slug)}
             navigate={navigate}
             className="group bg-surface border border-neutral-200 rounded-2xl p-5 hover:border-brand-300 transition-all sm:text-right"
           >

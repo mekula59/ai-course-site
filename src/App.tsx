@@ -15,6 +15,7 @@ import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Waitlist } from "@/components/sections/Waitlist";
 import { CourseHome } from "@/components/course/CourseHome";
+import { CourseLibraryPage } from "@/components/course/CourseLibraryPage";
 import { CourseLayout } from "@/components/course/CourseLayout";
 import { CourseNotFound } from "@/components/course/CourseNotFound";
 import { FinalWrapUpPage } from "@/components/course/FinalWrapUpPage";
@@ -23,11 +24,12 @@ import { ModulePage } from "@/components/course/ModulePage";
 import { StartHerePage } from "@/components/course/StartHerePage";
 import { StandaloneLessonPage } from "@/components/course/StandaloneLessonPage";
 import {
-  courseFinalWrapUp,
-  courseStartHere,
+  beginnerCourse,
+  getCourse,
   getCourseModule,
   getLessonReference,
   getStandaloneCourseLesson,
+  type Course,
 } from "@/lib/course";
 
 function getPathname() {
@@ -88,51 +90,59 @@ function LandingPage() {
   );
 }
 
-function CourseRoutes({
+function CourseDetailRoutes({
+  course,
   navigate,
-  pathname,
+  sectionSlug,
+  lessonSlug,
+  extraParts,
 }: {
+  course: Course;
   navigate: (path: string) => void;
-  pathname: string;
+  sectionSlug?: string;
+  lessonSlug?: string;
+  extraParts: string[];
 }) {
-  const [root, moduleSlug, lessonSlug, ...extraParts] = pathname
-    .split("/")
-    .filter(Boolean);
-
-  if (root !== "course" || extraParts.length > 0) {
+  if (extraParts.length > 0) {
     return <CourseNotFound navigate={navigate} />;
   }
 
-  if (!moduleSlug) {
-    return <CourseHome navigate={navigate} />;
+  if (!sectionSlug) {
+    return <CourseHome course={course} navigate={navigate} />;
   }
 
   if (!lessonSlug) {
-    const standalonePage = getStandaloneCourseLesson(moduleSlug);
+    const standalonePage = getStandaloneCourseLesson(sectionSlug, course);
 
     if (standalonePage) {
-      if (standalonePage.slug === courseStartHere.slug) {
-        return <StartHerePage navigate={navigate} />;
+      if (standalonePage.slug === course.startHere.slug) {
+        return <StartHerePage course={course} navigate={navigate} />;
       }
 
-      if (standalonePage.slug === courseFinalWrapUp.slug) {
-        return <FinalWrapUpPage navigate={navigate} />;
+      if (standalonePage.slug === course.finalWrapUp.slug) {
+        return <FinalWrapUpPage course={course} navigate={navigate} />;
       }
 
-      return <StandaloneLessonPage page={standalonePage} navigate={navigate} />;
+      return (
+        <StandaloneLessonPage
+          course={course}
+          page={standalonePage}
+          navigate={navigate}
+        />
+      );
     }
   }
 
   if (!lessonSlug) {
-    const module = getCourseModule(moduleSlug);
+    const module = getCourseModule(sectionSlug, course);
     return module ? (
-      <ModulePage module={module} navigate={navigate} />
+      <ModulePage course={course} module={module} navigate={navigate} />
     ) : (
       <CourseNotFound navigate={navigate} />
     );
   }
 
-  const reference = getLessonReference(moduleSlug, lessonSlug);
+  const reference = getLessonReference(sectionSlug, lessonSlug, course);
   return reference ? (
     <LessonPage reference={reference} navigate={navigate} />
   ) : (
@@ -140,13 +150,83 @@ function CourseRoutes({
   );
 }
 
+function CoursesRoutes({
+  navigate,
+  pathname,
+}: {
+  navigate: (path: string) => void;
+  pathname: string;
+}) {
+  const [root, courseSlug, sectionSlug, lessonSlug, ...extraParts] = pathname
+    .split("/")
+    .filter(Boolean);
+
+  if (root !== "courses") {
+    return <CourseNotFound navigate={navigate} />;
+  }
+
+  if (!courseSlug) {
+    return <CourseLibraryPage navigate={navigate} />;
+  }
+
+  const course = getCourse(courseSlug);
+
+  if (!course) {
+    return <CourseNotFound navigate={navigate} />;
+  }
+
+  return (
+    <CourseDetailRoutes
+      course={course}
+      navigate={navigate}
+      sectionSlug={sectionSlug}
+      lessonSlug={lessonSlug}
+      extraParts={extraParts}
+    />
+  );
+}
+
+function LegacyCourseRoutes({
+  navigate,
+  pathname,
+}: {
+  navigate: (path: string) => void;
+  pathname: string;
+}) {
+  const [root, sectionSlug, lessonSlug, ...extraParts] = pathname
+    .split("/")
+    .filter(Boolean);
+
+  if (root !== "course") {
+    return <CourseNotFound navigate={navigate} />;
+  }
+
+  return (
+    <CourseDetailRoutes
+      course={beginnerCourse}
+      navigate={navigate}
+      sectionSlug={sectionSlug}
+      lessonSlug={lessonSlug}
+      extraParts={extraParts}
+    />
+  );
+}
+
 export default function App() {
   const { pathname, navigate } = usePathname();
 
-  if (pathname.startsWith("/course")) {
+  if (pathname === "/courses" || pathname.startsWith("/courses/")) {
     return (
       <CourseLayout navigate={navigate}>
-        <CourseRoutes pathname={pathname} navigate={navigate} />
+        <CoursesRoutes pathname={pathname} navigate={navigate} />
+      </CourseLayout>
+    );
+  }
+
+  if (pathname === "/course" || pathname.startsWith("/course/")) {
+    return (
+      <CourseLayout navigate={navigate}>
+        <LegacyCourseRoutes pathname={pathname} navigate={navigate} />
       </CourseLayout>
     );
   }

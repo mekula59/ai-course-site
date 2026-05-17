@@ -60,7 +60,20 @@ export interface CourseStandaloneLesson {
   lesson: Lesson;
 }
 
+export interface Course {
+  slug: string;
+  title: LocalizedText;
+  description: LocalizedText;
+  level: LocalizedText;
+  priceLabel: LocalizedText;
+  languageSupport: LocalizedText;
+  modules: CourseModule[];
+  startHere: CourseStandaloneLesson;
+  finalWrapUp: CourseStandaloneLesson;
+}
+
 export interface LessonReference {
+  course: Course;
   module: CourseModule;
   lesson: Lesson;
   moduleIndex: number;
@@ -3337,132 +3350,209 @@ export const courseFinalWrapUp: CourseStandaloneLesson = {
   },
 };
 
-export const lessonReferences: LessonReference[] = courseModules.flatMap(
-  (module, moduleIndex) =>
+export const beginnerCourse: Course = {
+  slug: "beginner-ai",
+  title: "AI for Everyone: Beginner AI Course",
+  description: {
+    en: "Learn how to use AI for real work, business, school, and everyday tasks in English and Nigerian Pidgin.",
+    pidgin:
+      "Learn how to use AI for real work, business, school, and everyday tasks with English and Nigerian Pidgin.",
+  },
+  level: {
+    en: "Beginner",
+    pidgin: "Beginner",
+  },
+  priceLabel: {
+    en: "Free",
+    pidgin: "Free",
+  },
+  languageSupport: "English + Pidgin",
+  modules: courseModules,
+  startHere: courseStartHere,
+  finalWrapUp: courseFinalWrapUp,
+};
+
+export const courses: Course[] = [beginnerCourse];
+
+export function getCourse(courseSlug: string) {
+  return courses.find((course) => course.slug === courseSlug);
+}
+
+export function getLessonReferences(course: Course = beginnerCourse) {
+  return course.modules.flatMap((module, moduleIndex) =>
     module.lessons.map((lesson, lessonIndex) => ({
+      course,
       module,
       lesson,
       moduleIndex,
       lessonIndex,
     }))
-);
-
-export function getCourseModule(moduleSlug: string) {
-  return courseModules.find((module) => module.slug === moduleSlug);
+  );
 }
 
-export function getLessonReference(moduleSlug: string, lessonSlug: string) {
-  return lessonReferences.find(
+export const lessonReferences: LessonReference[] =
+  getLessonReferences(beginnerCourse);
+
+export function getCourseModule(
+  moduleSlug: string,
+  course: Course = beginnerCourse
+) {
+  return course.modules.find((module) => module.slug === moduleSlug);
+}
+
+export function getLessonReference(
+  moduleSlug: string,
+  lessonSlug: string,
+  course: Course = beginnerCourse
+) {
+  return getLessonReferences(course).find(
     ({ module, lesson }) => module.slug === moduleSlug && lesson.slug === lessonSlug
   );
 }
 
-export function getAdjacentLessons(moduleSlug: string, lessonSlug: string) {
-  const currentIndex = lessonReferences.findIndex(
+export function getAdjacentLessons(
+  moduleSlug: string,
+  lessonSlug: string,
+  course: Course = beginnerCourse
+) {
+  const references = getLessonReferences(course);
+  const currentIndex = references.findIndex(
     ({ module, lesson }) => module.slug === moduleSlug && lesson.slug === lessonSlug
   );
 
   return {
-    previous: currentIndex > 0 ? lessonReferences[currentIndex - 1] : undefined,
+    previous: currentIndex > 0 ? references[currentIndex - 1] : undefined,
     next:
-      currentIndex >= 0 && currentIndex < lessonReferences.length - 1
-        ? lessonReferences[currentIndex + 1]
+      currentIndex >= 0 && currentIndex < references.length - 1
+        ? references[currentIndex + 1]
         : undefined,
   };
 }
 
-export function getCourseStepCount() {
-  return lessonReferences.length + 2;
+export function getCourseStepCount(course: Course = beginnerCourse) {
+  return getLessonReferences(course).length + 2;
 }
 
-export function getCourseStartPath() {
-  return `/course/${courseStartHere.slug}`;
+export function getCoursesPath() {
+  return "/courses";
 }
 
-export function getCourseFinalWrapUpPath() {
-  return `/course/${courseFinalWrapUp.slug}`;
+export function getCoursePath(courseSlug = beginnerCourse.slug) {
+  return `${getCoursesPath()}/${courseSlug}`;
 }
 
-export function getStandaloneCourseLesson(slug: string) {
-  if (slug === courseStartHere.slug) return courseStartHere;
-  if (slug === courseFinalWrapUp.slug) return courseFinalWrapUp;
+export function getCourseStartPath(course: Course = beginnerCourse) {
+  return `${getCoursePath(course.slug)}/${course.startHere.slug}`;
+}
+
+export function getCourseFinalWrapUpPath(course: Course = beginnerCourse) {
+  return `${getCoursePath(course.slug)}/${course.finalWrapUp.slug}`;
+}
+
+export function getStandaloneCourseLesson(
+  slug: string,
+  course: Course = beginnerCourse
+) {
+  if (slug === course.startHere.slug) return course.startHere;
+  if (slug === course.finalWrapUp.slug) return course.finalWrapUp;
   return undefined;
 }
 
-export function getCoreCourseStepNumber(moduleSlug: string, lessonSlug: string) {
-  const currentIndex = lessonReferences.findIndex(
+export function getCoreCourseStepNumber(
+  moduleSlug: string,
+  lessonSlug: string,
+  course: Course = beginnerCourse
+) {
+  const references = getLessonReferences(course);
+  const currentIndex = references.findIndex(
     ({ module, lesson }) => module.slug === moduleSlug && lesson.slug === lessonSlug
   );
 
   return currentIndex >= 0 ? currentIndex + 2 : 1;
 }
 
-export function getStandaloneCourseStepNumber(slug: string) {
-  if (slug === courseStartHere.slug) return 1;
-  if (slug === courseFinalWrapUp.slug) return getCourseStepCount();
+export function getStandaloneCourseStepNumber(
+  slug: string,
+  course: Course = beginnerCourse
+) {
+  if (slug === course.startHere.slug) return 1;
+  if (slug === course.finalWrapUp.slug) return getCourseStepCount(course);
   return 1;
 }
 
 function getLessonNavTarget(reference: LessonReference): CourseNavTarget {
   return {
-    href: getLessonPath(reference.module.slug, reference.lesson.slug),
+    href: getLessonPath(
+      reference.module.slug,
+      reference.lesson.slug,
+      reference.course.slug
+    ),
     title: reference.lesson.title,
   };
 }
 
-function getStartNavTarget(): CourseNavTarget {
+function getStartNavTarget(course: Course = beginnerCourse): CourseNavTarget {
   return {
-    href: getCourseStartPath(),
-    title: courseStartHere.lesson.title,
+    href: getCourseStartPath(course),
+    title: course.startHere.lesson.title,
   };
 }
 
-function getFinalWrapUpNavTarget(): CourseNavTarget {
+function getFinalWrapUpNavTarget(
+  course: Course = beginnerCourse
+): CourseNavTarget {
   return {
-    href: getCourseFinalWrapUpPath(),
-    title: courseFinalWrapUp.lesson.title,
+    href: getCourseFinalWrapUpPath(course),
+    title: course.finalWrapUp.lesson.title,
   };
 }
 
 export function getAdjacentCourseLessonSteps(
   moduleSlug: string,
-  lessonSlug: string
+  lessonSlug: string,
+  course: Course = beginnerCourse
 ) {
-  const currentIndex = lessonReferences.findIndex(
+  const references = getLessonReferences(course);
+  const currentIndex = references.findIndex(
     ({ module, lesson }) => module.slug === moduleSlug && lesson.slug === lessonSlug
   );
 
   return {
     previous:
       currentIndex === 0
-        ? getStartNavTarget()
+        ? getStartNavTarget(course)
         : currentIndex > 0
-          ? getLessonNavTarget(lessonReferences[currentIndex - 1])
+          ? getLessonNavTarget(references[currentIndex - 1])
           : undefined,
     next:
-      currentIndex === lessonReferences.length - 1
-        ? getFinalWrapUpNavTarget()
-        : currentIndex >= 0 && currentIndex < lessonReferences.length - 1
-          ? getLessonNavTarget(lessonReferences[currentIndex + 1])
+      currentIndex === references.length - 1
+        ? getFinalWrapUpNavTarget(course)
+        : currentIndex >= 0 && currentIndex < references.length - 1
+          ? getLessonNavTarget(references[currentIndex + 1])
           : undefined,
   };
 }
 
-export function getAdjacentStandaloneCourseSteps(slug: string) {
-  if (slug === courseStartHere.slug) {
+export function getAdjacentStandaloneCourseSteps(
+  slug: string,
+  course: Course = beginnerCourse
+) {
+  const references = getLessonReferences(course);
+
+  if (slug === course.startHere.slug) {
     return {
       previous: undefined,
-      next: lessonReferences[0]
-        ? getLessonNavTarget(lessonReferences[0])
-        : getFinalWrapUpNavTarget(),
+      next: references[0]
+        ? getLessonNavTarget(references[0])
+        : getFinalWrapUpNavTarget(course),
     };
   }
 
-  if (slug === courseFinalWrapUp.slug) {
-    const lastLesson = lessonReferences[lessonReferences.length - 1];
+  if (slug === course.finalWrapUp.slug) {
+    const lastLesson = references[references.length - 1];
 
     return {
-      previous: lastLesson ? getLessonNavTarget(lastLesson) : getStartNavTarget(),
+      previous: lastLesson ? getLessonNavTarget(lastLesson) : getStartNavTarget(course),
       next: undefined,
     };
   }
@@ -3473,10 +3563,17 @@ export function getAdjacentStandaloneCourseSteps(slug: string) {
   };
 }
 
-export function getLessonPath(moduleSlug: string, lessonSlug: string) {
-  return `/course/${moduleSlug}/${lessonSlug}`;
+export function getLessonPath(
+  moduleSlug: string,
+  lessonSlug: string,
+  courseSlug = beginnerCourse.slug
+) {
+  return `${getCoursePath(courseSlug)}/${moduleSlug}/${lessonSlug}`;
 }
 
-export function getModulePath(moduleSlug: string) {
-  return `/course/${moduleSlug}`;
+export function getModulePath(
+  moduleSlug: string,
+  courseSlug = beginnerCourse.slug
+) {
+  return `${getCoursePath(courseSlug)}/${moduleSlug}`;
 }

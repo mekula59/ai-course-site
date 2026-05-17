@@ -21,9 +21,9 @@ export function CourseNotFound({ navigate }: CourseNotFoundProps) {
           choose a module from there.
         </p>
         <Button asChild>
-          <CourseLink href="/course" navigate={navigate}>
+          <CourseLink href="/courses" navigate={navigate}>
             <ArrowLeft size={18} className="mr-2" />
-            Back to course
+            Back to courses
           </CourseLink>
         </Button>
       </div>

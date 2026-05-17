@@ -2,34 +2,37 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import { Button } from "@/components/ui/Button";
 import {
-  courseFinalWrapUp,
-  courseModules,
-  courseStartHere,
+  beginnerCourse,
   getCourseFinalWrapUpPath,
   getCourseStartPath,
   getLessonPath,
+  getLessonReferences,
   getLocalizedText,
   getModulePath,
-  lessonReferences,
+  type Course,
 } from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
 
 interface CourseHomeProps {
+  course?: Course;
   navigate: CourseNavigate;
 }
 
-export function CourseHome({ navigate }: CourseHomeProps) {
+export function CourseHome({ course = beginnerCourse, navigate }: CourseHomeProps) {
   const { lang } = useLang();
-  const firstLesson = lessonReferences[0];
-  const startHereTitle = getLocalizedText(courseStartHere.lesson.title, lang);
-  const finalWrapUpTitle = getLocalizedText(courseFinalWrapUp.lesson.title, lang);
+  const courseLessonReferences = getLessonReferences(course);
+  const firstLesson = courseLessonReferences[0];
+  const courseTitle = getLocalizedText(course.title, lang);
+  const courseDescription = getLocalizedText(course.description, lang);
+  const startHereTitle = getLocalizedText(course.startHere.lesson.title, lang);
+  const finalWrapUpTitle = getLocalizedText(
+    course.finalWrapUp.lesson.title,
+    lang
+  );
   const labels =
     lang === "pidgin"
       ? {
           freeCourse: "Free Course",
-          headline: "Learn how to use AI with simple, practical lessons wey easy to follow.",
-          intro:
-            "This course dey like workbook. Read one lesson, try the prompt, do the practice task, then move to the next lesson when you ready.",
           startHere: "Start from here",
           startHereDescription:
             "Begin with short guide to the course, the language switch, copyable prompts, and practice tasks.",
@@ -65,9 +68,6 @@ export function CourseHome({ navigate }: CourseHomeProps) {
         }
       : {
           freeCourse: "Free Course",
-          headline: "Learn to use AI with calm, practical lessons.",
-          intro:
-            "This course is built like a workbook. Read one lesson, try the prompt, complete the practice task, then move to the next lesson when you are ready.",
           startHere: "Start here",
           startHereDescription:
             "Begin with a short guide to the course, the language switch, copyable prompts, and practice tasks.",
@@ -110,10 +110,10 @@ export function CourseHome({ navigate }: CourseHomeProps) {
             {labels.freeCourse}
           </p>
           <h1 className="font-display text-3xl sm:text-5xl font-bold leading-tight text-neutral-900 mb-5 break-words max-w-[13ch] sm:max-w-none">
-            {labels.headline}
+            {courseTitle}
           </h1>
           <p className="text-base sm:text-lg leading-8 text-neutral-600 max-w-[33ch] sm:max-w-2xl">
-            {labels.intro}
+            {courseDescription}
           </p>
         </section>
 
@@ -132,7 +132,7 @@ export function CourseHome({ navigate }: CourseHomeProps) {
             </div>
 
             <Button asChild size="md" className="w-full sm:w-auto">
-              <CourseLink href={getCourseStartPath()} navigate={navigate}>
+              <CourseLink href={getCourseStartPath(course)} navigate={navigate}>
                 {labels.startHereButton}
                 <ArrowRight size={18} className="ml-2" />
               </CourseLink>
@@ -159,14 +159,14 @@ export function CourseHome({ navigate }: CourseHomeProps) {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {courseModules.map((module, moduleIndex) => {
+            {course.modules.map((module, moduleIndex) => {
               const moduleTitle = getLocalizedText(module.title, lang);
               const moduleDescription = getLocalizedText(module.description, lang);
 
               return (
                 <CourseLink
                   key={module.slug}
-                  href={getModulePath(module.slug)}
+                  href={getModulePath(module.slug, course.slug)}
                   navigate={navigate}
                   className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
                 >
@@ -181,7 +181,7 @@ export function CourseHome({ navigate }: CourseHomeProps) {
 
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
                     {labels.module} {moduleIndex + 1} {labels.of}{" "}
-                    {courseModules.length}
+                    {course.modules.length}
                   </p>
                   <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
                     {moduleTitle}
@@ -202,10 +202,10 @@ export function CourseHome({ navigate }: CourseHomeProps) {
 
         <div className="flex flex-wrap gap-x-5 gap-y-2 border-y border-neutral-200/80 py-4 my-8 text-sm text-neutral-500">
           <span>
-            {courseModules.length} {labels.modules}
+            {course.modules.length} {labels.modules}
           </span>
           <span>
-            {lessonReferences.length} {labels.coreLessons}
+            {courseLessonReferences.length} {labels.coreLessons}
           </span>
           <span>{labels.startAndWrap}</span>
           <span>{labels.promptPractice}</span>
@@ -223,7 +223,11 @@ export function CourseHome({ navigate }: CourseHomeProps) {
         <div className="grid grid-cols-1 gap-3">
           {firstLesson && (
             <CourseLink
-              href={getLessonPath(firstLesson.module.slug, firstLesson.lesson.slug)}
+              href={getLessonPath(
+                firstLesson.module.slug,
+                firstLesson.lesson.slug,
+                course.slug
+              )}
               navigate={navigate}
               className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
             >
@@ -276,7 +280,7 @@ export function CourseHome({ navigate }: CourseHomeProps) {
             </div>
 
             <CourseLink
-              href={getCourseFinalWrapUpPath()}
+              href={getCourseFinalWrapUpPath(course)}
               navigate={navigate}
               className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-3 text-sm font-semibold text-neutral-700 hover:border-brand-300 hover:text-brand-700 transition-colors"
             >

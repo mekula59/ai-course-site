@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { BookOpen } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useLang } from "@/context/LanguageContext";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/types/language";
@@ -60,13 +61,14 @@ export function CourseLayout({ children, navigate }: CourseLayoutProps) {
 
           <div className="flex items-center gap-3">
             <CourseLanguageToggle />
+            <ThemeToggle />
             <CourseLink
-              href="/course"
+              href="/courses"
               navigate={navigate}
               className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
             >
               <BookOpen size={16} />
-              Course
+              Courses
             </CourseLink>
           </div>
         </nav>

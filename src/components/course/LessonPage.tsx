@@ -14,13 +14,18 @@ interface LessonPageProps {
 }
 
 export function LessonPage({ reference, navigate }: LessonPageProps) {
-  const { module, lesson, lessonIndex } = reference;
-  const currentStepNumber = getCoreCourseStepNumber(module.slug, lesson.slug);
-  const totalCourseSteps = getCourseStepCount();
+  const { course, module, lesson, lessonIndex } = reference;
+  const currentStepNumber = getCoreCourseStepNumber(
+    module.slug,
+    lesson.slug,
+    course
+  );
+  const totalCourseSteps = getCourseStepCount(course);
   const progressPercent = (currentStepNumber / totalCourseSteps) * 100;
   const { previous, next } = getAdjacentCourseLessonSteps(
     module.slug,
-    lesson.slug
+    lesson.slug,
+    course
   );
 
   return (
@@ -35,7 +40,7 @@ export function LessonPage({ reference, navigate }: LessonPageProps) {
         pidgin: `Step ${currentStepNumber} of ${totalCourseSteps}`,
       }}
       progressPercent={progressPercent}
-      backHref={getModulePath(module.slug)}
+      backHref={getModulePath(module.slug, course.slug)}
       backLabel={{
         en: "Back to module",
         pidgin: "Back to module",

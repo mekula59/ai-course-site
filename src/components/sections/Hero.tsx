@@ -201,19 +201,14 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.36, ease: EASE }}
             >
-              <Button
-                size="lg"
-                onClick={() =>
-                  document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                {c.primaryCta}
+              <Button size="lg" asChild>
+                <a href="/courses/beginner-ai">{c.primaryCta}</a>
               </Button>
               <Button
                 variant="ghost"
                 size="lg"
                 onClick={() =>
-                  document.getElementById("modules")?.scrollIntoView({ behavior: "smooth" })
+                  document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
                 {c.secondaryCta}

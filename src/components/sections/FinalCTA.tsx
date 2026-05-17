@@ -36,21 +36,15 @@ export function FinalCTA() {
 
         <FadeIn delay={0.24}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={() =>
-                document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              {c.primaryCta}
+            <Button variant="secondary" size="lg" asChild>
+              <a href="/courses/beginner-ai">{c.primaryCta}</a>
             </Button>
             <Button
               variant="ghost"
               size="lg"
               className="text-neutral-400 hover:text-white hover:bg-neutral-800 border border-neutral-600"
               onClick={() =>
-                document.getElementById("modules")?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })
               }
             >
               {c.secondaryCta}
@@ -61,11 +55,14 @@ export function FinalCTA() {
         {/* Trust strip */}
         <FadeIn delay={0.32}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-neutral-500 text-xs font-medium">
-            <span>Free to join</span>
-            <span className="w-px h-3 bg-neutral-600 hidden sm:block" />
-            <span>No credit card</span>
-            <span className="w-px h-3 bg-neutral-600 hidden sm:block" />
-            <span>Built for Nigeria</span>
+            {c.trustItems.map((item, index) => (
+              <span key={item} className="inline-flex items-center gap-x-5">
+                <span>{item}</span>
+                {index < c.trustItems.length - 1 ? (
+                  <span className="w-px h-3 bg-neutral-600 hidden sm:block" />
+                ) : null}
+              </span>
+            ))}
           </div>
         </FadeIn>
       </div>

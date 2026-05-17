@@ -2,19 +2,27 @@ import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import { Button } from "@/components/ui/Button";
 import {
+  beginnerCourse,
+  getCoursePath,
   getLessonPath,
   getLocalizedLesson,
   getLocalizedText,
+  type Course,
   type CourseModule,
 } from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
 
 interface ModulePageProps {
+  course?: Course;
   module: CourseModule;
   navigate: CourseNavigate;
 }
 
-export function ModulePage({ module, navigate }: ModulePageProps) {
+export function ModulePage({
+  course = beginnerCourse,
+  module,
+  navigate,
+}: ModulePageProps) {
   const { lang } = useLang();
   const firstLesson = module.lessons[0];
   const moduleTitle = getLocalizedText(module.title, lang);
@@ -46,7 +54,7 @@ export function ModulePage({ module, navigate }: ModulePageProps) {
     <div className="px-5 py-10 sm:py-14">
       <div className="w-full max-w-3xl mx-auto">
         <CourseLink
-          href="/course"
+          href={getCoursePath(course.slug)}
           navigate={navigate}
           className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-500 hover:text-neutral-900 transition-colors mb-7"
         >
@@ -77,7 +85,7 @@ export function ModulePage({ module, navigate }: ModulePageProps) {
               </div>
               <Button asChild className="w-full sm:w-auto">
                 <CourseLink
-                  href={getLessonPath(module.slug, firstLesson.slug)}
+                  href={getLessonPath(module.slug, firstLesson.slug, course.slug)}
                   navigate={navigate}
                 >
                   {labels.startModule}
@@ -107,7 +115,7 @@ export function ModulePage({ module, navigate }: ModulePageProps) {
 
                   return (
                     <CourseLink
-                      href={getLessonPath(module.slug, lesson.slug)}
+                      href={getLessonPath(module.slug, lesson.slug, course.slug)}
                       navigate={navigate}
                       className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
                     >

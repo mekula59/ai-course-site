@@ -10,7 +10,13 @@ import {
   MessageSquareText,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
-import { getLocalizedLesson, getLocalizedText, type Lesson, type LocalizedText } from "@/lib/course";
+import {
+  getCoursePath,
+  getLocalizedLesson,
+  getLocalizedText,
+  type Lesson,
+  type LocalizedText,
+} from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
 
 export interface LessonNavTarget {
@@ -273,7 +279,7 @@ export function LessonArticle({
             </CourseLink>
           ) : (
             <CourseLink
-              href="/course"
+              href={getCoursePath()}
               navigate={navigate}
               className="group bg-surface border border-neutral-200 rounded-2xl p-5 hover:border-brand-300 transition-all sm:text-right"
             >

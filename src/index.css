@@ -70,3 +70,243 @@
     min-height: 100svh;
   }
 }
+
+@layer utilities {
+  .dark {
+    background-color: #17100d;
+  }
+
+  .dark body {
+    background-color: #17100d;
+    color: #eadfce;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: #f4ede3;
+  }
+
+  .dark .bg-ivory {
+    background-color: #1b130f;
+  }
+
+  .dark .bg-surface,
+  .dark .bg-white {
+    background-color: #241914;
+  }
+
+  .dark .bg-white\/90,
+  .dark .bg-white\/95 {
+    background-color: rgb(36 25 20 / 0.92);
+  }
+
+  .dark .bg-surface\/50 {
+    background-color: rgb(36 25 20 / 0.58);
+  }
+
+  .dark .bg-surface\/95 {
+    background-color: rgb(36 25 20 / 0.94);
+  }
+
+  .dark .bg-transparent {
+    background-color: transparent;
+  }
+
+  .dark .bg-neutral-50,
+  .dark .bg-neutral-100 {
+    background-color: rgb(255 246 232 / 0.065);
+  }
+
+  .dark .bg-neutral-800,
+  .dark .bg-neutral-800\/50 {
+    background-color: rgb(38 27 21 / 0.88);
+  }
+
+  .dark .bg-neutral-900 {
+    background-color: #160f0c;
+  }
+
+  .dark .bg-brand-50,
+  .dark .bg-brand-100 {
+    background-color: rgb(223 114 32 / 0.13);
+  }
+
+  .dark .bg-brand-800\/35 {
+    background-color: rgb(135 53 24 / 0.42);
+  }
+
+  .dark .bg-green-50 {
+    background-color: rgb(31 75 51 / 0.18);
+  }
+
+  .dark .text-white,
+  .dark .text-neutral-900,
+  .dark .text-neutral-800 {
+    color: #f4ede3;
+  }
+
+  .dark .text-neutral-700 {
+    color: #e2d3c2;
+  }
+
+  .dark .text-neutral-600 {
+    color: #cdbba8;
+  }
+
+  .dark .text-neutral-500 {
+    color: #ad9b8d;
+  }
+
+  .dark .text-neutral-400 {
+    color: #958273;
+  }
+
+  .dark .text-neutral-300 {
+    color: #76695f;
+  }
+
+  .dark .text-neutral-200,
+  .dark .text-neutral-100 {
+    color: #eadfce;
+  }
+
+  .dark .text-brand-700,
+  .dark .text-brand-600,
+  .dark .text-brand-500 {
+    color: #f0a45f;
+  }
+
+  .dark .text-brand-400 {
+    color: #f2b778;
+  }
+
+  .dark .text-brand-300,
+  .dark .text-brand-100 {
+    color: #f8d9b6;
+  }
+
+  .dark .text-green-500 {
+    color: #88d2a2;
+  }
+
+  .dark .text-red-600 {
+    color: #f39a8d;
+  }
+
+  .dark .border-neutral-100,
+  .dark .border-neutral-200,
+  .dark .border-neutral-300,
+  .dark .border-neutral-600,
+  .dark .border-neutral-700,
+  .dark [class~="border-neutral-100/80"],
+  .dark [class~="border-neutral-200/40"],
+  .dark [class~="border-neutral-200/50"],
+  .dark [class~="border-neutral-200/60"],
+  .dark [class~="border-neutral-200/70"],
+  .dark [class~="border-neutral-200/80"] {
+    border-color: rgb(88 63 49 / 0.72);
+  }
+
+  .dark .border-brand-100,
+  .dark .border-brand-300 {
+    border-color: rgb(223 114 32 / 0.34);
+  }
+
+  .dark .border-green-200 {
+    border-color: rgb(88 168 116 / 0.34);
+  }
+
+  .dark .divide-neutral-100 > :not([hidden]) ~ :not([hidden]),
+  .dark .divide-neutral-200 > :not([hidden]) ~ :not([hidden]),
+  .dark .divide-neutral-700 > :not([hidden]) ~ :not([hidden]) {
+    border-color: rgb(88 63 49 / 0.72);
+  }
+
+  .dark .placeholder\:text-neutral-400::placeholder {
+    color: #8f7c6f;
+  }
+
+  .dark input,
+  .dark textarea,
+  .dark select {
+    color: #f4ede3;
+    background-color: #1b130f;
+    border-color: rgb(88 63 49 / 0.84);
+  }
+
+  .dark pre {
+    color: #f4eadc;
+  }
+
+  .dark .bg-black\/25 {
+    background-color: rgb(10 6 4 / 0.34);
+  }
+
+  .dark .shadow-sm,
+  .dark .shadow-md,
+  .dark .shadow-lg,
+  .dark [class*="shadow-["] {
+    box-shadow: 0 16px 40px rgb(0 0 0 / 0.28);
+  }
+
+  .dark .hover\:text-neutral-900:hover,
+  .dark .hover\:text-neutral-800:hover,
+  .dark .hover\:text-neutral-700:hover {
+    color: #f4ede3;
+  }
+
+  .dark .hover\:text-white:hover {
+    color: #fff7ec;
+  }
+
+  .dark .hover\:text-brand-700:hover,
+  .dark .hover\:text-brand-600:hover {
+    color: #f2b778;
+  }
+
+  .dark .hover\:bg-neutral-50:hover,
+  .dark .hover\:bg-neutral-100:hover {
+    background-color: rgb(255 246 232 / 0.09);
+  }
+
+  .dark .hover\:bg-neutral-800:hover {
+    background-color: rgb(48 34 27 / 0.96);
+  }
+
+  .dark .hover\:bg-brand-50:hover {
+    background-color: rgb(223 114 32 / 0.16);
+  }
+
+  .dark .hover\:border-neutral-200:hover,
+  .dark .hover\:border-neutral-300:hover,
+  .dark .hover\:border-neutral-400:hover {
+    border-color: rgb(126 90 70 / 0.82);
+  }
+
+  .dark .hover\:border-brand-300:hover {
+    border-color: rgb(230 147 71 / 0.72);
+  }
+
+  .dark .from-brand-100\/60 {
+    --tw-gradient-from: rgb(223 114 32 / 0.16) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(223 114 32 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .dark .via-brand-50\/20 {
+    --tw-gradient-via: rgb(223 114 32 / 0.06) var(--tw-gradient-via-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+  }
+
+  .dark .to-ivory {
+    --tw-gradient-to: #1b130f var(--tw-gradient-to-position);
+  }
+
+  .dark .focus-visible\:ring-offset-2:focus-visible {
+    --tw-ring-offset-color: #1b130f;
+  }
+}
