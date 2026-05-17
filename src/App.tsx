@@ -19,7 +19,12 @@ import { CourseLayout } from "@/components/course/CourseLayout";
 import { CourseNotFound } from "@/components/course/CourseNotFound";
 import { LessonPage } from "@/components/course/LessonPage";
 import { ModulePage } from "@/components/course/ModulePage";
-import { getCourseModule, getLessonReference } from "@/lib/course";
+import { StandaloneLessonPage } from "@/components/course/StandaloneLessonPage";
+import {
+  getCourseModule,
+  getLessonReference,
+  getStandaloneCourseLesson,
+} from "@/lib/course";
 
 function getPathname() {
   const pathname = window.location.pathname.replace(/\/+$/, "");
@@ -96,6 +101,14 @@ function CourseRoutes({
 
   if (!moduleSlug) {
     return <CourseHome navigate={navigate} />;
+  }
+
+  if (!lessonSlug) {
+    const standalonePage = getStandaloneCourseLesson(moduleSlug);
+
+    if (standalonePage) {
+      return <StandaloneLessonPage page={standalonePage} navigate={navigate} />;
+    }
   }
 
   if (!lessonSlug) {

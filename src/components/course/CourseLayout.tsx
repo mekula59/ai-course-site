@@ -40,6 +40,12 @@ function CourseLanguageToggle() {
 }
 
 export function CourseLayout({ children, navigate }: CourseLayoutProps) {
+  const { lang } = useLang();
+  const footerCopy =
+    lang === "pidgin"
+      ? "Read slowly, practise as you go, and keep wetin work for you."
+      : "Read slowly, practise as you go, and keep what works.";
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden bg-ivory text-neutral-900 flex flex-col">
       <header className="border-b border-neutral-200/80 bg-surface/95 backdrop-blur-sm">
@@ -71,7 +77,7 @@ export function CourseLayout({ children, navigate }: CourseLayoutProps) {
       <footer className="border-t border-neutral-200/80 bg-surface px-5 py-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-neutral-500">
           <p className="font-medium text-neutral-700">AI for Everyone Course</p>
-          <p>Read slowly, practise as you go, and keep what works.</p>
+          <p>{footerCopy}</p>
         </div>
       </footer>
     </div>

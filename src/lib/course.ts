@@ -49,9 +49,15 @@ export interface LocalizedLesson {
 export interface CourseModule {
   slug: string;
   number: string;
-  title: string;
-  description: string;
+  title: LocalizedText;
+  description: LocalizedText;
   lessons: Lesson[];
+}
+
+export interface CourseStandaloneLesson {
+  slug: string;
+  eyebrow: LocalizedText;
+  lesson: Lesson;
 }
 
 export interface LessonReference {
@@ -59,6 +65,11 @@ export interface LessonReference {
   lesson: Lesson;
   moduleIndex: number;
   lessonIndex: number;
+}
+
+export interface CourseNavTarget {
+  href: string;
+  title: LocalizedText;
 }
 
 export function getLocalizedText(copy: LocalizedText, lang: Lang) {
@@ -88,13 +99,175 @@ export function getLocalizedLesson(lesson: Lesson, lang: Lang): LocalizedLesson 
   };
 }
 
+export const courseStartHere: CourseStandaloneLesson = {
+  slug: "start-here",
+  eyebrow: {
+    en: "Start Here",
+    pidgin: "Start From Here",
+  },
+  lesson: {
+    slug: "start-here",
+    title: {
+      en: "Start Here",
+      pidgin: "Start From Here",
+    },
+    intro: {
+      en: "Welcome. This course is for complete beginners who want to use AI in normal life, not people trying to sound technical.",
+      pidgin:
+        "Welcome. This course na for complete beginners wey wan use AI for normal life, no be for people wey wan sound technical.",
+    },
+    content: [
+      {
+        heading: {
+          en: "Who this course is for",
+          pidgin: "Who this course dey for",
+        },
+        body: {
+          en: "This free course is for you if you have heard people talk about AI, but you are still not sure how to use it well.\n\nYou may be a student, worker, business owner, creator, parent, job seeker, or just someone trying to keep up. You do not need a tech background. You do not need to know coding. You do not need to use big words.\n\nThe goal is simple: learn how to ask better questions, use the answers carefully, and apply AI to real work without losing your own judgement.",
+          pidgin:
+            "This free course dey for you if you don hear people talk about AI, but you still no sure how to use am well.\n\nYou fit be student, worker, business owner, creator, parent, job seeker, or just person wey dey try catch up. You no need tech background. You no need sabi coding. You no need use big grammar.\n\nThe goal simple: learn how to ask better questions, use the answers with sense, and apply AI to real work without losing your own judgement.",
+        },
+      },
+      {
+        heading: {
+          en: "How to use the course",
+          pidgin: "How to use the course",
+        },
+        body: {
+          en: "Move through it like a workbook. Read one lesson, try the prompt, do the small practice task, then answer the quick check before moving on.\n\nYou can finish a lesson in one sitting, but do not rush the practice. The practice is where the learning starts to enter your hands.\n\nThe course has this Start Here page, four core modules with twelve lessons, and a final wrap-up at the end. If you are new, start here and follow the order the first time.",
+          pidgin:
+            "Use am like workbook. Read one lesson, try the prompt, do the small practice task, then answer the quick check before you move.\n\nYou fit finish one lesson for one sitting, but no rush the practice. Na for the practice the learning go start to enter your hand.\n\nThe course get this Start Here page, four core modules with twelve lessons, and final wrap-up for the end. If you dey new, start here and follow the order the first time.",
+        },
+        examples: [
+          {
+            label: {
+              en: "Read",
+              pidgin: "Read",
+            },
+            content: {
+              en: "Go through the lesson slowly enough to understand the main idea.",
+              pidgin:
+                "Read the lesson slowly enough make you understand the main idea.",
+            },
+          },
+          {
+            label: {
+              en: "Try",
+              pidgin: "Try",
+            },
+            content: {
+              en: "Copy the prompt, replace the bracketed parts with your own details, and run it in your AI tool.",
+              pidgin:
+                "Copy the prompt, replace the bracket parts with your own details, and run am for your AI tool.",
+            },
+          },
+          {
+            label: {
+              en: "Check",
+              pidgin: "Check",
+            },
+            content: {
+              en: "Read the answer. Fix anything that is wrong, too generic, too formal, or not true for your situation.",
+              pidgin:
+                "Read the answer. Fix anything wey wrong, too general, too formal, or no true for your situation.",
+            },
+          },
+          {
+            label: {
+              en: "Use",
+              pidgin: "Use",
+            },
+            content: {
+              en: "Apply the part that helps you. Leave the rest. You are still the person making the final call.",
+              pidgin:
+                "Use the part wey help you. Leave the rest. Na you still dey make the final decision.",
+            },
+          },
+        ],
+      },
+      {
+        heading: {
+          en: "English and Pidgin",
+          pidgin: "English and Pidgin",
+        },
+        body: {
+          en: "You can use the EN and Pidgin switch at the top of the course. Choose the language that helps the lesson land better.\n\nPidgin is not a side note here. It is another full way to learn the same lesson. You can read in English, switch to Pidgin for clarity, then switch back if you want.\n\nUse whichever version makes the idea easier to carry into your real life.",
+          pidgin:
+            "You fit use the EN and Pidgin switch for the top of the course. Choose the language wey make the lesson enter better.\n\nPidgin no be side note here. Na another full way to learn the same lesson. You fit read for English, switch to Pidgin make e clear, then switch back if you want.\n\nUse the version wey make the idea easy to carry enter your real life.",
+        },
+      },
+      {
+        heading: {
+          en: "How to use the prompts",
+          pidgin: "How to use the prompts",
+        },
+        body: {
+          en: "Each lesson includes a copyable prompt. The prompt is not magic. It is just a clear starting point.\n\nWhen you see bracketed text like [describe your task], replace it with your own real details. If the prompt asks for a tone, choose a tone that fits your situation. If the answer is close but not right, ask AI to adjust it instead of starting over.\n\nDo not paste private details unless they are truly needed. You can use placeholders like [customer], [amount], or [location].",
+          pidgin:
+            "Each lesson get prompt wey you fit copy. The prompt no be magic. Na clear starting point.\n\nWhen you see bracket text like [describe your task], replace am with your own real details. If the prompt ask for tone, choose tone wey fit your situation. If the answer close but e no correct, ask AI make e adjust am instead of starting again.\n\nNo paste private details unless dem really need am. You fit use placeholders like [customer], [amount], or [location].",
+        },
+      },
+      {
+        heading: {
+          en: "How to practise",
+          pidgin: "How to practise",
+        },
+        body: {
+          en: "Use real small tasks. A WhatsApp reply. A school explanation. A customer message. A summary of something you need to understand. A plan for your week.\n\nDo not wait for a perfect big project. AI becomes useful when you practise with ordinary tasks and learn how to improve the first answer.",
+          pidgin:
+            "Use real small tasks. WhatsApp reply. School explanation. Customer message. Summary of something wey you need understand. Plan for your week.\n\nNo wait for perfect big project. AI dey become useful when you practise with normal tasks and learn how to improve the first answer.",
+        },
+      },
+    ],
+    keyTakeaway: {
+      en: "You do not need to be technical to use AI well. Read, try, check, edit, and keep practising with real tasks.",
+      pidgin:
+        "You no need be tech person to use AI well. Read, try, check, edit, and continue to practise with real tasks.",
+    },
+    examplePrompt: {
+      en: "I am starting a beginner AI course.\n\nHelp me choose one small real task I can practise with today.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings I do often:\n[list 3 normal tasks]\n\nPlease suggest:\n1. One easy task to practise with\n2. What I should ask AI to do\n3. What details I should give AI\n4. What I should check before using the answer",
+      pidgin:
+        "I dey start beginner AI course.\n\nHelp me choose one small real task wey I fit practise with today.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings wey I dey do often:\n[list 3 normal tasks]\n\nPlease suggest:\n1. One easy task to practise with\n2. Wetin I suppose ask AI make e do\n3. Which details I suppose give AI\n4. Wetin I suppose check before I use the answer",
+    },
+    practiceTask: {
+      en: "Pick one small task from your real life. It should be something you can finish today, not something huge.\n\nUse the prompt above. When AI suggests a task, write down why you chose it and what you will check before using the answer.",
+      pidgin:
+        "Pick one small task from your real life. Make e be something wey you fit finish today, no be big thing.\n\nUse the prompt above. When AI suggest task, write down why you choose am and wetin you go check before you use the answer.",
+    },
+    quickCheck: [
+      {
+        en: "What small task will you practise with first?",
+        pidgin: "Which small task you go practise with first?",
+      },
+      {
+        en: "Which language helps you understand better right now?",
+        pidgin: "Which language dey help you understand better now?",
+      },
+      {
+        en: "What detail will you add so AI does not have to guess?",
+        pidgin: "Which detail you go add make AI no need guess?",
+      },
+      {
+        en: "What will you check before you use the answer?",
+        pidgin: "Wetin you go check before you use the answer?",
+      },
+    ],
+  },
+};
+
 export const courseModules: CourseModule[] = [
   {
     slug: "module-1",
     number: "01",
-    title: "Start With AI Basics",
-    description:
-      "Understand what AI is, where it helps, and how to use it without feeling technical.",
+    title: {
+      en: "Start With AI Basics",
+      pidgin: "Start With AI Basics",
+    },
+    description: {
+      en: "Understand what AI is, where it helps, and how to use it without feeling technical.",
+      pidgin:
+        "Understand wetin AI be, where e fit help, and how to use am without feeling technical.",
+    },
     lessons: [
       {
         slug: "lesson-1",
@@ -719,9 +892,15 @@ export const courseModules: CourseModule[] = [
   {
     slug: "module-2",
     number: "02",
-    title: "Talk To AI Clearly",
-    description:
-      "Learn how to ask better questions, avoid weak prompts, and improve the answers AI gives you.",
+    title: {
+      en: "Talk To AI Clearly",
+      pidgin: "Talk To AI Clearly",
+    },
+    description: {
+      en: "Learn how to ask better questions, avoid weak prompts, and improve the answers AI gives you.",
+      pidgin:
+        "Learn how to ask better questions, avoid weak prompts, and improve the answers wey AI give you.",
+    },
     lessons: [
       {
         slug: "lesson-1",
@@ -1392,9 +1571,15 @@ export const courseModules: CourseModule[] = [
   {
     slug: "module-3",
     number: "03",
-    title: "Use AI For Real Tasks",
-    description:
-      "Apply AI to writing, research, summaries, and everyday tasks in a simple, useful way.",
+    title: {
+      en: "Use AI For Real Tasks",
+      pidgin: "Use AI For Real Tasks",
+    },
+    description: {
+      en: "Apply AI to writing, research, summaries, and everyday tasks in a simple, useful way.",
+      pidgin:
+        "Use AI for writing, research, summaries, and everyday tasks in simple, useful way.",
+    },
     lessons: [
       {
         slug: "lesson-1",
@@ -2086,9 +2271,15 @@ export const courseModules: CourseModule[] = [
   {
     slug: "module-4",
     number: "04",
-    title: "Study, Decide, And Stay Safe",
-    description:
-      "Use AI for learning and everyday decisions while protecting your privacy and checking important facts.",
+    title: {
+      en: "Study, Decide, And Stay Safe",
+      pidgin: "Study, Decide, And Stay Safe",
+    },
+    description: {
+      en: "Use AI for learning and everyday decisions while protecting your privacy and checking important facts.",
+      pidgin:
+        "Use AI for learning and everyday decisions while you protect your privacy and check important facts.",
+    },
     lessons: [
       {
         slug: "lesson-1",
@@ -2751,6 +2942,219 @@ export const courseModules: CourseModule[] = [
   },
 ];
 
+export const courseFinalWrapUp: CourseStandaloneLesson = {
+  slug: "final-wrap-up",
+  eyebrow: {
+    en: "Final Wrap-up",
+    pidgin: "Final Wrap-up",
+  },
+  lesson: {
+    slug: "final-wrap-up",
+    title: {
+      en: "Keep Using AI With Sense",
+      pidgin: "Continue to Use AI With Sense",
+    },
+    intro: {
+      en: "You have finished the core lessons. The next step is not to know everything. It is to build a simple habit you can keep using.",
+      pidgin:
+        "You don finish the core lessons. The next step no be to sabi everything. Na to build simple habit wey you fit continue to use.",
+    },
+    content: [
+      {
+        heading: {
+          en: "What you can do now",
+          pidgin: "Wetin you fit do now",
+        },
+        body: {
+          en: "You can ask AI clearer questions. You can give it context. You can improve the first answer instead of accepting it blindly. You can use it for writing, research, summaries, planning, and everyday tasks.\n\nYou also know where to be careful. AI can sound confident and still be wrong. It can be too generic. It can repeat private details if you paste them. It can help you think, but it should not make every decision for you.\n\nThat is a strong beginner foundation.",
+          pidgin:
+            "You fit ask AI clearer questions. You fit give am context. You fit improve the first answer instead of accepting am blindly. You fit use am for writing, research, summaries, planning, and everyday tasks.\n\nYou still sabi where you suppose careful. AI fit sound confident and still wrong. E fit too general. E fit repeat private details if you paste dem. E fit help you think, but e no suppose make every decision for you.\n\nThat one na strong beginner foundation.",
+        },
+      },
+      {
+        heading: {
+          en: "Build one simple routine",
+          pidgin: "Build one simple routine",
+        },
+        body: {
+          en: "Do not try to use AI for everything at once. Choose one small routine first.\n\nMaybe every Monday you use AI to plan your week. Maybe twice a week you use it to improve one message before sending. Maybe after class or work, you use it to summarise notes and ask you questions.\n\nThe habit matters more than the tool. A simple routine will teach you faster than random use once in a while.",
+          pidgin:
+            "No try use AI for everything at once. Choose one small routine first.\n\nMaybe every Monday you use AI plan your week. Maybe twice a week you use am improve one message before you send. Maybe after class or work, you use am summarise notes and ask you questions.\n\nThe habit matter pass the tool. Simple routine go teach you faster than random use once in a while.",
+        },
+      },
+      {
+        heading: {
+          en: "Ask, check, edit, apply",
+          pidgin: "Ask, check, edit, apply",
+        },
+        body: {
+          en: "This is the main habit to keep after the course. Ask AI for help. Check the answer. Edit it so it fits your real situation. Then apply only what makes sense.\n\nIf you remember nothing else, remember this flow. It keeps you active. It keeps your voice in the work. It helps you avoid copying mistakes.",
+          pidgin:
+            "Na this main habit you suppose keep after the course. Ask AI for help. Check the answer. Edit am make e fit your real situation. Then apply only wetin make sense.\n\nIf you no remember anything else, remember this flow. E go keep you active. E go keep your voice inside the work. E go help you avoid copying mistakes.",
+        },
+        examples: [
+          {
+            label: {
+              en: "Ask",
+              pidgin: "Ask",
+            },
+            content: {
+              en: "Give AI the task, context, audience, details, and tone.",
+              pidgin:
+                "Give AI the task, context, audience, details, and tone.",
+            },
+          },
+          {
+            label: {
+              en: "Check",
+              pidgin: "Check",
+            },
+            content: {
+              en: "Look for wrong facts, missing details, weak tone, private information, or advice that needs care.",
+              pidgin:
+                "Look for wrong facts, missing details, weak tone, private information, or advice wey need care.",
+            },
+          },
+          {
+            label: {
+              en: "Edit",
+              pidgin: "Edit",
+            },
+            content: {
+              en: "Change the answer until it sounds true, useful, and natural for you.",
+              pidgin:
+                "Change the answer until e sound true, useful, and natural for you.",
+            },
+          },
+          {
+            label: {
+              en: "Apply",
+              pidgin: "Apply",
+            },
+            content: {
+              en: "Use the answer in the real world only after you have made the final judgement.",
+              pidgin:
+                "Use the answer for real world only after you don make the final judgement.",
+            },
+          },
+        ],
+      },
+      {
+        heading: {
+          en: "A small weekly plan",
+          pidgin: "Small weekly plan",
+        },
+        body: {
+          en: "Try a small weekly plan for the next four weeks. Keep it light enough that you can actually do it.\n\nChoose one writing task, one learning task, and one everyday task each week. That might be a WhatsApp reply, a summary of notes, and a plan for market day. Or an email, a study topic, and a simple budget.\n\nAfter each task, write one sentence: what did AI help with, and what did I still decide myself?",
+          pidgin:
+            "Try small weekly plan for the next four weeks. Make e light enough so you fit actually do am.\n\nChoose one writing task, one learning task, and one everyday task every week. E fit be WhatsApp reply, summary of notes, and plan for market day. Or email, study topic, and simple budget.\n\nAfter each task, write one sentence: wetin AI help with, and wetin I still decide by myself?",
+        },
+      },
+      {
+        heading: {
+          en: "Real example",
+          pidgin: "Real example",
+        },
+        body: {
+          en: "Bisi sells food bowls and also takes evening classes. She does not want AI to become another thing on her long list. So she keeps the routine small.",
+          pidgin:
+            "Bisi dey sell food bowls and she still dey take evening classes. She no want make AI become another stress for her list. So she keep the routine small.",
+        },
+        examples: [
+          {
+            label: {
+              en: "Her routine",
+              pidgin: "Her routine",
+            },
+            content: {
+              en: "Monday: ask AI to plan three posts for the week.\nWednesday: paste class notes and ask for a simple summary.\nFriday: ask AI to review one customer message before sending.",
+              pidgin:
+                "Monday: ask AI make e plan three posts for the week.\nWednesday: paste class notes and ask for simple summary.\nFriday: ask AI make e review one customer message before she send.",
+            },
+          },
+          {
+            label: {
+              en: "What AI gave back",
+              pidgin: "Wetin AI give back",
+            },
+            content: {
+              en: "AI gave Bisi caption ideas, a short class summary, and a cleaner customer reply. Some lines sounded too formal, so she changed them before using them.",
+              pidgin:
+                "AI give Bisi caption ideas, short class summary, and cleaner customer reply. Some lines too formal, so she change dem before she use dem.",
+            },
+          },
+          {
+            label: {
+              en: "What Bisi decided herself",
+              pidgin: "Wetin Bisi decide by herself",
+            },
+            content: {
+              en: "She chose the post that matched her real menu, removed a claim she could not prove, and rewrote the customer reply in her normal voice.",
+              pidgin:
+                "She choose the post wey match her real menu, remove one claim wey she no fit prove, and rewrite the customer reply with her normal voice.",
+            },
+          },
+          {
+            label: {
+              en: "Why it helped",
+              pidgin: "Why e help",
+            },
+            content: {
+              en: "The routine saved time, but Bisi still stayed in charge. AI helped her start and improve. She checked, edited, and made the final call.",
+              pidgin:
+                "The routine save time, but Bisi still stay in charge. AI help her start and improve. She check, edit, and make the final decision.",
+            },
+          },
+        ],
+      },
+      {
+        heading: {
+          en: "Keep learning slowly",
+          pidgin: "Continue to learn slowly",
+        },
+        body: {
+          en: "You do not need to master every AI tool this week. Keep one small practice habit. Notice where AI helps. Notice where it fails. Keep your judgement awake.\n\nConfidence comes from repeated use, not from reading one perfect explanation.",
+          pidgin:
+            "You no need master every AI tool this week. Keep one small practice habit. Notice where AI help. Notice where e fail. Keep your judgement awake.\n\nConfidence dey come from repeated use, no be from reading one perfect explanation.",
+        },
+      },
+    ],
+    keyTakeaway: {
+      en: "AI becomes useful when it becomes a small, steady habit. Ask, check, edit, apply, and keep your judgement in the work.",
+      pidgin:
+        "AI dey useful when e become small, steady habit. Ask, check, edit, apply, and keep your judgement inside the work.",
+    },
+    examplePrompt: {
+      en: "Help me build a simple weekly AI practice routine.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings I want help with:\n[list 3 areas, like writing, study, planning, summaries, customer messages, job search]\n\nMy time limit:\n[how many minutes I can practise each week]\n\nPlease create:\n1. One writing practice task\n2. One learning or summary task\n3. One everyday planning task\n4. A short checklist for what I should check before using AI's answer\n5. One question I should answer after each practice",
+      pidgin:
+        "Help me build simple weekly AI practice routine.\n\nAbout me:\n[student, worker, business owner, creator, job seeker, parent, or other]\n\nThings wey I want help with:\n[list 3 areas, like writing, study, planning, summaries, customer messages, job search]\n\nMy time limit:\n[how many minutes I fit practise each week]\n\nPlease create:\n1. One writing practice task\n2. One learning or summary task\n3. One everyday planning task\n4. Short checklist for wetin I suppose check before I use AI answer\n5. One question I suppose answer after each practice",
+    },
+    practiceTask: {
+      en: "Use the prompt above and build your first weekly AI routine.\n\nChoose only two or three practice moments for the week. Add them to your calendar or notes. After each one, write what AI helped with and what you changed yourself.",
+      pidgin:
+        "Use the prompt above and build your first weekly AI routine.\n\nChoose only two or three practice moments for the week. Add dem to your calendar or notes. After each one, write wetin AI help with and wetin you change by yourself.",
+    },
+    quickCheck: [
+      {
+        en: "What is one AI habit you can repeat every week?",
+        pidgin: "Which one AI habit you fit repeat every week?",
+      },
+      {
+        en: "What kind of answers do you need to check carefully?",
+        pidgin: "Which kind answers you need check well?",
+      },
+      {
+        en: "Where do you still need to use your own judgement?",
+        pidgin: "Where you still need use your own judgement?",
+      },
+      {
+        en: "What is your next small practice task?",
+        pidgin: "Wetin be your next small practice task?",
+      },
+    ],
+  },
+};
+
 export const lessonReferences: LessonReference[] = courseModules.flatMap(
   (module, moduleIndex) =>
     module.lessons.map((lesson, lessonIndex) => ({
@@ -2782,6 +3186,108 @@ export function getAdjacentLessons(moduleSlug: string, lessonSlug: string) {
       currentIndex >= 0 && currentIndex < lessonReferences.length - 1
         ? lessonReferences[currentIndex + 1]
         : undefined,
+  };
+}
+
+export function getCourseStepCount() {
+  return lessonReferences.length + 2;
+}
+
+export function getCourseStartPath() {
+  return `/course/${courseStartHere.slug}`;
+}
+
+export function getCourseFinalWrapUpPath() {
+  return `/course/${courseFinalWrapUp.slug}`;
+}
+
+export function getStandaloneCourseLesson(slug: string) {
+  if (slug === courseStartHere.slug) return courseStartHere;
+  if (slug === courseFinalWrapUp.slug) return courseFinalWrapUp;
+  return undefined;
+}
+
+export function getCoreCourseStepNumber(moduleSlug: string, lessonSlug: string) {
+  const currentIndex = lessonReferences.findIndex(
+    ({ module, lesson }) => module.slug === moduleSlug && lesson.slug === lessonSlug
+  );
+
+  return currentIndex >= 0 ? currentIndex + 2 : 1;
+}
+
+export function getStandaloneCourseStepNumber(slug: string) {
+  if (slug === courseStartHere.slug) return 1;
+  if (slug === courseFinalWrapUp.slug) return getCourseStepCount();
+  return 1;
+}
+
+function getLessonNavTarget(reference: LessonReference): CourseNavTarget {
+  return {
+    href: getLessonPath(reference.module.slug, reference.lesson.slug),
+    title: reference.lesson.title,
+  };
+}
+
+function getStartNavTarget(): CourseNavTarget {
+  return {
+    href: getCourseStartPath(),
+    title: courseStartHere.lesson.title,
+  };
+}
+
+function getFinalWrapUpNavTarget(): CourseNavTarget {
+  return {
+    href: getCourseFinalWrapUpPath(),
+    title: courseFinalWrapUp.lesson.title,
+  };
+}
+
+export function getAdjacentCourseLessonSteps(
+  moduleSlug: string,
+  lessonSlug: string
+) {
+  const currentIndex = lessonReferences.findIndex(
+    ({ module, lesson }) => module.slug === moduleSlug && lesson.slug === lessonSlug
+  );
+
+  return {
+    previous:
+      currentIndex === 0
+        ? getStartNavTarget()
+        : currentIndex > 0
+          ? getLessonNavTarget(lessonReferences[currentIndex - 1])
+          : undefined,
+    next:
+      currentIndex === lessonReferences.length - 1
+        ? getFinalWrapUpNavTarget()
+        : currentIndex >= 0 && currentIndex < lessonReferences.length - 1
+          ? getLessonNavTarget(lessonReferences[currentIndex + 1])
+          : undefined,
+  };
+}
+
+export function getAdjacentStandaloneCourseSteps(slug: string) {
+  if (slug === courseStartHere.slug) {
+    return {
+      previous: undefined,
+      next: lessonReferences[0]
+        ? getLessonNavTarget(lessonReferences[0])
+        : getFinalWrapUpNavTarget(),
+    };
+  }
+
+  if (slug === courseFinalWrapUp.slug) {
+    const lastLesson = lessonReferences[lessonReferences.length - 1];
+
+    return {
+      previous: lastLesson ? getLessonNavTarget(lastLesson) : getStartNavTarget(),
+      next: undefined,
+    };
+  }
+
+  return {
+    previous: undefined,
+    next: undefined,
   };
 }
 
