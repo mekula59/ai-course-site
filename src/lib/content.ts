@@ -459,9 +459,9 @@ const en: SiteContent = {
     successBody: "I’ll send updates when new lessons, live sessions, or course drops are ready.",
     errorBoth: "Please fill in both fields.",
     errorEmail: "Please enter a valid email address.",
-    errorUnavailable: "The updates form is not ready right now. Please email us instead.",
+    errorUnavailable: "The updates form is not ready right now. Please try again later.",
     errorSubmit: "Something went wrong. Please try again.",
-    fallbackCta: "Email us instead",
+    fallbackCta: "Questions? Use the course updates form above.",
   },
 };
 
@@ -772,9 +772,9 @@ const pidgin: SiteContent = {
     successBody: "I go send updates when new lessons, live sessions, or course drops ready.",
     errorBoth: "Please fill the two fields.",
     errorEmail: "Please enter valid email address.",
-    errorUnavailable: "The updates form no dey ready right now. Please email us instead.",
+    errorUnavailable: "The updates form no dey ready right now. Please try again later.",
     errorSubmit: "Something went wrong. Please try again.",
-    fallbackCta: "Email us instead",
+    fallbackCta: "Question dey? Use the course updates form wey dey ontop.",
   },
 };
 
