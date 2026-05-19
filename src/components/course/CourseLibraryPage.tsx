@@ -25,7 +25,7 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           availableNow: "Available now",
           comingNext: "Coming next",
           comingIntro:
-            "These follow-up courses never open yet. Drop your details for the updates form if you wan know when dem ready.",
+            "After the beginner course, the next ones go enter the places people need AI pass: work, business, job search, school, content, community, and coding.",
           modules: "modules",
           lessons: "main lessons",
           availableStatus: "Free course",
@@ -42,7 +42,7 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           availableNow: "Available now",
           comingNext: "Coming next",
           comingIntro:
-            "These follow-up courses are planned. They are not open yet, but you can get updates when they are ready.",
+            "After the beginner course, the next courses will go deeper into the places people need AI most: work, business, job search, school, content, community, and coding.",
           modules: "modules",
           lessons: "core lessons",
           availableStatus: "Free course",
