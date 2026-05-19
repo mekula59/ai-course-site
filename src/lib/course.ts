@@ -76,6 +76,12 @@ export interface Course {
   finalWrapUp: CourseStandaloneLesson;
 }
 
+export interface PlannedCourse {
+  slug: string;
+  title: LocalizedText;
+  description: LocalizedText;
+}
+
 export interface LessonReference {
   course: Course;
   module: CourseModule;
@@ -3411,6 +3417,72 @@ export const beginnerCourse: Course = {
 };
 
 export const courses: Course[] = [beginnerCourse];
+
+export const plannedCourses: PlannedCourse[] = [
+  {
+    slug: "ai-for-work",
+    title: "AI for Work",
+    description: {
+      en: "Use AI for emails, reports, summaries, planning, meeting notes, and everyday workplace communication.",
+      pidgin:
+        "Use AI for work emails, reports, summaries, planning, meeting notes, and everyday workplace communication.",
+    },
+  },
+  {
+    slug: "ai-for-business-owners",
+    title: "AI for Business Owners",
+    description: {
+      en: "Use AI for customer replies, captions, product descriptions, simple marketing, business planning, and daily operations.",
+      pidgin:
+        "Use AI for customer replies, captions, product descriptions, simple marketing, business planning, and daily business work.",
+    },
+  },
+  {
+    slug: "ai-for-job-seekers",
+    title: "AI for Job Seekers",
+    description: {
+      en: "Use AI to improve CVs, cover letters, LinkedIn profiles, interview prep, role research, and application messages.",
+      pidgin:
+        "Use AI to improve CV, cover letter, LinkedIn profile, interview prep, role research, and application messages.",
+    },
+  },
+  {
+    slug: "ai-for-students",
+    title: "AI for Students",
+    description: {
+      en: "Use AI to understand topics, summarise notes, create study plans, practise questions, and learn responsibly.",
+      pidgin:
+        "Use AI to understand topics, summarise notes, create study plans, practise questions, and learn with sense.",
+    },
+  },
+  {
+    slug: "ai-for-content-creators",
+    title: "AI for Content Creators",
+    description: {
+      en: "Use AI for ideas, hooks, captions, scripts, content calendars, repurposing, and editing without losing your voice.",
+      pidgin:
+        "Use AI for ideas, hooks, captions, scripts, content calendar, repurposing, and editing without losing your own voice.",
+    },
+  },
+  {
+    slug: "ai-for-community-managers",
+    title: "AI for Community Managers",
+    description: {
+      en: "Use AI for announcements, reports, feedback summaries, event planning, moderation support, and community communication.",
+      pidgin:
+        "Use AI for announcements, reports, feedback summaries, event planning, moderation support, and community communication.",
+    },
+  },
+  {
+    slug: "ai-for-coding-beginners",
+    title: "AI for Coding Beginners",
+    description: {
+      en: "Use AI to understand code, plan simple projects, debug errors, and learn the basics without pretending to know everything.",
+      pidgin:
+        "Use AI to understand code, plan simple projects, debug errors, and learn the basics without pretending say you sabi everything.",
+    },
+  },
+];
 
 export function getCourse(courseSlug: string) {
   return courses.find((course) => course.slug === courseSlug);

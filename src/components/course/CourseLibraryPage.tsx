@@ -5,6 +5,7 @@ import {
   getCoursePath,
   getLessonReferences,
   getLocalizedText,
+  plannedCourses,
 } from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
 
@@ -20,26 +21,40 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           eyebrow: "Course list",
           title: "Choose course wey you wan start",
           intro:
-            "Start with the beginner AI course. More courses go come later.",
+            "Start with the beginner course first. More practical AI courses still dey come for work, business, job search, school, content, community work, and coding.",
+          availableNow: "Available now",
+          comingNext: "Coming next",
+          comingIntro:
+            "These follow-up courses never open yet. Drop your details for the updates form if you wan know when dem ready.",
           modules: "modules",
           lessons: "main lessons",
-          start: "Start course",
-          coming: "More courses go come later.",
+          availableStatus: "Free course",
+          plannedStatus: "Coming next",
+          start: "Start Free Course",
+          updates: "Get Course Updates",
+          liveNote: "The beginner course na the only live course for now.",
         }
       : {
           eyebrow: "Course library",
-          title: "Choose your course",
+          title: "Start here, then keep going",
           intro:
-            "Start with the beginner AI course. More courses will be added later.",
+            "AI for Everyone starts with the live Beginner AI Course. Follow-up courses are planned for work, business, job search, school, content, community work, and coding.",
+          availableNow: "Available now",
+          comingNext: "Coming next",
+          comingIntro:
+            "These follow-up courses are planned. They are not open yet, but you can get updates when they are ready.",
           modules: "modules",
           lessons: "core lessons",
-          start: "Start course",
-          coming: "More courses coming later.",
+          availableStatus: "Free course",
+          plannedStatus: "Coming next",
+          start: "Start Free Course",
+          updates: "Get Course Updates",
+          liveNote: "The beginner course is the only live course right now.",
         };
 
   return (
     <div className="px-5 py-10 sm:py-16">
-      <div className="w-full max-w-4xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto">
         <section className="w-full max-w-3xl mb-8 sm:mb-10">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-4">
             {labels.eyebrow}
@@ -52,64 +67,135 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           </p>
         </section>
 
-        <div className="grid grid-cols-1 gap-4">
-          {courses.map((course) => {
-            const lessonCount = getLessonReferences(course).length;
-
-            return (
-              <CourseLink
-                key={course.slug}
-                href={getCoursePath(course.slug)}
-                navigate={navigate}
-                className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-7 hover:border-brand-300 transition-all"
+        <section aria-labelledby="available-courses-heading">
+          <div className="flex items-end justify-between gap-4 mb-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
+                {labels.availableNow}
+              </p>
+              <h2
+                id="available-courses-heading"
+                className="font-display text-2xl sm:text-3xl font-bold text-neutral-900"
               >
-                <div className="flex items-start gap-4">
-                  <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 shrink-0">
-                    <BookOpen size={22} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700">
-                        {getLocalizedText(course.priceLabel, lang)}
-                      </span>
-                      <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-600">
-                        {getLocalizedText(course.level, lang)}
-                      </span>
-                      <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-600">
-                        {getLocalizedText(course.languageSupport, lang)}
+                {labels.availableNow}
+              </h2>
+            </div>
+            <p className="hidden sm:block text-sm text-neutral-500">
+              {labels.liveNote}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {courses.map((course) => {
+              const lessonCount = getLessonReferences(course).length;
+
+              return (
+                <CourseLink
+                  key={course.slug}
+                  href={getCoursePath(course.slug)}
+                  navigate={navigate}
+                  className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-7 hover:border-brand-300 transition-all"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="hidden sm:flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600 shrink-0">
+                      <BookOpen size={22} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700">
+                          {labels.availableStatus}
+                        </span>
+                        <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-600">
+                          {getLocalizedText(course.level, lang)}
+                        </span>
+                        <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-600">
+                          {getLocalizedText(course.languageSupport, lang)}
+                        </span>
+                      </div>
+
+                      <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
+                        {getLocalizedText(course.title, lang)}
+                      </h2>
+                      <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-2xl">
+                        {getLocalizedText(course.description, lang)}
+                      </p>
+
+                      <div className="flex flex-wrap gap-x-5 gap-y-2 mt-5 text-sm text-neutral-500">
+                        <span>
+                          {course.modules.length} {labels.modules}
+                        </span>
+                        <span>
+                          {lessonCount} {labels.lessons}
+                        </span>
+                      </div>
+
+                      <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
+                        {labels.start}
+                        <ArrowRight size={16} />
                       </span>
                     </div>
-
-                    <h2 className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
-                      {getLocalizedText(course.title, lang)}
-                    </h2>
-                    <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-2xl">
-                      {getLocalizedText(course.description, lang)}
-                    </p>
-
-                    <div className="flex flex-wrap gap-x-5 gap-y-2 mt-5 text-sm text-neutral-500">
-                      <span>
-                        {course.modules.length} {labels.modules}
-                      </span>
-                      <span>
-                        {lessonCount} {labels.lessons}
-                      </span>
-                    </div>
-
-                    <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
-                      {labels.start}
-                      <ArrowRight size={16} />
-                    </span>
                   </div>
+                </CourseLink>
+              );
+            })}
+          </div>
+          <p className="sm:hidden mt-4 text-sm leading-7 text-neutral-500">
+            {labels.liveNote}
+          </p>
+        </section>
+
+        <section
+          aria-labelledby="planned-courses-heading"
+          className="mt-12 sm:mt-14"
+        >
+          <div className="max-w-2xl mb-5 sm:mb-6">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
+              {labels.comingNext}
+            </p>
+            <h2
+              id="planned-courses-heading"
+              className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3"
+            >
+              {labels.comingNext}
+            </h2>
+            <p className="text-sm sm:text-base leading-7 text-neutral-600">
+              {labels.comingIntro}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {plannedCourses.map((course) => (
+              <article
+                key={course.slug}
+                className="bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6"
+              >
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-bold text-neutral-500">
+                    {labels.plannedStatus}
+                  </span>
+                  <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
+                    AI for Everyone
+                  </span>
                 </div>
-              </CourseLink>
-            );
-          })}
-        </div>
 
-        <p className="mt-6 text-sm leading-7 text-neutral-500">
-          {labels.coming}
-        </p>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-3">
+                  {getLocalizedText(course.title, lang)}
+                </h3>
+                <p className="text-sm sm:text-base leading-7 text-neutral-600">
+                  {getLocalizedText(course.description, lang)}
+                </p>
+
+                <a
+                  href="/#course-updates"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                >
+                  {labels.updates}
+                  <ArrowRight size={16} />
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
