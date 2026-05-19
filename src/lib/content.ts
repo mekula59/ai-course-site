@@ -156,7 +156,7 @@ const en: SiteContent = {
   nav: {
     logo: "AI for Everyone",
     links: [
-      { label: "Course", href: "/courses/beginner-ai" },
+      { label: "Courses", href: "/courses" },
       { label: "Modules", href: "#modules" },
       { label: "Why This", href: "#why" },
       { label: "FAQ", href: "#faq" },
@@ -469,7 +469,7 @@ const pidgin: SiteContent = {
   nav: {
     logo: "AI for Everyone",
     links: [
-      { label: "Course", href: "/courses/beginner-ai" },
+      { label: "Courses", href: "/courses" },
       { label: "Modules", href: "#modules" },
       { label: "Why This", href: "#why" },
       { label: "FAQ", href: "#faq" },
