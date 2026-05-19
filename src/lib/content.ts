@@ -233,19 +233,19 @@ const en: SiteContent = {
   },
   whatYouLearn: {
     label: "What You Will Learn",
-    heading: "Practical skills you can use from day one.",
-    body1: "This is not theory. Every lesson is designed so you can take it, use it immediately, and see real results in your daily life or work.",
-    body2: "By the end of this course, AI will no longer feel like something that happens to other people. It will be a tool you actually use.",
+    heading: "The real beginner path, from first try to safer use.",
+    body1: "This course starts with everyday AI use first: what these tools are, how to ask better questions, how to use the answers, and what to check before you trust them.",
+    body2: "By the end, you will have a simple way to use AI chat tools for real tasks without handing over your judgement.",
     outcomes: [
-      "Understand what AI actually is, without the jargon",
-      "Use ChatGPT, Gemini, and other tools with confidence",
-      "Write better, faster content using AI",
-      "Save hours each week by automating repetitive tasks",
-      "Use AI to research, summarise, and organise information",
-      "Apply AI to your specific work, business, or school context",
-      "Spot AI-generated content and understand its limitations",
-      "Stay safe and smart when using AI tools",
-      "Keep up with AI changes without getting overwhelmed",
+      "Understand what AI chat tools like ChatGPT, Claude, and Gemini are",
+      "Learn what AI can help with and where it can go wrong",
+      "Ask clearer questions",
+      "Give AI the task, context, tone, and format it needs",
+      "Use AI for writing, summaries, planning, study, business, and everyday tasks",
+      "Improve rough answers instead of starting over every time",
+      "Check answers before trusting them",
+      "Protect private information",
+      "Build a simple AI practice habit",
     ],
   },
   languageSupport: {
@@ -400,7 +400,7 @@ const en: SiteContent = {
       },
       {
         q: "What tools will I need?",
-        a: "Just a phone or laptop and an internet connection. Most AI tools we cover have free tiers that are more than enough to get started. No paid subscriptions required.",
+        a: "You only need a phone or laptop, internet connection, and access to one AI chat tool. You can start with free versions of tools like ChatGPT, Claude, or Gemini. You do not need a paid plan to begin. The course mostly uses examples that work across these tools, so you can follow along with whichever one you have access to.",
       },
       {
         q: "Is the Pidgin version the full course or just parts of it?",
@@ -420,7 +420,7 @@ const en: SiteContent = {
       },
       {
         q: "Is there a certificate?",
-        a: "Yes, you get a certificate of completion you can share on LinkedIn or add to your CV. We are building this to be meaningful, not just decorative.",
+        a: "Not yet. I want the course to be useful first, not just decorative. If I add certificates later, I will make sure they actually mean something.",
       },
       {
         q: "Is the course available now?",
@@ -546,19 +546,19 @@ const pidgin: SiteContent = {
   },
   whatYouLearn: {
     label: "Wetin You Go Learn",
-    heading: "Practical skills wey you fit use from day one.",
-    body1: "This one no be theory. We design every lesson so you fit take am, use am immediately, and see real results for your daily life or work.",
-    body2: "By the time you finish this course, AI go no longer feel like something wey happen to other people. E go be tool wey you actually dey use.",
+    heading: "Simple beginner path, from first try reach safer use.",
+    body1: "This course go start with everyday AI use first: wetin these tools be, how to ask better questions, how to use the answers, and wetin to check before you trust dem.",
+    body2: "By the time you finish, you go get simple way to use AI chat tools for real tasks without dropping your own sense.",
     outcomes: [
-      "Understand wetin AI actually be, without the jargon",
-      "Use ChatGPT, Gemini, and other tools with confidence",
-      "Write better, faster content using AI",
-      "Save hours every week by automating repetitive tasks",
-      "Use AI to research, summarise, and organise information",
-      "Apply AI to your specific work, business, or school",
-      "Spot AI-generated content and understand e limitations",
-      "Stay safe and smart when you dey use AI tools",
-      "Keep up with AI changes without feeling overwhelmed",
+      "Understand wetin AI chat tools like ChatGPT, Claude, and Gemini be",
+      "Learn wetin AI fit help you do and where e fit miss road",
+      "Ask clearer questions",
+      "Give AI the task, context, tone, and format wey e need",
+      "Use AI for writing, summaries, planning, study, business, and everyday tasks",
+      "Improve rough answers instead of starting over every time",
+      "Check answers before you trust dem",
+      "Protect private information",
+      "Build simple AI practice habit",
     ],
   },
   languageSupport: {
@@ -713,7 +713,7 @@ const pidgin: SiteContent = {
       },
       {
         q: "Wetin tools I go need?",
-        a: "Just phone or laptop and internet connection. Most AI tools wey we cover get free tiers wey more than enough to get started. No need to pay for subscription.",
+        a: "You just need phone or laptop, internet, and one AI chat tool. You fit start with free version of ChatGPT, Claude, or Gemini. You no need paid plan to begin. The examples for this course fit work for those tools, so use the one wey you get access to.",
       },
       {
         q: "The Pidgin version na full course or just parts?",
@@ -733,7 +733,7 @@ const pidgin: SiteContent = {
       },
       {
         q: "Certificate dey?",
-        a: "Yes, you go get certificate of completion wey you fit share on LinkedIn or add to your CV. We dey build this to be meaningful, no be just decoration.",
+        a: "Not yet. For now, the main thing na to help you learn and practise. If certificate enter later, I go make am clear for the course page.",
       },
       {
         q: "The course dey available now?",

@@ -9,70 +9,79 @@ import type { Lang } from "@/types/language";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
-// Stage grouping — three phases of the learning journey.
+// Stage grouping for the current four-module beginner course.
 // Names and descriptions are language-specific.
-// Items are index references into c.outcomes (language-agnostic — same order in EN and Pidgin).
+// Items are index references into c.outcomes, same order in EN and Pidgin.
 const STAGE_ITEMS: number[][] = [
-  [0, 1],       // Understand — outcomes 1, 2
-  [2, 3, 4, 5], // Use        — outcomes 3, 4, 5, 6
-  [6, 7, 8],    // Trust      — outcomes 7, 8, 9
+  [0, 1],
+  [2, 3],
+  [4, 5],
+  [6, 7, 8],
 ];
 
 const STAGES: Record<Lang, Array<{ name: string; desc: string }>> = {
   en: [
     {
       name: "Understand",
-      desc: "Get clear on what AI actually is. No jargon, no fear, no assumed knowledge.",
+      desc: "Start with what AI chat tools are, what they can do, and where they can go wrong.",
+    },
+    {
+      name: "Ask",
+      desc: "Learn how to give AI the task, context, tone, and format it needs.",
     },
     {
       name: "Use",
-      desc: "Build real skills. Writing, research, automation — applied to your actual life.",
+      desc: "Apply AI to real work, school, business, writing, summaries, planning, and daily tasks.",
     },
     {
-      name: "Trust",
-      desc: "Know the limits. Stay safe, stay current, and use AI with real confidence.",
+      name: "Check",
+      desc: "Review answers, protect private details, and build a simple habit you can keep using.",
     },
   ],
   pidgin: [
     {
       name: "Understand",
-      desc: "Get clear on wetin AI actually be. No jargon, no fear, no assumed knowledge.",
+      desc: "Start with wetin AI chat tools be, wetin dem fit do, and where dem fit miss road.",
+    },
+    {
+      name: "Ask",
+      desc: "Learn how to give AI the task, context, tone, and format wey e need.",
     },
     {
       name: "Use",
-      desc: "Build real skills. Writing, research, automation — applied to your actual life.",
+      desc: "Use AI for real work, school, business, writing, summaries, planning, and daily tasks.",
     },
     {
-      name: "Trust",
-      desc: "Know the limits. Stay safe, stay current, and use AI with real confidence.",
+      name: "Check",
+      desc: "Check answers, protect private details, and build simple habit wey you fit continue.",
     },
   ],
 };
 
-// Per-outcome context — shown on expand.
+// Per-outcome context shown on expand.
 // One per outcome, indexed to match c.outcomes order.
 const SKILL_META: Record<Lang, Array<{ tag: string; why: string }>> = {
   en: [
-    { tag: "Mod 01", why: "Once the fear goes, everything becomes possible. This is where most people get unstuck." },
-    { tag: "Mod 02", why: "Free to start, no setup required. You will be using real tools within the first lesson." },
-    { tag: "Mod 03", why: "Writing is where most people save the most time. This module alone is worth the course." },
-    { tag: "Mod 05", why: "The right prompt turns 30 minutes of repetitive work into under 60 seconds." },
-    { tag: "Mod 04", why: "Stop searching through ten tabs. Start asking one clear question and getting a focused answer." },
-    { tag: "Mod 05", why: "This is where the course becomes about your life, not a generic demo." },
-    { tag: "Mod 06", why: "Knowing the limits makes you a smarter, more confident user of AI." },
-    { tag: "Mod 06", why: "Confidence comes from knowing what to watch out for, not from blind trust." },
-    { tag: "Mod 06", why: "AI is moving fast. This skill means you stay current without having to follow every update." },
+    { tag: "Start Here", why: "You begin with plain language, real examples, and one small task you can try right away." },
+    { tag: "Module 1", why: "This is where AI stops feeling mysterious. You learn what it can help with and when to slow down." },
+    { tag: "Module 2", why: "Better answers usually start with clearer requests. This module teaches you how to ask without big grammar." },
+    { tag: "Module 2", why: "You learn to include the task, audience, details, tone, and format before AI starts guessing." },
+    { tag: "Module 3", why: "This is where the course becomes practical: writing, summaries, study, business, planning, and daily tasks." },
+    { tag: "Module 3", why: "A weak first answer is not the end. You learn how to adjust it until it fits your real situation." },
+    { tag: "Module 4", why: "AI can sound sure and still be wrong. This module teaches you what to check before using an answer." },
+    { tag: "Module 4", why: "You learn what not to paste into AI, and how to remove private details before asking for help." },
+    { tag: "Wrap-up", why: "The course ends with a simple routine: ask, check, edit, and use what actually makes sense." },
   ],
   pidgin: [
-    { tag: "Mod 01", why: "Once the fear go, everything go become possible. This na where most people dey unstuck." },
-    { tag: "Mod 02", why: "E free to start, no setup required. You go dey use real tools inside the first lesson." },
-    { tag: "Mod 03", why: "Writing na where most people dey save the most time. This module alone worth the course." },
-    { tag: "Mod 05", why: "The right prompt go turn 30 minutes of work to under 60 seconds." },
-    { tag: "Mod 04", why: "Stop dey search through ten tabs. Start dey ask one clear question and get focused answer." },
-    { tag: "Mod 05", why: "This na where the course become about your own life, no be generic demo." },
-    { tag: "Mod 06", why: "Knowing the limits go make you smarter, more confident user of AI." },
-    { tag: "Mod 06", why: "Confidence dey come from knowing wetin to watch out for, no be blind trust." },
-    { tag: "Mod 06", why: "AI dey move fast. This skill mean you go stay current without dey follow every update." },
+    { tag: "Start Here", why: "You go start with simple language, real examples, and one small task wey you fit try immediately." },
+    { tag: "Module 1", why: "Na here AI no go look mysterious again. You go learn where e fit help and when you suppose calm down." },
+    { tag: "Module 2", why: "Better answer usually start with clearer request. This module go show you how to ask without big grammar." },
+    { tag: "Module 2", why: "You go learn to add task, audience, details, tone, and format before AI start to guess." },
+    { tag: "Module 3", why: "Na here the course become practical: writing, summaries, study, business, planning, and everyday tasks." },
+    { tag: "Module 3", why: "Weak first answer no mean you don finish. You go learn how to adjust am until e fit your real matter." },
+    { tag: "Module 4", why: "AI fit sound sure and still wrong. This module go show you wetin to check before you use answer." },
+    { tag: "Module 4", why: "You go learn wetin you no suppose paste inside AI, and how to remove private details before you ask for help." },
+    { tag: "Wrap-up", why: "The course end with simple routine: ask, check, edit, and use wetin actually make sense." },
   ],
 };
 
@@ -106,9 +115,9 @@ export function WhatYouLearn() {
           </div>
         </FadeIn>
 
-        {/* 3-stage curriculum map */}
+        {/* Four-stage curriculum map */}
         <FadeIn delay={0.1}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-12 xl:gap-x-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10 xl:gap-x-10">
             {stages.map((stage, si) => (
               <div key={si}>
 
@@ -131,7 +140,7 @@ export function WhatYouLearn() {
                     <div key={idx}>
                       <button
                         onClick={() => toggle(idx)}
-                        className="group w-full text-left py-3.5 flex items-start gap-3 focus:outline-none cursor-pointer"
+                        className="group w-full text-left py-3.5 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3 focus:outline-none cursor-pointer"
                       >
                         {/* Outcome text */}
                         <span
@@ -152,7 +161,7 @@ export function WhatYouLearn() {
                         {/* Tag + expand indicator */}
                         <div className="flex items-center gap-2 shrink-0 mt-[1px]">
                           <span
-                            className={`font-mono text-[9px] font-bold tracking-wider px-1.5 py-0.5 rounded border transition-all duration-150 ${
+                            className={`font-mono text-[9px] font-bold tracking-wider px-2 py-1 rounded-full border transition-all duration-150 ${
                               open === idx
                                 ? "text-brand-600 bg-brand-50 border-brand-100"
                                 : "text-neutral-400 border-neutral-200/70 group-hover:border-neutral-300"
