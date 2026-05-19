@@ -38,7 +38,7 @@ function ThinkingDots() {
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="w-1.5 h-1.5 rounded-full bg-neutral-300 block"
+          className="prompt-demo-dot w-1.5 h-1.5 rounded-full bg-neutral-300 block"
           animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }}
           transition={{ duration: 0.9, delay: i * 0.18, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -93,26 +93,28 @@ export function PromptDemo() {
 
         {/* Segmented control — lesson stage navigator */}
         <FadeIn delay={0.1}>
-          <div className="inline-flex items-center bg-neutral-100/80 rounded-full p-1 mb-8">
+          <div className="prompt-demo-tabs inline-flex items-center bg-neutral-100/80 rounded-full p-1 mb-8">
             {(["before", "after"] as const).map((s) => (
               <button
                 key={s}
                 onClick={() => handleStateChange(s)}
                 className={cn(
-                  "relative px-5 py-2 rounded-full text-sm font-semibold cursor-pointer transition-colors duration-150 z-10",
+                  "prompt-demo-tab relative px-5 py-2 rounded-full text-sm font-semibold cursor-pointer transition-colors duration-150 z-10",
                   state === s
-                    ? s === "after" ? "text-brand-700" : "text-neutral-800"
-                    : "text-neutral-500 hover:text-neutral-700"
+                    ? s === "after"
+                      ? "prompt-demo-tab-active-after text-brand-700"
+                      : "prompt-demo-tab-active-before text-neutral-800"
+                    : "prompt-demo-tab-inactive text-neutral-500 hover:text-neutral-700"
                 )}
               >
                 {state === s && (
                   <motion.div
                     layoutId="demo-segment"
                     className={cn(
-                      "absolute inset-0 rounded-full shadow-sm",
+                      "prompt-demo-tab-pill absolute inset-0 rounded-full shadow-sm",
                       s === "after"
-                        ? "bg-brand-50 border border-brand-200/80"
-                        : "bg-white border border-neutral-200/80"
+                        ? "prompt-demo-tab-pill-after bg-brand-50 border border-brand-200/80"
+                        : "prompt-demo-tab-pill-before bg-white border border-neutral-200/80"
                     )}
                     style={{ zIndex: -1 }}
                     transition={{ type: "spring", stiffness: 500, damping: 38 }}
@@ -133,7 +135,7 @@ export function PromptDemo() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.28, ease: EASE }}
-              className="bg-surface rounded-2xl border border-neutral-200/70 overflow-hidden shadow-[0_2px_20px_rgba(26,18,8,0.08),0_1px_4px_rgba(26,18,8,0.05)]"
+              className="prompt-demo-card bg-surface rounded-2xl border border-neutral-200/70 overflow-hidden shadow-[0_2px_20px_rgba(26,18,8,0.08),0_1px_4px_rgba(26,18,8,0.05)]"
             >
               <div className="px-6 py-5 space-y-5">
                 {/* User message */}
@@ -143,14 +145,14 @@ export function PromptDemo() {
                   transition={{ duration: 0.25, ease: EASE, delay: 0.08 }}
                   className="flex flex-col items-end gap-1.5"
                 >
-                  <p className="text-[10px] font-semibold tracking-widest uppercase text-neutral-400">
+                  <p className="prompt-demo-label text-[10px] font-semibold tracking-widest uppercase text-neutral-400">
                     You · {demo.promptLabel}
                   </p>
                   <div
-                    className={`max-w-[85%] px-5 py-3.5 rounded-2xl rounded-tr-sm text-sm leading-relaxed shadow-sm ${
+                    className={`prompt-demo-user-prompt max-w-[85%] px-5 py-3.5 rounded-2xl rounded-tr-sm text-sm leading-relaxed shadow-sm ${
                       state === "after"
-                        ? "bg-brand-500 text-white"
-                        : "bg-neutral-900 text-neutral-100"
+                        ? "prompt-demo-user-after bg-brand-500 text-white"
+                        : "prompt-demo-user-before bg-neutral-900 text-neutral-100"
                     }`}
                   >
                     {demo.prompt}
@@ -159,7 +161,7 @@ export function PromptDemo() {
 
                 {/* AI response — with thinking indicator */}
                 <div className="flex flex-col items-start gap-1.5">
-                  <p className="text-[10px] font-semibold tracking-widest uppercase text-neutral-400">
+                  <p className="prompt-demo-label text-[10px] font-semibold tracking-widest uppercase text-neutral-400">
                     AI
                   </p>
                   <AnimatePresence mode="wait">
@@ -170,7 +172,7 @@ export function PromptDemo() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -4 }}
                         transition={{ duration: 0.18 }}
-                        className="bg-neutral-100 border border-neutral-200/80 px-4 py-3 rounded-2xl rounded-tl-sm"
+                        className="prompt-demo-thinking bg-neutral-100 border border-neutral-200/80 px-4 py-3 rounded-2xl rounded-tl-sm"
                       >
                         <ThinkingDots />
                       </motion.div>
@@ -180,7 +182,7 @@ export function PromptDemo() {
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.28, ease: EASE }}
-                        className="max-w-[90%] bg-neutral-100/80 border border-neutral-200/60 px-5 py-3.5 rounded-2xl rounded-tl-sm text-sm text-neutral-700 leading-relaxed whitespace-pre-line"
+                        className="prompt-demo-response max-w-[90%] bg-neutral-100/80 border border-neutral-200/60 px-5 py-3.5 rounded-2xl rounded-tl-sm text-sm text-neutral-700 leading-relaxed whitespace-pre-line"
                       >
                         {demo.response}
                       </motion.div>
@@ -196,13 +198,19 @@ export function PromptDemo() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
-                  className={`px-6 py-4 border-t text-sm ${
+                  className={`prompt-demo-caption px-6 py-4 border-t text-sm ${
                     state === "after"
-                      ? "border-brand-100/80 bg-brand-50/70"
-                      : "border-neutral-100 bg-neutral-50/60"
+                      ? "prompt-demo-caption-after border-brand-100/80 bg-brand-50/70"
+                      : "prompt-demo-caption-before border-neutral-100 bg-neutral-50/60"
                   }`}
                 >
-                  <p className={`font-medium ${state === "after" ? "text-brand-700" : "text-neutral-500"}`}>
+                  <p
+                    className={`prompt-demo-caption-text font-medium ${
+                      state === "after"
+                        ? "prompt-demo-caption-text-after text-brand-700"
+                        : "prompt-demo-caption-text-before text-neutral-500"
+                    }`}
+                  >
                     {demo.responseNote}
                   </p>
                 </motion.div>

@@ -309,4 +309,85 @@
   .dark .focus-visible\:ring-offset-2:focus-visible {
     --tw-ring-offset-color: #1b130f;
   }
+
+  .dark .prompt-demo-tabs {
+    background-color: rgb(47 33 25 / 0.78);
+    border: 1px solid rgb(99 70 52 / 0.58);
+  }
+
+  .dark .prompt-demo-tab-inactive {
+    color: #b7a392;
+  }
+
+  .dark .prompt-demo-tab-inactive:hover {
+    color: #f4ede3;
+  }
+
+  .dark .prompt-demo-tab-active-before {
+    color: #f4ede3;
+  }
+
+  .dark .prompt-demo-tab-active-after {
+    color: #ffd2a1;
+  }
+
+  .dark .prompt-demo-tab-pill-before {
+    background-color: #2b1f18;
+    border-color: rgb(123 88 65 / 0.76);
+  }
+
+  .dark .prompt-demo-tab-pill-after {
+    background-color: rgb(223 114 32 / 0.18);
+    border-color: rgb(223 114 32 / 0.48);
+  }
+
+  .dark .prompt-demo-card {
+    background-color: #211713;
+    border-color: rgb(99 70 52 / 0.78);
+    box-shadow: 0 22px 54px rgb(0 0 0 / 0.3);
+  }
+
+  .dark .prompt-demo-label {
+    color: #b8a391;
+  }
+
+  .dark .prompt-demo-user-before {
+    background-color: #120c09;
+    border: 1px solid rgb(129 91 66 / 0.42);
+    color: #f4eadc;
+  }
+
+  .dark .prompt-demo-user-after {
+    background-color: #df7220;
+    color: #22140c;
+  }
+
+  .dark .prompt-demo-thinking,
+  .dark .prompt-demo-response {
+    background-color: #2b1f18;
+    border-color: rgb(111 78 57 / 0.76);
+    color: #f0e3d3;
+  }
+
+  .dark .prompt-demo-dot {
+    background-color: #f0a45f;
+  }
+
+  .dark .prompt-demo-caption-before {
+    background-color: #1a120f;
+    border-color: rgb(99 70 52 / 0.74);
+  }
+
+  .dark .prompt-demo-caption-after {
+    background-color: rgb(116 50 21 / 0.32);
+    border-color: rgb(223 114 32 / 0.42);
+  }
+
+  .dark .prompt-demo-caption-text-before {
+    color: #d9c8b6;
+  }
+
+  .dark .prompt-demo-caption-text-after {
+    color: #ffd6a8;
+  }
 }
