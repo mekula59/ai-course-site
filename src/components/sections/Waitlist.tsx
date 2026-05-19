@@ -171,7 +171,7 @@ export function Waitlist() {
 
               <p className="text-center text-xs text-neutral-500">
                 <a
-                  href="mailto:hello@aiforeveryone.ng?subject=Waitlist%20Signup&body=Name:%20%0AEmail:%20"
+                  href="mailto:hello@aiforeveryone.ng?subject=Course%20Updates&body=Name:%20%0AEmail:%20"
                   className="text-brand-600 underline underline-offset-2 hover:text-brand-700"
                 >
                   {c.fallbackCta}

@@ -65,7 +65,7 @@ export function Instructor() {
                   <div className="aspect-[4/5] bg-[linear-gradient(180deg,rgba(245,213,173,0.45)_0%,rgba(254,252,249,0.95)_46%,rgba(244,237,227,0.95)_100%)] p-5 flex flex-col justify-between">
                     <div className="flex justify-end">
                       <span className="text-[10px] font-medium tracking-[0.14em] uppercase text-neutral-500 rounded-full border border-neutral-200/80 bg-white/80 px-3 py-1.5">
-                        Final photo before launch
+                        Course creator
                       </span>
                     </div>
 
