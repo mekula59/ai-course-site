@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
+import { copyTextToClipboard } from "@/lib/clipboard";
 import {
   beginnerCourse,
   getAdjacentStandaloneCourseSteps,
@@ -105,13 +106,12 @@ export function FinalWrapUpPage({
         };
 
   const handleCopyPrompt = async () => {
-    if (!navigator.clipboard) return;
+    const copied = await copyTextToClipboard(lesson.examplePrompt);
 
-    try {
-      await navigator.clipboard.writeText(lesson.examplePrompt);
+    if (copied) {
       setPromptCopied(true);
       window.setTimeout(() => setPromptCopied(false), 1500);
-    } catch {
+    } else {
       setPromptCopied(false);
     }
   };

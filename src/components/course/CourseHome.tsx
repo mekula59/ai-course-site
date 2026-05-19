@@ -65,7 +65,7 @@ export function CourseHome({
           methodTitle: "Read, try, check, use",
           methodDescription:
             "The course no stop for reading. Every lesson go give you one thing to understand, one prompt to test, and one small task to use in real life.",
-          outcomes: "What you go fit do",
+          outcomes: "Wetin you go fit do",
           outcomesDescription:
             "By the end, you suppose feel clearer about how to use AI without guessing your way through every tool.",
           ctaTitle: "You ready to start?",

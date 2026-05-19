@@ -10,6 +10,7 @@ import {
   MessageSquareText,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
+import { copyTextToClipboard } from "@/lib/clipboard";
 import {
   getCoursePath,
   getLocalizedLesson,
@@ -87,13 +88,12 @@ export function LessonArticle({
   };
 
   const handleCopyPrompt = async () => {
-    if (!navigator.clipboard) return;
+    const copied = await copyTextToClipboard(localizedLesson.examplePrompt);
 
-    try {
-      await navigator.clipboard.writeText(localizedLesson.examplePrompt);
+    if (copied) {
       setPromptCopied(true);
       window.setTimeout(() => setPromptCopied(false), 1500);
-    } catch {
+    } else {
       setPromptCopied(false);
     }
   };
