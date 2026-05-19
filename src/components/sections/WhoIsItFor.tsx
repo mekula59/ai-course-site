@@ -15,54 +15,54 @@ const SWIPE_THRESHOLD = 40;
 const AUDIENCE_META: Record<Lang, Array<{ short: string; note: string }>> = {
   en: [
     {
-      short: "Professionals",
-      note: "Modules 03 and 05 are shaped around your working week. Faster writing, better summaries, cleaner workflows.",
+      short: "Work",
+      note: "Module 3 is where this becomes practical: writing, summaries, planning, and real work tasks.",
     },
     {
-      short: "Business owners",
-      note: "Content, customer replies, proposals. Modules 03 and 05 focus on work you can apply immediately.",
+      short: "Business",
+      note: "Module 3 helps with daily business tasks. Module 4 helps you stay careful with private details and important decisions.",
     },
     {
-      short: "Students",
-      note: "Better research and stronger writing, without crossing any academic line. Module 04 is built for this.",
+      short: "School",
+      note: "Module 2 helps you ask better questions. Module 4 helps you know what to check and what not to copy blindly.",
     },
     {
-      short: "Job seekers",
-      note: "A CV and cover letter that sound relevant to the role, not generic. Module 03 covers this directly.",
+      short: "Jobs",
+      note: "Module 3 helps you turn rough ideas into clearer writing you can edit and make your own.",
     },
     {
-      short: "Curious beginners",
-      note: "Module 01 starts exactly where you are. No assumed knowledge, no technical barrier to entry.",
+      short: "New to AI",
+      note: "Start Here first, then Module 1. No assumed knowledge.",
     },
     {
-      short: "Feeling behind",
-      note: "Module 01 takes under an hour and gives you a clear place to begin instead of more overwhelm.",
+      short: "Catch up",
+      note: "Start Here gives you the path. Module 1 gives you the basics.",
     },
   ],
   pidgin: [
     {
-      short: "Professionals",
-      note: "Module 03 and 05 dey shaped around your working week. Faster writing, better summaries, cleaner workflows.",
+      short: "Work",
+      note: "Module 3 na where everything start to feel practical: writing, summaries, planning, and real work tasks.",
     },
     {
-      short: "Business owners",
-      note: "Content, customer replies, proposals. Module 03 and 05 focus on work wey you fit apply immediately.",
+      short: "Business",
+      note: "Module 3 go help with daily business tasks. Module 4 go help you dey careful with private details and important decisions.",
     },
     {
-      short: "Students",
-      note: "Better research and stronger writing, without crossing any academic line. Module 04 na for this.",
+      short: "School",
+      note: "Module 2 go help you ask better questions. Module 4 go help you know wetin to check and wetin you no suppose copy blindly.",
     },
     {
-      short: "Job seekers",
-      note: "CV and cover letter wey sound relevant to the role, no be generic. Module 03 dey cover this directly.",
+      short: "Jobs",
+      note: "Module 3 go help you turn rough ideas into clearer writing wey you fit edit and make your own.",
     },
     {
-      short: "Curious beginners",
-      note: "Module 01 dey start exactly where you dey. No assumed knowledge and no technical barrier.",
+      short: "New to AI",
+      note: "Start Here first, then Module 1. We no assume say you already sabi.",
     },
     {
-      short: "Feeling behind",
-      note: "Module 01 no reach one hour and e give you clear place to begin instead of more overwhelm.",
+      short: "Catch up",
+      note: "Start Here go show you the path. Module 1 go give you the basics.",
     },
   ],
 };
@@ -76,9 +76,10 @@ interface DetailPanelProps {
   active: number;
   items: AudienceItem[];
   meta: Array<{ short: string; note: string }>;
+  beginLabel: string;
 }
 
-function DetailPanel({ active, items, meta }: DetailPanelProps) {
+function DetailPanel({ active, items, meta, beginLabel }: DetailPanelProps) {
   const reducedMotion = useReducedMotion();
 
   return (
@@ -128,7 +129,7 @@ function DetailPanel({ active, items, meta }: DetailPanelProps) {
 
           <div className="mt-10 border-t border-white/10 pt-6">
             <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/34">
-              Good place to begin
+              {beginLabel}
             </p>
             <p className="max-w-[42ch] text-sm leading-relaxed text-amber-100/80">
               {meta[active].note}
@@ -145,9 +146,21 @@ interface MobileSliderProps {
   setActive: Dispatch<SetStateAction<number>>;
   items: AudienceItem[];
   meta: Array<{ short: string; note: string }>;
+  labels: {
+    fitLabel: string;
+    beginLabel: string;
+    previous: string;
+    next: string;
+  };
 }
 
-function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
+function MobileSlider({
+  active,
+  setActive,
+  items,
+  meta,
+  labels,
+}: MobileSliderProps) {
   const count = items.length;
   const reducedMotion = useReducedMotion();
   const [direction, setDirection] = useState(1);
@@ -221,7 +234,7 @@ function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
         <div className="relative px-5 pt-5">
           <div className="mb-4 flex items-center justify-between gap-4">
             <span className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-amber-200/90">
-              Who this fits
+              {labels.fitLabel}
             </span>
             <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-white/36">
               {String(active + 1).padStart(2, "0")} / {count}
@@ -262,7 +275,7 @@ function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
 
               <div className="border-t border-white/10 pt-5">
                 <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/34">
-                  Good place to begin
+                  {labels.beginLabel}
                 </p>
                 <p className="text-[13px] leading-relaxed text-amber-100/80">
                   {meta[active].note}
@@ -307,14 +320,14 @@ function MobileSlider({ active, setActive, items, meta }: MobileSliderProps) {
             aria-label="Previous audience"
             className="rounded-full border border-neutral-300 bg-white px-3.5 py-2 text-sm text-neutral-700"
           >
-            Prev
+            {labels.previous}
           </button>
           <button
             onClick={() => goTo((active + 1) % count, 1)}
             aria-label="Next audience"
             className="rounded-full border border-neutral-900 bg-neutral-900 px-3.5 py-2 text-sm text-white"
           >
-            Next
+            {labels.next}
           </button>
         </div>
       </div>
@@ -327,6 +340,22 @@ export function WhoIsItFor() {
   const c = content[lang].whoIsItFor;
   const meta = AUDIENCE_META[lang];
   const [active, setActive] = useState(0);
+  const labels =
+    lang === "pidgin"
+      ? {
+          choose: "Choose the one wey fit you",
+          fitLabel: "Wey fit you",
+          beginLabel: "Where you fit start",
+          previous: "Back",
+          next: "Next",
+        }
+      : {
+          choose: "Choose the closest fit",
+          fitLabel: "Who this fits",
+          beginLabel: "Good place to begin",
+          previous: "Prev",
+          next: "Next",
+        };
 
   return (
     <section className="bg-ivory px-5 py-16 sm:py-24">
@@ -351,7 +380,7 @@ export function WhoIsItFor() {
             >
               <div className="mb-4 px-3 pt-2">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-neutral-400">
-                  Choose the closest fit
+                  {labels.choose}
                 </p>
               </div>
 
@@ -404,7 +433,12 @@ export function WhoIsItFor() {
               </div>
             </nav>
 
-            <DetailPanel active={active} items={c.items} meta={meta} />
+            <DetailPanel
+              active={active}
+              items={c.items}
+              meta={meta}
+              beginLabel={labels.beginLabel}
+            />
           </div>
         </FadeIn>
 
@@ -414,6 +448,7 @@ export function WhoIsItFor() {
             setActive={setActive}
             items={c.items}
             meta={meta}
+            labels={labels}
           />
         </FadeIn>
 

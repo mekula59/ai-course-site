@@ -202,34 +202,34 @@ const en: SiteContent = {
   whoIsItFor: {
     label: "Who This Is For",
     heading: "Who this course is for",
-    sub: "No technical background. No coding. No prior experience with AI. Just a real interest in learning something useful.",
+    sub: "No technical background or prior AI experience needed. Just a real interest in learning something useful.",
     items: [
       {
         role: "Working professionals",
-        desc: "You want to get more done at work, write faster, think more clearly, and spend less time on repetitive tasks.",
+        desc: "You want to write faster, summarise better, plan your week, and handle everyday work tasks with less friction.",
       },
       {
         role: "Business owners",
-        desc: "You want to use AI to support your business, create content more easily, respond to customers faster, and save time.",
+        desc: "You want help with customer replies, captions, planning, simple summaries, and checking answers before using them.",
       },
       {
         role: "Students",
-        desc: "You want to research better, write stronger essays, study more effectively, and understand difficult topics with less frustration.",
+        desc: "You want to understand topics faster, summarise notes, ask better questions, and use AI without crossing academic lines.",
       },
       {
         role: "Job seekers",
-        desc: "You want to write stronger CVs and cover letters, prepare for interviews, and present yourself with more confidence.",
+        desc: "You want help improving CV points, cover letters, interview prep, and professional messages without sounding generic.",
       },
       {
         role: "Curious beginners",
-        desc: "You have been hearing about AI and want to understand what it is and how to use it without feeling lost.",
+        desc: "You have heard about ChatGPT, Claude, or Gemini, but you still want a simple place to understand what they are and how to start.",
       },
       {
         role: "Anyone falling behind",
-        desc: "Things are changing quickly, and you want a simple way to catch up and feel more confident with new tools.",
+        desc: "Things are moving fast, and you want a calm way to catch up without big grammar or technical pressure.",
       },
     ],
-    callout: "You do not need a technical background. If you can search, message, and browse online, you can start here.",
+    callout: "Start where you are. If you can search, message, and browse online, you can start here.",
   },
   whatYouLearn: {
     label: "What You Will Learn",
@@ -515,34 +515,34 @@ const pidgin: SiteContent = {
   whoIsItFor: {
     label: "Who This One Na For",
     heading: "Who this course na for",
-    sub: "No need for technical background. No coding. No prior AI experience. Just real interest to learn something wey go help you.",
+    sub: "You no need technical background or AI experience. Just real interest to learn something wey go help you.",
     items: [
       {
         role: "People Wey Dey Work",
-        desc: "You wan do more for work, write faster, think more clear, and stop wasting time on tasks wey dey repeat.",
+        desc: "You wan write faster, summarise better, plan your week, and handle everyday work tasks with less wahala.",
       },
       {
         role: "Business Owners",
-        desc: "You wan use AI support your business, create content more easily, answer customers faster, and save time.",
+        desc: "You wan get help for customer replies, captions, planning, simple summaries, and checking answers before you use am.",
       },
       {
         role: "Students",
-        desc: "You wan research better, write stronger essays, study better, and understand difficult topics without too much stress.",
+        desc: "You wan understand topics faster, summarise notes, ask better questions, and use AI without crossing school lines.",
       },
       {
         role: "Job Seekers",
-        desc: "You wan write stronger CV and cover letter, prepare for interview, and present yourself with more confidence.",
+        desc: "You wan get help to improve CV points, cover letters, interview prep, and professional messages without sounding generic.",
       },
       {
         role: "Curious Beginners",
-        desc: "You don dey hear about AI and you wan understand wetin e be and how to use am without feeling lost.",
+        desc: "You don hear about ChatGPT, Claude, or Gemini, but you still want simple place to understand wetin dem be and how to start.",
       },
       {
         role: "Anyone Wey Feel Like Dem Dey Behind",
-        desc: "Things dey change fast, and you wan simple way to catch up and feel more confident with new tools.",
+        desc: "Things dey move fast, and you wan calm way to catch up without big grammar or technical pressure.",
       },
     ],
-    callout: "You no need technical background. If you fit search, message, and browse online, you fit start here.",
+    callout: "Start from where you dey. If you fit search, message, and browse online, you fit start here.",
   },
   whatYouLearn: {
     label: "Wetin You Go Learn",
