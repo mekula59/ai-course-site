@@ -208,7 +208,7 @@ export function Hero() {
                 variant="ghost"
                 size="lg"
                 onClick={() =>
-                  document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })
+                  document.getElementById("course-updates")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
                 {c.secondaryCta}

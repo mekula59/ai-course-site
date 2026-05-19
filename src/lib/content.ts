@@ -131,7 +131,7 @@ interface SiteContent {
     secondaryCta: string;
     trustItems: [string, string, string];
   };
-  waitlist: {
+  updates: {
     label: string;
     heading: string;
     sub: string;
@@ -442,9 +442,9 @@ const en: SiteContent = {
     sub: "Start the free course now. Leave your details if you want updates about new lessons, live sessions, workshops, and future course drops.",
     primaryCta: "Start Free Course",
     secondaryCta: "Get Course Updates",
-    trustItems: ["Free to start", "No credit card", "Built for Nigeria"],
+    trustItems: ["Free to start", "No sign-in needed", "Built for Nigeria"],
   },
-  waitlist: {
+  updates: {
     label: "Course Updates",
     heading: "Get course updates",
     sub: "Leave your details below and I’ll send updates when new lessons, live sessions, workshops, or future course drops are ready.",
@@ -755,9 +755,9 @@ const pidgin: SiteContent = {
     sub: "Start the free course now. Drop your details if you want updates about new lessons, live sessions, workshops, and future course drops.",
     primaryCta: "Start Free Course",
     secondaryCta: "Get Course Updates",
-    trustItems: ["E free to start", "No card needed", "Built for Naija"],
+    trustItems: ["E free to start", "No login needed", "Built for Naija"],
   },
-  waitlist: {
+  updates: {
     label: "Course Updates",
     heading: "Get course updates",
     sub: "Drop your details below and I go send updates when new lessons, live sessions, workshops, or future course drops ready.",

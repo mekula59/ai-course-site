@@ -24,9 +24,9 @@ npm run lint
 npm run build
 ```
 
-## Waitlist
+## Course Updates Form
 
-The waitlist form posts directly to Formspree from [Waitlist.tsx](/Users/mekula/ai-course-site/src/components/sections/Waitlist.tsx:10).
+The course updates form posts directly to Formspree from [CourseUpdates.tsx](/Users/mekula/ai-course-site/src/components/sections/CourseUpdates.tsx:10). It is for new lessons, live sessions, workshops, and future course drops.
 
 ## Deploy notes
 
@@ -36,7 +36,7 @@ The waitlist form posts directly to Formspree from [Waitlist.tsx](/Users/mekula/
 
 ## Current focus
 
-- Launch-ready landing page quality
+- Live-course landing page quality
 - Stronger bilingual UX
 - Mobile-first polish
 - A more premium, less generic product feel

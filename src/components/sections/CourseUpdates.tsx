@@ -7,9 +7,9 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 
-const WAITLIST_ENDPOINT = "https://formspree.io/f/mkoydqea";
+const COURSE_UPDATES_ENDPOINT = "https://formspree.io/f/mkoydqea";
 
-export function Waitlist() {
+export function CourseUpdates() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -17,7 +17,7 @@ export function Waitlist() {
   const [error, setError] = useState("");
 
   const { lang } = useLang();
-  const c = content[lang].waitlist;
+  const c = content[lang].updates;
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,7 +36,7 @@ export function Waitlist() {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch(WAITLIST_ENDPOINT, {
+      const response = await fetch(COURSE_UPDATES_ENDPOINT, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -64,7 +64,7 @@ export function Waitlist() {
   }
 
   return (
-    <section id="waitlist" className="py-16 sm:py-24 px-5 bg-ivory">
+    <section id="course-updates" className="py-16 sm:py-24 px-5 bg-ivory">
       <div className="max-w-xl mx-auto">
         <FadeIn>
           <div className="text-center mb-10">
@@ -111,7 +111,7 @@ export function Waitlist() {
                   placeholder={c.namePlaceholder}
                   autoComplete="name"
                   required
-                  aria-describedby={error ? "waitlist-error" : undefined}
+                  aria-describedby={error ? "course-updates-error" : undefined}
                   className="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition-all"
                 />
               </div>
@@ -132,14 +132,14 @@ export function Waitlist() {
                   autoComplete="email"
                   inputMode="email"
                   required
-                  aria-describedby={error ? "waitlist-error" : undefined}
+                  aria-describedby={error ? "course-updates-error" : undefined}
                   className="w-full px-4 py-3 rounded-xl border border-neutral-300 bg-white text-neutral-900 placeholder:text-neutral-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition-all"
                 />
               </div>
 
               <div aria-live="polite" className="min-h-5">
                 {error && (
-                  <p id="waitlist-error" className="text-red-600 text-xs">
+                  <p id="course-updates-error" className="text-red-600 text-xs">
                     {error}
                   </p>
                 )}

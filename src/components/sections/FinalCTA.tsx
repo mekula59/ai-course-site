@@ -44,7 +44,7 @@ export function FinalCTA() {
               size="lg"
               className="text-neutral-400 hover:text-white hover:bg-neutral-800 border border-neutral-600"
               onClick={() =>
-                document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("course-updates")?.scrollIntoView({ behavior: "smooth" })
               }
             >
               {c.secondaryCta}

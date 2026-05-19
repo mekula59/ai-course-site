@@ -13,7 +13,7 @@ import { WhyDifferent } from "@/components/sections/WhyDifferent";
 import { Instructor } from "@/components/sections/Instructor";
 import { FAQ } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Waitlist } from "@/components/sections/Waitlist";
+import { CourseUpdates } from "@/components/sections/CourseUpdates";
 import { CourseHome } from "@/components/course/CourseHome";
 import { CourseLibraryPage } from "@/components/course/CourseLibraryPage";
 import { CourseLayout } from "@/components/course/CourseLayout";
@@ -83,7 +83,7 @@ function LandingPage() {
           <FAQ />
         </section>
         <FinalCTA />
-        <Waitlist />
+        <CourseUpdates />
       </main>
       <Footer />
     </>
