@@ -18,6 +18,63 @@ interface ModulePageProps {
   navigate: CourseNavigate;
 }
 
+function ModuleDiagram({
+  module,
+  lang,
+  label,
+}: {
+  module: CourseModule;
+  lang: "en" | "pidgin";
+  label: string;
+}) {
+  if (!module.diagram) return null;
+
+  const steps = module.diagram.steps.map((step) => getLocalizedText(step, lang));
+  const connectors =
+    module.diagram.connectors || Array.from({ length: Math.max(steps.length - 1, 0) }, () => "→");
+
+  return (
+    <section
+      aria-label={label}
+      className="mt-7 bg-surface border border-neutral-200 rounded-2xl p-4 sm:p-5"
+    >
+      <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-3">
+        {label}
+      </p>
+      <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-2.5">
+        {steps.map((step, index) => {
+          const isLast = index === steps.length - 1;
+          const connector = connectors[index] || "→";
+
+          return (
+            <div key={`${module.slug}-${step}`} className="contents">
+              <div className="rounded-xl border border-neutral-200 bg-neutral-50 px-3.5 py-3 text-sm font-semibold leading-snug text-neutral-700">
+                {step}
+              </div>
+              {!isLast && (
+                <>
+                  <span
+                    aria-hidden="true"
+                    className="hidden sm:inline-flex shrink-0 items-center justify-center px-0.5 text-sm font-bold text-brand-500"
+                  >
+                    {connector}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="sm:hidden pl-4 text-sm font-bold text-brand-500 leading-none"
+                  >
+                    ↓
+                  </span>
+                </>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 export function ModulePage({
   course = beginnerCourse,
   module,
@@ -72,6 +129,12 @@ export function ModulePage({
           <p className="text-base sm:text-lg leading-8 text-neutral-600 max-w-[34ch] sm:max-w-none">
             {moduleDescription}
           </p>
+
+          <ModuleDiagram
+            module={module}
+            lang={lang}
+            label={lang === "pidgin" ? "How this module dey work" : "How this module works"}
+          />
 
           {firstLesson && (
             <div className="mt-7 bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">

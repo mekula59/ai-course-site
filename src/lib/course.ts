@@ -51,6 +51,10 @@ export interface CourseModule {
   number: string;
   title: LocalizedText;
   description: LocalizedText;
+  diagram?: {
+    steps: LocalizedText[];
+    connectors?: string[];
+  };
   lessons: Lesson[];
 }
 
@@ -337,6 +341,14 @@ export const courseModules: CourseModule[] = [
       en: "Understand what AI is, where it helps, and how to use it without feeling technical.",
       pidgin:
         "Understand wetin AI be, where e fit help, and how to use am without feeling technical.",
+    },
+    diagram: {
+      steps: [
+        { en: "You ask", pidgin: "You ask" },
+        { en: "AI responds", pidgin: "AI answer" },
+        { en: "You check", pidgin: "You check" },
+        { en: "You use", pidgin: "You use" },
+      ],
     },
     lessons: [
       {
@@ -970,6 +982,16 @@ export const courseModules: CourseModule[] = [
       en: "Learn how to ask better questions, avoid weak prompts, and improve the answers AI gives you.",
       pidgin:
         "Learn how to ask better questions, avoid weak prompts, and improve the answers wey AI give you.",
+    },
+    diagram: {
+      steps: [
+        { en: "Task", pidgin: "Task" },
+        { en: "Context", pidgin: "Context" },
+        { en: "Tone", pidgin: "Tone" },
+        { en: "Format", pidgin: "Format" },
+        { en: "Better answer", pidgin: "Better answer" },
+      ],
+      connectors: ["+", "+", "+", "="],
     },
     lessons: [
       {
@@ -1649,6 +1671,14 @@ export const courseModules: CourseModule[] = [
       en: "Apply AI to writing, research, summaries, and everyday tasks in a simple, useful way.",
       pidgin:
         "Use AI for writing, research, summaries, and everyday tasks in simple, useful way.",
+    },
+    diagram: {
+      steps: [
+        { en: "Rough idea", pidgin: "Rough idea" },
+        { en: "AI draft", pidgin: "AI draft" },
+        { en: "You edit", pidgin: "You edit" },
+        { en: "Final version", pidgin: "Final version" },
+      ],
     },
     lessons: [
       {
@@ -2349,6 +2379,14 @@ export const courseModules: CourseModule[] = [
       en: "Use AI for learning and everyday decisions while protecting your privacy and checking important facts.",
       pidgin:
         "Use AI for learning and everyday decisions while you protect your privacy and check important facts.",
+    },
+    diagram: {
+      steps: [
+        { en: "Answer", pidgin: "Answer" },
+        { en: "Check facts", pidgin: "Check facts" },
+        { en: "Remove private info", pidgin: "Remove private info" },
+        { en: "Decide yourself", pidgin: "Decide yourself" },
+      ],
     },
     lessons: [
       {
