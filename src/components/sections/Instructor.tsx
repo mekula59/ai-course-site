@@ -61,18 +61,18 @@ export function Instructor() {
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 lg:gap-14 items-start">
             <FadeIn delay={0.08}>
               <aside className="lg:sticky lg:top-28">
-                <div className="rounded-[2rem] overflow-hidden border border-neutral-200/80 bg-surface shadow-[0_6px_24px_rgba(26,18,8,0.05)]">
-                  <div className="aspect-[4/5] bg-[linear-gradient(180deg,rgba(245,213,173,0.45)_0%,rgba(254,252,249,0.95)_46%,rgba(244,237,227,0.95)_100%)] p-5 flex flex-col justify-between">
+                <div className="instructor-card rounded-[2rem] overflow-hidden border border-neutral-200/80 bg-surface shadow-[0_6px_24px_rgba(26,18,8,0.05)]">
+                  <div className="instructor-portrait-shell aspect-[4/5] bg-[linear-gradient(180deg,rgba(245,213,173,0.45)_0%,rgba(254,252,249,0.95)_46%,rgba(244,237,227,0.95)_100%)] p-5 flex flex-col justify-between">
                     <div className="flex justify-end">
-                      <span className="text-[10px] font-medium tracking-[0.14em] uppercase text-neutral-500 rounded-full border border-neutral-200/80 bg-white/80 px-3 py-1.5">
+                      <span className="instructor-badge text-[10px] font-medium tracking-[0.14em] uppercase text-neutral-500 rounded-full border border-neutral-200/80 bg-white/80 px-3 py-1.5">
                         Course creator
                       </span>
                     </div>
 
                     <div className="flex-1 flex items-center justify-center">
-                      <div className="w-full max-w-[210px] aspect-[4/5] rounded-[1.5rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.62)_0%,rgba(244,237,227,0.96)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] flex items-center justify-center">
-                        <div className="w-[62%] h-[62%] rounded-[999px] bg-brand-100/80 flex items-center justify-center">
-                          <div className="w-[72%] h-[72%] rounded-[999px] border border-brand-200/80" />
+                      <div className="instructor-image w-full max-w-[210px] aspect-[4/5] rounded-[1.5rem] border border-white/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.62)_0%,rgba(244,237,227,0.96)_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] flex items-center justify-center">
+                        <div className="instructor-avatar w-[62%] h-[62%] rounded-[999px] bg-brand-100/80 flex items-center justify-center">
+                          <div className="instructor-avatar-ring w-[72%] h-[72%] rounded-[999px] border border-brand-200/80" />
                         </div>
                       </div>
                     </div>
@@ -92,7 +92,7 @@ export function Instructor() {
                   {c.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[11px] font-medium px-3 py-1.5 border border-neutral-200 rounded-full text-neutral-600 bg-surface/70"
+                      className="instructor-chip text-[11px] font-medium px-3 py-1.5 border border-neutral-200 rounded-full text-neutral-600 bg-surface/70"
                     >
                       {tag}
                     </span>

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { content } from "@/lib/content";
 import type { Lang } from "@/types/language";
 
@@ -77,6 +78,8 @@ const SKILL_META: Record<Lang, Array<{ tag: string; why: string }>> = {
 
 export function WhatYouLearn() {
   const { lang } = useLang();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const c = content[lang].whatYouLearn;
   const meta = SKILL_META[lang];
   const stages = STAGES[lang];
@@ -137,6 +140,11 @@ export function WhatYouLearn() {
                               ? "text-neutral-900 font-medium"
                               : "text-neutral-600 group-hover:text-neutral-900"
                           }`}
+                          style={
+                            isDark
+                              ? { color: open === idx ? "#f4ede3" : "#d6c6b5" }
+                              : undefined
+                          }
                         >
                           {c.outcomes[idx]}
                         </span>
@@ -149,6 +157,20 @@ export function WhatYouLearn() {
                                 ? "text-brand-600 bg-brand-50 border-brand-100"
                                 : "text-neutral-400 border-neutral-200/70 group-hover:border-neutral-300"
                             }`}
+                            style={
+                              isDark
+                                ? open === idx
+                                  ? {
+                                      backgroundColor: "rgb(223 114 32 / 0.16)",
+                                      borderColor: "rgb(223 114 32 / 0.46)",
+                                      color: "#f2b778",
+                                    }
+                                  : {
+                                      borderColor: "rgb(99 70 52 / 0.62)",
+                                      color: "#b09c8d",
+                                    }
+                                : undefined
+                            }
                           >
                             {meta[idx].tag}
                           </span>

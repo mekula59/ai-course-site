@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/context/ThemeContext";
 import { Slot } from "@radix-ui/react-slot";
 import { type ButtonHTMLAttributes, forwardRef } from "react";
 
@@ -9,11 +10,25 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "primary", size = "md", asChild, ...props }, ref) => {
+  ({ className, variant = "primary", size = "md", asChild, style, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
+    const { theme } = useTheme();
+    const darkButtonStyle =
+      theme === "dark"
+        ? {
+            ...(variant === "primary"
+              ? { color: "#21140c" }
+              : variant === "secondary"
+                ? { backgroundColor: "#f4ede3", color: "#21140c" }
+                : { color: "#d6c6b5" }),
+            ...style,
+          }
+        : style;
+
     return (
       <Comp
         ref={ref}
+        style={darkButtonStyle}
         className={cn(
           "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
           {

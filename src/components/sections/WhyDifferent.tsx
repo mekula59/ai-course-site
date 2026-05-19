@@ -270,11 +270,7 @@ export function WhyDifferent() {
                           >
                             {item.title}
                           </p>
-                          <span
-                            className={`text-sm leading-none ${
-                              active === i ? "opacity-100" : "opacity-35 group-hover:opacity-70"
-                            }`}
-                          >
+                          <span className="text-sm leading-none text-neutral-200 opacity-100">
                             {item.icon}
                           </span>
                         </div>
@@ -357,7 +353,7 @@ export function WhyDifferent() {
                       {item.title}
                     </span>
                   </span>
-                  <span className={active === i ? "opacity-100" : "opacity-40"}>{item.icon}</span>
+                  <span className="text-neutral-200 opacity-100">{item.icon}</span>
                 </span>
               </button>
             ))}

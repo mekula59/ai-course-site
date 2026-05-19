@@ -383,8 +383,8 @@ const en: SiteContent = {
     title: "Mekula",
     role: "Emeka Victor",
     bio: [
-      "I am Mekula, also known as Emeka Victor. My background is in digital work, online communities, and practical communication, so I care a lot about making useful things easier to understand.",
-      "The course is being built the same way I would explain it to someone sitting next to me. Start with the real task, explain it clearly, keep it practical, and make it easy to follow from the beginning.",
+      "I am Emeka Victor, also known as Mekula. My background is in digital work, online communities, and practical communication. I care about making useful things easier for everyday people to understand.",
+      "I am building this course the same way I would explain it to someone sitting next to me. Start with the real task, explain it clearly, keep it practical, and make it easy to follow from the beginning.",
       "It is free to start, beginner-friendly, and grounded in the way people actually live and work. Later on, there may be live sessions for people who want deeper support.",
     ],
     tags: ["Beginner-first", "Practical communication", "Digital work", "English + Pidgin"],
@@ -696,8 +696,8 @@ const pidgin: SiteContent = {
     title: "Mekula",
     role: "Emeka Victor",
     bio: [
-      "Na me be Mekula, also known as Emeka Victor. My background dey for digital work, online communities, and practical communication, so I care well well about making useful things easier to understand.",
-      "Na the same way I go explain am to person wey sit down next to me I dey use build the course. Start with the real task, explain am clearly, keep am practical, and make am easy to follow from the beginning.",
+      "Na me be Emeka Victor, also known as Mekula. My background dey for digital work, online communities, and practical communication. I care say useful things suppose easy for everyday people to understand.",
+      "I dey build this course the same way I go explain am to person wey sit down next to me. Start with the real task, explain am clearly, keep am practical, and make am easy to follow from the beginning.",
       "E free to start, beginner-friendly, and grounded for how people actually dey live and work. Later on, fit still get live sessions for people wey want deeper support.",
     ],
     tags: ["Beginner-first", "Practical communication", "Digital work", "English + Pidgin"],

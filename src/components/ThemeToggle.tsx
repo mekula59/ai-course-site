@@ -19,6 +19,15 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-surface text-neutral-600 transition-colors hover:border-brand-300 hover:bg-brand-50 hover:text-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2",
         className
       )}
+      style={
+        isDark
+          ? {
+              backgroundColor: "#241914",
+              borderColor: "rgb(99 70 52 / 0.72)",
+              color: "#d6c6b5",
+            }
+          : undefined
+      }
       aria-label={label}
       title={label}
     >

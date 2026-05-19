@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { cn } from "@/lib/utils";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
@@ -49,6 +50,8 @@ function ThinkingDots() {
 
 export function PromptDemo() {
   const { lang } = useLang();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const [state, setState] = useState<DemoState>("before");
   const [isThinking, setIsThinking] = useState(false);
   const demo = DEMO[state];
@@ -106,6 +109,18 @@ export function PromptDemo() {
                       : "prompt-demo-tab-active-before text-neutral-800"
                     : "prompt-demo-tab-inactive text-neutral-500 hover:text-neutral-700"
                 )}
+                style={
+                  isDark
+                    ? {
+                        color:
+                          state === s
+                            ? s === "after"
+                              ? "#ffd2a1"
+                              : "#f4ede3"
+                            : "#d6c6b5",
+                      }
+                    : undefined
+                }
               >
                 {state === s && (
                   <motion.div
@@ -116,7 +131,20 @@ export function PromptDemo() {
                         ? "prompt-demo-tab-pill-after bg-brand-50 border border-brand-200/80"
                         : "prompt-demo-tab-pill-before bg-white border border-neutral-200/80"
                     )}
-                    style={{ zIndex: -1 }}
+                    style={{
+                      zIndex: -1,
+                      ...(isDark
+                        ? s === "after"
+                          ? {
+                              backgroundColor: "rgb(223 114 32 / 0.18)",
+                              borderColor: "rgb(223 114 32 / 0.48)",
+                            }
+                          : {
+                              backgroundColor: "#2b1f18",
+                              borderColor: "rgb(123 88 65 / 0.76)",
+                            }
+                        : {}),
+                    }}
                     transition={{ type: "spring", stiffness: 500, damping: 38 }}
                   />
                 )}

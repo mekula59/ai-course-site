@@ -4,12 +4,15 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ChevronDown } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { content } from "@/lib/content";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 export function CourseModules() {
   const { lang } = useLang();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const c = content[lang].modules;
   const [expanded, setExpanded] = useState<string | null>(c.items[0]?.num ?? null);
 
@@ -38,6 +41,15 @@ export function CourseModules() {
                   className={`relative overflow-hidden rounded-2xl transition-all duration-400 ${
                     isOpen ? "bg-white shadow-lg" : "bg-neutral-800/50 hover:bg-neutral-800"
                   }`}
+                  style={
+                    isDark && isOpen
+                      ? {
+                          backgroundColor: "#241914",
+                          border: "1px solid rgb(99 70 52 / 0.68)",
+                          boxShadow: "0 22px 54px rgb(0 0 0 / 0.24)",
+                        }
+                      : undefined
+                  }
                 >
                   {/* Large decorative chapter number — background texture */}
                   <div
@@ -70,6 +82,7 @@ export function CourseModules() {
                         className={`font-mono text-xs font-bold mb-2 block transition-colors ${
                           isOpen ? "text-brand-500" : "text-neutral-600"
                         }`}
+                        style={isDark && !isOpen ? { color: "#b09c8d" } : undefined}
                       >
                         {mod.num}
                       </span>
@@ -79,6 +92,7 @@ export function CourseModules() {
                             ? "text-neutral-900"
                             : "text-neutral-200 group-hover:text-white"
                         }`}
+                        style={isDark && isOpen ? { color: "#f4ede3" } : undefined}
                       >
                         {mod.title}
                       </span>
@@ -92,7 +106,10 @@ export function CourseModules() {
                             transition={{ duration: 0.35, ease: EASE }}
                             className="overflow-hidden"
                           >
-                            <p className="text-neutral-500 text-[15px] leading-relaxed mt-4 mb-5">
+                            <p
+                              className="text-neutral-500 text-[15px] leading-relaxed mt-4 mb-5"
+                              style={isDark ? { color: "#c2af9f" } : undefined}
+                            >
                               {mod.desc}
                             </p>
                             <div className="flex flex-wrap gap-2 pb-1">
@@ -100,6 +117,15 @@ export function CourseModules() {
                                 <span
                                   key={lesson}
                                   className="text-xs text-neutral-600 bg-neutral-100 border border-neutral-200 px-3 py-1.5 rounded-full"
+                                  style={
+                                    isDark
+                                      ? {
+                                          backgroundColor: "rgb(255 246 232 / 0.08)",
+                                          borderColor: "rgb(99 70 52 / 0.68)",
+                                          color: "#d6c6b5",
+                                        }
+                                      : undefined
+                                  }
                                 >
                                   {lesson}
                                 </span>

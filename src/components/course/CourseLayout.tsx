@@ -3,6 +3,7 @@ import { BookOpen } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useLang } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/types/language";
 
@@ -13,13 +14,25 @@ interface CourseLayoutProps {
 
 function CourseLanguageToggle() {
   const { lang, setLang } = useLang();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const options: { value: Lang; label: string }[] = [
     { value: "en", label: "EN" },
     { value: "pidgin", label: "Pidgin" },
   ];
 
   return (
-    <div className="inline-flex items-center rounded-full bg-neutral-100 p-0.5 text-xs font-semibold">
+    <div
+      className="inline-flex items-center rounded-full bg-neutral-100 p-0.5 text-xs font-semibold"
+      style={
+        isDark
+          ? {
+              backgroundColor: "rgb(255 246 232 / 0.08)",
+              border: "1px solid rgb(99 70 52 / 0.55)",
+            }
+          : undefined
+      }
+    >
       {options.map(({ value, label }) => (
         <button
           key={value}
@@ -31,6 +44,13 @@ function CourseLanguageToggle() {
               ? "bg-white text-neutral-900 shadow-sm"
               : "text-neutral-500 hover:text-neutral-800"
           )}
+          style={
+            isDark
+              ? lang === value
+                ? { backgroundColor: "#f4ede3", color: "#21140c" }
+                : { color: "#d6c6b5" }
+              : undefined
+          }
           aria-pressed={lang === value}
         >
           {label}
@@ -42,6 +62,8 @@ function CourseLanguageToggle() {
 
 export function CourseLayout({ children, navigate }: CourseLayoutProps) {
   const { lang } = useLang();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const footerCopy =
     lang === "pidgin"
       ? "Read slowly, practise as you go, and keep wetin work for you."
@@ -58,6 +80,7 @@ export function CourseLayout({ children, navigate }: CourseLayoutProps) {
             href="/"
             navigate={navigate}
             className="font-display font-bold text-neutral-900 text-lg tracking-tight"
+            style={isDark ? { color: "#f4ede3" } : undefined}
           >
             AI for <span className="text-brand-500">Everyone</span>
           </CourseLink>
@@ -69,6 +92,7 @@ export function CourseLayout({ children, navigate }: CourseLayoutProps) {
               href="/courses"
               navigate={navigate}
               className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
+              style={isDark ? { color: "#d6c6b5" } : undefined}
             >
               <BookOpen size={16} />
               {courseListLabel}

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { content } from "@/lib/content";
 import type { Lang } from "@/types/language";
 
@@ -65,6 +66,8 @@ const panelVariants = {
 
 export function Problem() {
   const { lang } = useLang();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const c = content[lang].problem;
   const editorial = EDITORIAL[lang];
 
@@ -139,6 +142,17 @@ export function Problem() {
                     ? "bg-neutral-900 text-white border-neutral-900 shadow-sm"
                     : "bg-transparent text-neutral-400 border-neutral-200 hover:border-neutral-400 hover:text-neutral-600"
                 }`}
+                style={
+                  isDark
+                    ? active === i
+                      ? {
+                          backgroundColor: "#f4ede3",
+                          borderColor: "#f4ede3",
+                          color: "#21140c",
+                        }
+                      : { borderColor: "rgb(99 70 52 / 0.55)", color: "#c2af9f" }
+                    : undefined
+                }
               >
                 {String(i + 1).padStart(2, "0")}
               </button>
@@ -185,6 +199,13 @@ export function Problem() {
                     className={`pl-5 pr-1 py-4 border-b border-neutral-200/40 ${
                       i === 0 ? "border-t border-neutral-200/40" : ""
                     }`}
+                    style={
+                      isDark
+                        ? {
+                            borderColor: "rgb(99 70 52 / 0.42)",
+                          }
+                        : undefined
+                    }
                   >
                     <div className="flex items-start gap-2.5">
                       <span
@@ -200,6 +221,13 @@ export function Problem() {
                             ? "text-neutral-900 font-semibold"
                             : "text-neutral-400 font-medium group-hover:text-neutral-600"
                         }`}
+                        style={
+                          isDark
+                            ? active === i
+                              ? { color: "#f4ede3" }
+                              : { color: "#b09c8d" }
+                            : undefined
+                        }
                       >
                         {editorial[i].short}
                       </span>

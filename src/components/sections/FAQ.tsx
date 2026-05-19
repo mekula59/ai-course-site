@@ -4,12 +4,15 @@ import { Plus, Minus } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { useLang } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { content } from "@/lib/content";
 
 const EASE: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 
 function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const answerId = useId();
   const questionId = `${answerId}-trigger`;
 
@@ -23,10 +26,23 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
           aria-expanded={open}
           aria-controls={answerId}
         >
-          <span className="font-medium text-neutral-900 text-sm sm:text-base leading-snug group-hover:text-brand-600 transition-colors">
+          <span
+            className="font-medium text-neutral-900 text-sm sm:text-base leading-snug group-hover:text-brand-600 transition-colors"
+            style={isDark ? { color: "#f4ede3" } : undefined}
+          >
             {q}
           </span>
-          <span className="flex-shrink-0 w-7 h-7 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-brand-50 transition-colors">
+          <span
+            className="flex-shrink-0 w-7 h-7 rounded-full bg-neutral-100 flex items-center justify-center group-hover:bg-brand-50 transition-colors"
+            style={
+              isDark
+                ? {
+                    backgroundColor: "rgb(255 246 232 / 0.08)",
+                    border: "1px solid rgb(99 70 52 / 0.6)",
+                  }
+                : undefined
+            }
+          >
             {open ? (
               <Minus size={14} className="text-brand-600" />
             ) : (
@@ -46,7 +62,12 @@ function FAQItem({ q, a, index }: { q: string; a: string; index: number }) {
               transition={{ duration: 0.25, ease: EASE }}
               className="overflow-hidden"
             >
-              <p className="text-neutral-500 text-sm leading-relaxed pb-5">{a}</p>
+              <p
+                className="text-neutral-500 text-sm leading-relaxed pb-5"
+                style={isDark ? { color: "#c2af9f" } : undefined}
+              >
+                {a}
+              </p>
             </motion.div>
           )}
         </AnimatePresence>

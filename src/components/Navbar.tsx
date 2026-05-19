@@ -6,10 +6,13 @@ import { cn } from "@/lib/utils";
 import { useLang } from "@/context/LanguageContext";
 import { content } from "@/lib/content";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useTheme } from "@/context/ThemeContext";
 import type { Lang } from "@/types/language";
 
 function LangToggle({ scrolled }: { scrolled: boolean }) {
   const { lang, setLang } = useLang();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const options: { value: Lang; label: string }[] = [
     { value: "en", label: "EN" },
     { value: "pidgin", label: "Pidgin" },
@@ -36,6 +39,7 @@ function LangToggle({ scrolled }: { scrolled: boolean }) {
                 "absolute inset-0 rounded-full",
                 scrolled ? "bg-white shadow-sm" : "bg-white/90"
               )}
+              style={isDark ? { backgroundColor: "#f4ede3" } : undefined}
               transition={{ type: "spring", stiffness: 500, damping: 38 }}
             />
           )}
@@ -48,6 +52,11 @@ function LangToggle({ scrolled }: { scrolled: boolean }) {
                 ? "text-neutral-500 hover:text-neutral-700"
                 : "text-neutral-600 hover:text-neutral-800"
             )}
+            style={
+              isDark
+                ? { color: lang === value ? "#21140c" : "#d6c6b5" }
+                : undefined
+            }
           >
             {label}
           </span>
@@ -61,7 +70,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { lang } = useLang();
+  const { theme } = useTheme();
   const c = content[lang].nav;
+  const darkNavText = theme === "dark" ? { color: "#d6c6b5" } : undefined;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -112,6 +123,7 @@ export function Navbar() {
               href={link.href}
               onClick={(event) => handleNavClick(event, link.href)}
               className="px-3 py-1.5 text-sm text-neutral-600 hover:text-neutral-900 rounded-lg hover:bg-neutral-100 transition-colors cursor-pointer"
+              style={darkNavText}
             >
               {link.label}
             </a>
@@ -156,6 +168,7 @@ export function Navbar() {
                   href={link.href}
                   onClick={(event) => handleNavClick(event, link.href)}
                   className="px-3 py-3 text-sm text-neutral-700 hover:text-neutral-900 hover:bg-neutral-50 rounded-xl text-left transition-colors cursor-pointer"
+                  style={darkNavText}
                 >
                   {link.label}
                 </a>
