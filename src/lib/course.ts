@@ -82,6 +82,13 @@ export interface PlannedCourse {
   description: LocalizedText;
 }
 
+export interface PlannedCoursePath {
+  slug: string;
+  title: LocalizedText;
+  description: LocalizedText;
+  courses: PlannedCourse[];
+}
+
 export interface LessonReference {
   course: Course;
   module: CourseModule;
@@ -3418,71 +3425,168 @@ export const beginnerCourse: Course = {
 
 export const courses: Course[] = [beginnerCourse];
 
-export const plannedCourses: PlannedCourse[] = [
+export const plannedCoursePaths: PlannedCoursePath[] = [
   {
-    slug: "ai-for-work",
-    title: "AI for Work",
-    description: {
-      en: "Use AI for emails, reports, summaries, planning, meeting notes, and everyday workplace communication.",
-      pidgin:
-        "Use AI for work emails, reports, summaries, planning, meeting notes, and everyday workplace communication.",
+    slug: "ai-foundations",
+    title: {
+      en: "AI Foundations",
+      pidgin: "AI Foundations",
     },
+    description: {
+      en: "Build the asking skills that make every other AI course easier.",
+      pidgin:
+        "Build how to ask well, so every other AI course go easier.",
+    },
+    courses: [
+      {
+        slug: "prompting-basics",
+        title: {
+          en: "Prompting Basics",
+          pidgin: "Prompting Basics",
+        },
+        description: {
+          en: "Learn how to ask better questions, give better context, and get more useful answers from ChatGPT, Claude, and Gemini.",
+          pidgin:
+            "Learn how to ask better questions, give better context, and get more useful answers from ChatGPT, Claude, and Gemini.",
+        },
+      },
+      {
+        slug: "prompt-engineering-everyday-use",
+        title: {
+          en: "Prompt Engineering for Everyday Use",
+          pidgin: "Prompt Engineering for Everyday Use",
+        },
+        description: {
+          en: "Go deeper into prompt frameworks, reusable prompts, role prompts, and multi-step AI workflows.",
+          pidgin:
+            "Go deeper into prompt frameworks, prompts wey you fit reuse, role prompts, and step-by-step AI workflows.",
+        },
+      },
+    ],
   },
   {
-    slug: "ai-for-business-owners",
-    title: "AI for Business Owners",
-    description: {
-      en: "Use AI for customer replies, captions, product descriptions, simple marketing, business planning, and daily operations.",
-      pidgin:
-        "Use AI for customer replies, captions, product descriptions, simple marketing, business planning, and daily business work.",
+    slug: "practical-ai",
+    title: {
+      en: "Practical AI",
+      pidgin: "Practical AI",
     },
+    description: {
+      en: "Use AI in the everyday places where work, business, school, and job search actually happen.",
+      pidgin: "Use AI for the everyday places where work, business, school, and job search dey happen.",
+    },
+    courses: [
+      {
+        slug: "ai-for-work",
+        title: "AI for Work",
+        description: {
+          en: "Use AI for emails, reports, summaries, planning, meeting notes, and everyday workplace communication.",
+          pidgin:
+            "Use AI for work emails, reports, summaries, planning, meeting notes, and everyday workplace communication.",
+        },
+      },
+      {
+        slug: "ai-for-business-owners",
+        title: "AI for Business Owners",
+        description: {
+          en: "Use AI for customer replies, captions, product descriptions, simple marketing, business planning, and daily operations.",
+          pidgin:
+            "Use AI for customer replies, captions, product descriptions, simple marketing, business planning, and daily business work.",
+        },
+      },
+      {
+        slug: "ai-for-job-seekers",
+        title: "AI for Job Seekers",
+        description: {
+          en: "Use AI to improve CVs, cover letters, LinkedIn profiles, interview prep, role research, and application messages.",
+          pidgin:
+            "Use AI to improve CV, cover letter, LinkedIn profile, interview prep, role research, and application messages.",
+        },
+      },
+      {
+        slug: "ai-for-students",
+        title: "AI for Students",
+        description: {
+          en: "Use AI to understand topics, summarise notes, create study plans, practise questions, and learn responsibly.",
+          pidgin:
+            "Use AI to understand topics, summarise notes, create study plans, practise questions, and learn with sense.",
+        },
+      },
+    ],
   },
   {
-    slug: "ai-for-job-seekers",
-    title: "AI for Job Seekers",
-    description: {
-      en: "Use AI to improve CVs, cover letters, LinkedIn profiles, interview prep, role research, and application messages.",
-      pidgin:
-        "Use AI to improve CV, cover letter, LinkedIn profile, interview prep, role research, and application messages.",
+    slug: "creative-ai",
+    title: {
+      en: "Creative AI",
+      pidgin: "Creative AI",
     },
+    description: {
+      en: "Use AI for ideas, content, and images without losing your own voice or judgement.",
+      pidgin:
+        "Use AI for ideas, content, and images without losing your own voice or sense.",
+    },
+    courses: [
+      {
+        slug: "ai-for-content-creators",
+        title: "AI for Content Creators",
+        description: {
+          en: "Use AI for ideas, hooks, captions, scripts, content calendars, repurposing, and editing without losing your voice.",
+          pidgin:
+            "Use AI for ideas, hooks, captions, scripts, content calendar, repurposing, and editing without losing your own voice.",
+        },
+      },
+      {
+        slug: "image-generation-basics",
+        title: {
+          en: "Image Generation Basics",
+          pidgin: "Image Generation Basics",
+        },
+        description: {
+          en: "Learn how to describe images clearly, create better prompts, and use AI image tools responsibly.",
+          pidgin:
+            "Learn how to describe images clearly, create better prompts, and use AI image tools with sense.",
+        },
+      },
+    ],
   },
   {
-    slug: "ai-for-students",
-    title: "AI for Students",
-    description: {
-      en: "Use AI to understand topics, summarise notes, create study plans, practise questions, and learn responsibly.",
-      pidgin:
-        "Use AI to understand topics, summarise notes, create study plans, practise questions, and learn with sense.",
+    slug: "building-with-ai",
+    title: {
+      en: "Building With AI",
+      pidgin: "Building With AI",
     },
-  },
-  {
-    slug: "ai-for-content-creators",
-    title: "AI for Content Creators",
     description: {
-      en: "Use AI for ideas, hooks, captions, scripts, content calendars, repurposing, and editing without losing your voice.",
-      pidgin:
-        "Use AI for ideas, hooks, captions, scripts, content calendar, repurposing, and editing without losing your own voice.",
+      en: "Use AI to understand code and build small things step by step.",
+      pidgin: "Use AI understand code and build small things step by step.",
     },
-  },
-  {
-    slug: "ai-for-community-managers",
-    title: "AI for Community Managers",
-    description: {
-      en: "Use AI for announcements, reports, feedback summaries, event planning, moderation support, and community communication.",
-      pidgin:
-        "Use AI for announcements, reports, feedback summaries, event planning, moderation support, and community communication.",
-    },
-  },
-  {
-    slug: "ai-for-coding-beginners",
-    title: "AI for Coding Beginners",
-    description: {
-      en: "Use AI to understand code, plan simple projects, debug errors, and learn the basics without pretending to know everything.",
-      pidgin:
-        "Use AI to understand code, plan simple projects, debug errors, and learn the basics without pretending say you sabi everything.",
-    },
+    courses: [
+      {
+        slug: "ai-for-coding-beginners",
+        title: "AI for Coding Beginners",
+        description: {
+          en: "Use AI to understand code, plan simple projects, debug errors, and learn the basics without pretending to know everything.",
+          pidgin:
+            "Use AI to understand code, plan simple projects, debug errors, and learn the basics without pretending say you sabi everything.",
+        },
+      },
+      {
+        slug: "building-simple-websites-with-ai",
+        title: {
+          en: "Building Simple Websites with AI",
+          pidgin: "Building Simple Websites with AI",
+        },
+        description: {
+          en: "Learn how to use AI tools to plan, write, and improve simple websites.",
+          pidgin:
+            "Learn how to use AI tools plan, write, and improve simple websites.",
+        },
+      },
+    ],
   },
 ];
+
+export const plannedCourses: PlannedCourse[] = plannedCoursePaths.flatMap(
+  (path) => path.courses
+);
 
 export function getCourse(courseSlug: string) {
   return courses.find((course) => course.slug === courseSlug);

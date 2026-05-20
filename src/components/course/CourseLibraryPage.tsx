@@ -5,7 +5,7 @@ import {
   getCoursePath,
   getLessonReferences,
   getLocalizedText,
-  plannedCourses,
+  plannedCoursePaths,
 } from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
 
@@ -25,7 +25,7 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           availableNow: "Available now",
           comingNext: "Coming next",
           comingIntro:
-            "After the beginner course, the next ones go enter the places people need AI pass: work, business, job search, school, content, community, and coding.",
+            "After the beginner course, the next courses go dey inside clear paths: AI foundations, practical use, creative work, and building with AI.",
           modules: "modules",
           lessons: "main lessons",
           availableStatus: "Free course",
@@ -42,7 +42,7 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           availableNow: "Available now",
           comingNext: "Coming next",
           comingIntro:
-            "After the beginner course, the next courses will go deeper into the places people need AI most: work, business, job search, school, content, community, and coding.",
+            "After the beginner course, the next courses will sit inside clear learning paths: AI foundations, practical use, creative work, and building with AI.",
           modules: "modules",
           lessons: "core lessons",
           availableStatus: "Free course",
@@ -163,36 +163,61 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {plannedCourses.map((course) => (
-              <article
-                key={course.slug}
-                className="bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6"
+          <div className="space-y-6">
+            {plannedCoursePaths.map((path) => (
+              <section
+                key={path.slug}
+                aria-labelledby={`${path.slug}-heading`}
+                className="bg-neutral-50 border border-neutral-200 rounded-2xl p-4 sm:p-5"
               >
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-bold text-neutral-500">
+                <div className="mb-4 sm:mb-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-600 mb-2">
                     {labels.plannedStatus}
-                  </span>
-                  <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-                    AI for Everyone
-                  </span>
+                  </p>
+                  <h3
+                    id={`${path.slug}-heading`}
+                    className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2"
+                  >
+                    {getLocalizedText(path.title, lang)}
+                  </h3>
+                  <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-2xl">
+                    {getLocalizedText(path.description, lang)}
+                  </p>
                 </div>
 
-                <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-3">
-                  {getLocalizedText(course.title, lang)}
-                </h3>
-                <p className="text-sm sm:text-base leading-7 text-neutral-600">
-                  {getLocalizedText(course.description, lang)}
-                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {path.courses.map((course) => (
+                    <article
+                      key={course.slug}
+                      className="bg-surface border border-neutral-200 rounded-2xl p-5"
+                    >
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-bold text-neutral-500">
+                          {labels.plannedStatus}
+                        </span>
+                        <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
+                          {getLocalizedText(path.title, lang)}
+                        </span>
+                      </div>
 
-                <a
-                  href="/#course-updates"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
-                >
-                  {labels.updates}
-                  <ArrowRight size={16} />
-                </a>
-              </article>
+                      <h4 className="font-display text-lg sm:text-xl font-bold text-neutral-900 mb-3">
+                        {getLocalizedText(course.title, lang)}
+                      </h4>
+                      <p className="text-sm leading-7 text-neutral-600">
+                        {getLocalizedText(course.description, lang)}
+                      </p>
+
+                      <a
+                        href="/#course-updates"
+                        className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+                      >
+                        {labels.updates}
+                        <ArrowRight size={16} />
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </section>
