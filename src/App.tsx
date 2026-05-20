@@ -37,13 +37,30 @@ function getPathname() {
   return pathname || "/";
 }
 
+function scrollToHash(hash: string) {
+  if (!hash) return false;
+
+  const targetId = decodeURIComponent(hash.replace(/^#/, ""));
+  const target = document.getElementById(targetId);
+
+  if (!target) return false;
+
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  return true;
+}
+
 function usePathname() {
   const [pathname, setPathname] = useState(getPathname);
 
   useEffect(() => {
     function handlePopState() {
       setPathname(getPathname());
-      window.scrollTo({ top: 0 });
+
+      window.setTimeout(() => {
+        if (!scrollToHash(window.location.hash)) {
+          window.scrollTo({ top: 0 });
+        }
+      }, 80);
     }
 
     window.addEventListener("popstate", handlePopState);
@@ -51,14 +68,22 @@ function usePathname() {
   }, []);
 
   const navigate = useCallback((path: string) => {
-    const nextPath = path.replace(/\/+$/, "") || "/";
+    const nextUrl = new URL(path, window.location.origin);
+    const nextPath = nextUrl.pathname.replace(/\/+$/, "") || "/";
+    const nextHash = nextUrl.hash;
+    const nextLocation = `${nextPath}${nextHash}`;
+    const currentLocation = `${getPathname()}${window.location.hash}`;
 
-    if (nextPath !== getPathname()) {
-      window.history.pushState(null, "", nextPath);
+    if (nextLocation !== currentLocation) {
+      window.history.pushState(null, "", nextLocation);
       setPathname(nextPath);
     }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.setTimeout(() => {
+      if (!nextHash || !scrollToHash(nextHash)) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 80);
   }, []);
 
   return { pathname, navigate };
@@ -214,6 +239,16 @@ function LegacyCourseRoutes({
 
 export default function App() {
   const { pathname, navigate } = usePathname();
+
+  useEffect(() => {
+    if (!window.location.hash) return;
+
+    const timeout = window.setTimeout(() => {
+      scrollToHash(window.location.hash);
+    }, 80);
+
+    return () => window.clearTimeout(timeout);
+  }, [pathname]);
 
   if (pathname === "/courses" || pathname.startsWith("/courses/")) {
     return (

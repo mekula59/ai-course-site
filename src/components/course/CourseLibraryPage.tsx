@@ -207,13 +207,14 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
                         {getLocalizedText(course.description, lang)}
                       </p>
 
-                      <a
+                      <CourseLink
                         href="/#course-updates"
+                        navigate={navigate}
                         className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
                       >
                         {labels.updates}
                         <ArrowRight size={16} />
-                      </a>
+                      </CourseLink>
                     </article>
                   ))}
                 </div>
