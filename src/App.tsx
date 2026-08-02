@@ -21,6 +21,8 @@ import { CourseNotFound } from "@/components/course/CourseNotFound";
 import { FinalWrapUpPage } from "@/components/course/FinalWrapUpPage";
 import { LessonPage } from "@/components/course/LessonPage";
 import { ModulePage } from "@/components/course/ModulePage";
+import { PlannedCoursePage } from "@/components/course/PlannedCoursePage";
+import { PromptingBasicsHome } from "@/components/course/PromptingBasicsHome";
 import { StartHerePage } from "@/components/course/StartHerePage";
 import { StandaloneLessonPage } from "@/components/course/StandaloneLessonPage";
 import {
@@ -28,9 +30,11 @@ import {
   getCourse,
   getCourseModule,
   getLessonReference,
+  getPlannedCourse,
   getStandaloneCourseLesson,
   type Course,
 } from "@/lib/course";
+import { promptingBasicsCourse } from "@/lib/prompting-course";
 
 function getPathname() {
   const pathname = window.location.pathname.replace(/\/+$/, "");
@@ -194,10 +198,64 @@ function CoursesRoutes({
     return <CourseLibraryPage navigate={navigate} />;
   }
 
+  if (courseSlug === promptingBasicsCourse.slug) {
+    const plannedCourse = getPlannedCourse(courseSlug);
+
+    if (!plannedCourse || extraParts.length > 0) {
+      return <CourseNotFound navigate={navigate} />;
+    }
+
+    if (!sectionSlug) {
+      return (
+        <PromptingBasicsHome
+          course={promptingBasicsCourse}
+          plan={plannedCourse}
+          navigate={navigate}
+        />
+      );
+    }
+
+    if (!lessonSlug && sectionSlug === promptingBasicsCourse.startHere.slug) {
+      return <StartHerePage course={promptingBasicsCourse} navigate={navigate} />;
+    }
+
+    const module = getCourseModule(sectionSlug, promptingBasicsCourse);
+
+    if (!lessonSlug) {
+      return module ? (
+        <ModulePage
+          course={promptingBasicsCourse}
+          module={module}
+          navigate={navigate}
+        />
+      ) : (
+        <CourseNotFound navigate={navigate} />
+      );
+    }
+
+    const reference = getLessonReference(
+      sectionSlug,
+      lessonSlug,
+      promptingBasicsCourse
+    );
+
+    return reference ? (
+      <LessonPage reference={reference} navigate={navigate} />
+    ) : (
+      <CourseNotFound navigate={navigate} />
+    );
+  }
+
   const course = getCourse(courseSlug);
 
   if (!course) {
-    return <CourseNotFound navigate={navigate} />;
+    const plannedCourse = getPlannedCourse(courseSlug);
+
+    return plannedCourse && !sectionSlug && !lessonSlug && extraParts.length === 0 ? (
+      <PlannedCoursePage course={plannedCourse} navigate={navigate} />
+    ) : (
+      <CourseNotFound navigate={navigate} />
+    );
   }
 
   return (

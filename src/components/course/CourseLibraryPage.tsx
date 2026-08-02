@@ -200,12 +200,33 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
                         </span>
                       </div>
 
-                      <h4 className="font-display text-lg sm:text-xl font-bold text-neutral-900 mb-3">
-                        {getLocalizedText(course.title, lang)}
-                      </h4>
+                      {course.modules ? (
+                        <CourseLink
+                          href={getCoursePath(course.slug)}
+                          navigate={navigate}
+                          className="inline-block font-display text-lg sm:text-xl font-bold text-neutral-900 hover:text-brand-600 transition-colors mb-3"
+                        >
+                          {getLocalizedText(course.title, lang)}
+                        </CourseLink>
+                      ) : (
+                        <h4 className="font-display text-lg sm:text-xl font-bold text-neutral-900 mb-3">
+                          {getLocalizedText(course.title, lang)}
+                        </h4>
+                      )}
                       <p className="text-sm leading-7 text-neutral-600">
                         {getLocalizedText(course.description, lang)}
                       </p>
+
+                      {course.modules && (
+                        <p className="mt-4 text-xs font-semibold text-neutral-500">
+                          {course.modules.length} {labels.modules} /{" "}
+                          {course.modules.reduce(
+                            (total, module) => total + module.lessons.length,
+                            0
+                          )}{" "}
+                          {labels.lessons}
+                        </p>
+                      )}
 
                       <CourseLink
                         href="/#course-updates"

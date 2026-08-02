@@ -17,6 +17,11 @@ export interface Lesson {
   slug: string;
   title: LocalizedText;
   intro: LocalizedText;
+  diagram?: {
+    label: LocalizedText;
+    steps: LocalizedText[];
+    connectors?: LocalizedText[];
+  };
   content: LessonSection[];
   keyTakeaway: LocalizedText;
   examplePrompt: LocalizedText;
@@ -39,6 +44,11 @@ export interface LocalizedLesson {
   slug: string;
   title: string;
   intro: string;
+  diagram?: {
+    label: string;
+    steps: string[];
+    connectors: string[];
+  };
   content: LocalizedLessonSection[];
   keyTakeaway: string;
   examplePrompt: string;
@@ -71,6 +81,7 @@ export interface Course {
   level: LocalizedText;
   priceLabel: LocalizedText;
   languageSupport: LocalizedText;
+  releaseStatus?: "live" | "preview";
   modules: CourseModule[];
   startHere: CourseStandaloneLesson;
   finalWrapUp: CourseStandaloneLesson;
@@ -80,6 +91,24 @@ export interface PlannedCourse {
   slug: string;
   title: LocalizedText;
   description: LocalizedText;
+  status?: "coming-next" | "draft";
+  level?: LocalizedText;
+  languageSupport?: LocalizedText;
+  startHere?: PlannedCourseStep;
+  modules?: PlannedCourseModule[];
+  finalWrapUp?: PlannedCourseStep;
+}
+
+export interface PlannedCourseStep {
+  slug: string;
+  title: LocalizedText;
+}
+
+export interface PlannedCourseModule {
+  slug: string;
+  number: string;
+  title: LocalizedText;
+  lessons: PlannedCourseStep[];
 }
 
 export interface PlannedCoursePath {
@@ -112,6 +141,15 @@ export function getLocalizedLesson(lesson: Lesson, lang: Lang): LocalizedLesson 
     slug: lesson.slug,
     title: getLocalizedText(lesson.title, lang),
     intro: getLocalizedText(lesson.intro, lang),
+    diagram: lesson.diagram
+      ? {
+          label: getLocalizedText(lesson.diagram.label, lang),
+          steps: lesson.diagram.steps.map((step) => getLocalizedText(step, lang)),
+          connectors: (lesson.diagram.connectors || []).map((connector) =>
+            getLocalizedText(connector, lang)
+          ),
+        }
+      : undefined,
     content: lesson.content.map((section) => ({
       heading: getLocalizedText(section.heading, lang),
       body: getLocalizedText(section.body, lang),
@@ -3440,14 +3478,160 @@ export const plannedCoursePaths: PlannedCoursePath[] = [
     courses: [
       {
         slug: "prompting-basics",
+        status: "coming-next",
         title: {
-          en: "Prompting Basics",
-          pidgin: "Prompting Basics",
+          en: "Prompting Basics: How to Ask AI Better Questions",
+          pidgin: "Prompting Basics: How You Fit Ask AI Better Questions",
         },
         description: {
-          en: "Learn how to ask better questions, give better context, and get more useful answers from ChatGPT, Claude, and Gemini.",
+          en: "Learn how to give AI clearer instructions, add better context, improve weak answers, and build prompts you can reuse for work, business, school, and everyday tasks.",
           pidgin:
-            "Learn how to ask better questions, give better context, and get more useful answers from ChatGPT, Claude, and Gemini.",
+            "Learn how to give AI clear instructions, add better context, improve weak answers, and build prompts wey you fit use again for work, business, school, and everyday tasks.",
+        },
+        level: {
+          en: "Beginner follow-up",
+          pidgin: "Next beginner step",
+        },
+        languageSupport: "English + Pidgin",
+        startHere: {
+          slug: "start-here",
+          title: {
+            en: "Start Here",
+            pidgin: "Start From Here",
+          },
+        },
+        modules: [
+          {
+            slug: "prompting-foundations",
+            number: "01",
+            title: {
+              en: "Prompting Foundations",
+              pidgin: "How Better Prompt Take Start",
+            },
+            lessons: [
+              {
+                slug: "what-a-prompt-really-is",
+                title: {
+                  en: "What a Prompt Really Is",
+                  pidgin: "Wetin Prompt Really Be",
+                },
+              },
+              {
+                slug: "why-vague-prompts-give-weak-answers",
+                title: {
+                  en: "Why Vague Prompts Give Weak Answers",
+                  pidgin: "Why Vague Prompt Dey Give Weak Answer",
+                },
+              },
+              {
+                slug: "the-simple-prompt-formula",
+                title: {
+                  en: "The Simple Prompt Formula",
+                  pidgin: "Simple Formula for Better Prompt",
+                },
+              },
+            ],
+          },
+          {
+            slug: "context-tone-and-format",
+            number: "02",
+            title: {
+              en: "Context, Tone, and Format",
+              pidgin: "Context, Tone, and Answer Format",
+            },
+            lessons: [
+              {
+                slug: "how-to-give-ai-better-context",
+                title: {
+                  en: "How to Give AI Better Context",
+                  pidgin: "How to Give AI Better Context",
+                },
+              },
+              {
+                slug: "how-to-control-tone",
+                title: {
+                  en: "How to Control Tone",
+                  pidgin: "How to Choose the Tone Wey You Want",
+                },
+              },
+              {
+                slug: "how-to-ask-for-the-right-format",
+                title: {
+                  en: "How to Ask for the Right Format",
+                  pidgin: "How to Ask for the Answer Format Wey You Need",
+                },
+              },
+            ],
+          },
+          {
+            slug: "improving-ai-answers",
+            number: "03",
+            title: {
+              en: "Improving AI Answers",
+              pidgin: "How to Make AI Answer Better",
+            },
+            lessons: [
+              {
+                slug: "how-to-use-follow-up-prompts",
+                title: {
+                  en: "How to Use Follow-up Prompts",
+                  pidgin: "How to Ask Follow-up Question",
+                },
+              },
+              {
+                slug: "how-to-make-answers-clearer-or-more-specific",
+                title: {
+                  en: "How to Make Answers Clearer or More Specific",
+                  pidgin: "How to Make Answer Clearer and More Specific",
+                },
+              },
+              {
+                slug: "how-to-stop-ai-from-sounding-generic",
+                title: {
+                  en: "How to Stop AI From Sounding Generic",
+                  pidgin: "How to Stop AI Answer From Sounding Too General",
+                },
+              },
+            ],
+          },
+          {
+            slug: "reusable-prompt-systems",
+            number: "04",
+            title: {
+              en: "Reusable Prompt Systems",
+              pidgin: "Prompt System Wey You Fit Use Again",
+            },
+            lessons: [
+              {
+                slug: "how-to-save-prompts-you-use-often",
+                title: {
+                  en: "How to Save Prompts You Use Often",
+                  pidgin: "How to Save Prompts Wey You Dey Use Often",
+                },
+              },
+              {
+                slug: "how-to-build-prompt-templates",
+                title: {
+                  en: "How to Build Prompt Templates",
+                  pidgin: "How to Build Prompt Templates",
+                },
+              },
+              {
+                slug: "how-to-create-your-first-prompt-library",
+                title: {
+                  en: "How to Create Your First Prompt Library",
+                  pidgin: "How to Create Your First Prompt Library",
+                },
+              },
+            ],
+          },
+        ],
+        finalWrapUp: {
+          slug: "your-first-prompt-toolkit",
+          title: {
+            en: "Your First Prompt Toolkit",
+            pidgin: "Your First Prompt Toolkit",
+          },
         },
       },
       {
@@ -3592,6 +3776,10 @@ export function getCourse(courseSlug: string) {
   return courses.find((course) => course.slug === courseSlug);
 }
 
+export function getPlannedCourse(courseSlug: string) {
+  return plannedCourses.find((course) => course.slug === courseSlug);
+}
+
 export function getLessonReferences(course: Course = beginnerCourse) {
   return course.modules.flatMap((module, moduleIndex) =>
     module.lessons.map((lesson, lessonIndex) => ({
@@ -3644,7 +3832,7 @@ export function getAdjacentLessons(
 }
 
 export function getCourseStepCount(course: Course = beginnerCourse) {
-  return getLessonReferences(course).length + 2;
+  return getLessonReferences(course).length + (course.releaseStatus === "preview" ? 1 : 2);
 }
 
 export function getCoursesPath() {
@@ -3739,7 +3927,7 @@ export function getAdjacentCourseLessonSteps(
           ? getLessonNavTarget(references[currentIndex - 1])
           : undefined,
     next:
-      currentIndex === references.length - 1
+      currentIndex === references.length - 1 && course.releaseStatus !== "preview"
         ? getFinalWrapUpNavTarget(course)
         : currentIndex >= 0 && currentIndex < references.length - 1
           ? getLessonNavTarget(references[currentIndex + 1])

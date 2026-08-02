@@ -11,14 +11,11 @@ function HeadingReveal({ text }: { text: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
   const reducedMotion = useReducedMotion();
-  const [visibleText, setVisibleText] = useState(reducedMotion ? text : "");
+  const [visibleText, setVisibleText] = useState("");
+  const renderedText = reducedMotion ? text : visibleText;
 
   useEffect(() => {
-    if (!inView) return;
-    if (reducedMotion) {
-      setVisibleText(text);
-      return;
-    }
+    if (!inView || reducedMotion) return;
 
     let index = 0;
     const timer = window.setInterval(() => {
@@ -40,7 +37,7 @@ function HeadingReveal({ text }: { text: string }) {
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
         transition={{ duration: 0.58, ease: EASE }}
       >
-        {visibleText}
+        {renderedText}
       </motion.h2>
     </div>
   );

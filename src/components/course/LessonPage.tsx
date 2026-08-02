@@ -4,6 +4,7 @@ import {
   getAdjacentCourseLessonSteps,
   getCoreCourseStepNumber,
   getCourseStepCount,
+  getCoursePath,
   getModulePath,
   type LessonReference,
 } from "@/lib/course";
@@ -47,6 +48,7 @@ export function LessonPage({ reference, navigate }: LessonPageProps) {
       }}
       previous={previous}
       next={next}
+      finishHref={getCoursePath(course.slug)}
       navigate={navigate}
     />
   );
