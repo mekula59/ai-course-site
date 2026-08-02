@@ -27,6 +27,18 @@ export interface Lesson {
   examplePrompt: LocalizedText;
   practiceTask: LocalizedText;
   quickCheck?: LocalizedText[];
+  teaching?: {
+    question: LocalizedText;
+    situation: LocalizedText;
+    comparison: {
+      label: LocalizedText;
+      before: LocalizedText;
+      after: LocalizedText;
+      why: LocalizedText;
+    };
+    didYouNotice: LocalizedText;
+    commonMistake: LocalizedText;
+  };
 }
 
 export interface LocalizedLessonSection {
@@ -54,6 +66,18 @@ export interface LocalizedLesson {
   examplePrompt: string;
   practiceTask: string;
   quickCheck: string[];
+  teaching?: {
+    question: string;
+    situation: string;
+    comparison: {
+      label: string;
+      before: string;
+      after: string;
+      why: string;
+    };
+    didYouNotice: string;
+    commonMistake: string;
+  };
 }
 
 export interface CourseModule {
@@ -164,6 +188,20 @@ export function getLocalizedLesson(lesson: Lesson, lang: Lang): LocalizedLesson 
     quickCheck: (lesson.quickCheck || []).map((item) =>
       getLocalizedText(item, lang)
     ),
+    teaching: lesson.teaching
+      ? {
+          question: getLocalizedText(lesson.teaching.question, lang),
+          situation: getLocalizedText(lesson.teaching.situation, lang),
+          comparison: {
+            label: getLocalizedText(lesson.teaching.comparison.label, lang),
+            before: getLocalizedText(lesson.teaching.comparison.before, lang),
+            after: getLocalizedText(lesson.teaching.comparison.after, lang),
+            why: getLocalizedText(lesson.teaching.comparison.why, lang),
+          },
+          didYouNotice: getLocalizedText(lesson.teaching.didYouNotice, lang),
+          commonMistake: getLocalizedText(lesson.teaching.commonMistake, lang),
+        }
+      : undefined,
   };
 }
 
@@ -3536,101 +3574,101 @@ export const plannedCoursePaths: PlannedCoursePath[] = [
             slug: "context-tone-and-format",
             number: "02",
             title: {
-              en: "Context, Tone, and Format",
+              en: "Context, Tone & Format",
               pidgin: "Context, Tone, and Answer Format",
             },
             lessons: [
               {
                 slug: "how-to-give-ai-better-context",
                 title: {
-                  en: "How to Give AI Better Context",
-                  pidgin: "How to Give AI Better Context",
+                  en: "Give AI the Context It Needs",
+                  pidgin: "Give AI the Context Wey E Need",
                 },
               },
               {
                 slug: "how-to-control-tone",
                 title: {
-                  en: "How to Control Tone",
-                  pidgin: "How to Choose the Tone Wey You Want",
+                  en: "Choose the Right Tone",
+                  pidgin: "Choose the Tone Wey Fit",
                 },
               },
               {
                 slug: "how-to-ask-for-the-right-format",
                 title: {
-                  en: "How to Ask for the Right Format",
-                  pidgin: "How to Ask for the Answer Format Wey You Need",
+                  en: "Ask for the Output You Actually Want",
+                  pidgin: "Ask for the Answer Wey You Really Want",
                 },
               },
             ],
           },
           {
-            slug: "improving-ai-answers",
+            slug: "refining-ai-responses",
             number: "03",
             title: {
-              en: "Improving AI Answers",
-              pidgin: "How to Make AI Answer Better",
+              en: "Refining AI Responses",
+              pidgin: "How to Refine AI Answer",
             },
             lessons: [
               {
-                slug: "how-to-use-follow-up-prompts",
+                slug: "dont-start-over-refine-the-answer",
                 title: {
-                  en: "How to Use Follow-up Prompts",
-                  pidgin: "How to Ask Follow-up Question",
+                  en: "Don't Start Over, Refine the Answer",
+                  pidgin: "No Start Again, Adjust the Answer",
                 },
               },
               {
-                slug: "how-to-make-answers-clearer-or-more-specific",
+                slug: "ask-better-follow-up-questions",
                 title: {
-                  en: "How to Make Answers Clearer or More Specific",
-                  pidgin: "How to Make Answer Clearer and More Specific",
+                  en: "Ask Better Follow-up Questions",
+                  pidgin: "Ask Better Follow-up Questions",
                 },
               },
               {
-                slug: "how-to-stop-ai-from-sounding-generic",
+                slug: "turn-one-answer-into-many-versions",
                 title: {
-                  en: "How to Stop AI From Sounding Generic",
-                  pidgin: "How to Stop AI Answer From Sounding Too General",
+                  en: "Turn One Answer Into Many Versions",
+                  pidgin: "Turn One Answer Into Different Versions",
                 },
               },
             ],
           },
           {
-            slug: "reusable-prompt-systems",
+            slug: "building-better-prompt-habits",
             number: "04",
             title: {
-              en: "Reusable Prompt Systems",
-              pidgin: "Prompt System Wey You Fit Use Again",
+              en: "Building Better Prompt Habits",
+              pidgin: "How to Build Better Prompt Habits",
             },
             lessons: [
               {
-                slug: "how-to-save-prompts-you-use-often",
+                slug: "save-prompts-youll-reuse",
                 title: {
-                  en: "How to Save Prompts You Use Often",
-                  pidgin: "How to Save Prompts Wey You Dey Use Often",
+                  en: "Save Prompts You'll Reuse",
+                  pidgin: "Save Prompts Wey You Go Use Again",
                 },
               },
               {
-                slug: "how-to-build-prompt-templates",
+                slug: "build-simple-prompt-templates",
                 title: {
-                  en: "How to Build Prompt Templates",
-                  pidgin: "How to Build Prompt Templates",
+                  en: "Build Simple Prompt Templates",
+                  pidgin: "Build Simple Prompt Templates",
                 },
               },
               {
-                slug: "how-to-create-your-first-prompt-library",
+                slug: "create-your-personal-prompt-toolkit",
                 title: {
-                  en: "How to Create Your First Prompt Library",
-                  pidgin: "How to Create Your First Prompt Library",
+                  en: "Create Your Personal Prompt Toolkit",
+                  pidgin: "Create Your Own Prompt Toolkit",
                 },
               },
             ],
           },
         ],
         finalWrapUp: {
-          slug: "your-first-prompt-toolkit",
+          slug: "prompt-playbook",
           title: {
-            en: "Your First Prompt Toolkit",
-            pidgin: "Your First Prompt Toolkit",
+            en: "Prompt Playbook",
+            pidgin: "Prompt Playbook",
           },
         },
       },

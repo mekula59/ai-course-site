@@ -66,6 +66,19 @@
   background-color: rgb(255 246 232 / 0.075) !important;
 }
 
+:root[data-theme="dark"] .lesson-mistake {
+  background-color: #2f2115 !important;
+  border-color: rgb(230 147 71 / 0.5) !important;
+}
+
+:root[data-theme="dark"] .lesson-mistake-heading {
+  color: #f2b778 !important;
+}
+
+:root[data-theme="dark"] .lesson-mistake-body {
+  color: #f4e6d2 !important;
+}
+
 :root[data-theme="dark"] .text-neutral-900,
 :root[data-theme="dark"] .text-neutral-800 {
   color: #f4ede3 !important;

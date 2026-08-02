@@ -8,6 +8,8 @@ import {
   Lightbulb,
   ListChecks,
   MessageSquareText,
+  Search,
+  TriangleAlert,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import { copyTextToClipboard } from "@/lib/clipboard";
@@ -50,7 +52,7 @@ export function LessonArticle({
   finishHref = getCoursePath(),
   navigate,
 }: LessonArticleProps) {
-  const [promptCopied, setPromptCopied] = useState(false);
+  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
   const { lang } = useLang();
   const localizedLesson = getLocalizedLesson(lesson, lang);
   const hasPracticeTask = localizedLesson.practiceTask.trim().length > 0;
@@ -64,6 +66,10 @@ export function LessonArticle({
           quickCheck: "Quick check",
           copyPrompt: "Copy prompt",
           copied: "Copied",
+          before: "Before",
+          improved: "Try this instead",
+          didYouNotice: "You notice am?",
+          commonMistake: "Common mistake",
           previous: "Lesson before this",
           next: "Next lesson",
           finish: "Finish",
@@ -76,6 +82,10 @@ export function LessonArticle({
           quickCheck: "Quick check",
           copyPrompt: "Copy prompt",
           copied: "Copied",
+          before: "Before",
+          improved: "Try this instead",
+          didYouNotice: "Did you notice?",
+          commonMistake: "Common mistake",
           previous: "Previous",
           next: "Next",
           finish: "Finish",
@@ -89,16 +99,27 @@ export function LessonArticle({
     return "mt-7 sm:mt-8";
   };
 
-  const handleCopyPrompt = async () => {
-    const copied = await copyTextToClipboard(localizedLesson.examplePrompt);
+  const handleCopyPrompt = async (copy: string, id: string) => {
+    const copied = await copyTextToClipboard(copy);
 
     if (copied) {
-      setPromptCopied(true);
-      window.setTimeout(() => setPromptCopied(false), 1500);
+      setCopiedPrompt(id);
+      window.setTimeout(() => setCopiedPrompt(null), 1500);
     } else {
-      setPromptCopied(false);
+      setCopiedPrompt(null);
     }
   };
+
+  const copyButton = (copy: string, id: string) => (
+    <button
+      type="button"
+      onClick={() => handleCopyPrompt(copy, id)}
+      className="inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-1.5 rounded-full border border-current/20 px-3 py-1.5 text-xs font-semibold transition-colors hover:border-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+    >
+      {copiedPrompt === id ? <Check size={14} /> : <Copy size={14} />}
+      {copiedPrompt === id ? labels.copied : labels.copyPrompt}
+    </button>
+  );
 
   const renderParagraphs = (copy: string, className: string) => (
     <div className={className}>
@@ -145,6 +166,80 @@ export function LessonArticle({
             {localizedLesson.intro}
           </p>
         </header>
+
+        {localizedLesson.teaching ? (
+          <section className="mb-10" aria-labelledby="lesson-question">
+            <div className="rounded-2xl border border-brand-200 bg-brand-50 p-5 sm:p-6">
+              <p id="lesson-question" className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-brand-700">
+                {localizedLesson.teaching.question}
+              </p>
+              {renderParagraphs(
+                localizedLesson.teaching.situation,
+                "space-y-3 text-base leading-8 text-neutral-800"
+              )}
+            </div>
+
+            <div className="mt-5 overflow-hidden rounded-2xl border border-neutral-200 bg-surface">
+              <div className="border-b border-neutral-200 p-4 sm:p-5">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400">
+                  {localizedLesson.teaching.comparison.label}
+                </p>
+              </div>
+              <div className="grid md:grid-cols-2">
+                <div className="border-b border-neutral-200 p-4 sm:p-5 md:border-b-0 md:border-r">
+                  <div className="mb-3 flex items-center justify-between gap-3 text-neutral-500">
+                    <span className="text-xs font-bold uppercase tracking-[0.14em]">
+                      {labels.before}
+                    </span>
+                    {copyButton(localizedLesson.teaching.comparison.before, "before")}
+                  </div>
+                  <p className="whitespace-pre-line text-sm leading-7 text-neutral-700">
+                    {localizedLesson.teaching.comparison.before}
+                  </p>
+                </div>
+                <div className="bg-brand-50/60 p-4 sm:p-5">
+                  <div className="mb-3 flex items-center justify-between gap-3 text-brand-700">
+                    <span className="text-xs font-bold uppercase tracking-[0.14em]">
+                      {labels.improved}
+                    </span>
+                    {copyButton(localizedLesson.teaching.comparison.after, "after")}
+                  </div>
+                  <p className="whitespace-pre-line text-sm leading-7 text-neutral-800">
+                    {localizedLesson.teaching.comparison.after}
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-3 border-t border-neutral-200 bg-neutral-50 p-4 sm:p-5">
+                <Search className="mt-1 shrink-0 text-brand-600" size={18} />
+                <p className="text-sm leading-7 text-neutral-700">
+                  {localizedLesson.teaching.comparison.why}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-brand-100 bg-brand-50 p-4 sm:p-5">
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.14em] text-brand-700">
+                  {labels.didYouNotice}
+                </p>
+                <p className="text-sm leading-7 text-neutral-700">
+                  {localizedLesson.teaching.didYouNotice}
+                </p>
+              </div>
+              <div className="lesson-mistake rounded-2xl border border-amber-200 bg-amber-50 p-4 sm:p-5">
+                <div className="lesson-mistake-heading mb-2 flex items-center gap-2 text-amber-800">
+                  <TriangleAlert size={16} />
+                  <p className="text-xs font-bold uppercase tracking-[0.14em]">
+                    {labels.commonMistake}
+                  </p>
+                </div>
+                <p className="lesson-mistake-body text-sm leading-7 text-neutral-700">
+                  {localizedLesson.teaching.commonMistake}
+                </p>
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         {localizedLesson.diagram ? (
           <section
@@ -217,11 +312,11 @@ export function LessonArticle({
               </h2>
               <button
                 type="button"
-                onClick={handleCopyPrompt}
+                onClick={() => handleCopyPrompt(localizedLesson.examplePrompt, "workbook")}
                 className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-neutral-100 hover:border-brand-300 hover:text-white transition-colors"
               >
-                {promptCopied ? <Check size={14} /> : <Copy size={14} />}
-                {promptCopied ? labels.copied : labels.copyPrompt}
+                {copiedPrompt === "workbook" ? <Check size={14} /> : <Copy size={14} />}
+                {copiedPrompt === "workbook" ? labels.copied : labels.copyPrompt}
               </button>
             </div>
             <pre className="whitespace-pre-wrap rounded-xl border border-white/10 bg-black/25 p-4 font-sans text-sm leading-7 text-neutral-100 max-w-[34ch] sm:max-w-none">

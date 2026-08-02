@@ -219,6 +219,10 @@ function CoursesRoutes({
       return <StartHerePage course={promptingBasicsCourse} navigate={navigate} />;
     }
 
+    if (!lessonSlug && sectionSlug === promptingBasicsCourse.finalWrapUp.slug) {
+      return <FinalWrapUpPage course={promptingBasicsCourse} navigate={navigate} />;
+    }
+
     const module = getCourseModule(sectionSlug, promptingBasicsCourse);
 
     if (!lessonSlug) {

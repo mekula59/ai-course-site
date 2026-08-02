@@ -1,4 +1,9 @@
-import type { Course, CourseModule, CourseStandaloneLesson } from "@/lib/course";
+import type { Course, CourseModule, CourseStandaloneLesson, Lesson } from "@/lib/course";
+import {
+  promptingBetterHabitsModule,
+  promptingPlaybook,
+  promptingRefiningResponsesModule,
+} from "@/lib/prompting-course-advanced";
 
 export const promptingBasicsStartHere: CourseStandaloneLesson = {
   slug: "start-here",
@@ -762,22 +767,629 @@ export const promptingFoundationsModule: CourseModule = {
   ],
 };
 
-const promptingBasicsDraftWrapUp: CourseStandaloneLesson = {
-  slug: "your-first-prompt-toolkit",
-  eyebrow: { en: "Draft", pidgin: "Draft" },
-  lesson: {
-    slug: "your-first-prompt-toolkit",
-    title: {
-      en: "Your First Prompt Toolkit",
-      pidgin: "Your First Prompt Toolkit",
-    },
-    intro: "",
-    content: [],
-    keyTakeaway: "",
-    examplePrompt: "",
-    practiceTask: "",
+export const promptingContextToneFormatModule: CourseModule = {
+  slug: "context-tone-and-format",
+  number: "02",
+  title: {
+    en: "Context, Tone & Format",
+    pidgin: "Context, Tone & Answer Format",
   },
+  description: {
+    en: "Give AI the background it needs, choose how the answer should feel, and ask for a structure you can use straight away.",
+    pidgin:
+      "Give AI the background wey e need, choose how the answer suppose sound, and ask for format wey you fit use straight away.",
+  },
+  diagram: {
+    steps: [
+      { en: "Useful context", pidgin: "Useful context" },
+      { en: "Right tone", pidgin: "Correct tone" },
+      { en: "Useful format", pidgin: "Useful format" },
+      { en: "A usable answer", pidgin: "Answer wey you fit use" },
+    ],
+  },
+  lessons: [
+    {
+      slug: "how-to-give-ai-better-context",
+      title: {
+        en: "Give AI the Context It Needs",
+        pidgin: "Give AI the Context Wey E Need",
+      },
+      intro: {
+        en: "Context is the background that helps AI understand your task. The useful details are not everything you know, but the details that could change the answer.",
+        pidgin:
+          "Context na the background wey help AI understand your task. You no need tell am everything. Give am the details wey fit change the answer.",
+      },
+      diagram: {
+        label: {
+          en: "From guessing to understanding",
+          pidgin: "From guesswork reach understanding",
+        },
+        steps: [
+          { en: "A broad request", pidgin: "Broad request" },
+          { en: "AI fills the gaps", pidgin: "AI guess the gaps" },
+          { en: "Add useful context", pidgin: "Add useful context" },
+          { en: "Answer fits the task", pidgin: "Answer fit the task" },
+        ],
+        connectors: [
+          { en: "leads to", pidgin: "lead to" },
+          { en: "instead", pidgin: "instead" },
+          { en: "then", pidgin: "then" },
+        ],
+      },
+      content: [
+        {
+          heading: {
+            en: "Context answers the questions behind the task",
+            pidgin: "Context dey answer the questions behind the task",
+          },
+          body: {
+            en: "When you ask AI to write a customer reply, it does not know what the customer complained about, what your business can offer, or how you normally speak to customers. Without those details, it has to make assumptions.\n\nUseful context can include the audience, goal, situation, source material, constraints, and what you have already tried. Include a detail when it affects the advice, wording, or decision. Leave it out when it does not.",
+            pidgin:
+              "If you ask AI to write customer reply, e no know wetin the customer complain about, wetin your business fit offer, or how you normally dey talk to customers. Without those details, e go begin guess.\n\nUseful context fit include the audience, goal, situation, material wey AI go use, limits, and wetin you don already try. Add detail if e go affect the advice, wording, or decision. Leave am if e no matter.",
+          },
+        },
+        {
+          heading: {
+            en: "Watch one prompt become useful",
+            pidgin: "See how one prompt become useful",
+          },
+          body: {
+            en: "The prompt improves because each new detail removes an important guess. It does not need a long story.",
+            pidgin:
+              "The prompt improve because every new detail remove one important guess. E no need long story.",
+          },
+          examples: [
+            {
+              label: { en: "1. Too little", pidgin: "1. Context no reach" },
+              content: {
+                en: "Reply to this customer.",
+                pidgin: "Reply this customer.",
+              },
+            },
+            {
+              label: { en: "2. Add the situation", pidgin: "2. Add the situation" },
+              content: {
+                en: "Reply to a customer whose delivery is two days late.",
+                pidgin: "Reply customer wey delivery don late by two days.",
+              },
+            },
+            {
+              label: { en: "3. Add what matters", pidgin: "3. Add wetin matter" },
+              content: {
+                en: "Write a calm WhatsApp reply to a customer whose delivery is two days late. The courier says it should arrive tomorrow, but that is not guaranteed. Apologise, explain the update honestly, and offer to check again by 4pm today. Keep it under 90 words.",
+                pidgin:
+                  "Write calm WhatsApp reply to customer wey delivery don late by two days. Courier talk say e fit arrive tomorrow, but dem never confirm am. Apologise, explain the update honestly, and offer to check again by 4pm today. Make e no pass 90 words.",
+              },
+            },
+          ],
+        },
+        {
+          heading: {
+            en: "A quick context checklist",
+            pidgin: "Quick context checklist",
+          },
+          body: {
+            en: "Before sending a prompt, check whether AI knows enough about the people involved and the result you need. You will not need every item for every task.",
+            pidgin:
+              "Before you send prompt, check whether AI know enough about the people involved and the result wey you need. No be every task need everything for this list.",
+          },
+          examples: [
+            {
+              label: { en: "Audience and goal", pidgin: "Audience and goal" },
+              content: {
+                en: "Who is this for, and what should the answer help them understand or do?",
+                pidgin: "Who the answer dey for, and wetin e suppose help dem understand or do?",
+              },
+            },
+            {
+              label: { en: "Situation and source", pidgin: "Situation and source" },
+              content: {
+                en: "What happened, and which notes, draft, topic, or facts should AI work from?",
+                pidgin: "Wetin happen, and which notes, draft, topic, or facts AI suppose use?",
+              },
+            },
+            {
+              label: { en: "Limits and earlier attempts", pidgin: "Limits and wetin you don try" },
+              content: {
+                en: "Is there a deadline, budget, word limit, rule, or approach that did not work?",
+                pidgin: "Deadline, budget, word limit, rule, or method wey no work dey?",
+              },
+            },
+          ],
+        },
+        {
+          heading: {
+            en: "Different tasks need different context",
+            pidgin: "Different tasks need different context",
+          },
+          body: {
+            en: "For school help, the learner's level and the exact topic matter. For a work email, the relationship, purpose, and facts matter. For a community event, the date, expected crowd, budget, venue, and available helpers may shape the plan.",
+            pidgin:
+              "For school help, the learner level and exact topic matter. For work email, the relationship, purpose, and facts matter. For community event, date, number of people, budget, venue, and available helpers fit shape the plan.",
+          },
+          examples: [
+            {
+              label: { en: "School topic", pidgin: "School topic" },
+              content: {
+                en: "Explain fractions to a Primary 5 learner who understands halves but struggles with different denominators. Use a food-sharing example, then give two practice questions.",
+                pidgin:
+                  "Explain fractions to Primary 5 learner wey understand halves but dey struggle with different denominators. Use food-sharing example, then give two practice questions.",
+              },
+            },
+            {
+              label: { en: "Work email", pidgin: "Work email" },
+              content: {
+                en: "Improve this email to my manager. I am asking to move Friday's deadline to Monday because the client sent the final figures late. Keep the facts, sound responsible, and do not blame the client: [paste draft].",
+                pidgin:
+                  "Improve this email to my manager. I dey ask make Friday deadline move to Monday because client send final figures late. Keep the facts, make e sound responsible, and no blame the client: [paste draft].",
+              },
+            },
+            {
+              label: { en: "Community event", pidgin: "Community event" },
+              content: {
+                en: "Create a simple plan for a Saturday estate cleanup for about 30 people. We have two hours, six volunteers, and N45,000 for water, gloves, and waste bags. Group tasks into before, during, and after the event.",
+                pidgin:
+                  "Create simple plan for Saturday estate cleanup for about 30 people. We get two hours, six volunteers, and N45,000 for water, gloves, and waste bags. Group tasks into before, during, and after the event.",
+              },
+            },
+          ],
+        },
+        {
+          heading: {
+            en: "Useful does not mean personal",
+            pidgin: "Useful no mean say make e personal",
+          },
+          body: {
+            en: "Do not paste passwords, bank details, private health records, confidential work files, or another person's personal information unless you have a safe and approved reason. Replace names and identifying details when they are not needed.\n\nToo much irrelevant context can also bury the task. If a detail will not change the answer, remove it. A focused brief is easier to use than a life story.",
+            pidgin:
+              "No paste password, bank details, private health record, confidential work file, or another person personal information unless you get safe and approved reason. Change names and identifying details when dem no matter.\n\nToo much information wey no concern the task fit hide the real request. If one detail no go change the answer, remove am. Focused brief better pass full life story.",
+          },
+        },
+      ],
+      keyTakeaway: {
+        en: "Give AI the few background details that change the answer. Include the audience, goal, situation, source, or limits when they matter, and keep sensitive information out.",
+        pidgin:
+          "Give AI the few background details wey go change the answer. Add audience, goal, situation, source, or limits when dem matter, and keep sensitive information outside.",
+      },
+      examplePrompt: {
+        en: "Help me with this task: [state the task].\n\nAudience: [who it is for].\nGoal: [what the answer should help achieve].\nSituation or source material: [give the relevant facts or paste safe material].\nConstraints: [deadline, budget, length, rules, or facts to preserve].\nWhat I have already tried: [optional].\n\nIf a missing detail could change the answer, ask me one short question first.",
+        pidgin:
+          "Help me with this task: [talk the task].\n\nAudience: [who e dey for].\nGoal: [wetin the answer suppose help achieve].\nSituation or source material: [give the important facts or paste safe material].\nLimits: [deadline, budget, length, rules, or facts wey must remain].\nWetin I don already try: [optional].\n\nIf one missing detail fit change the answer, ask me one short question first.",
+      },
+      practiceTask: {
+        en: "Choose a customer reply, school topic, work email, or community event. Write a one-line prompt, then use the checklist to add only the context that changes the answer. Compare both responses. Remove one unnecessary detail if you included any.",
+        pidgin:
+          "Choose customer reply, school topic, work email, or community event. Write one-line prompt, then use the checklist add only the context wey change the answer. Compare both responses. Remove one detail wey no matter if you add any.",
+      },
+      quickCheck: [
+        {
+          en: "Which detail tells AI who the answer is for?",
+          pidgin: "Which detail tell AI who the answer dey for?",
+        },
+        {
+          en: "Which detail would meaningfully change the answer?",
+          pidgin: "Which detail go really change the answer?",
+        },
+        {
+          en: "Have I removed private or irrelevant information?",
+          pidgin: "I don remove private information and details wey no matter?",
+        },
+      ],
+    },
+    {
+      slug: "how-to-control-tone",
+      title: {
+        en: "Choose the Right Tone",
+        pidgin: "Choose the Tone Wey Fit",
+      },
+      intro: {
+        en: "Tone is how a message feels to the person reading it. The right tone depends on who they are, what has happened, and what the message needs to achieve.",
+        pidgin:
+          "Tone na how message dey feel to the person wey read am. The correct tone depend on who the person be, wetin happen, and wetin the message need achieve.",
+      },
+      content: [
+        {
+          heading: {
+            en: "Name the feeling, then explain the situation",
+            pidgin: "Name the feeling, then explain the situation",
+          },
+          body: {
+            en: "Words such as warm, direct, calm, formal, friendly, apologetic, and confident can guide AI. They work better when you also name the audience and purpose.\n\nWrite a warm message is open to interpretation. Write a warm WhatsApp message to neighbours, inviting them to Saturday's cleanup without making anyone feel pressured gives the tone a real job to do.",
+            pidgin:
+              "Words like warm, direct, calm, formal, friendly, apologetic, and confident fit guide AI. Dem dey work better when you still name the audience and purpose.\n\nWrite warm message still broad. Write warm WhatsApp message to neighbours, invite dem to Saturday cleanup without making anybody feel pressured give the tone a real job.",
+          },
+        },
+        {
+          heading: {
+            en: "One update, five tones",
+            pidgin: "One update, five different tones",
+          },
+          body: {
+            en: "The fact stays the same: tomorrow's delivery will arrive late. Notice how the relationship and purpose change the wording.",
+            pidgin:
+              "The fact remain the same: tomorrow delivery go late. Notice how the relationship and purpose change the wording.",
+          },
+          examples: [
+            {
+              label: { en: "Professional", pidgin: "Professional" },
+              content: {
+                en: "Please note that tomorrow's delivery is now expected by 2pm. Thank you for your patience while we complete the final checks.",
+                pidgin:
+                  "Please note say tomorrow delivery go now arrive around 2pm. Thank you for your patience as we complete the final checks.",
+              },
+            },
+            {
+              label: { en: "Warm", pidgin: "Warm" },
+              content: {
+                en: "A quick update: your delivery should reach you by 2pm tomorrow. Thank you for bearing with us, we really appreciate your patience.",
+                pidgin:
+                  "Small update: your delivery suppose reach you by 2pm tomorrow. Thank you as you dey patient with us, we appreciate am well well.",
+              },
+            },
+            {
+              label: { en: "Direct", pidgin: "Direct" },
+              content: {
+                en: "Tomorrow's delivery has moved to 2pm. I will confirm as soon as it leaves.",
+                pidgin:
+                  "Tomorrow delivery don move to 2pm. I go confirm once e leave.",
+              },
+            },
+            {
+              label: { en: "Casual", pidgin: "Casual" },
+              content: {
+                en: "Hi, small heads-up: the delivery will come around 2pm tomorrow instead. I will message you once it is on the way.",
+                pidgin:
+                  "Hi, small heads-up: the delivery go come around 2pm tomorrow instead. I go message you once e dey road.",
+              },
+            },
+            {
+              label: { en: "Apologetic", pidgin: "Apologetic" },
+              content: {
+                en: "I am sorry for the delay. Your delivery is now expected by 2pm tomorrow, and I will keep you updated until it arrives.",
+                pidgin:
+                  "I sorry for the delay. Your delivery suppose arrive by 2pm tomorrow, and I go keep you updated until e reach.",
+              },
+            },
+          ],
+        },
+        {
+          heading: {
+            en: "Match the tone to the moment",
+            pidgin: "Match the tone with the situation",
+          },
+          body: {
+            en: "A customer complaint may need a calm, apologetic tone that takes responsibility. An application email may need to sound professional and confident. A social caption can be casual and lively without becoming unclear.\n\nTone is not about making every message cheerful. It is about helping the reader receive the message as intended.",
+            pidgin:
+              "Customer complaint fit need calm, apologetic tone wey take responsibility. Application email fit need professional and confident tone. Social caption fit casual and lively without becoming confusing.\n\nTone no mean say every message must sound happy. Na to help the reader receive the message the way you intend.",
+          },
+          examples: [
+            {
+              label: { en: "WhatsApp announcement", pidgin: "WhatsApp announcement" },
+              content: {
+                en: "Friendly and clear. Put the key date early and avoid sounding like an official memo.",
+                pidgin: "Friendly and clear. Put the key date early and no make am sound like official memo.",
+              },
+            },
+            {
+              label: { en: "Customer complaint", pidgin: "Customer complaint" },
+              content: {
+                en: "Calm and apologetic. Acknowledge the problem before explaining the next step.",
+                pidgin: "Calm and apologetic. Accept the problem before you explain the next step.",
+              },
+            },
+            {
+              label: { en: "Application email", pidgin: "Application email" },
+              content: {
+                en: "Professional and confident. Be specific without sounding boastful.",
+                pidgin: "Professional and confident. Be specific without making too much noise about yourself.",
+              },
+            },
+            {
+              label: { en: "Social caption", pidgin: "Social caption" },
+              content: {
+                en: "Casual and inviting. Keep the useful information easy to spot.",
+                pidgin: "Casual and inviting. Make the useful information easy to see.",
+              },
+            },
+          ],
+        },
+        {
+          heading: {
+            en: "Help AI sound more like you",
+            pidgin: "Help AI sound more like you",
+          },
+          body: {
+            en: "If tone labels are not enough, share a short sample you wrote and explain what to borrow: sentence length, level of formality, or use of simple language. Remove private details first.\n\nAsk AI to follow the style, not to pretend to be a real person. It should not impersonate your manager, a public figure, or anyone else in a deceptive message. You remain responsible for reviewing the final wording.",
+            pidgin:
+              "If tone labels no reach, share short sample wey you write and explain wetin AI suppose copy from the style: sentence length, how formal e be, or simple language. Remove private details first.\n\nAsk AI to follow the style, no be to pretend say e be real person. E no suppose impersonate your manager, public figure, or anybody for deceptive message. Na you still go review the final wording.",
+          },
+        },
+        {
+          heading: {
+            en: "Rewrite for two audiences",
+            pidgin: "Rewrite for two audiences",
+          },
+          body: {
+            en: "Start with this fact: The workshop begins at 9am, and late arrivals may miss the first activity.\n\nWrite one version for colleagues attending a formal training. Then write another for friends joining a casual community workshop. Keep the fact unchanged while you adjust the greeting, word choice, and level of formality.",
+            pidgin:
+              "Start with this fact: The workshop go start by 9am, and people wey come late fit miss the first activity.\n\nWrite one version for colleagues wey dey attend formal training. Then write another one for friends wey dey join casual community workshop. Keep the fact the same as you adjust greeting, word choice, and how formal the message be.",
+          },
+        },
+      ],
+      keyTakeaway: {
+        en: "Choose tone from the audience, situation, and purpose. Name the feeling you want, give enough context, and review the result before sending it.",
+        pidgin:
+          "Choose tone from the audience, situation, and purpose. Name how you want the message to feel, give enough context, and review am before you send.",
+      },
+      examplePrompt: {
+        en: "Rewrite this message for [audience].\n\nPurpose: [what the message needs to achieve].\nTone: [warm, direct, calm, formal, friendly, apologetic, or confident].\nKeep these facts unchanged: [list the facts].\nAvoid: [anything that would feel wrong for this audience].\n\nMessage: [paste your draft].\n\nGive me one version and briefly explain two choices you made about tone.",
+        pidgin:
+          "Rewrite this message for [audience].\n\nPurpose: [wetin the message need achieve].\nTone: [warm, direct, calm, formal, friendly, apologetic, or confident].\nKeep these facts the same: [list the facts].\nAvoid: [anything wey no go fit this audience].\n\nMessage: [paste your draft].\n\nGive me one version and briefly explain two choices wey you make about the tone.",
+      },
+      practiceTask: {
+        en: "Use the workshop message above or one safe message of your own. Ask AI for two versions aimed at different audiences. Highlight three words or phrases that changed, then decide which version fits each audience better and why.",
+        pidgin:
+          "Use the workshop message above or one safe message of your own. Ask AI for two versions for different audiences. Mark three words or phrases wey change, then decide which version fit each audience better and why.",
+      },
+      quickCheck: [
+        {
+          en: "Who will read this message, and what is the situation?",
+          pidgin: "Who go read this message, and wetin be the situation?",
+        },
+        {
+          en: "Does the tone support the purpose without changing the facts?",
+          pidgin: "The tone support the purpose without changing the facts?",
+        },
+        {
+          en: "Am I asking for a style, rather than deceptive impersonation?",
+          pidgin: "I dey ask for style, instead of deceptive impersonation?",
+        },
+      ],
+    },
+    {
+      slug: "how-to-ask-for-the-right-format",
+      title: {
+        en: "Ask for the Output You Actually Want",
+        pidgin: "Ask for the Answer Wey You Really Want",
+      },
+      intro: {
+        en: "AI may choose a sensible-looking structure that is awkward for your task. Tell it how the answer should be arranged so you can read, compare, share, or act on it more easily.",
+        pidgin:
+          "AI fit choose structure wey look okay but no fit your task. Tell am how to arrange the answer so you fit read, compare, share, or use am easily.",
+      },
+      content: [
+        {
+          heading: {
+            en: "Format is part of the instruction",
+            pidgin: "Format still be part of the instruction",
+          },
+          body: {
+            en: "Output instructions can set the length, order, headings, and shape of an answer. You can ask for a short paragraph, bullets, table, script, checklist, or step-by-step guide.\n\nChoose the format that matches what you need to do next. A table helps comparison. A checklist helps action. A short paragraph may be better when you need a simple explanation.",
+            pidgin:
+              "Output instruction fit set the length, order, headings, and shape of the answer. You fit ask for short paragraph, bullets, table, script, checklist, or step-by-step guide.\n\nChoose the format wey match wetin you wan do next. Table dey help comparison. Checklist dey help action. Short paragraph fit better when you need simple explanation.",
+          },
+        },
+        {
+          heading: {
+            en: "The same event update, five useful shapes",
+            pidgin: "The same event update, five useful formats",
+          },
+          body: {
+            en: "The information is the same: a neighbourhood skills workshop is on Saturday at 10am in the community hall. Registration closes Thursday. The best format depends on where the information will be used.",
+            pidgin:
+              "The information remain the same: neighbourhood skills workshop dey Saturday 10am for community hall. Registration close Thursday. The best format depend on where you wan use the information.",
+          },
+          examples: [
+            {
+              label: { en: "Short paragraph", pidgin: "Short paragraph" },
+              content: {
+                en: "Explain the event in one paragraph under 70 words for the estate newsletter.",
+                pidgin: "Explain the event for one paragraph wey no pass 70 words for estate newsletter.",
+              },
+            },
+            {
+              label: { en: "Bullet points", pidgin: "Bullet points" },
+              content: {
+                en: "List the event name, date, time, venue, and registration deadline as five bullets.",
+                pidgin: "List event name, date, time, venue, and registration deadline as five bullets.",
+              },
+            },
+            {
+              label: { en: "Table", pidgin: "Table" },
+              content: {
+                en: "Put the event details in a two-column table labelled Detail and Information.",
+                pidgin: "Put the event details for two-column table labelled Detail and Information.",
+              },
+            },
+            {
+              label: { en: "WhatsApp message", pidgin: "WhatsApp message" },
+              content: {
+                en: "Write a friendly WhatsApp message under 80 words. Put the date and time on their own line and end with the registration deadline.",
+                pidgin: "Write friendly WhatsApp message wey no pass 80 words. Put date and time for their own line and end with registration deadline.",
+              },
+            },
+            {
+              label: { en: "Simple checklist", pidgin: "Simple checklist" },
+              content: {
+                en: "Turn the information into a checklist for someone who wants to attend: register, save the date, note the venue, and arrive on time.",
+                pidgin: "Turn the information into checklist for person wey wan attend: register, save the date, note the venue, and arrive on time.",
+              },
+            },
+          ],
+        },
+        {
+          heading: {
+            en: "Match the structure to the work",
+            pidgin: "Match the structure with the work",
+          },
+          body: {
+            en: "Do not ask for a table just because it looks organised. Use it when rows and columns make the information easier to compare. For a study plan, a weekly schedule may help. For an event plan, phases and owners may matter more.\n\nFor a product comparison, ask for criteria such as price, size, strengths, and trade-offs. For a weekly content plan, ask for day, topic, format, and call to action. The headings should reflect the decisions you need to make.",
+            pidgin:
+              "No ask for table just because e look organised. Use am when rows and columns make the information easy to compare. For study plan, weekly schedule fit help. For event plan, stages and who dey responsible fit matter pass.\n\nFor product comparison, ask for things like price, size, strengths, and trade-offs. For weekly content plan, ask for day, topic, format, and call to action. The headings suppose match the decisions wey you need make.",
+          },
+          examples: [
+            {
+              label: { en: "Study plan", pidgin: "Study plan" },
+              content: {
+                en: "Create a seven-day revision plan with columns for day, topic, time, activity, and a short self-test.",
+                pidgin: "Create seven-day revision plan with columns for day, topic, time, activity, and short self-test.",
+              },
+            },
+            {
+              label: { en: "Product comparison", pidgin: "Product comparison" },
+              content: {
+                en: "Compare these three options in a table using only the details I provide. Add columns for price, key feature, limitation, and best fit: [paste details].",
+                pidgin: "Compare these three options for table using only the details wey I provide. Add columns for price, key feature, limitation, and best fit: [paste details].",
+              },
+            },
+            {
+              label: { en: "Weekly content plan", pidgin: "Weekly content plan" },
+              content: {
+                en: "Plan five posts as a numbered list. For each one, include the topic, content format, opening line, and one clear next step for readers.",
+                pidgin: "Plan five posts as numbered list. For each one, include topic, content format, opening line, and one clear next step for readers.",
+              },
+            },
+          ],
+        },
+        {
+          heading: {
+            en: "Structure helps usability, not accuracy",
+            pidgin: "Structure help usability, e no guarantee accuracy",
+          },
+          body: {
+            en: "A neat table can still contain incorrect facts. Clear headings and polished bullets do not prove that the information is true. Check important claims, dates, prices, calculations, and sources before relying on them.\n\nIf the first format is not useful, refine it with a follow-up: Keep the same information but group the checklist by urgency. Add a column for cost. Shorten each bullet to one sentence. You do not need to restart the conversation.",
+            pidgin:
+              "Fine table fit still contain wrong facts. Clear headings and clean bullets no prove say the information correct. Check important claims, dates, prices, calculations, and sources before you depend on dem.\n\nIf the first format no useful, refine am with follow-up: Keep the same information but group the checklist by urgency. Add column for cost. Shorten every bullet to one sentence. You no need start the conversation again.",
+          },
+        },
+        {
+          heading: {
+            en: "Module 2 recap",
+            pidgin: "Module 2 recap",
+          },
+          body: {
+            en: "Context tells AI what surrounds the task. Tone guides how the response should feel. Format shapes how the answer is arranged. Together, they make an answer easier to understand and use.\n\nThey do not replace your judgement. Keep private details out, make sure the tone fits the people involved, and check important information before you act on it.",
+            pidgin:
+              "Context tell AI wetin surround the task. Tone guide how the answer suppose feel. Format shape how AI arrange the answer. Together, dem make answer easier to understand and use.\n\nDem no replace your judgement. Keep private details outside, make sure the tone fit the people involved, and check important information before you act on am.",
+          },
+        },
+      ],
+      keyTakeaway: {
+        en: "Ask for a format that fits the next action, such as reading, comparing, sharing, or doing. Refine the structure with follow-ups, and still check the facts.",
+        pidgin:
+          "Ask for format wey fit the next action, whether na to read, compare, share, or do something. Refine the structure with follow-up, and still check the facts.",
+      },
+      examplePrompt: {
+        en: "Create [type of output] for [task].\n\nUse this information: [paste safe facts or notes].\nAudience: [who will use it].\nLength: [word count, number of items, or time].\nStructure: [paragraphs, bullets, table, script, checklist, or steps].\nOrder or headings: [state what should come first and name any columns or headings].\n\nDo not add facts that are not in my information. If another format may suit the task better, suggest it after the requested version.",
+        pidgin:
+          "Create [type of output] for [task].\n\nUse this information: [paste safe facts or notes].\nAudience: [who go use am].\nLength: [word count, number of items, or time].\nStructure: [paragraphs, bullets, table, script, checklist, or steps].\nOrder or headings: [talk wetin suppose come first and name any columns or headings].\n\nNo add facts wey no dey my information. If another format fit the task better, suggest am after the version wey I request.",
+      },
+      practiceTask: {
+        en: "Fill in the prompt template for a study plan, event plan, product comparison, or weekly content plan. Generate the answer, then ask for the same information in a second format. Compare which version is easier to use and explain why in one sentence.",
+        pidgin:
+          "Fill the prompt template for study plan, event plan, product comparison, or weekly content plan. Generate the answer, then ask for the same information for another format. Compare which version easy to use pass and explain why for one sentence.",
+      },
+      quickCheck: [
+        {
+          en: "What will I do with the answer after I receive it?",
+          pidgin: "Wetin I go do with the answer after I receive am?",
+        },
+        {
+          en: "Which length, order, headings, or format would make that easier?",
+          pidgin: "Which length, order, headings, or format go make that one easy?",
+        },
+        {
+          en: "Have I checked important facts instead of trusting the layout?",
+          pidgin: "I don check important facts instead of trusting the fine layout?",
+        },
+      ],
+    },
+  ],
 };
+
+const teachingUpgrade = (
+  question: [string, string],
+  situation: [string, string],
+  before: [string, string],
+  after: [string, string],
+  why: [string, string],
+  notice: [string, string],
+  mistake: [string, string]
+): NonNullable<Lesson["teaching"]> => ({
+  question: { en: question[0], pidgin: question[1] },
+  situation: { en: situation[0], pidgin: situation[1] },
+  comparison: {
+    label: { en: "Let's fix it together", pidgin: "Make we fix am together" },
+    before: { en: before[0], pidgin: before[1] },
+    after: { en: after[0], pidgin: after[1] },
+    why: { en: why[0], pidgin: why[1] },
+  },
+  didYouNotice: { en: notice[0], pidgin: notice[1] },
+  commonMistake: { en: mistake[0], pidgin: mistake[1] },
+});
+
+const existingLessonUpgrades: Record<string, NonNullable<Lesson["teaching"]>> = {
+  "what-a-prompt-really-is": teachingUpgrade(
+    ["What am I actually giving AI when I type a message?", "Wetin I really dey give AI when I type message?"],
+    ["You type one sentence and get an answer that misses the point. You've probably wondered whether there is a special way to talk to AI. There isn't. Let's look at what the tool can actually see.", "You type one sentence and the answer miss the point. You fit don wonder whether special way dey to talk to AI. E no dey. Make we look wetin the tool fit actually see."],
+    ["Help me with this.", "Help me with this."],
+    ["Turn the notes below into a friendly WhatsApp reminder for parents in our school group. Put the date and fee on separate lines. Notes: [paste notes].", "Turn the notes below into friendly WhatsApp reminder for parents for our school group. Put date and fee for separate lines. Notes: [paste notes]."],
+    ["The second prompt gives AI a task, material, audience, tone, and useful format. Nothing about it is technical.", "The second prompt give AI task, material, audience, tone, and useful format. Nothing for am be tech grammar."],
+    ["The pasted notes are part of the prompt too. A prompt is more than the sentence that begins the request.", "The pasted notes still be part of the prompt. Prompt pass the sentence wey start the request."],
+    ["Trying to sound clever instead of sharing the material and details AI needs.", "To dey find clever grammar instead of sharing the material and details wey AI need."]
+  ),
+  "why-vague-prompts-give-weak-answers": teachingUpgrade(
+    ["Why does AI keep giving me generic answers?", "Why AI dey always give me general answer?"],
+    ["You ask for a caption. The answer sounds polished, but it could belong to any business. You try again and get another version of the same thing. Here's what's happening: AI is filling in decisions you left open.", "You ask for caption. The answer clean, but any business fit use am. You try again and get another version of the same thing. Wetin happen be say AI dey fill decisions wey you leave open."],
+    ["Write a caption for my business.", "Write caption for my business."],
+    ["Write a warm Instagram caption for a small Abuja bakery announcing Saturday cinnamon-roll boxes. Pre-orders close Friday at 4pm. Keep it under 80 words and end with a simple order invitation.", "Write warm Instagram caption for small Abuja bakery wey dey announce Saturday cinnamon-roll boxes. Pre-order close Friday 4pm. Make e no pass 80 words and end with simple invitation to order."],
+    ["The improved version closes the gaps that would otherwise produce generic wording.", "The improved version close the gaps wey for make the wording too general."],
+    ["The useful prompt is still short. Clarity comes from the right decisions, not from writing more words.", "The useful prompt still short. Clarity dey come from the right decisions, no be plenty words."],
+    ["Adding random detail after a weak answer. Add the audience, purpose, facts, limits, or format that actually changes the result.", "To add random details after weak answer. Add audience, purpose, facts, limits, or format wey really change the result."]
+  ),
+  "the-simple-prompt-formula": teachingUpgrade(
+    ["What should I include when I don't know how to start?", "Wetin I suppose include when I no know how to start?"],
+    ["The blank chat box can make a simple task feel harder than it is. You don't need a script. Use four small questions to organise your thinking: what is the task, what is the context, what must the answer respect, and what should come back?", "Blank chat box fit make simple task look hard. You no need script. Use four small questions arrange your thinking: wetin be the task, wetin be the context, wetin the answer must follow, and which kind answer you need?"],
+    ["Write an email about the meeting.", "Write email about the meeting."],
+    ["Write a respectful email to Mr Adeyemi asking to move tomorrow's 10am meeting. I have an appointment I cannot move. Offer Wednesday at 2pm or Thursday at 11am. Don't mention medical details. Give me a subject line and keep it under 120 words.", "Write respectful email to Mr Adeyemi to ask make tomorrow 10am meeting move. I get appointment wey I no fit shift. Offer Wednesday 2pm or Thursday 11am. No mention medical details. Give me subject line and make e no pass 120 words."],
+    ["Task, context, requirements, and output are all present, but the prompt still sounds natural.", "Task, context, requirements, and output dey inside, but the prompt still sound natural."],
+    ["The formula is a checklist, not a compulsory format. You can write the same information as normal sentences.", "The formula na checklist, no be compulsory format. You fit write the same information with normal sentences."],
+    ["Forcing all four parts into a tiny request that was already clear. Use only the parts that help.", "To force all four parts enter small request wey already clear. Use only the parts wey help."]
+  ),
+  "how-to-give-ai-better-context": teachingUpgrade(
+    ["Why does AI keep misunderstanding the situation?", "Why AI dey misunderstand the situation?"],
+    ["You ask AI to reply to a customer. It apologises for the wrong problem and promises something your business can't offer. The tool isn't reading your mind. Let's give it the few background details that change the reply.", "You ask AI to reply customer. E apologise for wrong problem and promise wetin your business no fit offer. The tool no dey read your mind. Make we give am the few background details wey change the reply."],
+    ["Reply to this customer.", "Reply this customer."],
+    ["Write a calm WhatsApp reply to a customer whose delivery is two days late. The courier says it may arrive tomorrow, but that isn't confirmed. Apologise, share the update honestly, and promise another check by 4pm today. Keep it under 90 words.", "Write calm WhatsApp reply to customer wey delivery don late by two days. Courier say e fit arrive tomorrow, but dem never confirm am. Apologise, share the update honestly, and promise another check by 4pm today. Make e no pass 90 words."],
+    ["Every added detail changes what a responsible reply should say. Nothing irrelevant is included.", "Every detail wey enter change wetin responsible reply suppose talk. Nothing wey no matter enter."],
+    ["Useful context reduces guessing. It doesn't mean pasting your whole history.", "Useful context reduce guesswork. E no mean say make you paste your whole history."],
+    ["Pasting private customer details when the task works just as well with names and identifiers removed.", "To paste private customer details when the task fit work if you remove names and identifying details."]
+  ),
+  "how-to-control-tone": teachingUpgrade(
+    ["Can I make AI sound more like the moment and less generic?", "I fit make AI sound like the real situation and no too general?"],
+    ["A customer complaint, church announcement, job email, and birthday message shouldn't sound the same. Tone isn't decoration. It helps the message fit the person reading it and what just happened.", "Customer complaint, church announcement, job email, and birthday message no suppose sound the same. Tone no be decoration. E dey help message fit the person wey dey read am and wetin just happen."],
+    ["Make this sound nice.", "Make this sound nice."],
+    ["Rewrite this for a customer whose order arrived damaged. Sound calm, apologetic, and responsible. Acknowledge the inconvenience before explaining the replacement steps. Keep every fact from my draft.", "Rewrite this for customer wey order arrive damaged. Make e calm, apologetic, and responsible. Acknowledge the inconvenience before you explain replacement steps. Keep every fact from my draft."],
+    ["The tone words now have an audience, situation, and purpose to guide them.", "The tone words now get audience, situation, and purpose wey guide dem."],
+    ["Tone works best when AI knows who is reading and what the message needs to achieve.", "Tone dey work best when AI know who dey read and wetin the message need achieve."],
+    ["Asking AI to impersonate a real person. Share a short writing sample and ask it to follow the style instead.", "To ask AI make e impersonate real person. Share short writing sample and ask am to follow the style instead." ]
+  ),
+  "how-to-ask-for-the-right-format": teachingUpgrade(
+    ["Why does ChatGPT keep writing essays when I need something usable?", "Why ChatGPT dey write essay when I need something wey I fit use?"],
+    ["You ask for an event plan and receive six long paragraphs. The ideas may be fine, but you can't see what to do first. AI chose a format because you didn't. Let's ask for the shape that fits the next action.", "You ask for event plan and receive six long paragraphs. The ideas fit okay, but you no fit see wetin to do first. AI choose format because you no choose am. Make we ask for the shape wey fit the next action."],
+    ["Plan our community event.", "Plan our community event."],
+    ["Create a checklist for our community event. Group tasks under two weeks before, one week before, and event day. Add an owner and deadline beside each task. Use only the details below: [paste details].", "Create checklist for our community event. Group tasks under two weeks before, one week before, and event day. Add owner and deadline beside every task. Use only the details below: [paste details]."],
+    ["The output is now organised around action, timing, and responsibility.", "The output now arrange around action, timing, and responsibility."],
+    ["The best format depends on what you will do next: read, compare, send, present, or act.", "The best format depend on wetin you wan do next: read, compare, send, present, or act."],
+    ["Choosing a table because it looks organised even when a short message or checklist would be easier to use.", "To choose table because e look organised even when short message or checklist go easier to use." ]
+  ),
+};
+
+for (const module of [promptingFoundationsModule, promptingContextToneFormatModule]) {
+  for (const lesson of module.lessons) {
+    lesson.teaching = existingLessonUpgrades[lesson.slug];
+  }
+}
 
 export const promptingBasicsCourse: Course = {
   slug: "prompting-basics",
@@ -796,8 +1408,13 @@ export const promptingBasicsCourse: Course = {
   },
   priceLabel: "Free",
   languageSupport: "English + Pidgin",
-  releaseStatus: "preview",
-  modules: [promptingFoundationsModule],
+  releaseStatus: "live",
+  modules: [
+    promptingFoundationsModule,
+    promptingContextToneFormatModule,
+    promptingRefiningResponsesModule,
+    promptingBetterHabitsModule,
+  ],
   startHere: promptingBasicsStartHere,
-  finalWrapUp: promptingBasicsDraftWrapUp,
+  finalWrapUp: promptingPlaybook,
 };

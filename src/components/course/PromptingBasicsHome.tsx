@@ -22,18 +22,22 @@ export function PromptingBasicsHome({
   navigate,
 }: PromptingBasicsHomeProps) {
   const { lang } = useLang();
+  const isComplete = course.releaseStatus === "live";
   const publishedModuleSlugs = new Set(course.modules.map((module) => module.slug));
   const labels =
     lang === "pidgin"
       ? {
           status: "Course preview",
+          liveStatus: "Free course",
           statusNote:
-            "Start Here and Module 1 ready for testing. The rest of the course still dey draft.",
+            "Start Here, Module 1, and Module 2 ready for testing. The rest of the course still dey draft.",
+          completeStatusNote:
+            "Start from the short guide, work through all four modules, then keep the Prompt Playbook close for everyday use.",
           start: "Start From Here",
           updates: "Get Course Updates",
           available: "Ready to test",
           availableIntro:
-            "Start with the short guide, then work through the three lessons for Prompting Foundations.",
+            "Start with the short guide, then work through all twelve lessons and the Prompt Playbook.",
           plan: "Full course plan",
           planIntro:
             "You fit see the full learning path here, but only completed sections get links.",
@@ -42,20 +46,22 @@ export function PromptingBasicsHome({
           module: "Module",
           lessons: "lessons",
           startHere: "Start from here",
-          foundationNote:
-            "Learn the basic habits behind clear, useful prompts.",
           draftNote: "Lessons never publish yet.",
           notComplete: "This course never complete",
+          complete: "Full course ready",
         }
       : {
           status: "Course preview",
+          liveStatus: "Free course",
           statusNote:
-            "Start Here and Module 1 are ready for testing. The rest of the course is still in draft.",
+            "Start Here, Module 1, and Module 2 are ready for testing. The rest of the course is still in draft.",
+          completeStatusNote:
+            "Begin with the short guide, work through all four modules, then keep the Prompt Playbook close for everyday use.",
           start: "Start Here",
           updates: "Get Course Updates",
           available: "Ready to test",
           availableIntro:
-            "Begin with the short guide, then work through the three Prompting Foundations lessons.",
+            "Begin with the short guide, then work through all twelve lessons and the Prompt Playbook.",
           plan: "Full course plan",
           planIntro:
             "The complete learning path is visible here, but only finished sections have links.",
@@ -64,10 +70,9 @@ export function PromptingBasicsHome({
           module: "Module",
           lessons: "lessons",
           startHere: "Start here",
-          foundationNote:
-            "Learn the basic habits behind clear, useful prompts.",
           draftNote: "Lessons are not published yet.",
           notComplete: "This course is not complete",
+          complete: "Full course ready",
         };
 
   return (
@@ -82,10 +87,10 @@ export function PromptingBasicsHome({
             <div className="mb-5 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1.5 text-xs font-bold text-brand-700 ring-1 ring-brand-100">
                 <Clock3 size={14} />
-                {labels.status}
+                {isComplete ? labels.liveStatus : labels.status}
               </span>
               <span className="rounded-full bg-neutral-900 px-3 py-1.5 text-xs font-bold text-neutral-100">
-                {labels.notComplete}
+                {isComplete ? labels.complete : labels.notComplete}
               </span>
             </div>
 
@@ -96,7 +101,7 @@ export function PromptingBasicsHome({
               {getLocalizedText(plan.description, lang)}
             </p>
             <p className="mt-4 text-sm sm:text-base leading-7 text-neutral-600 max-w-2xl">
-              {labels.statusNote}
+              {isComplete ? labels.completeStatusNote : labels.statusNote}
             </p>
 
             <div className="mt-7 flex flex-col sm:flex-row gap-3">
@@ -133,7 +138,7 @@ export function PromptingBasicsHome({
             {labels.availableIntro}
           </p>
 
-          <div className="mt-6 grid gap-3 md:grid-cols-[0.8fr_1.2fr]">
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
             <CourseLink
               href={getCourseStartPath(course)}
               navigate={navigate}
@@ -154,38 +159,41 @@ export function PromptingBasicsHome({
               </span>
             </CourseLink>
 
-            <CourseLink
-              href={getModulePath(course.modules[0].slug, course.slug)}
-              navigate={navigate}
-              className="group rounded-2xl border border-neutral-200 bg-surface p-5 sm:p-6 hover:border-brand-300 transition-colors"
-            >
-              <div className="mb-4 flex items-center justify-between gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-900 font-display text-sm font-bold text-neutral-100">
-                  01
+            {course.modules.map((module) => (
+              <CourseLink
+                key={module.slug}
+                href={getModulePath(module.slug, course.slug)}
+                navigate={navigate}
+                className="group rounded-2xl border border-neutral-200 bg-surface p-5 sm:p-6 hover:border-brand-300 transition-colors"
+              >
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-900 font-display text-sm font-bold text-neutral-100">
+                    {module.number}
+                  </span>
+                  <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700">
+                    {labels.ready}
+                  </span>
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                  {getLocalizedText(module.title, lang)}
+                </h3>
+                <p className="text-sm leading-7 text-neutral-600">
+                  {getLocalizedText(module.description, lang)}
+                </p>
+                <ol className="mt-5 space-y-2 text-sm leading-6 text-neutral-700">
+                  {module.lessons.map((lesson, index) => (
+                    <li key={lesson.slug} className="flex gap-3">
+                      <span className="text-neutral-400">{index + 1}.</span>
+                      <span>{getLocalizedText(lesson.title, lang)}</span>
+                    </li>
+                  ))}
+                </ol>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
+                  <BookOpen size={16} />
+                  {module.lessons.length} {labels.lessons}
                 </span>
-                <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700">
-                  {labels.ready}
-                </span>
-              </div>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
-                {getLocalizedText(course.modules[0].title, lang)}
-              </h3>
-              <p className="text-sm leading-7 text-neutral-600">
-                {labels.foundationNote}
-              </p>
-              <ol className="mt-5 space-y-2 text-sm leading-6 text-neutral-700">
-                {course.modules[0].lessons.map((lesson, index) => (
-                  <li key={lesson.slug} className="flex gap-3">
-                    <span className="text-neutral-400">{index + 1}.</span>
-                    <span>{getLocalizedText(lesson.title, lang)}</span>
-                  </li>
-                ))}
-              </ol>
-              <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
-                <BookOpen size={16} />
-                {course.modules[0].lessons.length} {labels.lessons}
-              </span>
-            </CourseLink>
+              </CourseLink>
+            ))}
           </div>
         </section>
 

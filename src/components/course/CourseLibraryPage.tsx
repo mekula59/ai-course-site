@@ -8,6 +8,7 @@ import {
   plannedCoursePaths,
 } from "@/lib/course";
 import { useLang } from "@/context/LanguageContext";
+import { promptingBasicsCourse } from "@/lib/prompting-course";
 
 interface CourseLibraryPageProps {
   navigate: CourseNavigate;
@@ -15,13 +16,14 @@ interface CourseLibraryPageProps {
 
 export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
   const { lang } = useLang();
+  const availableCourses = [...courses, promptingBasicsCourse];
   const labels =
     lang === "pidgin"
       ? {
           eyebrow: "Course list",
           title: "Choose course wey you wan start",
           intro:
-            "Start with the beginner course first. More practical AI courses still dey come for work, business, job search, school, content, community work, and coding.",
+            "Start with the beginner course, then continue with Prompting Basics. More practical AI courses still dey come for work, business, school, content, and everyday life.",
           availableNow: "Available now",
           comingNext: "Coming next",
           comingIntro:
@@ -32,13 +34,13 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           plannedStatus: "Coming next",
           start: "Start Free Course",
           updates: "Get Course Updates",
-          liveNote: "The beginner course na the only live course for now.",
+          liveNote: "Two free courses dey available now.",
         }
       : {
           eyebrow: "Course library",
           title: "Start here, then keep going",
           intro:
-            "AI for Everyone starts with the live Beginner AI Course. Follow-up courses are planned for work, business, job search, school, content, community work, and coding.",
+            "Start with AI for Everyone, then continue with Prompting Basics. More practical courses are planned for work, business, school, content, and everyday life.",
           availableNow: "Available now",
           comingNext: "Coming next",
           comingIntro:
@@ -49,7 +51,7 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           plannedStatus: "Coming next",
           start: "Start Free Course",
           updates: "Get Course Updates",
-          liveNote: "The beginner course is the only live course right now.",
+          liveNote: "Two free courses are available now.",
         };
 
   return (
@@ -86,7 +88,7 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-            {courses.map((course) => {
+            {availableCourses.map((course) => {
               const lessonCount = getLessonReferences(course).length;
 
               return (
@@ -186,7 +188,9 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {path.courses.map((course) => (
+                  {path.courses
+                    .filter((course) => course.slug !== promptingBasicsCourse.slug)
+                    .map((course) => (
                     <article
                       key={course.slug}
                       className="bg-surface border border-neutral-200 rounded-2xl p-5"
@@ -237,7 +241,7 @@ export function CourseLibraryPage({ navigate }: CourseLibraryPageProps) {
                         <ArrowRight size={16} />
                       </CourseLink>
                     </article>
-                  ))}
+                    ))}
                 </div>
               </section>
             ))}
