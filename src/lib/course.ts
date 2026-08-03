@@ -3647,8 +3647,8 @@ export const plannedCoursePaths: PlannedCoursePath[] = [
               {
                 slug: "the-simple-prompt-formula",
                 title: {
-                  en: "The Simple Prompt Formula",
-                  pidgin: "Simple Formula for Better Prompt",
+                  en: "The CORE Prompt Check",
+                  pidgin: "CORE Check for Your Prompt",
                 },
               },
             ],

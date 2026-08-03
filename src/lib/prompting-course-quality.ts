@@ -54,8 +54,8 @@ export function applyPromptingCourseQuality({
   playbook: CourseStandaloneLesson;
 }) {
   modules[0].framing = t(
-    "You met some of these ideas in the Beginner AI Course. Here, we'll slow down, practise them properly, and see what changes in the answer.",
-    "You don see some of these ideas for the Beginner AI Course. For here, we go take time practise them well and see how the answer dey change."
+    "You may remember Task, Context, Requirements, and Output. CORE keeps the same thinking, but turns it into a quicker check you can remember before sending a prompt.",
+    "You fit remember Task, Context, Requirements, and Output. CORE keep the same idea, but e turn am into quick check wey easy to remember before you send prompt."
   );
   if (modules[2].diagram) {
     modules[2].diagram.steps = [
@@ -352,7 +352,7 @@ export function applyPromptingCourseQuality({
   const quickCheckBySlug: Record<string, QuickCheckItem[]> = {
     "what-a-prompt-really-is": checks([["What makes a prompt useful beyond naming a topic?", "Apart from the topic, wetin else make prompt useful?", "It says what AI should do and gives the details that affect the answer.", "E talk wetin AI suppose do and give the details wey fit change the answer.", "A topic alone leaves the task open. A clear action gives the conversation a direction.", "Topic alone no show the work. Clear action tell AI where to start."]]),
     "why-vague-prompts-give-weak-answers": checks([["Why is 'Write a post for my bakery' likely to produce a weak answer?", "Why 'Write post for my bakery' fit produce weak answer?", "It leaves the audience, offer, purpose, and next step unclear.", "E no show audience, offer, purpose, or next step.", "AI must guess the missing details, so the result may sound generic or be unusable.", "AI go guess the missing details, so the result fit sound generic or no useful."]]),
-    "the-simple-prompt-formula": checks([["Which part tells AI what must not change or be invented?", "Which part tell AI wetin no suppose change or wetin e no suppose invent?", "The requirements or boundaries.", "The requirements or boundaries.", "Task says what to do. Requirements protect important facts, limits, and safety.", "Task talk wetin to do. Requirements protect important facts, limits, and safety."]]),
+    "the-simple-prompt-formula": checks([["Which CORE part tells AI what must not change or be invented?", "Which CORE part tell AI wetin no suppose change or invent?", "Rules.", "Na Rules.", "Rules protect important facts, limits, tone, requirements, and boundaries. CORE is only a check, so you can still write the prompt naturally.", "Rules dey protect important facts, limits, tone, requirements, and boundaries. CORE na check, so you fit still write the prompt naturally."]]),
     "how-to-give-ai-better-context": checks([["Should you paste every detail you know?", "You suppose paste every detail wey you know?", "No. Include only details that affect the answer, and remove private information you do not need.", "No. Add only details wey affect the answer, and comot private information wey no need.", "Irrelevant detail can bury the task, while sensitive detail creates avoidable risk.", "Details wey no matter fit hide the task, and private details fit create problem wey no need."]]),
     "how-to-control-tone": checks([["Why can a safe writing sample work better than saying 'sound warm'?", "Why safe writing sample fit work better pass 'make e sound warm'?", "It shows the rhythm or structure you want, while the instruction explains what AI may borrow.", "E show rhythm or structure wey you want, while the instruction explain wetin AI fit follow.", "Tone words can mean different things. A short reference makes the preference more concrete without deceptive imitation.", "Tone words fit mean different things. Short example make the style clearer without pretending to be another person."]]),
     "how-to-ask-for-the-right-format": checks([["Why might a staged checklist be better than a paragraph for an event plan?", "Why checklist wey get stages fit better pass paragraph for event plan?", "It makes tasks easier to scan, assign, and complete in order.", "E make tasks easy to scan, assign, and complete with order.", "Format should match what you will do with the answer next.", "Format suppose match how you wan use the answer next."]]),
@@ -384,12 +384,6 @@ export function applyPromptingCourseQuality({
   const bankPidgin = typeof bank === "string" ? bank : bank.pidgin;
   const enPrompts = bankEn.split("\n").map((line) => line.replace(/^\d+\.\s*/, ""));
   const pidginPrompts = bankPidgin.split("\n").map((line) => line.replace(/^\d+\.\s*/, ""));
-  pidginPrompts[0] = "Explain [topic] for person wey dey [level] with [example], then ask me two questions.";
-  pidginPrompts[3] = "Summarise these meeting notes. Put decisions first, then who go handle each task and the deadline.";
-  pidginPrompts[10] = "Check this draft. Show me claims wey no clear and questions wey reader fit ask.";
-  pidginPrompts[17] = "Before you plan [task], ask me up to three questions if important details dey miss.";
-  pidginPrompts[18] = "Show me the assumptions inside your answer and the facts wey I suppose verify.";
-  pidginPrompts[20] = "Help me choose five repeated tasks wey suppose enter my toolkit.";
   playbookLesson.examplePrompt = {
     en: enPrompts.map((prompt, index) => `${index + 1}. ${prompt}`).join("\n"),
     pidgin: pidginPrompts.map((prompt, index) => `${index + 1}. ${prompt}`).join("\n"),
@@ -402,12 +396,12 @@ export function applyPromptingCourseQuality({
     })),
   });
   playbookLesson.promptGroups = [
-    group(t("Writing and messages", "Messages and other writing"), [2, 3, 8, 9, 13, 15]),
-    group(t("Work and productivity", "Work wey AI fit make easier"), [4, 11, 16]),
-    group(t("Learning and study", "Learning and study"), [1, 6, 22]),
-    group(t("Business and customers", "Business and customer reply"), [5]),
-    group(t("Planning and organisation", "Planning and how to arrange work"), [7, 12, 14, 18, 21]),
-    group(t("Checking and improving answers", "How to check and improve answer"), [10, 17, 19, 20]),
+    group(t("Writing and messages", "Messages and other writing"), [1, 2, 3, 4]),
+    group(t("Work and productivity", "Work wey AI fit make easier"), [5, 6, 7, 8]),
+    group(t("Learning and study", "Learning and study"), [9, 10, 11]),
+    group(t("Business and customers", "Business and customer reply"), [12, 13, 14]),
+    group(t("Planning and organisation", "Planning and how to arrange work"), [15, 16, 17, 18]),
+    group(t("Checking and improving answers", "How to check and improve answer"), [19, 20, 21, 22]),
   ];
 
   playbookLesson.capstone = {
@@ -436,10 +430,10 @@ export function applyPromptingCourseQuality({
       "Choose one real task from your life wey safe and follow the same steps. Make the task small enough to finish, then check the final result before you use am."
     ),
     worksheet: [
-      t("My task", "The work wey I wan do"), t("My audience", "Who the answer dey for"), t("Useful context", "Useful details"),
+      t("CORE: My objective", "CORE: Wetin I want make AI do"), t("CORE: Audience and situation", "CORE: Who the answer dey for and wetin dey happen"), t("CORE: Useful context or source notes", "CORE: Useful details or notes wey AI suppose use"),
       t("Missing information", "Information wey miss"), t("My clarification questions", "Questions wey I need ask first"), t("My source notes", "Notes wey AI suppose use"),
-      t("Tone", "How the answer suppose sound"), t("Requirements", "Rules wey the answer suppose follow"),
-      t("Output", "The kind answer wey I need"), t("First result", "First answer"), t("What needs fixing", "Wetin need fixing"),
+      t("CORE: Tone", "CORE: How the answer suppose sound"), t("CORE: Other rules", "CORE: Other rules wey the answer suppose follow"),
+      t("CORE: Expected result", "CORE: The kind answer wey I need"), t("First result", "First answer"), t("What needs fixing", "Wetin need fixing"),
       t("My corrective follow-up", "Follow-up wey go fix am"), t("Final result", "Final answer"), t("My second useful format", "Another format wey go help"),
       t("What I checked before using it", "Wetin I check before I use am"),
     ],

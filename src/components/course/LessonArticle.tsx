@@ -56,6 +56,7 @@ export function LessonArticle({
   const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
   const { lang } = useLang();
   const localizedLesson = getLocalizedLesson(lesson, lang);
+  const isCoreLesson = lesson.slug === "the-simple-prompt-formula";
   const hasPracticeTask = localizedLesson.practiceTask.trim().length > 0;
   const hasQuickCheck = localizedLesson.quickCheck.length > 0;
   const labels =
@@ -276,22 +277,36 @@ export function LessonArticle({
         {localizedLesson.diagram ? (
           <section
             aria-label={localizedLesson.diagram.label}
-            className="mb-10 rounded-2xl border border-brand-100 bg-brand-50 p-4 sm:p-5"
+            className={`mb-10 rounded-2xl border p-4 sm:p-5 ${
+              isCoreLesson
+                ? "border-neutral-800 bg-neutral-900 text-white"
+                : "border-brand-100 bg-brand-50"
+            }`}
           >
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.14em] text-brand-700">
+            <p className={`mb-4 text-xs font-bold uppercase tracking-[0.14em] ${isCoreLesson ? "text-brand-300" : "text-brand-700"}`}>
               {localizedLesson.diagram.label}
             </p>
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className={isCoreLesson ? "grid grid-cols-2 gap-2.5 sm:grid-cols-4" : "flex flex-col gap-2 sm:flex-row sm:items-center"}>
               {localizedLesson.diagram.steps.map((step, index) => {
                 const isLast = index === localizedLesson.diagram!.steps.length - 1;
                 const connector = localizedLesson.diagram!.connectors[index] || "to";
+                const [letter, name] = step.split("|");
 
                 return (
                   <div key={step} className="contents">
-                    <div className="flex-1 rounded-xl border border-brand-100 bg-surface px-4 py-3 text-sm font-semibold leading-6 text-neutral-800">
-                      {step}
+                    <div className={isCoreLesson ? "rounded-xl border border-white/10 bg-white/5 p-3" : "flex-1 rounded-xl border border-brand-100 bg-surface px-4 py-3 text-sm font-semibold leading-6 text-neutral-800"}>
+                      {isCoreLesson ? (
+                        <>
+                          <span className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 font-display text-sm font-bold text-white">
+                            {letter}
+                          </span>
+                          <span className="block text-xs font-bold leading-5 text-white sm:text-sm">
+                            {name}
+                          </span>
+                        </>
+                      ) : step}
                     </div>
-                    {!isLast ? (
+                    {!isCoreLesson && !isLast ? (
                       <span className="px-1 text-center text-xs font-bold uppercase tracking-[0.12em] text-brand-600">
                         {connector}
                       </span>

@@ -84,6 +84,7 @@ export function FinalWrapUpPage({
           finalPrompt: isPromptPlaybook ? "Copy all 22 prompts" : "Final prompt",
           capstone: "Example wey show all the steps",
           promptsHeading: "Prompts arrange by type",
+          promptBankNote: "These prompts na places to start, no be magic words. Replace the brackets, add the details wey matter, then check the answer.",
           copyPrompt: "Copy prompt",
           copied: "Copied",
           nextStep: isPromptPlaybook ? "Practice routine" : "Next thing to do",
@@ -113,6 +114,7 @@ export function FinalWrapUpPage({
           finalPrompt: isPromptPlaybook ? "Copy all 22 prompts" : "Final prompt",
           capstone: "Worked example",
           promptsHeading: "Prompts by category",
+          promptBankNote: "These are starting points, not magic words. Replace the brackets, add the details that matter, and check the answer.",
           copyPrompt: "Copy prompt",
           copied: "Copied",
           nextStep: isPromptPlaybook ? "Practice routine" : "Next step",
@@ -462,6 +464,11 @@ export function FinalWrapUpPage({
               <h2 id="prompt-groups-heading" className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-6">
                 {labels.promptsHeading}
               </h2>
+              {isPromptPlaybook ? (
+                <p className="-mt-3 mb-6 max-w-2xl text-sm leading-7 text-neutral-600">
+                  {labels.promptBankNote}
+                </p>
+              ) : null}
               <PromptCategoryAccordion
                 groups={lesson.promptGroups}
                 copiedPrompt={copiedPrompt}

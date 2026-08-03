@@ -1,9 +1,10 @@
-import { ArrowRight, BookOpen, Clock3, LockKeyhole } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
 import { Button } from "@/components/ui/Button";
 import { useLang } from "@/context/LanguageContext";
 import {
   getCourseStartPath,
+  getCourseFinalWrapUpPath,
   getLocalizedText,
   getModulePath,
   type Course,
@@ -22,57 +23,55 @@ export function PromptingBasicsHome({
   navigate,
 }: PromptingBasicsHomeProps) {
   const { lang } = useLang();
-  const isComplete = course.releaseStatus === "live";
-  const publishedModuleSlugs = new Set(course.modules.map((module) => module.slug));
   const labels =
     lang === "pidgin"
       ? {
-          status: "Course preview",
-          liveStatus: "Free course",
-          statusNote:
-            "Start Here, Module 1, and Module 2 ready for testing. The rest of the course still dey draft.",
-          completeStatusNote:
-            "Start from the short guide, work through all four modules, then keep the Prompt Playbook close for everyday use.",
-          start: "Start From Here",
+          status: "Complete free course",
+          courseSize: "12 lessons + Prompt Playbook",
+          statusNote: "Start from the short guide, follow the four modules, then use the Prompt Playbook whenever you need am.",
+          start: "Start course",
           updates: "Get Course Updates",
-          available: "Ready to test",
-          availableIntro:
-            "Start with the short guide, then work through all twelve lessons and the Prompt Playbook.",
-          plan: "Full course plan",
-          planIntro:
-            "You fit see the full learning path here, but only completed sections get links.",
-          ready: "Ready to test",
-          draft: "Draft",
-          module: "Module",
+          learningPath: "Your learning path",
+          pathIntro: "Start from here, then follow the lessons in order. Every section dey ready.",
+          continueLearning: "Continue learning",
           lessons: "lessons",
           startHere: "Start from here",
-          draftNote: "Lessons never publish yet.",
-          notComplete: "This course never complete",
-          complete: "Full course ready",
+          playbook: "Prompt Playbook",
+          playbookIntro: "Keep the checklist, worked example, worksheet, and 22 prompts close for real tasks.",
+          openPlaybook: "Open Prompt Playbook",
+          coreEyebrow: "One check to remember",
+          coreHeading: "Before you send the prompt, check the CORE.",
+          coreBody: "AI know the situation? E know wetin you want make e do? E know the rules? E know the kind answer wey you want back?",
+          coreItems: [
+            ["C", "Context", "Wetin AI need know?"],
+            ["O", "Objective", "Wetin you want make AI do?"],
+            ["R", "Rules", "Which facts, limits, tone, or boundaries e suppose follow?"],
+            ["E", "Expected result", "Which kind answer you want back?"],
+          ],
         }
       : {
-          status: "Course preview",
-          liveStatus: "Free course",
-          statusNote:
-            "Start Here, Module 1, and Module 2 are ready for testing. The rest of the course is still in draft.",
-          completeStatusNote:
-            "Begin with the short guide, work through all four modules, then keep the Prompt Playbook close for everyday use.",
-          start: "Start Here",
+          status: "Complete free course",
+          courseSize: "12 lessons + Prompt Playbook",
+          statusNote: "Begin with the short guide, follow the four modules, then return to the Prompt Playbook whenever you need it.",
+          start: "Start course",
           updates: "Get Course Updates",
-          available: "Ready to test",
-          availableIntro:
-            "Begin with the short guide, then work through all twelve lessons and the Prompt Playbook.",
-          plan: "Full course plan",
-          planIntro:
-            "The complete learning path is visible here, but only finished sections have links.",
-          ready: "Ready to test",
-          draft: "Draft",
-          module: "Module",
+          learningPath: "Your learning path",
+          pathIntro: "Begin here, then follow the lessons in order. Every section is ready.",
+          continueLearning: "Continue learning",
           lessons: "lessons",
           startHere: "Start here",
-          draftNote: "Lessons are not published yet.",
-          notComplete: "This course is not complete",
-          complete: "Full course ready",
+          playbook: "Prompt Playbook",
+          playbookIntro: "Keep the checklist, worked example, worksheet, and 22 prompts close for real tasks.",
+          openPlaybook: "Open Prompt Playbook",
+          coreEyebrow: "One check to remember",
+          coreHeading: "Before you send it, check the CORE.",
+          coreBody: "AI needs the situation, the job, the rules, and the kind of answer you want back.",
+          coreItems: [
+            ["C", "Context", "What does AI need to know?"],
+            ["O", "Objective", "What do you want AI to do?"],
+            ["R", "Rules", "What facts, limits, tone, or boundaries should it follow?"],
+            ["E", "Expected result", "What kind of answer do you want back?"],
+          ],
         };
 
   return (
@@ -86,11 +85,11 @@ export function PromptingBasicsHome({
           <div className="relative max-w-3xl">
             <div className="mb-5 flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1.5 text-xs font-bold text-brand-700 ring-1 ring-brand-100">
-                <Clock3 size={14} />
-                {isComplete ? labels.liveStatus : labels.status}
+                <CheckCircle2 size={14} />
+                {labels.status}
               </span>
               <span className="rounded-full bg-neutral-900 px-3 py-1.5 text-xs font-bold text-neutral-100">
-                {isComplete ? labels.complete : labels.notComplete}
+                {labels.courseSize}
               </span>
             </div>
 
@@ -101,7 +100,7 @@ export function PromptingBasicsHome({
               {getLocalizedText(plan.description, lang)}
             </p>
             <p className="mt-4 text-sm sm:text-base leading-7 text-neutral-600 max-w-2xl">
-              {isComplete ? labels.completeStatusNote : labels.statusNote}
+              {labels.statusNote}
             </p>
 
             <div className="mt-7 flex flex-col sm:flex-row gap-3">
@@ -124,18 +123,47 @@ export function PromptingBasicsHome({
           </div>
         </section>
 
-        <section aria-labelledby="available-preview-heading" className="mt-10 sm:mt-14">
+        <section className="mt-8 overflow-hidden rounded-3xl bg-neutral-900 text-white" aria-labelledby="core-heading">
+          <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-300 mb-3">
+                {labels.coreEyebrow}
+              </p>
+              <h2 id="core-heading" className="font-display text-2xl sm:text-3xl font-bold text-white mb-3">
+                {labels.coreHeading}
+              </h2>
+              <p className="text-sm sm:text-base leading-7 text-neutral-200">
+                {labels.coreBody}
+              </p>
+            </div>
+            <ol className="grid grid-cols-2 gap-2.5">
+              {labels.coreItems.map(([letter, name, question]) => (
+                <li key={letter} className="rounded-2xl border border-white/10 bg-white/5 p-3.5 sm:p-4">
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-500 font-display text-sm font-bold text-white">
+                      {letter}
+                    </span>
+                    <h3 className="font-display text-sm font-bold text-white">{name}</h3>
+                  </div>
+                  <p className="text-xs leading-5 text-neutral-300">{question}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section aria-labelledby="learning-path-heading" className="mt-10 sm:mt-14">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
-            {labels.available}
+            {labels.learningPath}
           </p>
           <h2
-            id="available-preview-heading"
+            id="learning-path-heading"
             className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3"
           >
-            {labels.available}
+            {labels.learningPath}
           </h2>
           <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-2xl">
-            {labels.availableIntro}
+            {labels.pathIntro}
           </p>
 
           <div className="mt-6 grid gap-3 md:grid-cols-2">
@@ -170,9 +198,6 @@ export function PromptingBasicsHome({
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-900 font-display text-sm font-bold text-neutral-100">
                     {module.number}
                   </span>
-                  <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700">
-                    {labels.ready}
-                  </span>
                 </div>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
                   {getLocalizedText(module.title, lang)}
@@ -190,85 +215,30 @@ export function PromptingBasicsHome({
                 </ol>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
                   <BookOpen size={16} />
-                  {module.lessons.length} {labels.lessons}
+                  {module.lessons.length} {labels.lessons} | {labels.continueLearning}
                 </span>
               </CourseLink>
             ))}
+            <CourseLink
+              href={getCourseFinalWrapUpPath(course)}
+              navigate={navigate}
+              className="group rounded-2xl bg-neutral-900 p-5 text-white transition-colors hover:bg-neutral-800 sm:p-6 md:col-span-2"
+            >
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-300 mb-3">
+                {labels.playbook}
+              </p>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-white mb-2">
+                {getLocalizedText(course.finalWrapUp.lesson.title, lang)}
+              </h3>
+              <p className="max-w-2xl text-sm leading-7 text-neutral-300">
+                {labels.playbookIntro}
+              </p>
+              <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-300">
+                {labels.openPlaybook}
+                <ArrowRight size={16} />
+              </span>
+            </CourseLink>
           </div>
-        </section>
-
-        <section aria-labelledby="full-plan-heading" className="mt-12 sm:mt-16">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
-            {labels.plan}
-          </p>
-          <h2
-            id="full-plan-heading"
-            className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3"
-          >
-            {labels.plan}
-          </h2>
-          <p className="text-sm sm:text-base leading-7 text-neutral-600 max-w-2xl">
-            {labels.planIntro}
-          </p>
-
-          <ol className="mt-6 divide-y divide-neutral-200 border-y border-neutral-200">
-            {plan.modules?.map((module) => {
-              const isReady = publishedModuleSlugs.has(module.slug);
-              const content = (
-                <div className="grid gap-4 py-6 sm:grid-cols-[72px_minmax(0,1fr)_auto] sm:items-start">
-                  <span className="font-display text-2xl font-bold text-neutral-300">
-                    {module.number}
-                  </span>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
-                      {labels.module} {module.number}
-                    </p>
-                    <h3 className="font-display text-xl font-bold text-neutral-900 mb-3">
-                      {getLocalizedText(module.title, lang)}
-                    </h3>
-                    <ol className="space-y-1.5 text-sm leading-6 text-neutral-600">
-                      {module.lessons.map((lesson, index) => (
-                        <li key={lesson.slug}>
-                          {index + 1}. {getLocalizedText(lesson.title, lang)}
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                  <span
-                    className={
-                      isReady
-                        ? "w-fit rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-700"
-                        : "inline-flex w-fit items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 text-xs font-bold text-neutral-500"
-                    }
-                  >
-                    {!isReady ? <LockKeyhole size={12} /> : null}
-                    {isReady ? labels.ready : labels.draft}
-                  </span>
-                </div>
-              );
-
-              return (
-                <li key={module.slug}>
-                  {isReady ? (
-                    <CourseLink
-                      href={getModulePath(module.slug, course.slug)}
-                      navigate={navigate}
-                      className="group block hover:bg-brand-50/50 transition-colors"
-                    >
-                      {content}
-                    </CourseLink>
-                  ) : (
-                    <div>
-                      {content}
-                      <p className="-mt-3 pb-5 pl-0 text-xs text-neutral-500 sm:pl-[72px]">
-                        {labels.draftNote}
-                      </p>
-                    </div>
-                  )}
-                </li>
-              );
-            })}
-          </ol>
         </section>
       </div>
     </div>

@@ -193,16 +193,16 @@ export const promptingFoundationsModule: CourseModule = {
     pidgin: "How Better Prompt Take Start",
   },
   description: {
-    en: "Understand what counts as a prompt, why vague requests often produce weak answers, and how to shape a clear prompt without sounding technical.",
+    en: "Understand what counts as a prompt, why vague requests often produce weak answers, and use the CORE check before you send.",
     pidgin:
-      "Understand wetin count as prompt, why vague request dey often give weak answer, and how to shape clear prompt without tech grammar.",
+      "Understand wetin count as prompt, why vague request dey often give weak answer, and use the CORE check before you send.",
   },
   diagram: {
     steps: [
-      { en: "Name the task", pidgin: "Name the task" },
-      { en: "Add useful context", pidgin: "Add useful context" },
-      { en: "Guide the answer", pidgin: "Guide the answer" },
-      { en: "Read and adjust", pidgin: "Read and adjust" },
+      { en: "C  Context", pidgin: "C  Context" },
+      { en: "O  Objective", pidgin: "O  Objective" },
+      { en: "R  Rules", pidgin: "R  Rules" },
+      { en: "E  Expected result", pidgin: "E  Expected result" },
     ],
   },
   lessons: [
@@ -553,56 +553,68 @@ export const promptingFoundationsModule: CourseModule = {
     {
       slug: "the-simple-prompt-formula",
       title: {
-        en: "The Simple Prompt Formula",
-        pidgin: "Simple Formula for Better Prompt",
+        en: "The CORE Prompt Check",
+        pidgin: "CORE Check for Your Prompt",
       },
       intro: {
-        en: "Task + Context + Requirements + Output is a useful checklist when you are unsure what to include. It is a guide for thinking, not a rigid script for every message.",
+        en: "Before you send it, check the CORE. AI needs the situation, the job, the rules, and the kind of answer you want back.",
         pidgin:
-          "Task + Context + Requirements + Output na useful checklist when you no sure wetin to include. Na guide for thinking, no be strict script for every message.",
+          "Before you send the prompt, check the CORE: AI know the situation? E know wetin you want make e do? E know the rules? E know the kind answer wey you want back?",
+      },
+      diagram: {
+        label: {
+          en: "A quick check before you send",
+          pidgin: "Quick check before you send",
+        },
+        steps: [
+          { en: "C|Context", pidgin: "C|Context" },
+          { en: "O|Objective", pidgin: "O|Objective" },
+          { en: "R|Rules", pidgin: "R|Rules" },
+          { en: "E|Expected result", pidgin: "E|Expected result" },
+        ],
       },
       content: [
         {
           heading: {
-            en: "Four parts you can use",
-            pidgin: "Four parts wey you fit use",
+            en: "CORE is a check, not a writing rule",
+            pidgin: "CORE na check, no be rule for how to write",
           },
           body: {
-            en: "The formula helps you check whether AI understands the job, the situation, any boundaries, and the kind of answer you want back. You can write the parts as labels, bullets, or normal sentences.\n\nNot every prompt needs all four. If you have already pasted the text, the context may be obvious. If the answer format does not matter, you can leave it open.",
+            en: "CORE is this course's simple reminder for checking whether a prompt includes the details that matter. Ask four questions: Does AI know the context, the objective, the rules, and the expected result?\n\nYou can still write naturally. The parts do not have to appear in CORE order, and a small request may not need every part. CORE does not guarantee a good answer. It helps you notice useful details before AI has to guess.",
             pidgin:
-              "The formula dey help you check whether AI understand the work, the situation, any limits, and the kind answer wey you want. You fit write the parts as labels, bullets, or normal sentences.\n\nNo be every prompt need all four. If you don paste the text, the context fit already clear. If answer format no matter, you fit leave am open.",
+              "CORE na simple reminder for this course. E dey help you check whether your prompt get the details wey matter: AI know the situation, wetin you want make e do, the rules, and the kind answer wey you want back?\n\nYou fit still write the prompt with normal words. The parts no need follow CORE order, and small request fit no need every part. CORE no guarantee perfect answer. E just help you notice useful details before AI begin guess.",
           },
           examples: [
             {
-              label: { en: "Task", pidgin: "Task" },
+              label: { en: "C  Context", pidgin: "C  Context" },
               content: {
-                en: "What do you want done? Use a clear action such as write, explain, compare, plan, review, or improve.",
+                en: "What does AI need to know about the situation, audience, goal, or material?",
+                pidgin:
+                  "Wetin AI need know about the situation, audience, goal, or material?",
+              },
+            },
+            {
+              label: { en: "O  Objective", pidgin: "O  Objective" },
+              content: {
+                en: "What do you want AI to do? Use a clear action such as write, explain, compare, plan, review, or improve.",
                 pidgin:
                   "Wetin you want make AI do? Use clear action like write, explain, compare, plan, review, or improve.",
               },
             },
             {
-              label: { en: "Context", pidgin: "Context" },
+              label: { en: "R  Rules", pidgin: "R  Rules" },
               content: {
-                en: "What does AI need to know about the situation, audience, source material, or goal?",
+                en: "What facts, limits, tone, requirements, or boundaries should the answer follow?",
                 pidgin:
-                  "Wetin AI need know about the situation, audience, source material, or goal?",
+                  "Which facts, limits, tone, requirements, or boundaries the answer suppose follow?",
               },
             },
             {
-              label: { en: "Requirements", pidgin: "Requirements" },
+              label: { en: "E  Expected result", pidgin: "E  Expected result" },
               content: {
-                en: "What facts, tone, limits, boundaries, or details must the answer respect?",
+                en: "What kind of answer do you want back: an email, table, checklist, caption, plan, or something else?",
                 pidgin:
-                  "Which facts, tone, limits, boundaries, or details the answer must follow?",
-              },
-            },
-            {
-              label: { en: "Output", pidgin: "Output" },
-              content: {
-                en: "Should the answer be an email, table, checklist, caption, plan, or another useful format?",
-                pidgin:
-                  "The answer suppose be email, table, checklist, caption, plan, or another useful format?",
+                  "Which kind answer you want back: email, table, checklist, caption, plan, or something else?",
               },
             },
           ],
@@ -619,22 +631,21 @@ export const promptingFoundationsModule: CourseModule = {
           },
           examples: [
             {
-              label: { en: "Task", pidgin: "Task" },
-              content: {
-                en: "Write an email asking to move a client meeting.",
-                pidgin: "Write email to ask make dem shift client meeting.",
-              },
-            },
-            {
-              label: { en: "Context", pidgin: "Context" },
+              label: { en: "C  Context", pidgin: "C  Context" },
               content: {
                 en: "The meeting is tomorrow at 10am. I have an appointment I cannot move. The client is Mr. Adeyemi.",
-                pidgin:
-                  "The meeting na tomorrow 10am. I get appointment wey I no fit shift. The client na Mr. Adeyemi.",
+                pidgin: "The meeting na tomorrow 10am. I get appointment wey I no fit shift. The client na Mr. Adeyemi.",
               },
             },
             {
-              label: { en: "Requirements", pidgin: "Requirements" },
+              label: { en: "O  Objective", pidgin: "O  Objective" },
+              content: {
+                en: "Write an email asking to move the client meeting.",
+                pidgin: "Write email to ask make the client meeting move.",
+              },
+            },
+            {
+              label: { en: "R  Rules", pidgin: "R  Rules" },
               content: {
                 en: "Sound respectful and responsible. Do not mention medical details. Offer Wednesday at 2pm or Thursday at 11am.",
                 pidgin:
@@ -642,7 +653,7 @@ export const promptingFoundationsModule: CourseModule = {
               },
             },
             {
-              label: { en: "Output", pidgin: "Output" },
+              label: { en: "E  Expected result", pidgin: "E  Expected result" },
               content: {
                 en: "Give me a subject line and an email under 120 words.",
                 pidgin:
@@ -657,20 +668,20 @@ export const promptingFoundationsModule: CourseModule = {
             pidgin: "The full prompt with natural language",
           },
           body: {
-            en: "Write an email asking to move a client meeting scheduled for tomorrow at 10am. The client is Mr. Adeyemi, and I have an appointment I cannot move. Sound respectful and responsible, but do not mention medical details. Offer Wednesday at 2pm or Thursday at 11am. Give me a subject line and keep the email under 120 words.\n\nThe formula is present, but the prompt still sounds like a person speaking normally.",
+            en: "Write an email asking to move a client meeting scheduled for tomorrow at 10am. The client is Mr. Adeyemi, and I have an appointment I cannot move. Sound respectful and responsible, but do not mention medical details. Offer Wednesday at 2pm or Thursday at 11am. Give me a subject line and keep the email under 120 words.\n\nAll four CORE parts are present, but the prompt still sounds like a person speaking normally. The objective comes first because that feels natural here.",
             pidgin:
-              "Write email to ask make we shift client meeting wey dey tomorrow 10am. The client na Mr. Adeyemi, and I get appointment wey I no fit shift. Make e respectful and responsible, but no mention medical details. Offer Wednesday 2pm or Thursday 11am. Give me subject line and make the email no pass 120 words.\n\nThe formula dey inside, but the prompt still sound like normal person.",
+              "Write email to ask make we shift client meeting wey dey tomorrow 10am. The client na Mr. Adeyemi, and I get appointment wey I no fit shift. Make e respectful and responsible, but no mention medical details. Offer Wednesday 2pm or Thursday 11am. Give me subject line and make the email no pass 120 words.\n\nAll four CORE parts dey inside, but the prompt still sound natural. The objective come first because na so e easy to talk am here.",
           },
         },
         {
           heading: {
-            en: "Use the formula for different tasks",
-            pidgin: "Use the formula for different tasks",
+            en: "Use CORE for different tasks",
+            pidgin: "Use CORE for different tasks",
           },
           body: {
-            en: "The same checklist can support many kinds of work. What changes is the useful context and the output you need.",
+            en: "The same check can support many kinds of work. What changes is the useful context, the rules, and the result you need.",
             pidgin:
-              "The same checklist fit support different kinds of work. Wetin go change na the useful context and the output wey you need.",
+              "The same check fit support different kinds of work. Wetin go change na the useful context, the rules, and the answer wey you need.",
           },
           examples: [
             {
@@ -724,44 +735,43 @@ export const promptingFoundationsModule: CourseModule = {
         {
           heading: { en: "Module 1 recap", pidgin: "Module 1 recap" },
           body: {
-            en: "A prompt is all the material and direction you give AI. Vague prompts become weak when they leave decisions you care about unstated. The four-part formula gives you a quick way to notice what may be missing.\n\nStart naturally. Add useful context. Guide the parts of the answer that matter. Then read and adjust.",
+            en: "A prompt is all the material and direction you give AI. Vague prompts become weak when they leave decisions you care about unstated. CORE gives you a quick way to notice what may be missing.\n\nBefore you send it, check the CORE. Then read the answer and adjust what still needs work.",
             pidgin:
-              "Prompt na all the material and direction wey you give AI. Vague prompts dey weak when dem leave decisions wey matter to you unstated. The four-part formula give you quick way to notice wetin fit miss.\n\nStart naturally. Add useful context. Guide the parts of the answer wey matter. Then read and adjust.",
+              "Prompt na all the material and direction wey you give AI. Vague prompt dey weak when e leave decisions wey matter unstated. CORE give you quick way to notice wetin fit miss.\n\nBefore you send the prompt, check the CORE. Then read the answer and adjust wetin still need work.",
           },
         },
       ],
       keyTakeaway: {
-        en: "Task + Context + Requirements + Output is a flexible checklist. Use the parts that help your task, write naturally, and use follow-ups to shape the answer.",
+        en: "Before you send it, check the CORE: Context, Objective, Rules, and Expected result. Write naturally, then use follow-ups to shape the answer.",
         pidgin:
-          "Task + Context + Requirements + Output na flexible checklist. Use the parts wey help your task, write naturally, and use follow-ups shape the answer.",
+          "Before you send the prompt, check the CORE: Context, Objective, Rules, and Expected result. Write am naturally, then use follow-up shape the answer.",
       },
       examplePrompt: {
-        en: "Task: [What do you want AI to do?]\n\nContext: [What situation, audience, goal, or material does AI need?]\n\nRequirements: [What facts, tone, limits, details, or boundaries matter?]\n\nOutput: [What form should the answer take?]\n\nIf an important detail is missing, ask me before you begin.",
+        en: "Context: [What situation, audience, goal, or material does AI need to know?]\n\nObjective: [What do you want AI to do?]\n\nRules: [What facts, tone, limits, requirements, or boundaries should it follow?]\n\nExpected result: [What kind of answer do you want back?]\n\nIf an important detail is missing, ask me before you begin.",
         pidgin:
-          "Task: [Wetin you want make AI do?]\n\nContext: [Which situation, audience, goal, or material AI need?]\n\nRequirements: [Which facts, tone, limits, details, or boundaries matter?]\n\nOutput: [Which form the answer suppose take?]\n\nIf important detail dey miss, ask me before you start.",
+          "Context: [Which situation, audience, goal, or material AI need know?]\n\nObjective: [Wetin you want make AI do?]\n\nRules: [Which facts, tone, limits, requirements, or boundaries e suppose follow?]\n\nExpected result: [Which kind answer you want back?]\n\nIf important detail dey miss, ask me before you start.",
       },
       practiceTask: {
-        en: "Choose one real task and fill in all four parts of the template. Then rewrite the same prompt as a natural paragraph. Try both versions. The answers should be similar because the useful information is the same.\n\nAfterward, ask one follow-up that improves the answer without starting over.",
+        en: "Choose one real task and use CORE to check what AI needs. Fill in the four parts, then rewrite the same prompt as a natural paragraph in any order that feels clear. Try both versions and compare the answers.\n\nAfterward, ask one follow-up that improves the answer without starting over.",
         pidgin:
-          "Choose one real task and fill all four parts of the template. Then rewrite the same prompt as normal paragraph. Try both versions. The answers suppose similar because the useful information na the same.\n\nAfter that, ask one follow-up wey improve the answer without starting again.",
+          "Choose one real task and use CORE check wetin AI need. Fill the four parts, then write the same prompt as normal paragraph with any order wey clear. Try the two versions and compare the answers.\n\nAfter that, ask one follow-up wey improve the answer without starting again.",
       },
       quickCheck: [
         {
-          en: "What is the task in my prompt?",
-          pidgin: "Wetin be the task for my prompt?",
+          en: "What does the C in CORE ask me to check?",
+          pidgin: "Wetin C for CORE tell me make I check?",
         },
         {
-          en: "Which context changes the answer?",
-          pidgin: "Which context dey change the answer?",
+          en: "What is the objective in my prompt?",
+          pidgin: "Wetin be the objective for my prompt?",
         },
         {
-          en: "Which requirement or output format matters most?",
-          pidgin: "Which requirement or output format matter pass?",
+          en: "Which rule or expected result matters most?",
+          pidgin: "Which rule or expected result matter pass?",
         },
         {
-          en: "Which part could I leave out and still get a useful answer?",
-          pidgin:
-            "Which part I fit leave out and still get useful answer?",
+          en: "Do I have to write every prompt in CORE order?",
+          pidgin: "I must write every prompt with CORE order?",
         },
       ],
     },
@@ -1350,12 +1360,12 @@ const existingLessonUpgrades: Record<string, NonNullable<Lesson["teaching"]>> = 
   ),
   "the-simple-prompt-formula": teachingUpgrade(
     ["What should I include when I don't know how to start?", "Wetin I suppose include when I no know how to start?"],
-    ["The blank chat box can make a simple task feel harder than it is. You don't need a script. Use four small questions to organise your thinking: what is the task, what is the context, what must the answer respect, and what should come back?", "Blank chat box fit make simple task look hard. You no need script. Use four small questions arrange your thinking: wetin be the task, wetin be the context, wetin the answer must follow, and which kind answer you need?"],
+    ["The blank chat box can make a simple task feel harder than it is. You don't need a script. Check the CORE: what does AI need to know, what should it do, which rules matter, and what kind of answer should come back?", "Blank chat box fit make simple task look hard. You no need script. Check the CORE: AI know the situation, wetin e suppose do, the rules, and the kind answer wey you want back?"],
     ["Write an email about the meeting.", "Write email about the meeting."],
     ["Write a respectful email to Mr Adeyemi asking to move tomorrow's 10am meeting. I have an appointment I cannot move. Offer Wednesday at 2pm or Thursday at 11am. Don't mention medical details. Give me a subject line and keep it under 120 words.", "Write respectful email to Mr Adeyemi to ask make tomorrow 10am meeting move. I get appointment wey I no fit shift. Offer Wednesday 2pm or Thursday 11am. No mention medical details. Give me subject line and make e no pass 120 words."],
-    ["Task, context, requirements, and output are all present, but the prompt still sounds natural.", "Task, context, requirements, and output dey inside, but the prompt still sound natural."],
-    ["The formula is a checklist, not a compulsory format. You can write the same information as normal sentences.", "The formula na checklist, no be compulsory format. You fit write the same information with normal sentences."],
-    ["Forcing all four parts into a tiny request that was already clear. Use only the parts that help.", "To force all four parts enter small request wey already clear. Use only the parts wey help."]
+    ["Context, objective, rules, and expected result are all present, but the prompt still sounds natural.", "Context, objective, rules, and expected result dey inside, but the prompt still sound natural."],
+    ["CORE is a check, not a compulsory format. You can write the same information as normal sentences in any clear order.", "CORE na check, no be compulsory format. You fit write the same information with normal sentences and any order wey clear."],
+    ["Forcing every CORE part into a tiny request that was already clear. Use the check to notice what matters, not to make the prompt longer.", "No force every CORE part enter small request wey already clear. Use the check notice wetin matter, no be to make the prompt long."]
   ),
   "how-to-give-ai-better-context": teachingUpgrade(
     ["Why does AI keep misunderstanding the situation?", "Why AI dey misunderstand the situation?"],
