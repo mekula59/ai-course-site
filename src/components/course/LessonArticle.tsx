@@ -57,6 +57,13 @@ export function LessonArticle({
   const { lang } = useLang();
   const localizedLesson = getLocalizedLesson(lesson, lang);
   const isCoreLesson = lesson.slug === "the-simple-prompt-formula";
+  const leadContentCount =
+    lesson.slug === "dont-start-over-refine-the-answer" ||
+    lesson.slug === "save-prompts-youll-reuse"
+      ? 2
+      : lesson.slug === "how-to-control-tone"
+        ? 1
+        : 0;
   const hasPracticeTask = localizedLesson.practiceTask.trim().length > 0;
   const hasQuickCheck = localizedLesson.quickCheck.length > 0;
   const labels =
@@ -131,6 +138,43 @@ export function LessonArticle({
     </div>
   );
 
+  const renderLessonContent = (startIndex: number, endIndex = localizedLesson.content.length) => (
+    <div>
+      {localizedLesson.content.slice(startIndex, endIndex).map((section, offset) => {
+        const index = startIndex + offset;
+        return (
+          <section
+            key={`${section.heading}-${index}`}
+            className={getSectionSpacing(index)}
+          >
+            <h2 className="font-display text-xl sm:text-2xl font-bold leading-snug text-neutral-900 mb-2 max-w-[18ch] sm:max-w-none">
+              {section.heading}
+            </h2>
+            {renderParagraphs(
+              section.body,
+              "space-y-4 text-base leading-8 text-neutral-700 max-w-[34ch] sm:max-w-none"
+            )}
+
+            {section.examples.length > 0 ? (
+              <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 divide-y divide-neutral-200 overflow-hidden">
+                {section.examples.map((example) => (
+                  <div key={example.label} className="p-4 sm:p-5">
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-700 mb-2">
+                      {example.label}
+                    </p>
+                    <p className="whitespace-pre-line text-sm leading-7 text-neutral-800">
+                      {example.content}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </section>
+        );
+      })}
+    </div>
+  );
+
   return (
     <div className="px-5 py-8 sm:py-14">
       <article className="w-full max-w-2xl mx-auto">
@@ -169,8 +213,12 @@ export function LessonArticle({
           </p>
         </header>
 
+        {leadContentCount > 0
+          ? renderLessonContent(0, leadContentCount)
+          : null}
+
         {localizedLesson.teaching ? (
-          <section className="mb-10" aria-labelledby="lesson-question">
+          <section className={`${leadContentCount > 0 ? "mt-10" : ""} mb-10`} aria-labelledby="lesson-question">
             <div className="rounded-2xl border border-brand-200 bg-brand-50 p-5 sm:p-6">
               <p id="lesson-question" className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-brand-700">
                 {localizedLesson.teaching.question}
@@ -318,37 +366,7 @@ export function LessonArticle({
           </section>
         ) : null}
 
-        <div>
-          {localizedLesson.content.map((section, index) => (
-            <section
-              key={`${section.heading}-${index}`}
-              className={getSectionSpacing(index)}
-            >
-              <h2 className="font-display text-xl sm:text-2xl font-bold leading-snug text-neutral-900 mb-2 max-w-[18ch] sm:max-w-none">
-                {section.heading}
-              </h2>
-              {renderParagraphs(
-                section.body,
-                "space-y-4 text-base leading-8 text-neutral-700 max-w-[34ch] sm:max-w-none"
-              )}
-
-              {section.examples.length > 0 ? (
-                <div className="mt-6 rounded-2xl border border-neutral-200 bg-neutral-50 divide-y divide-neutral-200 overflow-hidden">
-                  {section.examples.map((example) => (
-                    <div key={example.label} className="p-4 sm:p-5">
-                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-700 mb-2">
-                        {example.label}
-                      </p>
-                      <p className="whitespace-pre-line text-sm leading-7 text-neutral-800">
-                        {example.content}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
-            </section>
-          ))}
-        </div>
+        {renderLessonContent(leadContentCount)}
 
         <section className="mt-14 space-y-4" aria-label="Lesson workbook">
           <div className="bg-neutral-900 text-white rounded-2xl p-5 sm:p-6">

@@ -193,9 +193,9 @@ export const promptingFoundationsModule: CourseModule = {
     pidgin: "How Better Prompt Take Start",
   },
   description: {
-    en: "Understand what counts as a prompt, why vague requests often produce weak answers, and use the CORE check before you send.",
+    en: "Understand what counts as a prompt, why vague requests often produce weak answers, and learn a quick check to use before you send.",
     pidgin:
-      "Understand wetin count as prompt, why vague request dey often give weak answer, and use the CORE check before you send.",
+      "Understand wetin count as prompt, why vague request dey often give weak answer, and learn one quick check before you send am.",
   },
   diagram: {
     steps: [
@@ -375,9 +375,9 @@ export const promptingFoundationsModule: CourseModule = {
         pidgin: "Why Vague Prompt Dey Give Weak Answer",
       },
       intro: {
-        en: "When a prompt leaves out decisions that matter, AI fills the gaps itself. The answer may look polished, but it can still miss the audience, tone, purpose, or format you needed.",
+        en: "AI guessed because you left part of the job open. The answer may look polished, but it can still miss the audience, purpose, tone, or format you actually needed.",
         pidgin:
-          "When prompt leave out decisions wey matter, AI go fill the gaps by itself. The answer fit look clean but still miss the audience, tone, purpose, or format wey you need.",
+          "AI guess because part of the work no dey clear. The answer fit look clean but still miss the audience, purpose, tone, or format wey you really need.",
       },
       diagram: {
         label: {
@@ -385,21 +385,21 @@ export const promptingFoundationsModule: CourseModule = {
           pidgin: "From broad reach useful",
         },
         steps: [
-          { en: "Write a post", pidgin: "Write post" },
-          { en: "Name the channel", pidgin: "Name the channel" },
+          { en: "Write an update", pidgin: "Write update" },
+          { en: "Name the readers", pidgin: "Talk who go read am" },
           {
-            en: "Add purpose and audience",
-            pidgin: "Add purpose and audience",
+            en: "Add the confirmed facts",
+            pidgin: "Add the facts wey don confirm",
           },
           {
-            en: "Guide tone and ending",
-            pidgin: "Guide tone and ending",
+            en: "Choose the next step",
+            pidgin: "Talk wetin dem suppose do next",
           },
         ],
         connectors: [
           { en: "add", pidgin: "add" },
-          { en: "then", pidgin: "then" },
-          { en: "then", pidgin: "then" },
+          { en: "then", pidgin: "next" },
+          { en: "then", pidgin: "next" },
         ],
       },
       content: [
@@ -409,45 +409,45 @@ export const promptingFoundationsModule: CourseModule = {
             pidgin: "Vague prompt leave choices for AI",
           },
           body: {
-            en: "Write a post does not say where the post will appear, what it should announce, who should care, how long it should be, or what readers should do next. AI has to choose all of that.\n\nSometimes its guesses will be acceptable. Often they will be generic because the tool is trying to produce an answer that could fit many situations at once.",
+            en: "Write a school update does not say who should receive it, what happened, which facts are confirmed, or what parents should do next. Pause before reading on. Which of those decisions would AI have to make for you?\n\nWhen those decisions are missing, AI usually writes something broad enough to fit many schools. That is why a neat answer can still be useless.",
             pidgin:
-              "Write a post no talk where the post go appear, wetin e dey announce, who suppose care, how long e suppose be, or wetin readers suppose do next. AI go choose all those things by itself.\n\nSometimes the guess fit manage. Many times the answer go too general because the tool dey try write something wey fit many situations at once.",
+              "Write school update no talk who suppose receive am, wetin happen, which facts don confirm, or wetin parents suppose do next. Pause small before you continue. Which of those things AI go need guess by itself?\n\nWhen those details miss, AI fit write something broad wey any school fit use. The answer fit neat and still no useful.",
           },
         },
         {
           heading: {
-            en: "Watch the prompt become clearer",
-            pidgin: "See how the prompt dey become clearer",
+            en: "Add one decision at a time",
+            pidgin: "Add one decision at a time",
           },
           body: {
-            en: "Each version below makes one useful decision. The final prompt is still short, but the AI no longer has to invent the channel, topic, audience, tone, or ending.",
+            en: "Each version closes one gap. Notice that the prompt becomes more useful without becoming long or technical.",
             pidgin:
-              "Every version below dey make one useful decision. The final prompt still short, but AI no need invent the channel, topic, audience, tone, or ending.",
+              "Every version close one gap. The prompt dey useful pass, but e no long and e no get tech grammar.",
           },
           examples: [
             {
               label: { en: "1. Broad", pidgin: "1. Broad" },
-              content: { en: "Write a post.", pidgin: "Write post." },
+              content: { en: "Write a school update.", pidgin: "Write school update." },
             },
             {
               label: {
-                en: "2. Add the channel",
-                pidgin: "2. Add the channel",
+                en: "2. Add the readers and channel",
+                pidgin: "2. Add who go read am and where you go send am",
               },
               content: {
-                en: "Write an Instagram post.",
-                pidgin: "Write Instagram post.",
+                en: "Write a WhatsApp update for JSS2 parents.",
+                pidgin: "Write WhatsApp update for JSS2 parents.",
               },
             },
             {
               label: {
-                en: "3. Add the real brief",
-                pidgin: "3. Add the real brief",
+                en: "3. Add the facts and next step",
+                pidgin: "3. Add the facts and wetin dem suppose do",
               },
               content: {
-                en: "Write a short Instagram post announcing a free beginner AI course for people who feel left behind by AI. Keep it warm and simple. End with an invitation to start.",
+                en: "Write a calm WhatsApp update for JSS2 parents. Tomorrow's excursion bus will leave school at 7:30am, not 8am. Ask parents to have students at school by 7:10am. Keep it under 80 words.",
                 pidgin:
-                  "Write short Instagram post to announce free beginner AI course for people wey feel say AI don leave dem behind. Make e warm and simple. End am with invitation to start.",
+                  "Write calm WhatsApp update for JSS2 parents. Tomorrow excursion bus go leave school by 7:30am, no be 8am. Tell parents make students reach school by 7:10am. Make e no pass 80 words.",
               },
             },
           ],
@@ -514,9 +514,9 @@ export const promptingFoundationsModule: CourseModule = {
             pidgin: "Choose the decisions wey matter to you",
           },
           body: {
-            en: "You do not need to control every word. Decide which parts of the result matter to you and state those. Let the AI handle lower-risk choices, then review what it produces.\n\nIf the answer is weak, ask what was missing before adding random detail. Better context is targeted, not crowded.",
+            en: "You do not need to control every word. State the decisions that matter, then let AI handle smaller choices and review what comes back.\n\nIf the answer is weak, ask what was missing before adding more detail. A longer prompt is not automatically a better prompt.",
             pidgin:
-              "You no need control every word. Decide which parts of the result matter to you and state dem. Make AI handle the small choices, then review wetin e produce.\n\nIf the answer weak, check wetin miss before you add random details. Better context dey targeted, e no crowded.",
+              "You no need control every word. Talk the decisions wey matter, make AI handle the smaller ones, then check the answer.\n\nIf the answer weak, first check wetin miss before you add more details. Long prompt no automatically mean better prompt.",
           },
         },
       ],
@@ -606,7 +606,7 @@ export const promptingFoundationsModule: CourseModule = {
               content: {
                 en: "What facts, limits, tone, requirements, or boundaries should the answer follow?",
                 pidgin:
-                  "Which facts, limits, tone, requirements, or boundaries the answer suppose follow?",
+                  "Which rules, facts, limits, tone, or details AI no suppose miss?",
               },
             },
             {
@@ -668,15 +668,15 @@ export const promptingFoundationsModule: CourseModule = {
             pidgin: "The full prompt with natural language",
           },
           body: {
-            en: "Write an email asking to move a client meeting scheduled for tomorrow at 10am. The client is Mr. Adeyemi, and I have an appointment I cannot move. Sound respectful and responsible, but do not mention medical details. Offer Wednesday at 2pm or Thursday at 11am. Give me a subject line and keep the email under 120 words.\n\nAll four CORE parts are present, but the prompt still sounds like a person speaking normally. The objective comes first because that feels natural here.",
+            en: "Write an email asking to move a client meeting scheduled for tomorrow at 10am. The client is Mr. Adeyemi, and I have an appointment I cannot move. Sound respectful and responsible, but do not mention medical details. Offer Wednesday at 2pm or Thursday at 11am. Give me a subject line and keep the email under 120 words.\n\nAll four parts are present, but the prompt still sounds like a person speaking normally. The objective comes first because that feels natural here.",
             pidgin:
-              "Write email to ask make we shift client meeting wey dey tomorrow 10am. The client na Mr. Adeyemi, and I get appointment wey I no fit shift. Make e respectful and responsible, but no mention medical details. Offer Wednesday 2pm or Thursday 11am. Give me subject line and make the email no pass 120 words.\n\nAll four CORE parts dey inside, but the prompt still sound natural. The objective come first because na so e easy to talk am here.",
+              "Write email to ask make we shift client meeting wey dey tomorrow 10am. The client na Mr. Adeyemi, and I get appointment wey I no fit shift. Make e respectful and responsible, but no mention medical details. Offer Wednesday 2pm or Thursday 11am. Give me subject line and make the email no pass 120 words.\n\nAll four parts dey inside, but the prompt still sound natural. The objective come first because na so e easy to talk am here.",
           },
         },
         {
           heading: {
-            en: "Use CORE for different tasks",
-            pidgin: "Use CORE for different tasks",
+            en: "Use the check for different tasks",
+            pidgin: "Use the check for different work",
           },
           body: {
             en: "The same check can support many kinds of work. What changes is the useful context, the rules, and the result you need.",
@@ -749,7 +749,7 @@ export const promptingFoundationsModule: CourseModule = {
       examplePrompt: {
         en: "Context: [What situation, audience, goal, or material does AI need to know?]\n\nObjective: [What do you want AI to do?]\n\nRules: [What facts, tone, limits, requirements, or boundaries should it follow?]\n\nExpected result: [What kind of answer do you want back?]\n\nIf an important detail is missing, ask me before you begin.",
         pidgin:
-          "Context: [Which situation, audience, goal, or material AI need know?]\n\nObjective: [Wetin you want make AI do?]\n\nRules: [Which facts, tone, limits, requirements, or boundaries e suppose follow?]\n\nExpected result: [Which kind answer you want back?]\n\nIf important detail dey miss, ask me before you start.",
+          "Context: [Which situation, audience, goal, or material AI need know?]\n\nObjective: [Wetin you want make AI do?]\n\nRules: [Which rules, facts, limits, tone, or details AI no suppose miss?]\n\nExpected result: [Which kind answer you want back?]\n\nIf important detail dey miss, ask me before you start.",
       },
       practiceTask: {
         en: "Choose one real task and use CORE to check what AI needs. Fill in the four parts, then rewrite the same prompt as a natural paragraph in any order that feels clear. Try both versions and compare the answers.\n\nAfterward, ask one follow-up that improves the answer without starting over.",
@@ -1112,7 +1112,7 @@ export const promptingContextToneFormatModule: CourseModule = {
           body: {
             en: "If tone labels are not enough, share a short sample you wrote and explain what to borrow: sentence length, level of formality, or use of simple language. Remove private details first.\n\nAsk AI to follow the style, not to pretend to be a real person. It should not impersonate your manager, a public figure, or anyone else in a deceptive message. You remain responsible for reviewing the final wording.",
             pidgin:
-              "If tone labels no reach, share short sample wey you write and explain wetin AI suppose copy from the style: sentence length, how formal e be, or simple language. Remove private details first.\n\nAsk AI to follow the style, no be to pretend say e be real person. E no suppose impersonate your manager, public figure, or anybody for deceptive message. Na you still go review the final wording.",
+              "If tone labels no reach, share short sample wey you write and explain wetin AI suppose follow from the style: sentence length, how formal e be, or simple language. Remove private details first.\n\nAsk AI to follow the style. No ask am make e pretend say na your manager, public figure, or another real person write the message, especially if that one fit deceive somebody. Na you still go review the final wording.",
           },
         },
         {
@@ -1350,13 +1350,13 @@ const existingLessonUpgrades: Record<string, NonNullable<Lesson["teaching"]>> = 
     ["Trying to sound clever instead of sharing the material and details AI needs.", "To dey find clever grammar instead of sharing the material and details wey AI need."]
   ),
   "why-vague-prompts-give-weak-answers": teachingUpgrade(
-    ["Why does AI keep giving me generic answers?", "Why AI dey always give me general answer?"],
-    ["You ask for a caption. The answer sounds polished, but it could belong to any business. You try again and get another version of the same thing. Here's what's happening: AI is filling in decisions you left open.", "You ask for caption. The answer clean, but any business fit use am. You try again and get another version of the same thing. Wetin happen be say AI dey fill decisions wey you leave open."],
-    ["Write a caption for my business.", "Write caption for my business."],
-    ["Write a warm Instagram caption for a small Abuja bakery announcing Saturday cinnamon-roll boxes. Pre-orders close Friday at 4pm. Keep it under 80 words and end with a simple order invitation.", "Write warm Instagram caption for small Abuja bakery wey dey announce Saturday cinnamon-roll boxes. Pre-order close Friday 4pm. Make e no pass 80 words and end with simple invitation to order."],
-    ["The improved version closes the gaps that would otherwise produce generic wording.", "The improved version close the gaps wey for make the wording too general."],
-    ["The useful prompt is still short. Clarity comes from the right decisions, not from writing more words.", "The useful prompt still short. Clarity dey come from the right decisions, no be plenty words."],
-    ["Adding random detail after a weak answer. Add the audience, purpose, facts, limits, or format that actually changes the result.", "To add random details after weak answer. Add audience, purpose, facts, limits, or format wey really change the result."]
+    ["What will AI have to guess?", "Wetin AI go need guess?"],
+    ["Prompt: Write a school update. Before you look at the result, name three decisions AI will have to make. Who is reading? What changed? What should they do next?", "Prompt: Write school update. Before you look the answer, name three things wey AI go need decide. Who go read am? Wetin change? Wetin dem suppose do next?"],
+    ["Write a school update.", "Write school update."],
+    ["Write a calm WhatsApp update for JSS2 parents. Tomorrow's excursion bus will leave school at 7:30am, not 8am. Ask parents to have students at school by 7:10am. Keep it under 80 words.", "Write calm WhatsApp update for JSS2 parents. Tomorrow excursion bus go leave school by 7:30am, no be 8am. Tell parents make students reach school by 7:10am. Make e no pass 80 words."],
+    ["The first prompt leaves the audience, change, timing, and next step open. The second gives AI the few decisions that shape a useful update.", "The first prompt leave audience, wetin change, time, and next step open. The second one give AI the few decisions wey go make the update useful."],
+    ["You can predict the weak result before AI writes it by spotting the decisions left open.", "If you notice the decisions wey remain open, you fit predict why the answer go weak before AI write am."],
+    ["Adding plenty details without checking whether they change the answer. Start with the missing decision, not more words.", "No just add plenty details. First find the decision wey miss and add only wetin go change the answer."]
   ),
   "the-simple-prompt-formula": teachingUpgrade(
     ["What should I include when I don't know how to start?", "Wetin I suppose include when I no know how to start?"],
@@ -1383,7 +1383,7 @@ const existingLessonUpgrades: Record<string, NonNullable<Lesson["teaching"]>> = 
     ["Rewrite this for a customer whose order arrived damaged. Sound calm, apologetic, and responsible. Acknowledge the inconvenience before explaining the replacement steps. Keep every fact from my draft.", "Rewrite this for customer wey order arrive damaged. Make e calm, apologetic, and responsible. Acknowledge the inconvenience before you explain replacement steps. Keep every fact from my draft."],
     ["The tone words now have an audience, situation, and purpose to guide them.", "The tone words now get audience, situation, and purpose wey guide dem."],
     ["Tone works best when AI knows who is reading and what the message needs to achieve.", "Tone dey work best when AI know who dey read and wetin the message need achieve."],
-    ["Asking AI to impersonate a real person. Share a short writing sample and ask it to follow the style instead.", "To ask AI make e impersonate real person. Share short writing sample and ask am to follow the style instead." ]
+    ["Asking AI to impersonate a real person. Share a short writing sample and ask it to follow the style instead.", "No ask AI make e pretend say na another real person write the message. Share short writing sample and ask am make e follow the style instead." ]
   ),
   "how-to-ask-for-the-right-format": teachingUpgrade(
     ["Why does ChatGPT keep writing essays when I need something usable?", "Why ChatGPT dey write essay when I need something wey I fit use?"],

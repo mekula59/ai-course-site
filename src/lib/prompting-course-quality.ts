@@ -55,7 +55,7 @@ export function applyPromptingCourseQuality({
 }) {
   modules[0].framing = t(
     "You may remember Task, Context, Requirements, and Output. CORE keeps the same thinking, but turns it into a quicker check you can remember before sending a prompt.",
-    "You fit remember Task, Context, Requirements, and Output. CORE keep the same idea, but e turn am into quick check wey easy to remember before you send prompt."
+    "You fit remember Task, Context, Rules, and Output. CORE keep the same idea, but e turn am into quick check wey easy to remember before you send prompt."
   );
   if (modules[2].diagram) {
     modules[2].diagram.steps = [
@@ -76,12 +76,12 @@ export function applyPromptingCourseQuality({
 
   addResult(
     findLesson(modules, "why-vague-prompts-give-weak-answers"),
-    "Our bakery has good products. Buy from us today.",
-    "Our bakery get good products. Buy from us today.",
-    "Saturday cinnamon-roll boxes are coming fresh from our Abuja kitchen. Pre-order by Friday at 4pm so your box is ready for the weekend. Send us a message to place your order.",
-    "Saturday cinnamon-roll boxes dey come fresh from our Abuja kitchen. Pre-order before Friday 4pm so your box go ready for weekend. Send us message to place your order.",
-    "The first answer has no useful detail. The second gives the product, location, deadline, and next step, so a customer can act.",
-    "The first answer no get useful detail. The second one show the product, location, deadline, and next step, so customer know wetin to do."
+    "Dear parents, please note that there is an important school update for tomorrow. Kindly ensure your child arrives early. Thank you.",
+    "Dear parents, important school update dey for tomorrow. Abeg make sure say your child come early. Thank you.",
+    "Good evening, JSS2 parents. Tomorrow's excursion bus will leave school at 7:30am instead of 8am. Please have students at school by 7:10am so boarding can start on time. Thank you.",
+    "Good evening, JSS2 parents. Tomorrow excursion bus go leave school by 7:30am instead of 8am. Abeg make students reach school by 7:10am so dem fit board on time. Thank you.",
+    "The first answer sounds tidy but leaves parents guessing about the time. The second gives them the exact change and what to do.",
+    "The first answer neat, but parents still no know the correct time. The second one show wetin change and wetin dem suppose do."
   );
   addResult(
     findLesson(modules, "how-to-give-ai-better-context"),
@@ -103,12 +103,12 @@ export function applyPromptingCourseQuality({
   );
   addResult(
     findLesson(modules, "dont-start-over-refine-the-answer"),
-    "We acknowledge your complaint. The delivery delay occurred because of a logistics issue. Please be informed that your item will be delivered on Thursday.",
-    "We don see your complaint. Delivery delay because of logistics issue. Your item go arrive Thursday.",
-    "I'm sorry your order is late. The courier has confirmed delivery for Thursday. Please reply here if you need help before then.",
-    "Sorry say your order late. Courier don confirm say delivery na Thursday. Reply here if you need any help before then.",
-    "The revision keeps the facts but makes the opening warmer, the explanation shorter, and the next step clearer.",
-    "The revision keep the facts, make the opening warmer, shorten the explanation, and show the next step well."
+    "Dear Sir, I am writing to bring to your attention the ongoing issue with the leaking kitchen tap, which requires urgent intervention.",
+    "Dear Sir, I dey write to remind you about the kitchen tap wey dey leak and need urgent attention.",
+    "Hello, the kitchen tap is still leaking. Please can you let me know when the plumber will come? I will be home after 5pm on weekdays.",
+    "Hello, the kitchen tap still dey leak. Abeg let me know when plumber go come. I dey house after 5pm on weekdays.",
+    "The revision keeps the problem and availability, removes stiff wording, and ends with a question the landlord can answer.",
+    "The revision keep the problem and available time, comot stiff grammar, and end with question wey landlord fit answer."
   );
   addResult(
     findLesson(modules, "ask-better-follow-up-questions"),
@@ -121,12 +121,12 @@ export function applyPromptingCourseQuality({
   );
   addResult(
     findLesson(modules, "turn-one-answer-into-many-versions"),
-    "EMAIL, WHATSAPP, INSTAGRAM\nJoin our community clean-up this Saturday at 8am at Unity Park. Bring gloves.",
-    "EMAIL, WHATSAPP, INSTAGRAM\nJoin our community clean-up this Saturday by 8am for Unity Park. Bring gloves.",
-    "EMAIL: Join our community clean-up on Saturday at 8am at Unity Park.\n\nWHATSAPP: Reminder: community clean-up, Saturday, 8am, Unity Park. Bring gloves.\n\nINSTAGRAM: This Saturday, let's make Unity Park cleaner together. Meet us at 8am. Bring gloves. #CommunityCleanUp",
-    "EMAIL: Join our community clean-up on Saturday by 8am for Unity Park.\n\nWHATSAPP: Reminder: clean-up na Saturday, 8am, Unity Park. Bring gloves.\n\nINSTAGRAM: This Saturday, make we clean Unity Park together. Meet us by 8am. Bring gloves. #CommunityCleanUp",
-    "The improved prompt can produce distinct versions while protecting the approved facts. The weak prompt may simply repeat one message under several labels.",
-    "Better prompt fit produce different versions and still protect the approved facts. Weak prompt fit repeat the same message under different labels."
+    "EMAIL, WHATSAPP, CHECKLIST\nThe family contribution is N15,000 per household. Payment is due by 6 September.",
+    "EMAIL, WHATSAPP, CHECKLIST\nFamily contribution na N15,000 for every household. Payment deadline na 6 September.",
+    "EMAIL: A reminder that the family contribution is N15,000 per household and is due by 6 September. Please send proof of payment to Aunty Bola.\n\nWHATSAPP: Family contribution reminder: N15,000 per household, due 6 September. Please send proof of payment to Aunty Bola.\n\nCHECKLIST: [ ] Pay N15,000 by 6 September. [ ] Send proof to Aunty Bola.",
+    "EMAIL: Small reminder say family contribution na N15,000 for every household, and deadline na 6 September. Abeg send proof of payment to Aunty Bola.\n\nWHATSAPP: Family contribution reminder: N15,000 for every household, deadline na 6 September. Abeg send proof of payment to Aunty Bola.\n\nCHECKLIST: [ ] Pay N15,000 before 6 September. [ ] Send proof to Aunty Bola.",
+    "The three versions do different jobs while keeping the amount, deadline, and next step unchanged.",
+    "The three versions do different work, but the amount, deadline, and next step remain the same."
   );
   addResult(
     findLesson(modules, "build-simple-prompt-templates"),
@@ -170,6 +170,19 @@ export function applyPromptingCourseQuality({
       },
     ],
   });
+  toneLesson.content[1] = {
+    heading: t("Tone lab: same facts, different feel", "Tone lab: same facts, different feeling"),
+    body: t(
+      "The church volunteer briefing has moved from 9am to 11am this Saturday. The change came late. Read the three versions and decide which one you would send before looking at the labels.",
+      "Church volunteer briefing don move from 9am to 11am this Saturday, and the change come late. Read the three messages and choose the one wey you go send before you check the labels."
+    ),
+    examples: [
+      { label: t("Warm", "Warm"), content: t("Hi everyone, a quick update for Saturday: our volunteer briefing will now start at 11am instead of 9am. Thank you for adjusting at short notice. Please reply if the new time causes a problem.", "Hi everyone, small update for Saturday: our volunteer briefing go now start by 11am instead of 9am. Thank you as una adjust with short notice. Abeg reply if the new time no work for you.") },
+      { label: t("Direct", "Direct"), content: t("Saturday's volunteer briefing has moved from 9am to 11am. Please note the new time.", "Saturday volunteer briefing don move from 9am to 11am. Abeg note the new time.") },
+      { label: t("Apologetic", "Apologetic"), content: t("I'm sorry for the late change. Saturday's volunteer briefing will now begin at 11am instead of 9am. Thank you for your patience, and please let me know if this affects your plans.", "I sorry for the late change. Saturday volunteer briefing go now start by 11am instead of 9am. Thank you for your patience. Abeg tell me if the new time affect your plans.") },
+    ],
+  };
+  toneLesson.content = [toneLesson.content[1], toneLesson.content[0], ...toneLesson.content.slice(2)];
 
   const formatLesson = findLesson(modules, "how-to-ask-for-the-right-format");
   formatLesson.content.push({
@@ -191,18 +204,32 @@ export function applyPromptingCourseQuality({
 
   const refineLesson = findLesson(modules, "dont-start-over-refine-the-answer");
   refineLesson.content[0].heading = t("Use keep, change, remove", "Choose wetin go remain, change, or comot");
-  refineLesson.content.push(
-    {
+  const decisionGuide = {
       heading: t("Continue this chat or start a fresh one?", "Continue this chat or start new one?"),
       body: t(
-        "Continue when AI needs the earlier response, the task is still the same, or you are refining the current result. Start a fresh chat when the task has changed, old instructions are causing confusion, you want clean context, or old information should no longer guide the answer.",
-        "Continue the same chat when AI need the earlier answer, the task still be the same, or you dey adjust the current result. Start new chat when the task don change, old instruction dey cause confusion, you want clean context, or old information no suppose guide the answer again."
+        "Read each situation and choose: continue, refine, remove, or start fresh. Make your choice before you check the answers below.",
+        "Read every situation and choose: continue, refine am, comot am, or start new chat. Choose your answer before you check the answers below."
       ),
       examples: [
-        { label: t("Continue", "Continue"), content: t("Make the customer reply warmer but keep the confirmed delivery date.", "Make the customer reply warmer, but keep the delivery date wey don confirm.") },
-        { label: t("Start fresh", "Start new chat"), content: t("You were planning an event. Now you need help studying biology. The earlier event details are not useful.", "You dey plan event before. Now you need help study biology. The old event details no useful here.") },
+        { label: t("Situation 1", "Situation 1"), content: t("The landlord message is correct, but it is too long.", "Landlord message correct, but e too long.") },
+        { label: t("Situation 2", "Situation 2"), content: t("The leaking-tap details are right, but the opening sounds too formal and there is no clear question.", "The details about the leaking tap correct, but the opening too formal and clear question no dey.") },
+        { label: t("Situation 3", "Situation 3"), content: t("The answer promises that the landlord will pay, but nobody has confirmed that.", "The answer promise say landlord go pay, but nobody don confirm that one.") },
+        { label: t("Situation 4", "Situation 4"), content: t("The old chat was about the repair. Your new task is a study plan.", "Old chat na about repair. Your new work na study plan.") },
       ],
-    },
+    };
+  const decisionAnswers = {
+    heading: t("Check your choice", "Check your answer"),
+    body: t(
+      "1. Continue, because the task is unchanged and you need one more edit. 2. Refine, because useful parts should stay. 3. Remove the unsupported promise. 4. Start fresh, because the new task has nothing to do with the repair.",
+      "1. Continue, because na still the same work and you need one more edit. 2. Refine am, because useful parts suppose remain. 3. Comot the promise wey nobody confirm. 4. Start new chat, because the new work no concern the repair."
+    ),
+    examples: [],
+  };
+  refineLesson.content = [
+    decisionGuide,
+    decisionAnswers,
+    refineLesson.content[0],
+    refineLesson.content[1],
     {
       heading: t("Check the answer before rewriting it", "Check the answer before you rewrite am"),
       body: t(
@@ -216,8 +243,9 @@ export function applyPromptingCourseQuality({
           "Check this answer with my original instructions. List wetin e follow, wetin e miss, and wetin need correction. No rewrite am yet."
         ),
       }],
-    }
-  );
+    },
+    refineLesson.content[2],
+  ];
 
   const followUpLesson = findLesson(modules, "ask-better-follow-up-questions");
   followUpLesson.title = t("Ask Better Follow-up Questions", "How to Ask Follow-up Wey Go Help");
@@ -264,15 +292,23 @@ export function applyPromptingCourseQuality({
     {
       heading: t("Save it or leave it?", "Save am or leave am?"),
       body: t(
-        "A prompt earns a place when the task repeats, the result was useful, you know which details will change, and it is safe to keep. Decide before opening another folder or notes app.",
-        "Prompt deserve space when the task dey repeat, the result useful, you know the details wey go change, and e safe to keep. Decide first before you open another folder or notes app."
+        "Read the four situations. For each one, choose: save it, leave it, improve it first, or do not save it. Check your decisions below when you are ready.",
+        "Read the four situations. For every one, choose: save am, leave am, improve am first, or no save am at all. Check your answers below when you don ready."
       ),
       examples: [
-        { label: t("Save", "Save am"), content: t("A weekly meeting-summary prompt used three times, with names replaced by brackets.", "Weekly meeting-summary prompt wey you don use three times, with names replaced by brackets.") },
-        { label: t("Leave", "Leave am"), content: t("A one-off birthday message with private family details.", "One-time birthday message wey get private family details.") },
-        { label: t("Improve first", "Improve am first"), content: t("A customer reply prompt that works but still contains last month's delivery date.", "Customer reply prompt wey work but still get last month delivery date.") },
-        { label: t("Do not save", "No save am"), content: t("A prompt containing a customer's password, account number, or medical details.", "Prompt wey get customer password, account number, or medical details.") },
+        { label: t("Situation 1", "Situation 1"), content: t("A weekly meeting-summary prompt used three times, with names replaced by brackets.", "Weekly meeting-summary prompt wey you don use three times, with names replaced by brackets.") },
+        { label: t("Situation 2", "Situation 2"), content: t("A one-off birthday message with private family details.", "One-time birthday message wey get private family details.") },
+        { label: t("Situation 3", "Situation 3"), content: t("A vendor order follow-up that works but still contains the last delivery date.", "Vendor order follow-up wey work but still get the old delivery date inside.") },
+        { label: t("Situation 4", "Situation 4"), content: t("A prompt containing a customer's password, account number, or medical details.", "Prompt wey get customer password, account number, or medical details.") },
       ],
+    },
+    {
+      heading: t("Check your decisions", "Check your answers"),
+      body: t(
+        "1. Save it. The task repeats, the prompt has worked, and changing details are already marked. 2. Leave it. The task is unlikely to repeat and the private details should not be stored. 3. Improve it first by replacing the old date with a bracket. 4. Do not save it. Remove private information before using AI.",
+        "1. Save am. The task dey repeat, the prompt don work, and the details wey go change don get brackets. 2. Leave am. The task no likely repeat, and you no suppose keep the private details. 3. Improve am first by replacing the old date with bracket. 4. No save am. Comot private information before you use AI."
+      ),
+      examples: [],
     },
     {
       heading: t("Give useful prompts a proper home", "Give useful prompts proper place"),
@@ -351,8 +387,8 @@ export function applyPromptingCourseQuality({
 
   const quickCheckBySlug: Record<string, QuickCheckItem[]> = {
     "what-a-prompt-really-is": checks([["What makes a prompt useful beyond naming a topic?", "Apart from the topic, wetin else make prompt useful?", "It says what AI should do and gives the details that affect the answer.", "E talk wetin AI suppose do and give the details wey fit change the answer.", "A topic alone leaves the task open. A clear action gives the conversation a direction.", "Topic alone no show the work. Clear action tell AI where to start."]]),
-    "why-vague-prompts-give-weak-answers": checks([["Why is 'Write a post for my bakery' likely to produce a weak answer?", "Why 'Write post for my bakery' fit produce weak answer?", "It leaves the audience, offer, purpose, and next step unclear.", "E no show audience, offer, purpose, or next step.", "AI must guess the missing details, so the result may sound generic or be unusable.", "AI go guess the missing details, so the result fit sound generic or no useful."]]),
-    "the-simple-prompt-formula": checks([["Which CORE part tells AI what must not change or be invented?", "Which CORE part tell AI wetin no suppose change or invent?", "Rules.", "Na Rules.", "Rules protect important facts, limits, tone, requirements, and boundaries. CORE is only a check, so you can still write the prompt naturally.", "Rules dey protect important facts, limits, tone, requirements, and boundaries. CORE na check, so you fit still write the prompt naturally."]]),
+    "why-vague-prompts-give-weak-answers": checks([["Why is 'Write a school update' likely to produce a weak answer?", "Why 'Write school update' fit give weak answer?", "It leaves the readers, change, confirmed facts, and next step unclear.", "E no show who go read am, wetin change, the facts wey don confirm, or wetin dem suppose do next.", "AI has to guess those decisions, so the result may look neat but still be unusable.", "AI go guess those things, so the answer fit neat and still no useful."]]),
+    "the-simple-prompt-formula": checks([["Which CORE part tells AI what must not change or be invented?", "Which CORE part tell AI wetin no suppose change or invent?", "Rules.", "Na Rules.", "Rules protect important facts, limits, tone, requirements, and boundaries. CORE is only a check, so you can still write the prompt naturally.", "Rules dey protect important facts, limits, tone, and details wey AI no suppose miss. CORE na check, so you fit still write the prompt naturally."]]),
     "how-to-give-ai-better-context": checks([["Should you paste every detail you know?", "You suppose paste every detail wey you know?", "No. Include only details that affect the answer, and remove private information you do not need.", "No. Add only details wey affect the answer, and comot private information wey no need.", "Irrelevant detail can bury the task, while sensitive detail creates avoidable risk.", "Details wey no matter fit hide the task, and private details fit create problem wey no need."]]),
     "how-to-control-tone": checks([["Why can a safe writing sample work better than saying 'sound warm'?", "Why safe writing sample fit work better pass 'make e sound warm'?", "It shows the rhythm or structure you want, while the instruction explains what AI may borrow.", "E show rhythm or structure wey you want, while the instruction explain wetin AI fit follow.", "Tone words can mean different things. A short reference makes the preference more concrete without deceptive imitation.", "Tone words fit mean different things. Short example make the style clearer without pretending to be another person."]]),
     "how-to-ask-for-the-right-format": checks([["Why might a staged checklist be better than a paragraph for an event plan?", "Why checklist wey get stages fit better pass paragraph for event plan?", "It makes tasks easier to scan, assign, and complete in order.", "E make tasks easy to scan, assign, and complete with order.", "Format should match what you will do with the answer next.", "Format suppose match how you wan use the answer next."]]),
@@ -396,12 +432,12 @@ export function applyPromptingCourseQuality({
     })),
   });
   playbookLesson.promptGroups = [
-    group(t("Writing and messages", "Messages and other writing"), [1, 2, 3, 4]),
-    group(t("Work and productivity", "Work wey AI fit make easier"), [5, 6, 7, 8]),
+    group(t("Writing and messages", "Messages and writing"), [1, 2, 3, 4]),
+    group(t("Work and productivity", "Work wey AI fit help with"), [5, 6, 7, 8]),
     group(t("Learning and study", "Learning and study"), [9, 10, 11]),
-    group(t("Business and customers", "Business and customer reply"), [12, 13, 14]),
-    group(t("Planning and organisation", "Planning and how to arrange work"), [15, 16, 17, 18]),
-    group(t("Checking and improving answers", "How to check and improve answer"), [19, 20, 21, 22]),
+    group(t("Business and customers", "Business and customer work"), [12, 13, 14]),
+    group(t("Planning and organisation", "Planning and arranging things"), [15, 16, 17, 18]),
+    group(t("Checking and improving answers", "Check and improve AI answer"), [19, 20, 21, 22]),
   ];
 
   playbookLesson.capstone = {
@@ -432,7 +468,7 @@ export function applyPromptingCourseQuality({
     worksheet: [
       t("CORE: My objective", "CORE: Wetin I want make AI do"), t("CORE: Audience and situation", "CORE: Who the answer dey for and wetin dey happen"), t("CORE: Useful context or source notes", "CORE: Useful details or notes wey AI suppose use"),
       t("Missing information", "Information wey miss"), t("My clarification questions", "Questions wey I need ask first"), t("My source notes", "Notes wey AI suppose use"),
-      t("CORE: Tone", "CORE: How the answer suppose sound"), t("CORE: Other rules", "CORE: Other rules wey the answer suppose follow"),
+      t("CORE: Tone", "CORE: How the answer suppose sound"), t("CORE: Other rules", "CORE: Other rules or details AI no suppose miss"),
       t("CORE: Expected result", "CORE: The kind answer wey I need"), t("First result", "First answer"), t("What needs fixing", "Wetin need fixing"),
       t("My corrective follow-up", "Follow-up wey go fix am"), t("Final result", "Final answer"), t("My second useful format", "Another format wey go help"),
       t("What I checked before using it", "Wetin I check before I use am"),

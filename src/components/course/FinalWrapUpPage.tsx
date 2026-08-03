@@ -84,7 +84,7 @@ export function FinalWrapUpPage({
           finalPrompt: isPromptPlaybook ? "Copy all 22 prompts" : "Final prompt",
           capstone: "Example wey show all the steps",
           promptsHeading: "Prompts arrange by type",
-          promptBankNote: "These prompts na places to start, no be magic words. Replace the brackets, add the details wey matter, then check the answer.",
+          promptBankNote: "Use these prompts take start, no be magic words. Replace wetin dey inside brackets, add the details wey matter, then check the answer.",
           copyPrompt: "Copy prompt",
           copied: "Copied",
           nextStep: isPromptPlaybook ? "Practice routine" : "Next thing to do",
