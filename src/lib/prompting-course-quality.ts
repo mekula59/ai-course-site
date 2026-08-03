@@ -36,7 +36,7 @@ const addResult = (
   Object.assign(lesson.teaching.comparison, {
     resultLabel: t(
       "One possible response. The exact wording may differ, but notice what changed.",
-      "Na one answer wey fit come out. The exact words fit different, but notice wetin change."
+      "Na one answer wey fit come out. AI fit use different words, but check wetin change."
     ),
     beforeResult: t(beforeEn, beforePidgin),
     afterResult: t(afterEn, afterPidgin),
@@ -57,6 +57,22 @@ export function applyPromptingCourseQuality({
     "You met some of these ideas in the Beginner AI Course. Here, we'll slow down, practise them properly, and see what changes in the answer.",
     "You don see some of these ideas for the Beginner AI Course. For here, we go take time practise them well and see how the answer dey change."
   );
+  if (modules[2].diagram) {
+    modules[2].diagram.steps = [
+      t("Read", "Read am"),
+      t("Name the gap", "Find wetin miss"),
+      t("Refine", "Adjust am"),
+      t("Check again", "Check am again"),
+    ];
+  }
+  if (modules[3].diagram) {
+    modules[3].diagram.steps = [
+      t("Use it", "Use am"),
+      t("Improve it", "Make am better"),
+      t("Save it", "Save am"),
+      t("Reuse with care", "Use am well again"),
+    ];
+  }
 
   addResult(
     findLesson(modules, "why-vague-prompts-give-weak-answers"),
@@ -71,8 +87,8 @@ export function applyPromptingCourseQuality({
     findLesson(modules, "how-to-give-ai-better-context"),
     "We are sorry for the inconvenience. Your order will arrive soon.",
     "We sorry for the inconvenience. Your order go arrive soon.",
-    "Hi Ada, I'm sorry your order did not arrive on Tuesday as planned. The courier has moved delivery to Thursday afternoon. I'll send the tracking update by 10am tomorrow. Please reply here if Thursday no longer works for you.",
-    "Hi Ada, sorry say your order no arrive Tuesday as we plan. Courier don move delivery go Thursday afternoon. I go send tracking update before 10am tomorrow. Reply here if Thursday no go work for you.",
+    "I'm sorry your delivery is two days late. The courier says it may arrive tomorrow, but that is not confirmed yet. I'll check again and send you an update by 4pm today.",
+    "Sorry say your delivery don late by two days. Courier say e fit arrive tomorrow, but dem never confirm am. I go check again and send you update before 4pm today.",
     "Useful context lets the reply acknowledge the real delay, give the known update, and avoid inventing a delivery promise.",
     "Useful context make the reply talk about the real delay, give the update wey dey, and no invent delivery promise."
   );
@@ -80,8 +96,8 @@ export function applyPromptingCourseQuality({
     findLesson(modules, "how-to-ask-for-the-right-format"),
     "To plan the event, choose a venue, invite people, arrange refreshments, prepare materials, and confirm volunteers. You should also create a budget and timeline.",
     "To plan the event, choose venue, invite people, arrange refreshments, prepare materials, and confirm volunteers. You suppose also create budget and timeline.",
-    "THIS WEEK\n[ ] Confirm venue and budget\n[ ] Assign volunteer leads\n\nONE WEEK BEFORE\n[ ] Confirm attendance\n[ ] Buy materials\n\nEVENT DAY\n[ ] Set up registration desk\n[ ] Brief volunteers",
-    "THIS WEEK\n[ ] Confirm venue and budget\n[ ] Choose volunteer leads\n\nONE WEEK BEFORE\n[ ] Confirm who dey come\n[ ] Buy materials\n\nEVENT DAY\n[ ] Set registration desk\n[ ] Brief volunteers",
+    "TWO WEEKS BEFORE\n[ ] Confirm venue and budget | Owner: [name] | Deadline: [date]\n[ ] Assign volunteer leads | Owner: [name] | Deadline: [date]\n\nONE WEEK BEFORE\n[ ] Confirm attendance | Owner: [name] | Deadline: [date]\n\nEVENT DAY\n[ ] Brief volunteers | Owner: [name] | Deadline: [time]",
+    "TWO WEEKS BEFORE\n[ ] Confirm venue and budget | Person in charge: [name] | Deadline: [date]\n[ ] Choose volunteer leads | Person in charge: [name] | Deadline: [date]\n\nONE WEEK BEFORE\n[ ] Confirm who dey come | Person in charge: [name] | Deadline: [date]\n\nEVENT DAY\n[ ] Brief volunteers | Person in charge: [name] | Deadline: [time]",
     "Both answers contain similar ideas, but the staged checklist is easier to assign, scan, and use while planning.",
     "Both answers get similar ideas, but the checklist arrange am by stage, so e easy to assign and use for planning."
   );
@@ -89,8 +105,8 @@ export function applyPromptingCourseQuality({
     findLesson(modules, "dont-start-over-refine-the-answer"),
     "We acknowledge your complaint. The delivery delay occurred because of a logistics issue. Please be informed that your item will be delivered on Thursday.",
     "We don see your complaint. Delivery delay because of logistics issue. Your item go arrive Thursday.",
-    "Hi Tola, I'm sorry your order is late. The courier has confirmed delivery for Thursday. I'll send your tracking update tomorrow morning, and you can reply here if that timing causes a problem.",
-    "Hi Tola, sorry say your order late. Courier don confirm Thursday delivery. I go send tracking update tomorrow morning. Reply here if that time no work for you.",
+    "I'm sorry your order is late. The courier has confirmed delivery for Thursday. Please reply here if you need help before then.",
+    "Sorry say your order late. Courier don confirm say delivery na Thursday. Reply here if you need any help before then.",
     "The revision keeps the facts but makes the opening warmer, the explanation shorter, and the next step clearer.",
     "The revision keep the facts, make the opening warmer, shorten the explanation, and show the next step well."
   );
@@ -117,12 +133,16 @@ export function applyPromptingCourseQuality({
     "Fresh red sandals are available for N18,000. Order before Friday. Send a DM now.",
     "Fresh red sandals dey available for N18,000. Order before Friday. Send DM now.",
     "A: Looking for an easy pair for weekend outings? Our red sandals are N18,000. Orders close Friday. Send a DM to order.\n\nB: Saturday study group starts at 10am in Room 4. Come with your notes and calculator. Reply YES to confirm.",
-    "A: You need easy sandal for weekend outing? Red sandals na N18,000. Order close Friday. Send DM to order.\n\nB: Saturday study group start 10am for Room 4. Come with your notes and calculator. Reply YES to confirm.",
+    "A: You dey find simple sandal for weekend outing? Red sandals na N18,000. Order close Friday. Send DM to order.\n\nB: Saturday study group start 10am for Room 4. Come with your notes and calculator. Reply YES to confirm.",
     "The template keeps the useful structure but changes the audience, facts, tone, and next step. Testing it twice shows whether it is genuinely reusable.",
     "The template keep the useful structure but change audience, facts, tone, and next step. When you test am twice, you go know whether e really reusable."
   );
 
   const toneLesson = findLesson(modules, "how-to-control-tone");
+  toneLesson.content[0].heading = t(
+    "Name the feeling, then explain the situation",
+    "Talk how you want make e sound, then explain wetin happen"
+  );
   toneLesson.content.push({
     heading: t("When tone words are not enough", "When tone words no reach"),
     body: t(
@@ -155,8 +175,8 @@ export function applyPromptingCourseQuality({
   formatLesson.content.push({
     heading: t("Take a large task in stages", "Break big task into stages"),
     body: t(
-      "A large task often becomes easier when you handle it in order: plan, draft, review, then produce the final version. This is not advanced prompt engineering. It is simply doing one difficult job step by step, so you can correct the direction before too much work is done.",
-      "Big task dey easier when you handle am one stage at a time: plan, draft, review, then final version. No be advanced prompt engineering. Na just to do difficult work step by step, so you fit correct direction before plenty work don happen."
+      "A large task often becomes easier when you handle it in order: plan, draft, review, then produce the final version. You are simply doing one difficult job step by step, so you can correct the direction before too much work is done.",
+      "Big task dey easier when you handle am one stage at a time: plan, draft, review, then final version. Na just to do difficult work step by step, so you fit correct direction before plenty work don happen."
     ),
     examples: [
       {
@@ -265,6 +285,13 @@ export function applyPromptingCourseQuality({
   ];
 
   const templateLesson = findLesson(modules, "build-simple-prompt-templates");
+  templateLesson.title = t("Build Simple Prompt Templates", "How to Build Simple Prompt Template");
+  if (templateLesson.teaching) {
+    templateLesson.teaching.comparison.after = t(
+      "Reusable template:\nWrite a [tone] [channel] message for [audience] about [topic]. Include [facts]. Keep it under [length]. End with [next step]. Do not invent details.\n\nTest A: Instagram caption for red sandals, young professionals, N18,000, orders close Friday, friendly, under 70 words, end with Send a DM to order.\n\nTest B: WhatsApp notice for first-year students, Saturday study group, 10am, Room 4, direct, under 60 words, end with Reply YES to confirm.",
+      "Template wey you fit use again:\nWrite [tone] [channel] message for [audience] about [topic]. Add [facts]. Make e no pass [length]. End with [next step]. No invent details.\n\nTest A: Instagram caption for red sandals, young professionals, N18,000, order close Friday, friendly, no pass 70 words, end with Send DM to order.\n\nTest B: WhatsApp notice for first-year students, Saturday study group, 10am, Room 4, direct, no pass 60 words, end with Reply YES to confirm."
+    );
+  }
   templateLesson.content = [
     {
       heading: t("Workshop: turn one prompt into a template", "Workshop: turn one prompt into template"),
@@ -273,12 +300,12 @@ export function applyPromptingCourseQuality({
         "Start with prompt wey don work. Keep the task, safety checks, and useful structure fixed. Replace product, audience, price, date, tone, and next step with clear brackets."
       ),
       examples: [
-        { label: t("Completed prompt", "Completed prompt"), content: t("Write a friendly Instagram caption for red sandals for young professionals. Price: N18,000. Orders close Friday. Keep it under 70 words and end with 'Send a DM to order.' Do not invent product claims.", "Write friendly Instagram caption for red sandals for young professionals. Price: N18,000. Order close Friday. Make e no pass 70 words and end with 'Send DM to order.' No invent product claims.") },
+        { label: t("Completed prompt", "Prompt wey don complete"), content: t("Write a friendly Instagram caption for red sandals for young professionals. Price: N18,000. Orders close Friday. Keep it under 70 words and end with 'Send a DM to order.' Do not invent product claims.", "Write friendly Instagram caption for red sandals for young professionals. Price: N18,000. Order close Friday. Make e no pass 70 words and end with 'Send DM to order.' No invent product claims.") },
         { label: t("Fixed parts", "Parts wey no change"), content: t("Write a caption, use the length limit, end with a next step, and do not invent claims.", "Write caption, follow length limit, end with next step, and no invent claims.") },
-        { label: t("Changing parts", "Parts wey dey change"), content: t("Channel, product, audience, price, deadline, tone, and call to action.", "Channel, product, audience, price, deadline, tone, and call to action.") },
+        { label: t("Changing parts", "Parts wey dey change"), content: t("Channel, product, audience, price, deadline, tone, and what the reader should do next.", "Channel, product, audience, price, deadline, tone, and wetin reader suppose do next.") },
         { label: t("Template", "Template"), content: t("Write a [tone] [channel] caption for [product] for [audience]. Offer: [price or details]. Deadline: [date]. Keep it under [length]. End with [next step]. Do not invent claims.", "Write [tone] [channel] caption for [product] for [audience]. Offer: [price or details]. Deadline: [date]. Make e no pass [length]. End with [next step]. No invent claims.") },
-        { label: t("Filled version A", "Filled version A"), content: t("Instagram, red sandals, young professionals, N18,000, Friday, friendly, send a DM.", "Instagram, red sandals, young professionals, N18,000, Friday, friendly, send DM.") },
-        { label: t("Filled version B", "Filled version B"), content: t("WhatsApp, Saturday study group, first-year students, free, Thursday RSVP, direct, reply YES.", "WhatsApp, Saturday study group, first-year students, free, Thursday RSVP, direct, reply YES.") },
+        { label: t("Filled version A", "Example A after you fill am"), content: t("Instagram, red sandals, young professionals, N18,000, Friday, friendly, send a DM.", "Instagram, red sandals, young professionals, N18,000, Friday, friendly, send DM.") },
+        { label: t("Filled version B", "Example B after you fill am"), content: t("WhatsApp, Saturday study group, first-year students, 10am in Room 4, direct, reply YES.", "WhatsApp, Saturday study group, first-year students, 10am for Room 4, direct, reply YES.") },
       ],
     },
     {
@@ -292,9 +319,10 @@ export function applyPromptingCourseQuality({
   ];
 
   const toolkitLesson = findLesson(modules, "create-your-personal-prompt-toolkit");
+  toolkitLesson.title = t("Create Your Personal Prompt Toolkit", "Build Your Own Prompt Toolkit");
   toolkitLesson.content = [
     {
-      heading: t("Choose five tasks from your real life", "Choose five tasks from your real life"),
+      heading: t("Choose five tasks from your real life", "Choose five tasks wey you dey do often"),
       body: t(
         "Look across messages, work or school, planning, content, learning, business, and personal organisation. Choose five tasks you genuinely repeat, not five prompts that merely look impressive.",
         "Look messages, work or school, planning, content, learning, business, and personal organisation. Choose five tasks wey you really dey repeat, no be five prompts wey just look impressive."
@@ -322,7 +350,7 @@ export function applyPromptingCourseQuality({
   );
 
   const quickCheckBySlug: Record<string, QuickCheckItem[]> = {
-    "what-a-prompt-really-is": checks([["What makes a prompt useful beyond naming a topic?", "Wetin make prompt useful pass to just name topic?", "It says what AI should do and gives the details that affect the answer.", "E talk wetin AI suppose do and give details wey affect the answer.", "A topic alone leaves the task open. A clear action gives the conversation a direction.", "Topic alone leave the task open. Clear action show the direction."]]),
+    "what-a-prompt-really-is": checks([["What makes a prompt useful beyond naming a topic?", "Apart from the topic, wetin else make prompt useful?", "It says what AI should do and gives the details that affect the answer.", "E talk wetin AI suppose do and give the details wey fit change the answer.", "A topic alone leaves the task open. A clear action gives the conversation a direction.", "Topic alone no show the work. Clear action tell AI where to start."]]),
     "why-vague-prompts-give-weak-answers": checks([["Why is 'Write a post for my bakery' likely to produce a weak answer?", "Why 'Write post for my bakery' fit produce weak answer?", "It leaves the audience, offer, purpose, and next step unclear.", "E no show audience, offer, purpose, or next step.", "AI must guess the missing details, so the result may sound generic or be unusable.", "AI go guess the missing details, so the result fit sound generic or no useful."]]),
     "the-simple-prompt-formula": checks([["Which part tells AI what must not change or be invented?", "Which part tell AI wetin no suppose change or wetin e no suppose invent?", "The requirements or boundaries.", "The requirements or boundaries.", "Task says what to do. Requirements protect important facts, limits, and safety.", "Task talk wetin to do. Requirements protect important facts, limits, and safety."]]),
     "how-to-give-ai-better-context": checks([["Should you paste every detail you know?", "You suppose paste every detail wey you know?", "No. Include only details that affect the answer, and remove private information you do not need.", "No. Add only details wey affect the answer, and comot private information wey no need.", "Irrelevant detail can bury the task, while sensitive detail creates avoidable risk.", "Details wey no matter fit hide the task, and private details fit create problem wey no need."]]),
@@ -331,9 +359,9 @@ export function applyPromptingCourseQuality({
     "dont-start-over-refine-the-answer": checks([["When should you keep working in the same chat?", "When you suppose continue for the same chat?", "When the task is still the same and AI needs the earlier answer or instructions.", "When the task still be the same and AI need the earlier answer or instructions.", "The existing context helps a focused revision. Start fresh when that context no longer belongs to the task.", "The old context dey help focused revision. Start fresh when the context no concern the task again."]]),
     "ask-better-follow-up-questions": checks([["When is it useful to ask AI to clarify before answering?", "When e useful make AI ask questions before e answer?", "When important missing details could change the result.", "When important details wey miss fit change the result.", "Clarifying questions reduce assumptions on planning or other context-dependent tasks, but are unnecessary for every small request.", "Clarifying questions reduce guesswork for planning or task wey need context, but no be every small request need am."]]),
     "turn-one-answer-into-many-versions": checks([["What should change when one announcement becomes an email and a WhatsApp reminder?", "Wetin suppose change when one announcement turn email and WhatsApp reminder?", "The opening, length, structure, and next step may change. Approved facts should not.", "Opening, length, structure, and next step fit change. Approved facts no suppose change.", "Each channel has a different job, but all versions need one checked source of truth.", "Every channel get different work, but all versions need one checked source wey correct."]]),
-    "save-prompts-youll-reuse": checks([["Which prompt is worth saving?", "Which prompt worth saving?", "A tested prompt for a repeated task, with private and one-off details removed.", "Tested prompt for task wey dey repeat, after private and one-time details don comot.", "Saving fewer proven prompts creates a safer, more searchable collection.", "To save small number of prompts wey don work make the collection safer and easier to search."]]),
+    "save-prompts-youll-reuse": checks([["Which prompt is worth saving?", "Which kind prompt worth saving?", "A tested prompt for a repeated task, with private and one-off details removed.", "Prompt wey you don test for task wey dey repeat, after you comot private and one-time details.", "Saving fewer proven prompts creates a safer, more searchable collection.", "Small collection of prompts wey don work dey safer and easier to search."]]),
     "build-simple-prompt-templates": checks([["How do you know a prompt has become a reusable template?", "How you go know say prompt don become reusable template?", "The changing details are clear placeholders, the useful fixed instructions remain, and it works for two different situations.", "Changing details dey as clear placeholders, useful fixed instructions remain, and e work for two different situations.", "One successful example is not enough. A second test exposes details that were accidentally left fixed.", "One example no enough. Second test go expose details wey remain fixed by mistake."]]),
-    "create-your-personal-prompt-toolkit": checks([["What belongs in a useful first toolkit?", "Wetin belong inside useful first toolkit?", "Five tested entries for tasks you genuinely repeat, each with fields to change and a check before use.", "Five tested entries for tasks wey you really dey repeat, with fields wey go change and check before use.", "A small toolkit built around real work is easier to trust and maintain than a large downloaded list.", "Small toolkit wey follow your real work easy to trust and maintain pass big list wey you download."]]),
+    "create-your-personal-prompt-toolkit": checks([["What belongs in a useful first toolkit?", "Wetin useful first toolkit suppose get?", "Five tested entries for tasks you genuinely repeat, each with fields to change and a check before use.", "Five entries wey you don test for tasks wey you dey repeat, with fields to change and wetin to check before use.", "A small toolkit built around real work is easier to trust and maintain than a large downloaded list.", "Small toolkit wey follow your real work easy to trust and maintain pass big list wey you download."]]),
   };
   for (const module of modules) {
     for (const lesson of module.lessons) lesson.quickCheck = quickCheckBySlug[lesson.slug];
@@ -345,8 +373,8 @@ export function applyPromptingCourseQuality({
   playbookLesson.content[4] = {
     heading: t("Know what a better prompt cannot fix", "Know wetin better prompt no fit fix"),
     body: t(
-      "A clearer prompt cannot give an AI current information it does not have, access a private account or document, repair poor source material, or guarantee that invented facts disappear. It also cannot replace professional judgement for medical, legal, financial, or other high-stakes decisions. Sometimes the right next step is to find a reliable source, provide a better document, use a tool with the needed access, or ask a qualified person.",
-      "Clearer prompt no fit give AI current information wey e no get, enter private account or document, repair poor source material, or guarantee say invented facts no go show. E no fit replace professional judgement for medical, legal, financial, or other serious decisions. Sometimes the right next step na to find reliable source, provide better document, use tool wey get the access, or ask person wey qualify."
+      "A clearer prompt cannot give AI information it does not have, open your private account or document, repair poor notes, or guarantee that every fact is correct. It also cannot replace a doctor, lawyer, financial adviser, or another qualified person when the decision is serious.\n\nTry this decision: You ask AI for the current price of a bus ticket, but the tool cannot check today's price. Should you keep rewriting the prompt? No. Check the transport company's official page or ask at the terminal. The problem is missing current information, not the way you asked.\n\nThink of one recent AI answer you could not trust. Was the prompt unclear, or did you need a better source, a tool with access, or help from a qualified person?",
+      "Clearer prompt no fit give AI information wey e no get, open your private account or document, repair poor notes, or guarantee say every fact correct. E no fit replace doctor, lawyer, financial adviser, or another person wey qualify when the decision serious.\n\nTry this one: You ask AI the current price of bus ticket, but the tool no fit check today's price. You suppose continue to rewrite the prompt? No. Check the transport company official page or ask for the terminal. The problem no be how you ask. Na current information dey miss.\n\nThink about one AI answer wey you no fit trust recently. The prompt no clear, or you need better source, tool wey get access, or help from person wey qualify?"
     ),
     examples: [],
   };
@@ -374,44 +402,46 @@ export function applyPromptingCourseQuality({
     })),
   });
   playbookLesson.promptGroups = [
-    group(t("Writing and messages", "Messages and writing"), [2, 3, 8, 9, 13, 15]),
-    group(t("Work and productivity", "Work and how to save time"), [4, 11, 16]),
+    group(t("Writing and messages", "Messages and other writing"), [2, 3, 8, 9, 13, 15]),
+    group(t("Work and productivity", "Work wey AI fit make easier"), [4, 11, 16]),
     group(t("Learning and study", "Learning and study"), [1, 6, 22]),
-    group(t("Business and customers", "Business and customer work"), [5]),
-    group(t("Planning and organisation", "Planning and arrangement"), [7, 12, 14, 18, 21]),
+    group(t("Business and customers", "Business and customer reply"), [5]),
+    group(t("Planning and organisation", "Planning and how to arrange work"), [7, 12, 14, 18, 21]),
     group(t("Checking and improving answers", "How to check and improve answer"), [10, 17, 19, 20]),
   ];
 
   playbookLesson.capstone = {
-    title: t("From Rough Request to Final Result", "From Rough Request Reach Final Answer"),
+    title: t("From Rough Request to Final Result", "From Rough Request Reach Answer Wey Ready"),
     intro: t(
       "Follow one small community event from rough notes to two usable results. These are teaching examples, so another AI tool may use different wording.",
       "Follow one small community event from rough notes reach two results wey person fit use. Na teaching examples, so another AI tool fit use different wording."
     ),
     steps: [
-      { label: t("1. Rough request", "1. Rough request"), content: t("Write a WhatsApp announcement and checklist for our free community event.", "Write WhatsApp announcement and checklist for our free community event.") },
+      { label: t("1. Rough request", "1. First rough request"), content: t("Write a WhatsApp announcement and checklist for our free community event.", "Write WhatsApp announcement and checklist for our free community event.") },
       { label: t("2. What is missing", "2. Wetin dey miss"), content: t("The audience, purpose, date, time, venue, what to bring, organiser, and response deadline are unclear.", "Audience, purpose, date, time, venue, wetin to bring, organiser, and response deadline no clear.") },
-      { label: t("3. Clarification questions", "3. Questions to clarify am"), content: t("Who is invited? What are the confirmed date, time, and venue? What should people bring or do before attending?", "Who una invite? Which date, time, and venue don confirm? Wetin people suppose bring or do before dem come?") },
-      { label: t("4. Learner's source notes", "4. Learner source notes"), content: t("Free CV clinic for final-year students and recent graduates. Saturday 18 October, 10am to 1pm, Unity Hall, Surulere. Bring a phone or laptop and a current CV. Twelve volunteer reviewers. Reply YES by Thursday. Contact: Ada, 0800 000 0000.", "Free CV clinic for final-year students and recent graduates. Saturday 18 October, 10am reach 1pm, Unity Hall, Surulere. Bring phone or laptop and current CV. Twelve volunteer reviewers. Reply YES before Thursday. Contact: Ada, 0800 000 0000.") },
-      { label: t("5. Improved first prompt", "5. Better first prompt"), content: t("Using only the confirmed notes below, write a warm, clear WhatsApp announcement for final-year students and recent graduates. Keep it under 130 words. Include the purpose, date, time, venue, what to bring, RSVP deadline, and contact. Do not invent benefits or details. Then create a preparation checklist for the organiser.", "Use only the confirmed notes below write warm, clear WhatsApp announcement for final-year students and recent graduates. Make e no pass 130 words. Add purpose, date, time, venue, wetin to bring, RSVP deadline, and contact. No invent benefit or detail. Then create preparation checklist for organiser.") },
+      { label: t("3. Clarification questions", "3. Questions wey AI suppose ask"), content: t("Who is invited? What are the confirmed date, time, and venue? What should people bring or do before attending?", "Who una invite? Which date, time, and venue don confirm? Wetin people suppose bring or do before dem come?") },
+      { label: t("4. Learner's source notes", "4. Notes from the learner"), content: t("Free CV clinic for final-year students and recent graduates. Saturday 18 October, 10am to 1pm, Unity Hall, Surulere. Bring a phone or laptop and a current CV. Twelve volunteer reviewers. Reply YES by Thursday. Contact: Ada, 0800 000 0000.", "Free CV clinic for final-year students and recent graduates. Saturday 18 October, 10am reach 1pm, Unity Hall, Surulere. Bring phone or laptop and current CV. Twelve volunteer reviewers. Reply YES before Thursday. Contact: Ada, 0800 000 0000.") },
+      { label: t("5. Improved first prompt", "5. Better first prompt"), content: t("Using only the confirmed notes below, write a warm, clear WhatsApp announcement for final-year students and recent graduates. Keep it under 130 words. Include the purpose, date, time, venue, what to bring, reply deadline, and contact. Do not invent benefits or details. Then create a preparation checklist for the organiser.", "Use only the confirmed notes below. Write warm, clear WhatsApp announcement for final-year students and recent graduates. Make e no pass 130 words. Add purpose, date, time, venue, wetin to bring, reply deadline, and contact. No invent benefit or detail. Then create preparation checklist for organiser.") },
       { label: t("6. One possible first response", "6. One first answer wey fit come out"), content: t("Free CV Clinic this Saturday at Unity Hall, Surulere, from 10am to 1pm. Final-year students and recent graduates can get expert CV reviews. Bring your phone or laptop. Reply YES by Thursday. Contact Ada on 0800 000 0000.\n\nChecklist: confirm hall, brief volunteers, print signs, set up registration.", "Free CV Clinic na this Saturday for Unity Hall, Surulere, from 10am reach 1pm. Final-year students and recent graduates fit get expert CV review. Bring phone or laptop. Reply YES before Thursday. Contact Ada for 0800 000 0000.\n\nChecklist: confirm hall, brief volunteers, print signs, set registration.") },
-      { label: t("7. Instruction check", "7. Check the instruction"), content: t("It included most details and stayed short. It missed the full date and current CV. It added 'expert', which the notes did not support.", "E include most details and e short. E miss full date and current CV. E add 'expert', but that one no dey inside the notes.") },
-      { label: t("8. Focused follow-up", "8. Focused follow-up"), content: t("Keep the structure. Add Saturday 18 October and tell people to bring a current CV. Remove the word 'expert' because it is not in the source notes. Keep every other confirmed fact unchanged.", "Keep the structure. Add Saturday 18 October and tell people make dem bring current CV. Comot 'expert' because e no dey source notes. Keep every other confirmed fact as e be.") },
-      { label: t("9. Revised response", "9. Revised answer"), content: t("Free CV Clinic for final-year students and recent graduates. Join us on Saturday 18 October, 10am to 1pm, at Unity Hall, Surulere. Bring your current CV and a phone or laptop. Reply YES by Thursday to attend. Questions? Contact Ada on 0800 000 0000.", "Free CV Clinic for final-year students and recent graduates. Join us Saturday 18 October, 10am reach 1pm, for Unity Hall, Surulere. Bring your current CV and phone or laptop. Reply YES before Thursday if you wan attend. For questions, contact Ada for 0800 000 0000.") },
-      { label: t("10. Fact and privacy check", "10. Check facts and privacy"), content: t("The date, time, venue, audience, items, deadline, and contact match the notes. The organiser confirms the phone number is meant to be public before posting.", "Date, time, venue, audience, items, deadline, and contact match the notes. Organiser confirm say the phone number fit enter public post before dem send am.") },
+      { label: t("7. Instruction check", "7. Check whether e follow instruction"), content: t("It included most details and stayed short. It missed the full date and current CV. It added 'expert', which the notes did not support. The checklist also added signs and registration setup. Those may be useful suggestions, but they were not confirmed facts.", "E include most details and e short. E miss full date and current CV. E add 'expert', but that one no dey inside the notes. The checklist still add signs and registration setup. Those ideas fit help, but dem no be facts wey don confirm.") },
+      { label: t("8. Focused follow-up", "8. Follow-up to fix am"), content: t("Keep the structure. Add Saturday 18 October and tell people to bring a current CV. Remove 'expert' because it is not in the source notes. For the checklist, use tasks supported by the notes and label any extra planning idea as a suggestion.", "Keep the structure. Add Saturday 18 October and tell people make dem bring current CV. Comot 'expert' because e no dey inside the notes. For the checklist, use tasks wey the notes support and mark any extra planning idea as suggestion.") },
+      { label: t("9. Revised response", "9. Answer after correction"), content: t("Free CV Clinic for final-year students and recent graduates. Join us on Saturday 18 October, 10am to 1pm, at Unity Hall, Surulere. Bring your current CV and a phone or laptop. Reply YES by Thursday to attend. Questions? Contact Ada on 0800 000 0000.", "Free CV Clinic for final-year students and recent graduates. Join us Saturday 18 October, 10am reach 1pm, for Unity Hall, Surulere. Bring your current CV and phone or laptop. Reply YES before Thursday if you wan attend. For questions, contact Ada for 0800 000 0000.") },
+      { label: t("10. Fact and privacy check", "10. Check facts and private details"), content: t("The date, time, venue, audience, items, deadline, and contact match the notes. The organiser confirms the phone number is meant to be public before posting.", "Date, time, venue, audience, items, deadline, and contact match the notes. Organiser confirm say the phone number fit enter public post before dem send am.") },
       { label: t("11. Final WhatsApp announcement", "11. Final WhatsApp announcement"), content: t("FREE CV CLINIC\n\nFinal-year student or recent graduate? Join us on Saturday 18 October, from 10am to 1pm, at Unity Hall, Surulere. Bring your current CV and a phone or laptop.\n\nThe session is free. Reply YES by Thursday to attend. For questions, contact Ada on 0800 000 0000.", "FREE CV CLINIC\n\nYou be final-year student or recent graduate? Join us Saturday 18 October, from 10am reach 1pm, for Unity Hall, Surulere. Bring your current CV and phone or laptop.\n\nThe session free. Reply YES before Thursday if you wan attend. For questions, contact Ada for 0800 000 0000.") },
-      { label: t("12. Preparation checklist", "12. Preparation checklist"), content: t("BEFORE THURSDAY: track replies, confirm 12 reviewers.\nFRIDAY: confirm hall, send reviewer brief, prepare signs and registration list.\nSATURDAY: set up by 9:30am, welcome attendees, match each person with a reviewer.", "BEFORE THURSDAY: track replies, confirm 12 reviewers.\nFRIDAY: confirm hall, send reviewer brief, prepare signs and registration list.\nSATURDAY: set up before 9:30am, welcome people, match every person with reviewer.") },
+      { label: t("12. Preparation checklist", "12. Turn am into checklist"), content: t("CONFIRMED TASKS\n[ ] Record YES replies by Thursday.\n[ ] Confirm the 12 volunteer reviewers.\n[ ] Keep the venue, time, contact, and attendee requirements together.\n[ ] Welcome attendees and match each person with a reviewer.\n\nPLANNING SUGGESTION TO CONFIRM\n[ ] Decide what time organisers should arrive at Unity Hall.", "TASKS WEY DON CONFIRM\n[ ] Record YES replies before Thursday.\n[ ] Confirm the 12 volunteer reviewers.\n[ ] Keep venue, time, contact, and wetin attendees suppose bring together.\n[ ] Welcome people and match each person with reviewer.\n\nPLANNING IDEA WEY ORGANISER SUPPOSE CONFIRM\n[ ] Decide the time wey organisers suppose reach Unity Hall.") },
     ],
-    learnerTitle: t("Your turn", "Your turn"),
+    learnerTitle: t("Your turn", "Now try your own"),
     learnerTask: t(
       "Choose one real, safe task from your life and take it through the same steps. Keep the task small enough to finish, and check the final result before you use it.",
       "Choose one real task from your life wey safe and follow the same steps. Make the task small enough to finish, then check the final result before you use am."
     ),
     worksheet: [
-      t("My task", "My task"), t("My audience", "My audience"), t("Useful context", "Useful context"),
-      t("Missing information", "Information wey miss"), t("Tone", "Tone"), t("Requirements", "Requirements"),
-      t("Output", "Output"), t("First result", "First result"), t("What needs fixing", "Wetin need fixing"),
-      t("Final result", "Final result"), t("What I checked before using it", "Wetin I check before I use am"),
+      t("My task", "The work wey I wan do"), t("My audience", "Who the answer dey for"), t("Useful context", "Useful details"),
+      t("Missing information", "Information wey miss"), t("My clarification questions", "Questions wey I need ask first"), t("My source notes", "Notes wey AI suppose use"),
+      t("Tone", "How the answer suppose sound"), t("Requirements", "Rules wey the answer suppose follow"),
+      t("Output", "The kind answer wey I need"), t("First result", "First answer"), t("What needs fixing", "Wetin need fixing"),
+      t("My corrective follow-up", "Follow-up wey go fix am"), t("Final result", "Final answer"), t("My second useful format", "Another format wey go help"),
+      t("What I checked before using it", "Wetin I check before I use am"),
     ],
   };
   playbookLesson.quickCheck = checks([

@@ -9,8 +9,8 @@ interface QuickCheckListProps {
 export function QuickCheckList({ items, lang }: QuickCheckListProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const showLabel = lang === "pidgin" ? "Show answer wey fit" : "Show suggested answer";
-  const hideLabel = lang === "pidgin" ? "Hide answer" : "Hide answer";
-  const answerLabel = lang === "pidgin" ? "Answer wey fit" : "Suggested answer";
+  const hideLabel = lang === "pidgin" ? "Close answer" : "Hide answer";
+  const answerLabel = lang === "pidgin" ? "Answer wey fit work" : "Suggested answer";
 
   return (
     <ol className="space-y-3">
