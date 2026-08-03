@@ -29,37 +29,27 @@ export function CourseHome({
   const courseTitle = getLocalizedText(course.title, lang);
   const courseDescription = getLocalizedText(course.description, lang);
   const startHereTitle = getLocalizedText(course.startHere.lesson.title, lang);
-  const finalWrapUpTitle = getLocalizedText(
-    course.finalWrapUp.lesson.title,
-    lang
-  );
-
   const labels =
     lang === "pidgin"
       ? {
           freeCourse: "Free course",
           heroIntro:
             "A calm beginner path for learning how to use AI chat tools in real work, school, business, and everyday matter.",
-          startHere: "Start from here",
-          startHereDescription:
-            "Start with the short guide before Module 1. E go show you how the course works, how to switch language, and how to use the prompts.",
           startHereButton: "Start From Here",
-          viewCurriculum: "View curriculum",
+          viewLearningPath: "See learning path",
           modules: "modules",
-          coreLessons: "main lessons",
           languageSupport: "English + Pidgin",
+          courseAtGlance: "Course at a glance",
+          noLogin: "No login needed",
           methodLabel: "Learning method",
           journey: "Learning path",
           journeyDescription:
             "Follow the course in order the first time. Start Here prepares you, the modules build the skill, and the wrap-up helps you keep using wetin you learn.",
           startLabel: "Start",
-          finalLabel: "Wrap-up",
-          finalNote: "Best after Module 4",
-          curriculum: "Curriculum",
-          curriculumDescription:
-            "Each module get three lessons. Open any module to see the lessons inside.",
+          finalLabel: "Final step",
+          finalWrapUpTitle: "Final Wrap-up",
+          finalNote: "You don reach the end. Use this part after Module 4.",
           module: "Module",
-          lesson: "lesson",
           lessons: "lessons",
           openModule: "Open module",
           methodTitle: "Read, try, check, use",
@@ -104,26 +94,21 @@ export function CourseHome({
           freeCourse: "Free course",
           heroIntro:
             "A calm beginner path for learning how to use AI chat tools in real work, school, business, and everyday tasks.",
-          startHere: "Start here",
-          startHereDescription:
-            "Begin with the short guide before Module 1. It explains how the course works, how to switch language, and how to use the prompts.",
           startHereButton: "Start Here",
-          viewCurriculum: "View curriculum",
+          viewLearningPath: "View learning path",
           modules: "modules",
-          coreLessons: "core lessons",
           languageSupport: "English + Pidgin",
+          courseAtGlance: "Course at a glance",
+          noLogin: "No login needed",
           methodLabel: "Learning method",
           journey: "Learning path",
           journeyDescription:
             "Follow the course in order the first time. Start Here prepares you, the modules build the skill, and the wrap-up helps you keep using what you learn.",
           startLabel: "Start",
-          finalLabel: "Wrap-up",
-          finalNote: "Best after Module 4",
-          curriculum: "Curriculum",
-          curriculumDescription:
-            "Each module has three lessons. Open any module to see the lessons inside.",
+          finalLabel: "Final step",
+          finalWrapUpTitle: "Final Wrap-up",
+          finalNote: "You made it to the end. Use this part after Module 4.",
           module: "Module",
-          lesson: "lesson",
           lessons: "lessons",
           openModule: "Open module",
           methodTitle: "Read, try, check, use",
@@ -196,50 +181,40 @@ export function CourseHome({
                 size="md"
                 className="w-full sm:w-auto border border-neutral-200"
               >
-                <a href="#course-modules">{labels.viewCurriculum}</a>
+                <a href="#course-path">{labels.viewLearningPath}</a>
               </Button>
-            </div>
-
-            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-neutral-500">
-              <span>
-                {course.modules.length} {labels.modules}
-              </span>
-              <span>
-                {courseLessonReferences.length} {labels.coreLessons}
-              </span>
-              <span>{labels.languageSupport}</span>
-              <span>{labels.methodLabel}: Read, Try, Check, Use</span>
             </div>
           </div>
 
           <aside className="bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-3">
-              {labels.startHere}
-            </p>
             <h2 className="font-display text-2xl font-bold text-neutral-900 mb-3">
-              {startHereTitle}
+              {labels.courseAtGlance}
             </h2>
-            <p className="text-sm leading-7 text-neutral-600">
-              {labels.startHereDescription}
-            </p>
-            <CourseLink
-              href={getCourseStartPath(course)}
-              navigate={navigate}
-              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition-colors"
-            >
-              {labels.startHereButton}
-              <ArrowRight size={16} />
-            </CourseLink>
+            <ul className="divide-y divide-neutral-200 text-sm text-neutral-700">
+              <li className="py-3">
+                <strong className="font-display text-neutral-900">
+                  {course.modules.length} {labels.modules}
+                </strong>
+              </li>
+              <li className="py-3">
+                <strong className="font-display text-neutral-900">
+                  {courseLessonReferences.length} {labels.lessons}
+                </strong>
+              </li>
+              <li className="py-3 font-semibold text-neutral-900">{labels.languageSupport}</li>
+              <li className="py-3 font-semibold text-neutral-900">{labels.freeCourse}</li>
+              <li className="pt-3 font-semibold text-neutral-900">{labels.noLogin}</li>
+            </ul>
           </aside>
         </section>
 
-        <section aria-labelledby="course-path" className="mt-12 sm:mt-16">
+        <section id="course-path" aria-labelledby="course-path-heading" className="mt-12 scroll-mt-24 sm:mt-16">
           <div className="max-w-2xl mb-6">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
               {labels.journey}
             </p>
             <h2
-              id="course-path"
+              id="course-path-heading"
               className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3"
             >
               {labels.journey}
@@ -249,12 +224,12 @@ export function CourseHome({
             </p>
           </div>
 
-          <ol className="grid gap-3 md:grid-cols-3">
-            <li className="md:col-span-1">
+          <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <li className="sm:col-span-2">
               <CourseLink
                 href={getCourseStartPath(course)}
                 navigate={navigate}
-                className="group block h-full bg-brand-50 border border-brand-100 rounded-2xl p-5 hover:border-brand-300 transition-all"
+                className="group block bg-brand-50 border border-brand-100 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
               >
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-700 mb-2">
                   {labels.startLabel}
@@ -263,42 +238,71 @@ export function CourseHome({
                   {startHereTitle}
                 </h3>
                 <p className="text-sm leading-7 text-neutral-700">
-                  {labels.startHereDescription}
+                  {getLocalizedText(course.startHere.lesson.intro, lang)}
                 </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
+                  {labels.startHereButton}
+                  <ArrowRight size={16} />
+                </span>
               </CourseLink>
             </li>
 
-            {course.modules.map((module, index) => {
-              const moduleTitle = getLocalizedText(module.title, lang);
-              const moduleDescription = getLocalizedText(module.description, lang);
-              const lessonLabel =
-                module.lessons.length === 1 ? labels.lesson : labels.lessons;
+            {course.modules.map((module, moduleIndex) => {
+                  const moduleTitle = getLocalizedText(module.title, lang);
+                  const moduleDescription = getLocalizedText(module.description, lang);
 
-              return (
-                <li key={module.slug}>
-                  <CourseLink
-                    href={getModulePath(module.slug, course.slug)}
-                    navigate={navigate}
-                    className="group block h-full bg-surface border border-neutral-200 rounded-2xl p-5 hover:border-brand-300 transition-all"
-                  >
-                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
-                      {labels.module} {index + 1}
-                    </p>
-                    <h3 className="font-display text-xl font-bold text-neutral-900 mb-2">
-                      {moduleTitle}
-                    </h3>
-                    <p className="text-sm leading-7 text-neutral-600">
-                      {moduleDescription}
-                    </p>
-                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.12em] text-brand-700">
-                      {module.lessons.length} {lessonLabel}
-                    </p>
-                  </CourseLink>
-                </li>
-              );
+                  return (
+                    <li key={module.slug}>
+                      <CourseLink
+                        href={getModulePath(module.slug, course.slug)}
+                        navigate={navigate}
+                        className="group block h-full bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
+                      >
+                        <div className="flex items-start justify-between gap-4 mb-5">
+                          <div className="w-11 h-11 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-display font-bold shrink-0">
+                            {module.number}
+                          </div>
+                          <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-500">
+                            {module.lessons.length} {labels.lessons}
+                          </span>
+                        </div>
+
+                        <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
+                          {labels.module} {moduleIndex + 1}
+                        </p>
+                        <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                          {moduleTitle}
+                        </h3>
+                        <p className="text-sm sm:text-base leading-7 text-neutral-600">
+                          {moduleDescription}
+                        </p>
+
+                        <ul className="mt-5 space-y-2">
+                          {module.lessons.map((lesson) => {
+                            const localizedLesson = getLocalizedLesson(lesson, lang);
+
+                            return (
+                              <li
+                                key={lesson.slug}
+                                className="text-sm leading-6 text-neutral-600 flex gap-2"
+                              >
+                                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-400 shrink-0" />
+                                <span>{localizedLesson.title}</span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+
+                        <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
+                          {labels.openModule}
+                          <ArrowRight size={16} />
+                        </span>
+                      </CourseLink>
+                    </li>
+                  );
             })}
 
-            <li>
+            <li className="sm:col-span-2">
               <CourseLink
                 href={getCourseFinalWrapUpPath(course)}
                 navigate={navigate}
@@ -308,7 +312,7 @@ export function CourseHome({
                   {labels.finalLabel}
                 </p>
                 <h3 className="font-display text-xl font-bold text-white mb-2">
-                  {finalWrapUpTitle}
+                  {labels.finalWrapUpTitle}
                 </h3>
                 <p className="text-sm leading-7 text-neutral-300">
                   {labels.finalNote}
@@ -316,85 +320,6 @@ export function CourseHome({
               </CourseLink>
             </li>
           </ol>
-        </section>
-
-        <section
-          id="course-modules"
-          aria-labelledby="course-modules-heading"
-          className="mt-12 sm:mt-16"
-        >
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
-            <div className="max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
-                {labels.curriculum}
-              </p>
-              <h2
-                id="course-modules-heading"
-                className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3"
-              >
-                {labels.curriculum}
-              </h2>
-              <p className="text-sm sm:text-base leading-7 text-neutral-600">
-                {labels.curriculumDescription}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {course.modules.map((module, moduleIndex) => {
-              const moduleTitle = getLocalizedText(module.title, lang);
-              const moduleDescription = getLocalizedText(module.description, lang);
-
-              return (
-                <CourseLink
-                  key={module.slug}
-                  href={getModulePath(module.slug, course.slug)}
-                  navigate={navigate}
-                  className="group block bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6 hover:border-brand-300 transition-all"
-                >
-                  <div className="flex items-start justify-between gap-4 mb-5">
-                    <div className="w-11 h-11 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-display font-bold shrink-0">
-                      {module.number}
-                    </div>
-                    <span className="rounded-full bg-neutral-50 border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-500">
-                      {module.lessons.length} {labels.lessons}
-                    </span>
-                  </div>
-
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-neutral-400 mb-2">
-                    {labels.module} {moduleIndex + 1}
-                  </p>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
-                    {moduleTitle}
-                  </h3>
-                  <p className="text-sm sm:text-base leading-7 text-neutral-600">
-                    {moduleDescription}
-                  </p>
-
-                  <ul className="mt-5 space-y-2">
-                    {module.lessons.map((lesson) => {
-                      const localizedLesson = getLocalizedLesson(lesson, lang);
-
-                      return (
-                        <li
-                          key={lesson.slug}
-                          className="text-sm leading-6 text-neutral-600 flex gap-2"
-                        >
-                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-400 shrink-0" />
-                          <span>{localizedLesson.title}</span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
-                    {labels.openModule}
-                    <ArrowRight size={16} />
-                  </span>
-                </CourseLink>
-              );
-            })}
-          </div>
         </section>
 
         <section className="mt-12 sm:mt-16 bg-neutral-50 border border-neutral-200 rounded-2xl p-5 sm:p-7">

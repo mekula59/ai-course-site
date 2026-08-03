@@ -30,10 +30,10 @@ export function PromptingBasicsHome({
           courseSize: "12 lessons + Prompt Playbook",
           statusNote: "Start from the short guide, follow the four modules, then use the Prompt Playbook whenever you need am.",
           start: "Start course",
-          updates: "Get Course Updates",
+          viewLearningPath: "See learning path",
           learningPath: "Your learning path",
-          pathIntro: "Start from here, then follow the lessons in order. Every section dey ready.",
-          continueLearning: "Continue learning",
+          pathIntro: "Start here, then follow the lessons in order. Come back to the Prompt Playbook anytime you need am.",
+          openModule: "Open module",
           lessons: "lessons",
           startHere: "Start from here",
           playbook: "Prompt Playbook",
@@ -54,10 +54,10 @@ export function PromptingBasicsHome({
           courseSize: "12 lessons + Prompt Playbook",
           statusNote: "Begin with the short guide, follow the four modules, then return to the Prompt Playbook whenever you need it.",
           start: "Start course",
-          updates: "Get Course Updates",
+          viewLearningPath: "View learning path",
           learningPath: "Your learning path",
-          pathIntro: "Begin here, then follow the lessons in order. Every section is ready.",
-          continueLearning: "Continue learning",
+          pathIntro: "Start here, then follow the lessons in order. Return to the Prompt Playbook whenever you need it.",
+          openModule: "Open module",
           lessons: "lessons",
           startHere: "Start here",
           playbook: "Prompt Playbook",
@@ -115,9 +115,7 @@ export function PromptingBasicsHome({
                 variant="ghost"
                 className="w-full sm:w-auto border border-brand-200 bg-surface/70"
               >
-                <CourseLink href="/#course-updates" navigate={navigate}>
-                  {labels.updates}
-                </CourseLink>
+                <a href="#learning-path">{labels.viewLearningPath}</a>
               </Button>
             </div>
           </div>
@@ -152,7 +150,7 @@ export function PromptingBasicsHome({
           </div>
         </section>
 
-        <section aria-labelledby="learning-path-heading" className="mt-10 sm:mt-14">
+        <section id="learning-path" aria-labelledby="learning-path-heading" className="mt-10 scroll-mt-24 sm:mt-14">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
             {labels.learningPath}
           </p>
@@ -215,7 +213,7 @@ export function PromptingBasicsHome({
                 </ol>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600">
                   <BookOpen size={16} />
-                  {module.lessons.length} {labels.lessons} | {labels.continueLearning}
+                  {module.lessons.length} {labels.lessons} | {labels.openModule}
                 </span>
               </CourseLink>
             ))}
