@@ -4,6 +4,7 @@ import {
   promptingPlaybook,
   promptingRefiningResponsesModule,
 } from "@/lib/prompting-course-advanced";
+import { applyPromptingCourseQuality } from "@/lib/prompting-course-quality";
 
 export const promptingBasicsStartHere: CourseStandaloneLesson = {
   slug: "start-here",
@@ -1390,6 +1391,17 @@ for (const module of [promptingFoundationsModule, promptingContextToneFormatModu
     lesson.teaching = existingLessonUpgrades[lesson.slug];
   }
 }
+
+applyPromptingCourseQuality({
+  modules: [
+    promptingFoundationsModule,
+    promptingContextToneFormatModule,
+    promptingRefiningResponsesModule,
+    promptingBetterHabitsModule,
+  ],
+  startHere: promptingBasicsStartHere,
+  playbook: promptingPlaybook,
+});
 
 export const promptingBasicsCourse: Course = {
   slug: "prompting-basics",

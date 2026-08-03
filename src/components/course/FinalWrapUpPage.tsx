@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
+import { QuickCheckList } from "@/components/course/QuickCheckList";
 import { copyTextToClipboard } from "@/lib/clipboard";
 import {
   beginnerCourse,
@@ -45,7 +46,7 @@ export function FinalWrapUpPage({
   course = beginnerCourse,
   navigate,
 }: FinalWrapUpPageProps) {
-  const [promptCopied, setPromptCopied] = useState(false);
+  const [copiedPrompt, setCopiedPrompt] = useState<string | null>(null);
   const isPromptPlaybook = course.slug === "prompting-basics";
   const { lang } = useLang();
   const lesson = getLocalizedLesson(course.finalWrapUp.lesson, lang);
@@ -78,6 +79,8 @@ export function FinalWrapUpPage({
           weeklyPlan: isPromptPlaybook ? "When answer go wrong" : "Practice plan for the week",
           prompts: isPromptPlaybook ? "Safety check" : "Prompts to keep",
           finalPrompt: isPromptPlaybook ? "Copy all 22 prompts" : "Final prompt",
+          capstone: "Worked example",
+          promptsHeading: "Prompts by category",
           copyPrompt: "Copy prompt",
           copied: "Copied",
           nextStep: isPromptPlaybook ? "Practice routine" : "Next thing to do",
@@ -96,6 +99,8 @@ export function FinalWrapUpPage({
           weeklyPlan: isPromptPlaybook ? "When answers go wrong" : "Weekly practice plan",
           prompts: isPromptPlaybook ? "Safety check" : "Prompts to keep",
           finalPrompt: isPromptPlaybook ? "Copy all 22 prompts" : "Final prompt",
+          capstone: "Worked example",
+          promptsHeading: "Prompts by category",
           copyPrompt: "Copy prompt",
           copied: "Copied",
           nextStep: isPromptPlaybook ? "Practice routine" : "Next step",
@@ -106,14 +111,14 @@ export function FinalWrapUpPage({
           backHome: "Back to course home",
         };
 
-  const handleCopyPrompt = async () => {
-    const copied = await copyTextToClipboard(lesson.examplePrompt);
+  const handleCopyPrompt = async (copy = lesson.examplePrompt, id = "all") => {
+    const copied = await copyTextToClipboard(copy);
 
     if (copied) {
-      setPromptCopied(true);
-      window.setTimeout(() => setPromptCopied(false), 1500);
+      setCopiedPrompt(id);
+      window.setTimeout(() => setCopiedPrompt(null), 1500);
     } else {
-      setPromptCopied(false);
+      setCopiedPrompt(null);
     }
   };
 
@@ -341,6 +346,74 @@ export function FinalWrapUpPage({
             ) : null}
           </section>
 
+          {lesson.capstone ? (
+            <section aria-labelledby="capstone-heading">
+              <div className="mb-6 max-w-2xl">
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
+                  {labels.capstone}
+                </p>
+                <h2 id="capstone-heading" className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-3">
+                  {lesson.capstone.title}
+                </h2>
+                <p className="text-base leading-8 text-neutral-700">{lesson.capstone.intro}</p>
+              </div>
+              <ol className="relative space-y-0 border-l border-brand-200 pl-5 sm:pl-7">
+                {lesson.capstone.steps.map((step, index) => (
+                  <li key={step.label} className="relative pb-7 last:pb-0">
+                    <span className="absolute -left-[1.65rem] sm:-left-[2.15rem] top-1 flex h-5 w-5 items-center justify-center rounded-full border-4 border-surface bg-brand-500 text-[0]" aria-hidden="true">
+                      {index + 1}
+                    </span>
+                    <h3 className="font-display text-base font-bold text-neutral-900 mb-2">{step.label}</h3>
+                    <p className="whitespace-pre-line text-sm leading-7 text-neutral-700">{step.content}</p>
+                  </li>
+                ))}
+              </ol>
+              <div className="mt-8 rounded-2xl border border-brand-100 bg-brand-50 p-5 sm:p-6">
+                <h3 className="font-display text-xl font-bold text-neutral-900 mb-2">{lesson.capstone.learnerTitle}</h3>
+                <p className="text-sm leading-7 text-neutral-700 mb-5">{lesson.capstone.learnerTask}</p>
+                <div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                  {lesson.capstone.worksheet.map((item) => (
+                    <div key={item} className="border-b border-brand-200 pb-2 text-sm font-semibold text-neutral-700">{item}</div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          ) : null}
+
+          {lesson.promptGroups.length > 0 ? (
+            <section aria-labelledby="prompt-groups-heading">
+              <h2 id="prompt-groups-heading" className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-6">
+                {labels.promptsHeading}
+              </h2>
+              <div className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-surface">
+                {lesson.promptGroups.map((group) => (
+                  <div key={group.title} className="p-4 sm:p-6">
+                    <h3 className="font-display text-lg font-bold text-neutral-900 mb-3">{group.title}</h3>
+                    <div className="divide-y divide-neutral-100">
+                      {group.prompts.map((item) => {
+                        const promptId = `${group.title}-${item.label}`;
+                        return (
+                          <div key={promptId} className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-start">
+                            <p className="min-w-0 flex-1 whitespace-pre-line text-sm leading-7 text-neutral-700">{item.prompt}</p>
+                            <button
+                              type="button"
+                              aria-label={`${labels.copyPrompt}: ${item.label}`}
+                              onClick={() => handleCopyPrompt(item.prompt, promptId)}
+                              className="inline-flex min-h-11 w-fit shrink-0 items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-2 text-xs font-semibold text-brand-700 transition-colors hover:border-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+                            >
+                              {copiedPrompt === promptId ? <Check size={14} /> : <Copy size={14} />}
+                              {copiedPrompt === promptId ? labels.copied : labels.copyPrompt}
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
           <section className="space-y-4" aria-label="Final wrap-up workbook">
             <div className="bg-neutral-900 text-white rounded-2xl p-4 sm:p-5">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center mb-3">
@@ -352,11 +425,11 @@ export function FinalWrapUpPage({
                 </div>
                 <button
                   type="button"
-                  onClick={handleCopyPrompt}
+                  onClick={() => handleCopyPrompt()}
                   className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-neutral-100 hover:border-brand-300 hover:text-white transition-colors"
                 >
-                  {promptCopied ? <Check size={14} /> : <Copy size={14} />}
-                  {promptCopied ? labels.copied : labels.copyPrompt}
+                  {copiedPrompt === "all" ? <Check size={14} /> : <Copy size={14} />}
+                  {copiedPrompt === "all" ? labels.copied : labels.copyPrompt}
                 </button>
               </div>
               <pre className="whitespace-pre-wrap rounded-xl border border-white/10 bg-black/25 p-3.5 sm:p-4 font-sans text-[13px] sm:text-sm leading-6 sm:leading-7 text-neutral-100 max-w-full overflow-x-auto">
@@ -384,11 +457,7 @@ export function FinalWrapUpPage({
                   {labels.quickCheck}
                 </h2>
               </div>
-              <ol className="list-decimal pl-5 space-y-2 text-sm leading-7 text-neutral-700">
-                {lesson.quickCheck.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
+              <QuickCheckList items={lesson.quickCheck} lang={lang} />
             </div>
 
             <div className="bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6">

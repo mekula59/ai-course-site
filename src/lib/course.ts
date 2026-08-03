@@ -13,6 +13,26 @@ export interface LessonExample {
   content: LocalizedText;
 }
 
+export interface QuickCheckItem {
+  question: LocalizedText;
+  answer: LocalizedText;
+  explanation: LocalizedText;
+}
+
+export interface LessonCapstone {
+  title: LocalizedText;
+  intro: LocalizedText;
+  steps: Array<{ label: LocalizedText; content: LocalizedText }>;
+  learnerTitle: LocalizedText;
+  learnerTask: LocalizedText;
+  worksheet: LocalizedText[];
+}
+
+export interface LessonPromptGroup {
+  title: LocalizedText;
+  prompts: Array<{ label: LocalizedText; prompt: LocalizedText }>;
+}
+
 export interface Lesson {
   slug: string;
   title: LocalizedText;
@@ -26,7 +46,7 @@ export interface Lesson {
   keyTakeaway: LocalizedText;
   examplePrompt: LocalizedText;
   practiceTask: LocalizedText;
-  quickCheck?: LocalizedText[];
+  quickCheck?: Array<LocalizedText | QuickCheckItem>;
   teaching?: {
     question: LocalizedText;
     situation: LocalizedText;
@@ -35,10 +55,16 @@ export interface Lesson {
       before: LocalizedText;
       after: LocalizedText;
       why: LocalizedText;
+      resultLabel?: LocalizedText;
+      beforeResult?: LocalizedText;
+      afterResult?: LocalizedText;
+      resultExplanation?: LocalizedText;
     };
     didYouNotice: LocalizedText;
     commonMistake: LocalizedText;
   };
+  capstone?: LessonCapstone;
+  promptGroups?: LessonPromptGroup[];
 }
 
 export interface LocalizedLessonSection {
@@ -65,7 +91,7 @@ export interface LocalizedLesson {
   keyTakeaway: string;
   examplePrompt: string;
   practiceTask: string;
-  quickCheck: string[];
+  quickCheck: Array<{ question: string; answer?: string; explanation?: string }>;
   teaching?: {
     question: string;
     situation: string;
@@ -74,10 +100,26 @@ export interface LocalizedLesson {
       before: string;
       after: string;
       why: string;
+      resultLabel?: string;
+      beforeResult?: string;
+      afterResult?: string;
+      resultExplanation?: string;
     };
     didYouNotice: string;
     commonMistake: string;
   };
+  capstone?: {
+    title: string;
+    intro: string;
+    steps: Array<{ label: string; content: string }>;
+    learnerTitle: string;
+    learnerTask: string;
+    worksheet: string[];
+  };
+  promptGroups: Array<{
+    title: string;
+    prompts: Array<{ label: string; prompt: string }>;
+  }>;
 }
 
 export interface CourseModule {
@@ -85,6 +127,7 @@ export interface CourseModule {
   number: string;
   title: LocalizedText;
   description: LocalizedText;
+  framing?: LocalizedText;
   diagram?: {
     steps: LocalizedText[];
     connectors?: string[];
@@ -186,7 +229,13 @@ export function getLocalizedLesson(lesson: Lesson, lang: Lang): LocalizedLesson 
     examplePrompt: getLocalizedText(lesson.examplePrompt, lang),
     practiceTask: getLocalizedText(lesson.practiceTask, lang),
     quickCheck: (lesson.quickCheck || []).map((item) =>
-      getLocalizedText(item, lang)
+      typeof item === "string" || !("question" in item)
+        ? { question: getLocalizedText(item, lang) }
+        : {
+            question: getLocalizedText(item.question, lang),
+            answer: getLocalizedText(item.answer, lang),
+            explanation: getLocalizedText(item.explanation, lang),
+          }
     ),
     teaching: lesson.teaching
       ? {
@@ -197,11 +246,45 @@ export function getLocalizedLesson(lesson: Lesson, lang: Lang): LocalizedLesson 
             before: getLocalizedText(lesson.teaching.comparison.before, lang),
             after: getLocalizedText(lesson.teaching.comparison.after, lang),
             why: getLocalizedText(lesson.teaching.comparison.why, lang),
+            resultLabel: lesson.teaching.comparison.resultLabel
+              ? getLocalizedText(lesson.teaching.comparison.resultLabel, lang)
+              : undefined,
+            beforeResult: lesson.teaching.comparison.beforeResult
+              ? getLocalizedText(lesson.teaching.comparison.beforeResult, lang)
+              : undefined,
+            afterResult: lesson.teaching.comparison.afterResult
+              ? getLocalizedText(lesson.teaching.comparison.afterResult, lang)
+              : undefined,
+            resultExplanation: lesson.teaching.comparison.resultExplanation
+              ? getLocalizedText(lesson.teaching.comparison.resultExplanation, lang)
+              : undefined,
           },
           didYouNotice: getLocalizedText(lesson.teaching.didYouNotice, lang),
           commonMistake: getLocalizedText(lesson.teaching.commonMistake, lang),
+      }
+      : undefined,
+    capstone: lesson.capstone
+      ? {
+          title: getLocalizedText(lesson.capstone.title, lang),
+          intro: getLocalizedText(lesson.capstone.intro, lang),
+          steps: lesson.capstone.steps.map((step) => ({
+            label: getLocalizedText(step.label, lang),
+            content: getLocalizedText(step.content, lang),
+          })),
+          learnerTitle: getLocalizedText(lesson.capstone.learnerTitle, lang),
+          learnerTask: getLocalizedText(lesson.capstone.learnerTask, lang),
+          worksheet: lesson.capstone.worksheet.map((item) =>
+            getLocalizedText(item, lang)
+          ),
         }
       : undefined,
+    promptGroups: (lesson.promptGroups || []).map((group) => ({
+      title: getLocalizedText(group.title, lang),
+      prompts: group.prompts.map((item) => ({
+        label: getLocalizedText(item.label, lang),
+        prompt: getLocalizedText(item.prompt, lang),
+      })),
+    })),
   };
 }
 

@@ -12,6 +12,7 @@ import {
   TriangleAlert,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
+import { QuickCheckList } from "@/components/course/QuickCheckList";
 import { copyTextToClipboard } from "@/lib/clipboard";
 import {
   getCoursePath,
@@ -215,6 +216,37 @@ export function LessonArticle({
                   {localizedLesson.teaching.comparison.why}
                 </p>
               </div>
+              {localizedLesson.teaching.comparison.beforeResult &&
+              localizedLesson.teaching.comparison.afterResult ? (
+                <div className="border-t border-neutral-200 p-4 sm:p-5">
+                  <p className="mb-4 text-xs font-bold uppercase tracking-[0.14em] text-neutral-400">
+                    {localizedLesson.teaching.comparison.resultLabel}
+                  </p>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+                      <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-neutral-500">
+                        {lang === "pidgin" ? "Answer wey fit come out" : "A possible weak response"}
+                      </p>
+                      <p className="whitespace-pre-line text-sm leading-7 text-neutral-700">
+                        {localizedLesson.teaching.comparison.beforeResult}
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-brand-100 bg-brand-50 p-4">
+                      <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-brand-700">
+                        {lang === "pidgin" ? "Better answer wey fit come out" : "A possible improved response"}
+                      </p>
+                      <p className="whitespace-pre-line text-sm leading-7 text-neutral-800">
+                        {localizedLesson.teaching.comparison.afterResult}
+                      </p>
+                    </div>
+                  </div>
+                  {localizedLesson.teaching.comparison.resultExplanation ? (
+                    <p className="mt-4 text-sm leading-7 text-neutral-600">
+                      {localizedLesson.teaching.comparison.resultExplanation}
+                    </p>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -347,11 +379,7 @@ export function LessonArticle({
                   {labels.quickCheck}
                 </h2>
               </div>
-              <ol className="list-decimal pl-5 space-y-2 text-sm leading-7 text-neutral-700 max-w-[34ch] sm:max-w-none">
-                {localizedLesson.quickCheck.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
+              <QuickCheckList items={localizedLesson.quickCheck} lang={lang} />
             </div>
           ) : null}
 

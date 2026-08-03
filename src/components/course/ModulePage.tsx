@@ -130,6 +130,12 @@ export function ModulePage({
             {moduleDescription}
           </p>
 
+          {module.framing ? (
+            <p className="mt-6 rounded-2xl border border-brand-100 bg-brand-50 px-5 py-4 text-sm leading-7 text-neutral-700">
+              {getLocalizedText(module.framing, lang)}
+            </p>
+          ) : null}
+
           <ModuleDiagram
             module={module}
             lang={lang}

@@ -11,6 +11,7 @@ import {
   MessageSquareText,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
+import { QuickCheckList } from "@/components/course/QuickCheckList";
 import { copyTextToClipboard } from "@/lib/clipboard";
 import {
   beginnerCourse,
@@ -340,11 +341,7 @@ export function StartHerePage({
                   {labels.quickCheck}
                 </h2>
               </div>
-              <ol className="list-decimal pl-5 space-y-2 text-sm leading-7 text-neutral-700">
-                {lesson.quickCheck.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
+              <QuickCheckList items={lesson.quickCheck} lang={lang} />
             </div>
 
             <div className="bg-surface border border-neutral-200 rounded-2xl p-5 sm:p-6">
