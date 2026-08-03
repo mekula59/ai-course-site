@@ -13,11 +13,14 @@ import {
   Sparkles,
 } from "lucide-react";
 import { CourseLink, type CourseNavigate } from "@/components/course/CourseLink";
+import { PlaybookWorksheet } from "@/components/course/PlaybookWorksheet";
+import { PromptCategoryAccordion } from "@/components/course/PromptCategoryAccordion";
 import { QuickCheckList } from "@/components/course/QuickCheckList";
 import { copyTextToClipboard } from "@/lib/clipboard";
 import {
   beginnerCourse,
   getAdjacentStandaloneCourseSteps,
+  getCoursesPath,
   getCoursePath,
   getCourseStepCount,
   getLocalizedLesson,
@@ -89,6 +92,15 @@ export function FinalWrapUpPage({
           previous: "Lesson before this",
           finish: "Finish",
           backHome: "Back to course home",
+          jumpTo: "Jump go",
+          jumpItems: ["Prompt checklist", "When AI get am wrong", "Example wey show all the steps", "Your worksheet", "Prompt bank", "Practice routine", "Final check"],
+          promptCount: (count: number) => `${count} prompt${count === 1 ? "" : "s"}`,
+          copyAllHelp: "This button go copy all 22 prompts at once. You fit paste dem inside your notes and keep the full bank close.",
+          stages: ["Understand the work", "Build the prompt", "Check and improve am", "Finish and use am again"],
+          finishedHeading: "You don finish Prompting Basics.",
+          finishedBody: "Now you know how to write clearer prompts, improve weak answers, check wetin AI give you, and save the prompts wey really help.",
+          returnToPractice: "Go back to practice section",
+          exploreCourses: "See other courses",
         }
       : {
           backToCourse: "Back to course",
@@ -109,7 +121,34 @@ export function FinalWrapUpPage({
           previous: "Previous",
           finish: "Finish",
           backHome: "Back to course home",
+          jumpTo: "Jump to",
+          jumpItems: ["Prompt checklist", "When AI gets it wrong", "Worked example", "Your worksheet", "Prompt bank", "Practice routine", "Final check"],
+          promptCount: (count: number) => `${count} prompt${count === 1 ? "" : "s"}`,
+          copyAllHelp: "Copy the full bank of 22 prompts in one go, then paste it into your notes so it is easy to find later.",
+          stages: ["Understand the task", "Build the prompt", "Check and refine", "Finish and reuse"],
+          finishedHeading: "You’ve finished Prompting Basics.",
+          finishedBody: "You now know how to write clearer prompts, improve weak answers, check what AI gives you, and save the prompts that genuinely help.",
+          returnToPractice: "Return to the practice section",
+          exploreCourses: "Explore courses",
         };
+
+  const jumpTargets = [
+    "prompt-checklist",
+    "when-ai-gets-it-wrong",
+    "worked-example",
+    "your-worksheet",
+    "prompt-bank",
+    "practice-routine",
+    "final-check",
+  ];
+  const capstoneStages = lesson.capstone
+    ? [
+        lesson.capstone.steps.slice(0, 4),
+        lesson.capstone.steps.slice(4, 6),
+        lesson.capstone.steps.slice(6, 10),
+        lesson.capstone.steps.slice(10, 12),
+      ]
+    : [];
 
   const handleCopyPrompt = async (copy = lesson.examplePrompt, id = "all") => {
     const copied = await copyTextToClipboard(copy);
@@ -124,7 +163,7 @@ export function FinalWrapUpPage({
 
   return (
     <div className="px-5 py-8 sm:py-14">
-      <article className="w-full max-w-5xl mx-auto">
+      <article className={`w-full max-w-5xl mx-auto ${isPromptPlaybook ? "prompt-playbook" : ""}`}>
         <CourseLink
           href={getCoursePath(course.slug)}
           navigate={navigate}
@@ -167,7 +206,7 @@ export function FinalWrapUpPage({
             </div>
 
             {nextStep ? (
-              <aside className="bg-neutral-900 text-white rounded-2xl p-5 sm:p-6">
+              <aside id={isPromptPlaybook ? "practice-routine" : undefined} className="scroll-mt-28 bg-neutral-900 text-white rounded-2xl p-5 sm:p-6">
                 <div className="flex items-center gap-2 mb-3">
                   <CheckCircle2 size={18} className="text-brand-400" />
                   <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-300">
@@ -186,9 +225,31 @@ export function FinalWrapUpPage({
           </div>
         </header>
 
-        <div className="space-y-10 sm:space-y-12">
+        {isPromptPlaybook ? (
+          <nav
+            aria-label={labels.jumpTo}
+            className="playbook-no-print z-20 mb-8 rounded-2xl border border-neutral-200 bg-surface/95 p-3 shadow-sm backdrop-blur lg:sticky lg:top-4"
+          >
+            <p className="mb-2 px-1 text-xs font-bold uppercase tracking-[0.14em] text-brand-700">
+              {labels.jumpTo}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {jumpTargets.map((target, index) => (
+                <a
+                  key={target}
+                  href={`#${target}`}
+                  className="inline-flex min-h-10 items-center rounded-full border border-neutral-200 bg-surface px-3 py-2 text-xs font-semibold text-neutral-700 transition-colors hover:border-brand-300 hover:text-brand-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
+                >
+                  {labels.jumpItems[index]}
+                </a>
+              ))}
+            </div>
+          </nav>
+        ) : null}
+
+        <div className="space-y-9 sm:space-y-11">
           {canDoNow ? (
-            <section>
+            <section id={isPromptPlaybook ? "prompt-checklist" : undefined} className="scroll-mt-32">
               <div className="max-w-2xl mb-5">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600 mb-2">
                   {labels.summary}
@@ -262,7 +323,7 @@ export function FinalWrapUpPage({
           ) : null}
 
           {weeklyPlan ? (
-            <section>
+            <section id={isPromptPlaybook ? "when-ai-gets-it-wrong" : undefined} className="scroll-mt-32">
               <div className="max-w-2xl mb-5">
                 <div className="flex items-center gap-2 mb-2">
                   <CalendarDays size={19} className="text-brand-600" />
@@ -347,7 +408,7 @@ export function FinalWrapUpPage({
           </section>
 
           {lesson.capstone ? (
-            <section aria-labelledby="capstone-heading">
+            <section id={isPromptPlaybook ? "worked-example" : undefined} className="scroll-mt-32" aria-labelledby="capstone-heading">
               <div className="mb-6 max-w-2xl">
                 <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
                   {labels.capstone}
@@ -357,84 +418,91 @@ export function FinalWrapUpPage({
                 </h2>
                 <p className="text-base leading-8 text-neutral-700">{lesson.capstone.intro}</p>
               </div>
-              <ol className="relative space-y-0 border-l border-brand-200 pl-5 sm:pl-7">
-                {lesson.capstone.steps.map((step, index) => (
-                  <li key={step.label} className="relative pb-7 last:pb-0">
-                    <span className="absolute -left-[1.65rem] sm:-left-[2.15rem] top-1 flex h-5 w-5 items-center justify-center rounded-full border-4 border-surface bg-brand-500 text-[0]" aria-hidden="true">
-                      {index + 1}
-                    </span>
-                    <h3 className="font-display text-base font-bold text-neutral-900 mb-2">{step.label}</h3>
-                    <p className="whitespace-pre-line text-sm leading-7 text-neutral-700">{step.content}</p>
-                  </li>
+              <div className="space-y-7">
+                {capstoneStages.map((steps, stageIndex) => (
+                  <section key={labels.stages[stageIndex]} className="grid gap-4 sm:grid-cols-[150px_minmax(0,1fr)] sm:gap-7">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-700">
+                        {lang === "pidgin" ? `Stage ${stageIndex + 1}` : `Stage ${stageIndex + 1}`}
+                      </p>
+                      <h3 className="mt-1 font-display text-base font-bold text-neutral-900">
+                        {labels.stages[stageIndex]}
+                      </h3>
+                    </div>
+                    <ol className="border-l-2 border-brand-200 pl-5">
+                      {steps.map((step) => (
+                        <li key={step.label} className="relative pb-5 last:pb-0">
+                          <span className="absolute -left-[1.55rem] top-1.5 h-3 w-3 rounded-full border-2 border-surface bg-brand-500" aria-hidden="true" />
+                          <h4 className="font-display text-sm font-bold text-neutral-900 mb-1.5">{step.label}</h4>
+                          <p className="whitespace-pre-line text-sm leading-7 text-neutral-700">{step.content}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </section>
                 ))}
-              </ol>
-              <div className="mt-8 rounded-2xl border border-brand-100 bg-brand-50 p-5 sm:p-6">
+              </div>
+              <div id={isPromptPlaybook ? "your-worksheet" : undefined} className="scroll-mt-32 mt-8 rounded-2xl border border-brand-100 bg-brand-50 p-5 sm:p-6">
                 <h3 className="font-display text-xl font-bold text-neutral-900 mb-2">{lesson.capstone.learnerTitle}</h3>
                 <p className="text-sm leading-7 text-neutral-700 mb-5">{lesson.capstone.learnerTask}</p>
-                <div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
-                  {lesson.capstone.worksheet.map((item) => (
-                    <div key={item} className="border-b border-brand-200 pb-2 text-sm font-semibold text-neutral-700">{item}</div>
-                  ))}
-                </div>
+                {isPromptPlaybook ? (
+                  <PlaybookWorksheet fields={lesson.capstone.worksheet} lang={lang} />
+                ) : (
+                  <div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                    {lesson.capstone.worksheet.map((item) => (
+                      <div key={item} className="border-b border-brand-200 pb-2 text-sm font-semibold text-neutral-700">{item}</div>
+                    ))}
+                  </div>
+                )}
               </div>
             </section>
           ) : null}
 
           {lesson.promptGroups.length > 0 ? (
-            <section aria-labelledby="prompt-groups-heading">
+            <section id={isPromptPlaybook ? "prompt-bank" : undefined} className="scroll-mt-32" aria-labelledby="prompt-groups-heading">
               <h2 id="prompt-groups-heading" className="font-display text-2xl sm:text-3xl font-bold text-neutral-900 mb-6">
                 {labels.promptsHeading}
               </h2>
-              <div className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-surface">
-                {lesson.promptGroups.map((group) => (
-                  <div key={group.title} className="p-4 sm:p-6">
-                    <h3 className="font-display text-lg font-bold text-neutral-900 mb-3">{group.title}</h3>
-                    <div className="divide-y divide-neutral-100">
-                      {group.prompts.map((item) => {
-                        const promptId = `${group.title}-${item.label}`;
-                        return (
-                          <div key={promptId} className="flex flex-col gap-3 py-4 first:pt-0 last:pb-0 sm:flex-row sm:items-start">
-                            <p className="min-w-0 flex-1 whitespace-pre-line text-sm leading-7 text-neutral-700">{item.prompt}</p>
-                            <button
-                              type="button"
-                              aria-label={`${labels.copyPrompt}: ${item.label}`}
-                              onClick={() => handleCopyPrompt(item.prompt, promptId)}
-                              className="inline-flex min-h-11 w-fit shrink-0 items-center gap-1.5 rounded-full border border-neutral-200 px-3 py-2 text-xs font-semibold text-brand-700 transition-colors hover:border-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2"
-                            >
-                              {copiedPrompt === promptId ? <Check size={14} /> : <Copy size={14} />}
-                              {copiedPrompt === promptId ? labels.copied : labels.copyPrompt}
-                            </button>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <PromptCategoryAccordion
+                groups={lesson.promptGroups}
+                copiedPrompt={copiedPrompt}
+                copyLabel={labels.copyPrompt}
+                copiedLabel={labels.copied}
+                countLabel={labels.promptCount}
+                onCopy={handleCopyPrompt}
+              />
             </section>
           ) : null}
 
           <section className="space-y-4" aria-label="Final wrap-up workbook">
             <div className="bg-neutral-900 text-white rounded-2xl p-4 sm:p-5">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center mb-3">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="flex items-center gap-2 sm:mr-auto">
                   <MessageSquareText size={18} className="text-brand-400" />
-                  <h2 className="font-display text-lg font-bold text-white">
-                    {labels.finalPrompt}
-                  </h2>
+                  <div>
+                    <h2 className="font-display text-lg font-bold text-white">
+                      {labels.finalPrompt}
+                    </h2>
+                    {isPromptPlaybook ? (
+                      <p className="mt-1 max-w-2xl text-sm leading-6 text-neutral-300">
+                        {labels.copyAllHelp}
+                      </p>
+                    ) : null}
+                  </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleCopyPrompt()}
-                  className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full border border-white/15 px-3 py-1.5 text-xs font-semibold text-neutral-100 hover:border-brand-300 hover:text-white transition-colors"
+                  className="inline-flex min-h-11 w-fit shrink-0 items-center gap-1.5 rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-neutral-100 hover:border-brand-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900 transition-colors"
                 >
                   {copiedPrompt === "all" ? <Check size={14} /> : <Copy size={14} />}
-                  {copiedPrompt === "all" ? labels.copied : labels.copyPrompt}
+                  {copiedPrompt === "all" ? labels.copied : labels.finalPrompt}
                 </button>
               </div>
-              <pre className="whitespace-pre-wrap rounded-xl border border-white/10 bg-black/25 p-3.5 sm:p-4 font-sans text-[13px] sm:text-sm leading-6 sm:leading-7 text-neutral-100 max-w-full overflow-x-auto">
-                {lesson.examplePrompt}
-              </pre>
+              {!isPromptPlaybook ? (
+                <pre className="mt-3 whitespace-pre-wrap rounded-xl border border-white/10 bg-black/25 p-3.5 sm:p-4 font-sans text-[13px] sm:text-sm leading-6 sm:leading-7 text-neutral-100 max-w-full overflow-x-auto">
+                  {lesson.examplePrompt}
+                </pre>
+              ) : null}
             </div>
 
             <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 sm:p-6">
@@ -450,7 +518,7 @@ export function FinalWrapUpPage({
               />
             </div>
 
-            <div className="bg-neutral-50 border border-neutral-200 rounded-2xl p-5 sm:p-6">
+            <div id={isPromptPlaybook ? "final-check" : undefined} className="scroll-mt-32 bg-neutral-50 border border-neutral-200 rounded-2xl p-5 sm:p-6">
               <div className="flex items-center gap-2 mb-3">
                 <CheckCircle2 size={18} className="text-brand-600" />
                 <h2 className="font-display text-lg font-bold text-neutral-900">
@@ -473,6 +541,40 @@ export function FinalWrapUpPage({
             </div>
           </section>
         </div>
+
+        {isPromptPlaybook ? (
+          <section className="mt-10 rounded-3xl bg-neutral-900 px-5 py-7 text-white sm:px-8 sm:py-9" aria-labelledby="course-finished-heading">
+            <CheckCircle2 size={28} className="mb-4 text-brand-400" aria-hidden="true" />
+            <h2 id="course-finished-heading" className="max-w-2xl font-display text-2xl font-bold text-white sm:text-3xl">
+              {labels.finishedHeading}
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-neutral-200 sm:text-base">
+              {labels.finishedBody}
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <CourseLink
+                href={getCoursePath(course.slug)}
+                navigate={navigate}
+                className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+              >
+                {labels.backHome}
+              </CourseLink>
+              <a
+                href="#practice-routine"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:border-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+              >
+                {labels.returnToPractice}
+              </a>
+              <CourseLink
+                href={getCoursesPath()}
+                navigate={navigate}
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:border-brand-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900"
+              >
+                {labels.exploreCourses}
+              </CourseLink>
+            </div>
+          </section>
+        ) : null}
 
         <nav
           className="mt-14 border-t border-neutral-200 pt-5 grid grid-cols-1 sm:grid-cols-2 gap-3"

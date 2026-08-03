@@ -123,6 +123,18 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .prompt-playbook * {
+      animation-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
     margin: 0;
     background-color: #fafaf9;
@@ -147,6 +159,30 @@
   #root {
     width: 100%;
     min-height: 100svh;
+  }
+}
+
+@media print {
+  body.playbook-printing * {
+    visibility: hidden !important;
+  }
+
+  body.playbook-printing .playbook-worksheet,
+  body.playbook-printing .playbook-worksheet * {
+    visibility: visible !important;
+  }
+
+  body.playbook-printing .playbook-worksheet {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    padding: 24px;
+    color: #1a1208;
+    background: white;
+  }
+
+  body.playbook-printing .playbook-no-print {
+    display: none !important;
   }
 }
 
